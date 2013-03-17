@@ -103,7 +103,10 @@
 #pragma mark Add block
 -(void)SH_addControlEvents:(UIControlEvents)controlEvents
                  withBlock:(SHControlEventBlock)theBlock; {
-  SHControl * control = [[SHControl alloc] initWithControlBlockForControlEvents:controlEvents withEventBlock:[theBlock copy]];
+
+  SHControl * control = [[SHControl alloc]
+                         initWithControlBlockForControlEvents:controlEvents
+                         withEventBlock:[theBlock copy]];
 
   //[self.mutableBlocks addObject:[theBlock copy]];
 }
