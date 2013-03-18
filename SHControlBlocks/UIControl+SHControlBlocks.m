@@ -112,7 +112,7 @@
 }
 
 -(void)SH_addControlEventTouchUpInsideWithBlock:(SHControlEventBlock)theBlock; {
-  
+  [self SH_addControlEvents:UIControlEventTouchUpInside withBlock:theBlock];
 }
 #pragma mark -
 #pragma mark Remove block
