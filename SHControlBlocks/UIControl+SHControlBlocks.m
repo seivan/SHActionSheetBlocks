@@ -71,7 +71,7 @@
 
 @implementation SHControl
 
--(id)initWithControlBlockForControlEvents:(UIControlEvents)controlEvents
+-(instancetype)initWithControlBlockForControlEvents:(UIControlEvents)controlEvents
                            withEventBlock:(SHControlEventBlock)theBlock; {
   self = [super init];
 	if (self) {
@@ -103,8 +103,9 @@
 #pragma mark Add block
 -(void)SH_addControlEvents:(UIControlEvents)controlEvents
                  withBlock:(SHControlEventBlock)theBlock; {
-  
-  [self.mutableBlocks addObject:[theBlock copy]];
+  SHControl * control = [[SHControl alloc] initWithControlBlockForControlEvents:controlEvents withEventBlock:[theBlock copy]];
+
+  //[self.mutableBlocks addObject:[theBlock copy]];
 }
 
 -(void)SH_addControlEventTouchUpInsideWithBlock:(SHControlEventBlock)theBlock; {
@@ -122,9 +123,14 @@
 
 
 -(void)SH_removeControlEventsForBlock:(SHControlEventBlock)theBlock; {
+//  [self.mutableBlocks removeObject:theBlock];
+//  if(self.mutableBlocks.count < 1)
+//    [self SH_removeAllBlocks];
 }
 
 -(void)SH_removeAllControlEventsBlocks; {
+//  [self.view removeGestureRecognizer:self];
+//  [self removeTarget:nil action:nil];
   self.mutableBlocks = nil;
 }
 
@@ -152,5 +158,29 @@
 
 #pragma mark -
 #pragma mark - Getters
+//-(NSMutableSet *)mutableBlocks; {
+//  NSMutableSet * blocks = [[SHControlBlocksManager sharedManager].mapBlocks
+//   objectForKey:self];
+//  if(blocks == nil) {
+//    blocks = [NSMutableSet set];
+//    self.mutableBlocks = blocks;
+//  }
+//  return blocks;
+//}
+//
+//#pragma mark -
+//#pragma mark - Setters
+//-(void)setMutableBlocks:(NSMutableSet *)theSet; {
+//  if(theSet == nil) {
+////    [self removeTarget:nil action:nil];
+//    [SHControlBlocksManager.sharedManager.mapBlocks
+//     removeObjectForKey:self];
+//  }
+//  else
+//    [SHControlBlocksManager.sharedManager.mapBlocks
+//     setObject:theSet forKey:self];
+//    
+//}
+
 @end
 
