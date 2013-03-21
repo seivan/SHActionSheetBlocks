@@ -12,12 +12,9 @@
 
 @interface SHControlBlocksManager : NSObject
 @property(nonatomic,strong) NSHashTable     * mapBlocks;
-
 +(instancetype)sharedManager;
-
 -(void)SH_memoryDebugger;
 @end
-
 @implementation SHControlBlocksManager
 #pragma mark -
 #pragma mark Init & Dealloc
@@ -25,14 +22,11 @@
   self = [super init];
   if (self) {
     self.mapBlocks            = [NSHashTable weakObjectsHashTable];
-    
-//    [self SH_memoryDebugger];
+    [self SH_memoryDebugger];
   }
   
   return self;
 }
-
-
 +(instancetype)sharedManager; {
   static SHControlBlocksManager *_sharedInstance;
   static dispatch_once_t onceToken;
@@ -44,27 +38,22 @@
   return _sharedInstance;
   
 }
-
 #pragma mark -
 #pragma mark Debugger
 -(void)SH_memoryDebugger; {
   double delayInSeconds = 2.0;
   dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
   dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-    
     NSLog(@"MAP %@",self.mapBlocks);
-
     [self SH_memoryDebugger];
   });
 }
-
-
 @end
 
 @interface SHControl : NSObject
-
--(id)initWithControlBlockForControlEvents:(UIControlEvents)controlEvents
+-(instancetype)initWithControlBlockForControlEvents:(UIControlEvents)controlEvents
                             withEventBlock:(SHControlEventBlock)theBlock;
+
 @property(nonatomic,assign) UIControlEvents     controlEvents;
 @property(nonatomic,strong) NSHashTable       * tableBlocks;
 @end
@@ -83,7 +72,7 @@
 
 
 
-- (void)performAction:(id)sender {
+-(void)performAction:(id)sender; {
 	for (SHControlEventBlock block in self.tableBlocks) {
     block(sender);
   }
