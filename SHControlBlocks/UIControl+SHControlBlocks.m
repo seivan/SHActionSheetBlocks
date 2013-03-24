@@ -97,7 +97,7 @@
                          initWithControlBlockForControlEvents:controlEvents
                          withEventBlock:[theBlock copy]];
 
-  //[self.mutableBlocks addObject:[theBlock copy]];
+  [self.mutableBlocks addObject:control];
 }
 
 -(void)SH_addControlEventTouchUpInsideWithBlock:(SHControlEventBlock)theBlock; {
