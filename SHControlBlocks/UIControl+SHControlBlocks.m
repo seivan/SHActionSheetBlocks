@@ -96,7 +96,7 @@
   SHControl * control = [[SHControl alloc]
                          initWithControlBlockForControlEvents:controlEvents
                          withEventBlock:[theBlock copy]];
-
+  [self addTarget:control action:@selector(performAction:) forControlEvents:controlEvents];
   [self.mutableBlocks addObject:control];
 }
 
@@ -109,6 +109,7 @@
 -(void)SH_removeControlEventTouchUpInside; {
   
 }
+
 -(void)SH_removeBlocksForControlEvents:(UIControlEvents)controlEvents; {
   
 }
@@ -151,19 +152,20 @@
 
 #pragma mark -
 #pragma mark - Getters
-//-(NSMutableSet *)mutableBlocks; {
-//  NSMutableSet * blocks = [[SHControlBlocksManager sharedManager].mapBlocks
+-(NSMutableSet *)mutableBlocks; {
+  NSMutableSet * blocks = nil;
+  //[[SHControlBlocksManager sharedManager].mapBlocks
 //   objectForKey:self];
-//  if(blocks == nil) {
-//    blocks = [NSMutableSet set];
-//    self.mutableBlocks = blocks;
-//  }
-//  return blocks;
-//}
-//
-//#pragma mark -
-//#pragma mark - Setters
-//-(void)setMutableBlocks:(NSMutableSet *)theSet; {
+  if(blocks == nil) {
+    blocks = [NSMutableSet set];
+    self.mutableBlocks = blocks;
+  }
+  return blocks;
+}
+
+#pragma mark -
+#pragma mark - Setters
+-(void)setMutableBlocks:(NSMutableSet *)theSet; {
 //  if(theSet == nil) {
 ////    [self removeTarget:nil action:nil];
 //    [SHControlBlocksManager.sharedManager.mapBlocks
@@ -172,8 +174,8 @@
 //  else
 //    [SHControlBlocksManager.sharedManager.mapBlocks
 //     setObject:theSet forKey:self];
-//    
-//}
+  
+}
 
 @end
 
