@@ -105,6 +105,17 @@
 }
 
 #pragma mark -
+#pragma mark Helpers
+-(NSSet *)SH_blocksForControlEvent:(UIControlEvents)theControlEvents; {
+  
+}
+
+-(NSSet *)SH_controlEventsForBlock:(SHControlEventBlock)theBlock; {
+  
+}
+
+
+#pragma mark -
 #pragma mark Remove block
 -(void)SH_removeControlEventTouchUpInside; {
   
