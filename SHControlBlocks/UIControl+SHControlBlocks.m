@@ -107,11 +107,11 @@
 #pragma mark -
 #pragma mark Helpers
 -(NSSet *)SH_blocksForControlEvent:(UIControlEvents)theControlEvents; {
-  
+  return nil;
 }
 
 -(NSSet *)SH_controlEventsForBlock:(SHControlEventBlock)theBlock; {
-  
+  return nil;
 }
 
 
