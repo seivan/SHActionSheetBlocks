@@ -81,7 +81,7 @@
 @end
 
 @interface UIControl ()
-@property(nonatomic,strong) NSMutableSet * mutableBlocks;
+@property(nonatomic,strong) NSMapTable * mapControls;
 @end
 
 
@@ -93,11 +93,12 @@
 -(void)SH_addControlEvents:(UIControlEvents)controlEvents
                  withBlock:(SHControlEventBlock)theBlock; {
 
+  if (self.mapControls == nil) self.mapControls = [NSMapTable weakToWeakObjectsMapTable];
   SHControl * control = [[SHControl alloc]
                          initWithControlBlockForControlEvents:controlEvents
                          withEventBlock:[theBlock copy]];
   [self addTarget:control action:@selector(performAction:) forControlEvents:controlEvents];
-  [self.mutableBlocks addObject:control];
+//  [self.mutableBlocks addObject:control];
 }
 
 -(void)SH_addControlEventTouchUpInsideWithBlock:(SHControlEventBlock)theBlock; {
