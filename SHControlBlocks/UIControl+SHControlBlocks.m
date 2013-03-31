@@ -93,7 +93,7 @@
 -(void)SH_addControlEvents:(UIControlEvents)controlEvents
                  withBlock:(SHControlEventBlock)theBlock; {
 
-  if (self.mapControls == nil) self.mapControls = [NSMapTable weakToWeakObjectsMapTable];
+  if (self.mapControls == nil) self.mapControls = [NSMapTable strongToWeakObjectsMapTable];
   SHControl * control = [[SHControl alloc]
                          initWithControlBlockForControlEvents:controlEvents
                          withEventBlock:[theBlock copy]];
