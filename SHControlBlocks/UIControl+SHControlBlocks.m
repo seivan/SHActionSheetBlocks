@@ -137,7 +137,7 @@
 -(void)SH_removeAllControlEventsBlocks; {
 //  [self.view removeGestureRecognizer:self];
 //  [self removeTarget:nil action:nil];
-  self.mutableBlocks = nil;
+ // self.mutableBlocks = nil;
 }
 
 
@@ -148,7 +148,7 @@
 #pragma mark -
 #pragma mark Getters
 -(NSSet *)SH_controlBlocks; {
-  return self.mutableBlocks.copy;
+  return nil; //return self.mutableBlocks.copy;
 }
 
 -(BOOL)SH_isTouchUpInsideEnabled; {
@@ -164,30 +164,30 @@
 
 #pragma mark -
 #pragma mark - Getters
--(NSMutableSet *)mutableBlocks; {
-  NSMutableSet * blocks = nil;
-  //[[SHControlBlocksManager sharedManager].mapBlocks
-//   objectForKey:self];
-  if(blocks == nil) {
-    blocks = [NSMutableSet set];
-    self.mutableBlocks = blocks;
-  }
-  return blocks;
-}
-
-#pragma mark -
-#pragma mark - Setters
--(void)setMutableBlocks:(NSMutableSet *)theSet; {
-//  if(theSet == nil) {
-////    [self removeTarget:nil action:nil];
-//    [SHControlBlocksManager.sharedManager.mapBlocks
-//     removeObjectForKey:self];
+//-(NSMutableSet *)mutableBlocks; {
+//  NSMutableSet * blocks = nil;
+//  //[[SHControlBlocksManager sharedManager].mapBlocks
+////   objectForKey:self];
+//  if(blocks == nil) {
+//    blocks = [NSMutableSet set];
+//    self.mutableBlocks = blocks;
 //  }
-//  else
-//    [SHControlBlocksManager.sharedManager.mapBlocks
-//     setObject:theSet forKey:self];
-  
-}
-
+//  return blocks;
+//}
+//
+//#pragma mark -
+//#pragma mark - Setters
+//-(void)setMutableBlocks:(NSMutableSet *)theSet; {
+////  if(theSet == nil) {
+//////    [self removeTarget:nil action:nil];
+////    [SHControlBlocksManager.sharedManager.mapBlocks
+////     removeObjectForKey:self];
+////  }
+////  else
+////    [SHControlBlocksManager.sharedManager.mapBlocks
+////     setObject:theSet forKey:self];
+//  
+//}
+//
 @end
 
