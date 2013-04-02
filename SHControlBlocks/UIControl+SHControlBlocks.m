@@ -82,18 +82,23 @@
 
 @interface UIControl ()
 @property(nonatomic,strong) NSMapTable * mapControls;
+-(NSHashTable *)blocksForControlEvents:(UIControlEvents)theControlEvents;
 @end
 
 
 
 @implementation UIControl (SHControlBlocks)
-
+-(NSHashTable *)blocksForControlEvents:(UIControlEvents)theControlEvents; {
+  
+  return nil;
+}
 #pragma mark -
 #pragma mark Add block
 -(void)SH_addControlEvents:(UIControlEvents)controlEvents
                  withBlock:(SHControlEventBlock)theBlock; {
 
   if (self.mapControls == nil) self.mapControls = [NSMapTable strongToWeakObjectsMapTable];
+  
   SHControl * control = [[SHControl alloc]
                          initWithControlBlockForControlEvents:controlEvents
                          withEventBlock:[theBlock copy]];
