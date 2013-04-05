@@ -82,6 +82,9 @@
 
 @interface UIControl ()
 @property(nonatomic,strong) NSMapTable * mapControls;
+@end
+
+@interface UIControl (Private)
 -(NSHashTable *)blocksForControlEvents:(UIControlEvents)theControlEvents;
 @end
 
@@ -89,8 +92,14 @@
 
 @implementation UIControl (SHControlBlocks)
 -(NSHashTable *)blocksForControlEvents:(UIControlEvents)theControlEvents; {
-  
-  return nil;
+  NSHashTable * blocksForControlEvents = nil;
+  for (NSNumber * controlEvents in self.mapControls)
+    if (controlEvents.integerValue == theControlEvents ) {
+      blocksForControlEvents = [self.mapControls objectForKey:controlEvents];
+      continue;
+    }
+
+  return blocksForControlEvents;
 }
 #pragma mark -
 #pragma mark Add block
@@ -112,7 +121,7 @@
 
 #pragma mark -
 #pragma mark Helpers
--(NSSet *)SH_blocksForControlEvent:(UIControlEvents)theControlEvents; {
+-(NSSet *)SH_blocksForControlEvents:(UIControlEvents)theControlEvents; {
   return nil;
 }
 

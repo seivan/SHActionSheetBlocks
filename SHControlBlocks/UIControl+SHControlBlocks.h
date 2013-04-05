@@ -21,7 +21,7 @@ typedef void (^SHControlEventBlock)(UIControl * sender);
 
 #pragma mark -
 #pragma mark Helpers
--(NSSet *)SH_blocksForControlEvent:(UIControlEvents)theControlEvents;
+-(NSSet *)SH_blocksForControlEvents:(UIControlEvents)theControlEvents;
 -(NSSet *)SH_controlEventsForBlock:(SHControlEventBlock)theBlock;
 
 #pragma mark -
