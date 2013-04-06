@@ -81,38 +81,50 @@
 @end
 
 @interface UIControl ()
-@property(nonatomic,strong) NSMapTable * mapControls;
+@property(nonatomic,strong) NSHashTable * tableControls;
 @end
 
 @interface UIControl (Private)
--(NSHashTable *)blocksForControlEvents:(UIControlEvents)theControlEvents;
+-(SHControl *)shControlForControlEvents:(UIControlEvents)theControlEvents;
 @end
 
 
 
 @implementation UIControl (SHControlBlocks)
--(NSHashTable *)blocksForControlEvents:(UIControlEvents)theControlEvents; {
-  NSHashTable * blocksForControlEvents = nil;
-  for (NSNumber * controlEvents in self.mapControls)
-    if (controlEvents.integerValue == theControlEvents ) {
-      blocksForControlEvents = [self.mapControls objectForKey:controlEvents];
+-(SHControl *)shControlForControlEvents:(UIControlEvents)theControlEvents; {
+  SHControl * shControl = nil;
+//  for (NSNumber * controlEvents in self.mapControls)
+//    if (controlEvents.integerValue == theControlEvents ) {
+//      control = [self.mapControls objectForKey:controlEvents];
+//      continue;
+//    }
+  for (SHControl * control in self.tableControls)
+    if (control.controlEvents == theControlEvents ) {
+      shControl = control;
       continue;
     }
 
-  return blocksForControlEvents;
+  return shControl;
 }
 #pragma mark -
 #pragma mark Add block
 -(void)SH_addControlEvents:(UIControlEvents)controlEvents
                  withBlock:(SHControlEventBlock)theBlock; {
 
-  if (self.mapControls == nil) self.mapControls = [NSMapTable strongToWeakObjectsMapTable];
+  if (self.tableControls == nil) self.tableControls = [NSHashTable weakObjectsHashTable];
   
-  SHControl * control = [[SHControl alloc]
-                         initWithControlBlockForControlEvents:controlEvents
-                         withEventBlock:[theBlock copy]];
+  SHControlEventBlock block = [theBlock copy];
+  SHControl * control = [self shControlForControlEvents:controlEvents];
+  if(control) {
+    [control.tableBlocks addObject:block];
+  }
+  else {
+    control = [[SHControl alloc]
+               initWithControlBlockForControlEvents:controlEvents
+               withEventBlock:block];
+  }
   [self addTarget:control action:@selector(performAction:) forControlEvents:controlEvents];
-//  [self.mutableBlocks addObject:control];
+  [self.tableControls addObject:control];
 }
 
 -(void)SH_addControlEventTouchUpInsideWithBlock:(SHControlEventBlock)theBlock; {
