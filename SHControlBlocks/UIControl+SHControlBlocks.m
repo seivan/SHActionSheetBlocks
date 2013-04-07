@@ -93,11 +93,6 @@
 @implementation UIControl (SHControlBlocks)
 -(SHControl *)shControlForControlEvents:(UIControlEvents)theControlEvents; {
   SHControl * shControl = nil;
-//  for (NSNumber * controlEvents in self.mapControls)
-//    if (controlEvents.integerValue == theControlEvents ) {
-//      control = [self.mapControls objectForKey:controlEvents];
-//      continue;
-//    }
   for (SHControl * control in self.tableControls)
     if (control.controlEvents == theControlEvents ) {
       shControl = control;
