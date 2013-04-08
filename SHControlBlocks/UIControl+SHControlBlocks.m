@@ -11,7 +11,7 @@
 
 
 @interface SHControlBlocksManager : NSObject
-@property(nonatomic,strong) NSHashTable     * mapBlocks;
+@property(nonatomic,strong) NSMapTable     * mapBlocks;
 +(instancetype)sharedManager;
 -(void)SH_memoryDebugger;
 @end
@@ -21,7 +21,7 @@
 -(instancetype)init; {
   self = [super init];
   if (self) {
-    self.mapBlocks            = [NSHashTable weakObjectsHashTable];
+    self.mapBlocks            = [NSMapTable strongToStrongObjectsMapTable];
     [self SH_memoryDebugger];
   }
   
@@ -64,7 +64,7 @@
                            withEventBlock:(SHControlEventBlock)theBlock; {
   self = [super init];
 	if (self) {
-    self.tableBlocks   = [NSHashTable weakObjectsHashTable];
+    self.tableBlocks   = [NSHashTable hashTableWithOptions:NSPointerFunctionsStrongMemory];
     self.controlEvents = controlEvents;
 	}
 	return self;
@@ -81,7 +81,7 @@
 @end
 
 @interface UIControl ()
-@property(nonatomic,strong) NSHashTable * tableControls;
+@property(nonatomic,readonly) NSHashTable * tableControls;
 @end
 
 @interface UIControl (Private)
@@ -106,7 +106,7 @@
 -(void)SH_addControlEvents:(UIControlEvents)controlEvents
                  withBlock:(SHControlEventBlock)theBlock; {
 
-  if (self.tableControls == nil) self.tableControls = [NSHashTable weakObjectsHashTable];
+
   
   SHControlEventBlock block = [theBlock copy];
   SHControl * control = [self shControlForControlEvents:controlEvents];
@@ -120,6 +120,7 @@
   }
   [self addTarget:control action:@selector(performAction:) forControlEvents:controlEvents];
   [self.tableControls addObject:control];
+
 }
 
 -(void)SH_addControlEventTouchUpInsideWithBlock:(SHControlEventBlock)theBlock; {
@@ -178,6 +179,16 @@
 
 #pragma mark -
 #pragma mark Privates
+-(NSHashTable *)tableControls; {
+  NSHashTable * tableControls =  [[SHControlBlocksManager sharedManager].mapBlocks objectForKey:self];
+  if (tableControls == nil)
+    self.tableControls = [NSHashTable hashTableWithOptions:NSPointerFunctionsStrongMemory];
+  return tableControls;
+}
+
+-(void)setTableControls:(NSHashTable *)tableControls; {
+  [[SHControlBlocksManager sharedManager].mapBlocks setObject:tableControls forKey:self];
+}
 
 
 #pragma mark -
@@ -185,30 +196,5 @@
 
 #pragma mark -
 #pragma mark - Getters
-//-(NSMutableSet *)mutableBlocks; {
-//  NSMutableSet * blocks = nil;
-//  //[[SHControlBlocksManager sharedManager].mapBlocks
-////   objectForKey:self];
-//  if(blocks == nil) {
-//    blocks = [NSMutableSet set];
-//    self.mutableBlocks = blocks;
-//  }
-//  return blocks;
-//}
-//
-//#pragma mark -
-//#pragma mark - Setters
-//-(void)setMutableBlocks:(NSMutableSet *)theSet; {
-////  if(theSet == nil) {
-//////    [self removeTarget:nil action:nil];
-////    [SHControlBlocksManager.sharedManager.mapBlocks
-////     removeObjectForKey:self];
-////  }
-////  else
-////    [SHControlBlocksManager.sharedManager.mapBlocks
-////     setObject:theSet forKey:self];
-//  
-//}
-//
 @end
 
