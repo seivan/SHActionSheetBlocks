@@ -65,6 +65,7 @@
   self = [super init];
 	if (self) {
     self.tableBlocks   = [NSHashTable hashTableWithOptions:NSPointerFunctionsStrongMemory];
+    [self.tableBlocks addObject:theBlock];
     self.controlEvents = controlEvents;
 	}
 	return self;
