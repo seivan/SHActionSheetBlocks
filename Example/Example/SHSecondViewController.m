@@ -18,21 +18,8 @@
 @implementation SHSecondViewController
 
 -(void)viewDidAppear:(BOOL)animated; {
-  UIButton * button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-  button.backgroundColor = [UIColor greenColor];
-  
-  UIButton * button2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-  button.backgroundColor = [UIColor redColor];
   
   __weak typeof(self) weakSelf = self;
-  [button SH_addControlEventTouchUpInsideWithBlock:^(UIControl *sender) {
-    [weakSelf.view addSubview:button2];
-    [button removeFromSuperview];
-    [button2 SH_addControlEvents:UIControlEventTouchUpInside withBlock:^(UIControl *sender) {
-      [button2 removeFromSuperview];
-    }];
-  }];
-  
-  [self.view addSubview:button];
+
 }
 @end
