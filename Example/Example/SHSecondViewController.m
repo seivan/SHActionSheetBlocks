@@ -7,7 +7,6 @@
 //
 
 #import "SHSecondViewController.h"
-#import "SHKeyValueObserverBlocks.h"
 #import "SHControlBlocks.h"
 
 @interface SHSecondViewController ()
@@ -20,6 +19,11 @@
 -(void)viewDidAppear:(BOOL)animated; {
   
   __weak typeof(self) weakSelf = self;
-
+  [self.btnFirst SH_addControlEventTouchUpInsideWithBlock:^(UIControl *sender) {
+    NSLog(@"controlblocks : %@", self.btnFirst.SH_controlBlocks);
+    NSLog(@"is enabled %d", self.btnFirst.SH_isTouchUpInsideEnabled);
+    NSLog(@"blocks %@", [self.btnFirst SH_blocksForControlEvents:UIControlEventTouchUpInside]);
+    [weakSelf.btnFirst removeFromSuperview];
+  }];
 }
 @end
