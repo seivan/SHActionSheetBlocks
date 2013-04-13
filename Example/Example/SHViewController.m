@@ -19,7 +19,7 @@
 
 -(void)viewDidLoad;{
   [super viewDidLoad];
-  UIButton * button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+  __block UIButton * button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
   [self.view addSubview:button];
   [button SH_addControlEventTouchUpInsideWithBlock:^(UIControl *sender) {
     [self performSegueWithIdentifier:@"second" sender:nil];

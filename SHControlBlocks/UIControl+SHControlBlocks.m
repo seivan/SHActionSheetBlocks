@@ -21,7 +21,7 @@
 -(instancetype)init; {
   self = [super init];
   if (self) {
-    self.mapBlocks            = [NSMapTable strongToStrongObjectsMapTable];
+    self.mapBlocks            = [NSMapTable weakToStrongObjectsMapTable];
     [self SH_memoryDebugger];
   }
   
