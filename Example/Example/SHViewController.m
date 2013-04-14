@@ -21,9 +21,17 @@
   [super viewDidLoad];
   __block UIButton * button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
   [self.view addSubview:button];
+
   [button SH_addControlEventTouchUpInsideWithBlock:^(UIControl *sender) {
     [self performSegueWithIdentifier:@"second" sender:nil];
+    NSLog(@"first");
   }];
+  [button SH_addControlEventTouchUpInsideWithBlock:^(UIControl *sender) {
+    NSLog(@"second");
+  }];
+  
+  
+
 }
 
 -(void)viewDidAppear:(BOOL)animated; {
