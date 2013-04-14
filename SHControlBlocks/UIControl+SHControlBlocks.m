@@ -112,7 +112,9 @@
 }
 #pragma mark -
 #pragma mark Remove block
-
+-(void)SH_removeControlEventTouchUpInside; {
+  
+}
 -(void)SH_removeBlocksForControlEvents:(UIControlEvents)controlEvents; {
   
 }
