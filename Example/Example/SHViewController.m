@@ -30,7 +30,13 @@
     NSLog(@"second");
   }];
   
+  SHControlEventBlock block = ^(UIControl * sender){
+    NSLog(@"SENDER : %@", sender);
+  };
   
+  [button SH_addControlEventTouchUpInsideWithBlock:block];
+  [button SH_addControlEventTouchUpInsideWithBlock:block];
+  [button SH_addControlEventTouchUpInsideWithBlock:block];
 
 }
 
