@@ -22,21 +22,28 @@
   __block UIButton * button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
   [self.view addSubview:button];
 
-  [button SH_addControlEventTouchUpInsideWithBlock:^(UIControl *sender) {
-    [self performSegueWithIdentifier:@"second" sender:nil];
-    NSLog(@"first");
-  }];
-  [button SH_addControlEventTouchUpInsideWithBlock:^(UIControl *sender) {
-    NSLog(@"second");
-  }];
+  [button addTarget:self action:@selector(damn:) forControlEvents:UIControlEventTouchUpInside];
+  [button addTarget:self action:@selector(damn:) forControlEvents:UIControlEventTouchUpInside];
+  [button addTarget:self action:@selector(damn:) forControlEvents:UIControlEventTouchUpInside];
+  [button addTarget:self action:@selector(damn2:) forControlEvents:UIControlEventTouchUpInside];
   
-  SHControlEventBlock block = ^(UIControl * sender){
-    NSLog(@"SENDER : %@", sender);
-  };
+
   
-  [button SH_addControlEventTouchUpInsideWithBlock:block];
-  [button SH_addControlEventTouchUpInsideWithBlock:block];
-  [button SH_addControlEventTouchUpInsideWithBlock:block];
+//  [button SH_addControlEventTouchUpInsideWithBlock:^(UIControl *sender) {
+//    [self performSegueWithIdentifier:@"second" sender:nil];
+//    NSLog(@"first");
+//  }];
+//  [button SH_addControlEventTouchUpInsideWithBlock:^(UIControl *sender) {
+//    NSLog(@"second");
+//  }];
+//  
+//  SHControlEventBlock block = ^(UIControl * sender){
+//    NSLog(@"SENDER : %@", sender);
+//  };
+//  
+//  [button SH_addControlEventTouchUpInsideWithBlock:block];
+//  [button SH_addControlEventTouchUpInsideWithBlock:block];
+//  [button SH_addControlEventTouchUpInsideWithBlock:block];
 
 }
 
@@ -44,7 +51,12 @@
   [super viewDidAppear:animated];
   
 }
-
+-(void)damn2:(id)sender; {
+  NSLog(@"damn2");
+}
+-(void)damn:(id)sender; {
+  NSLog(@"damn");
+}
 -(IBAction)unwinder:(UIStoryboardSegue *)theSegue; {
   
 }
