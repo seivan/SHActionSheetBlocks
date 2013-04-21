@@ -27,13 +27,11 @@
   [button addTarget:self action:@selector(damn:) forControlEvents:UIControlEventTouchUpInside];
   [button addTarget:self action:@selector(damn2:) forControlEvents:UIControlEventTouchUpInside];
   
-  NSLog(@"%@");
-  NSLog(@"%@");
-  NSLog(@"%@");
-  NSLog(@"%@");
-  NSLog(@"%@");
+  NSLog(@"all targets %@", button.allTargets);
+  NSLog(@"all controlevents %u", button.allControlEvents);
+  NSLog(@"%@", [button actionsForTarget:self forControlEvent:UIControlEventTouchUpInside]);
   
-  allTarget, allControlEvents, actionsForTarget
+
 //  [button SH_addControlEventTouchUpInsideWithBlock:^(UIControl *sender) {
 //    [self performSegueWithIdentifier:@"second" sender:nil];
 //    NSLog(@"first");
