@@ -64,7 +64,7 @@
                            withEventBlock:(SHControlEventBlock)theBlock; {
   self = [super init];
 	if (self) {
-    self.tableBlocks   = [NSMutableArray array];
+    self.tableBlocks   = [NSHashTable hashTableWithOptions:NSPointerFunctionsStrongMemory];
     [self.tableBlocks addObject:theBlock];
     self.controlEvents = controlEvents;
 	}
