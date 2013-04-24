@@ -32,21 +32,21 @@
   NSLog(@"%@", [button actionsForTarget:self forControlEvent:UIControlEventTouchUpInside]);
   
 
-//  [button SH_addControlEventTouchUpInsideWithBlock:^(UIControl *sender) {
-//    [self performSegueWithIdentifier:@"second" sender:nil];
-//    NSLog(@"first");
-//  }];
-//  [button SH_addControlEventTouchUpInsideWithBlock:^(UIControl *sender) {
-//    NSLog(@"second");
-//  }];
-//  
-//  SHControlEventBlock block = ^(UIControl * sender){
-//    NSLog(@"SENDER : %@", sender);
-//  };
-//  
-//  [button SH_addControlEventTouchUpInsideWithBlock:block];
-//  [button SH_addControlEventTouchUpInsideWithBlock:block];
-//  [button SH_addControlEventTouchUpInsideWithBlock:block];
+  [button SH_addControlEventTouchUpInsideWithBlock:^(UIControl *sender) {
+    [self performSegueWithIdentifier:@"second" sender:nil];
+    NSLog(@"first");
+  }];
+  [button SH_addControlEventTouchUpInsideWithBlock:^(UIControl *sender) {
+    NSLog(@"second");
+  }];
+  
+  SHControlEventBlock block = ^(UIControl * sender){
+    NSLog(@"SENDER : %@", sender);
+  };
+  
+  [button SH_addControlEventTouchUpInsideWithBlock:block];
+  [button SH_addControlEventTouchUpInsideWithBlock:block];
+  [button SH_addControlEventTouchUpInsideWithBlock:block];
 
 }
 
