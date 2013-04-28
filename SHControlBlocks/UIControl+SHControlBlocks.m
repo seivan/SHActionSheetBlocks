@@ -142,7 +142,7 @@
 #pragma mark -
 #pragma mark Remove block
 -(void)SH_removeControlEventTouchUpInside; {
-  
+
 }
 
 -(void)SH_removeBlocksForControlEvents:(UIControlEvents)controlEvents; {
@@ -158,6 +158,7 @@
 }
 
 -(void)SH_removeAllControlEventsBlocks; {
+  self.tableControls = nil;
 //  [self.view removeGestureRecognizer:self];
 //  [self removeTarget:nil action:nil];
  // self.mutableBlocks = nil;
