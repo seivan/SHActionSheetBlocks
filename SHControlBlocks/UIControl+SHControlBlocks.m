@@ -22,7 +22,7 @@
   self = [super init];
   if (self) {
     self.mapBlocks            = [NSMapTable weakToStrongObjectsMapTable];
-//    [self SH_memoryDebugger];
+    [self SH_memoryDebugger];
   }
   
   return self;
@@ -189,7 +189,14 @@
 }
 
 -(void)setTableControls:(NSHashTable *)tableControls; {
-  [[SHControlBlocksManager sharedManager].mapBlocks setObject:tableControls forKey:self];
+  if(tableControls)
+    [[SHControlBlocksManager sharedManager].mapBlocks setObject:tableControls forKey:self];
+  else {
+//    for (SHControl * control in self.tableControls)
+//      [self removeTarget:control action:NULL forControlEvents:control.controlEvents];
+    [[SHControlBlocksManager sharedManager].mapBlocks removeObjectForKey:self];
+  }
+
 }
 
 
