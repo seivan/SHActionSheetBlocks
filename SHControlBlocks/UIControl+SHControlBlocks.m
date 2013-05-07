@@ -142,16 +142,21 @@
 #pragma mark -
 #pragma mark Remove block
 -(void)SH_removeControlEventTouchUpInside; {
-
+  [self SH_removeBlocksForControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)SH_removeBlocksForControlEvents:(UIControlEvents)controlEvents; {
-  
+  SHControl * control = [self shControlForControlEvents:controlEvents];
+  [self removeTarget:control action:NULL forControlEvents:controlEvents];
 }
 
 
 
 -(void)SH_removeControlEventsForBlock:(SHControlEventBlock)theBlock; {
+  for (SHControl * control in self.tableControls){
+    if([control.tableBlocks containsObject:theBlock])
+      [self removeTarget:control action:NULL forControlEvents:control.controlEvents];
+  }
 //  [self.mutableBlocks removeObject:theBlock];
 //  if(self.mutableBlocks.count < 1)
 //    [self SH_removeAllBlocks];
@@ -192,8 +197,8 @@
   if(tableControls)
     [[SHControlBlocksManager sharedManager].mapBlocks setObject:tableControls forKey:self];
   else {
-//    for (SHControl * control in self.tableControls)
-//      [self removeTarget:control action:NULL forControlEvents:control.controlEvents];
+    for (SHControl * control in self.tableControls)
+      [self removeTarget:control action:NULL forControlEvents:control.controlEvents];
     [[SHControlBlocksManager sharedManager].mapBlocks removeObjectForKey:self];
   }
 
