@@ -1,0 +1,21 @@
+PODS:
+  - SHObjectUserInfo (1.0.0)
+  - SHSegueBlocks (1.0.0):
+    - SHObjectUserInfo (~> 1.0.0)
+
+DEPENDENCIES:
+  - SHObjectUserInfo (from `https://github.com/seivan/SHObjectUserInfo`, branch `master`)
+  - SHSegueBlocks (from `../`)
+
+EXTERNAL SOURCES:
+  SHObjectUserInfo:
+    :branch: :master
+    :git: https://github.com/seivan/SHObjectUserInfo
+  SHSegueBlocks:
+    :path: ../
+
+SPEC CHECKSUMS:
+  SHObjectUserInfo: 46ec0f0d5131abff9fabdba55f4a3d012de3c646
+  SHSegueBlocks: c980e3b1c989ff7f13d5a92bac8336ec17671cf8
+
+COCOAPODS: 0.19.1
