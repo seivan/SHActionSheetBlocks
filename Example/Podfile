@@ -1,3 +1,4 @@
 platform :ios, '6.0' 
-
+pod "SHObjectUserInfo", :git => "https://github.com/seivan/SHObjectUserInfo", :branch => :master
+pod "SHSegueBlocks", :git => "https://github.com/seivan/SHSegueBlocks", :branch => :master
 pod 'SHKeyValueObserverBlocks', :path => '../'

@@ -6,6 +6,7 @@ Pod::Spec.new do |s|
   s.version      = "1.0.0"
   s.summary      = "KVO Observer Blocks prefixed without swizzling."
   s.description  = <<-DESC
+
                     Now you can do Key Value Observing with blocks without any swizzling or leaks.
                     Cleaner code base than most implementations.
                     Blocks are hold with a weak reference so you don't have to cleanup when your object is gone.
@@ -15,8 +16,9 @@ Pod::Spec.new do |s|
                     * No swizzling or hacks. 
                     * Name-scoped selectors.
                     * Works with existing codebase that uses old fashioned observing delegate calls. 
-                   DESC  
-                   
+                    
+                    DESC
+
   s.homepage     = url
   s.license      = {:type => 'MIT' } 
   s.author       = { "Seivan Heidari" => "seivan.heidari@icloud.com" }

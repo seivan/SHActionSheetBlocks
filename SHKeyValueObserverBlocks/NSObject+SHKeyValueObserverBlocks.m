@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Seivan Heidari. All rights reserved.
 //
 
-#import "UIViewController+SHSegueBlocks.h"
-#import "SHObjectUserInfo.h"
+#import "NSObject+SHKeyValueObserverBlocks.h"
 
-@interface SHSegueBlocksManager : NSObject
+
+@interface SHKeyValueObserverBlocksManager : NSObject
 
 @property(nonatomic,strong) NSMapTable * mapBlocks;
 
@@ -19,7 +19,7 @@
 @end
 
 
-@implementation SHSegueBlocksManager
+@implementation SHKeyValueObserverBlocksManager
 #pragma mark -
 #pragma mark Init & Dealloc
 -(instancetype)init; {
@@ -34,10 +34,10 @@
 }
 
 +(instancetype)sharedManager; {
-  static SHSegueBlocksManager *_sharedInstance;
+  static SHKeyValueObserverBlocksManager *_sharedInstance;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    _sharedInstance = [[SHSegueBlocksManager alloc] init];
+    _sharedInstance = [[SHKeyValueObserverBlocksManager alloc] init];
     
   });
   
@@ -59,66 +59,14 @@
 
 @end
 
-@interface UIViewController ()
+@interface NSObject ()
 
 @property(nonatomic,readonly) NSMapTable * mapBlocks;
 
 
 @end
 
-@implementation UIViewController (SHSegueBlock)
-
-#pragma mark -
-#pragma mark Segue Performers
-
-
--(void)SH_performSegueWithIdentifier:(NSString *)theIdentifier
-           andPrepareForSegueBlock:(SHPrepareForSegue)theBlock; {
-  NSMutableDictionary * blocks = [self.mapBlocks objectForKey:self];
-  if(blocks == nil) blocks = @{}.mutableCopy;
-  if(theBlock) blocks[theIdentifier] = [theBlock copy];
-  [self.mapBlocks setObject:blocks forKey:self];
-  [self performSegueWithIdentifier:theIdentifier sender:self];
-}
-
--(void)SH_performSegueWithIdentifier:(NSString *)theIdentifier
-       andDestionationViewController:(SHPrepareForSegueDestinationViewController)theBlock; {
-  [self SH_performSegueWithIdentifier:theIdentifier andPrepareForSegueBlock:^(UIStoryboardSegue *theSegue) {
-    UIViewController * destinationViewController = theSegue.destinationViewController;
-    if(theBlock) theBlock(destinationViewController);
-  }];
-}
-
-
--(BOOL)SH_handlesBlockForSegue:(UIStoryboardSegue *)theSegue; {
-  BOOL handlesBlockForSegue = NO;
-  NSMutableDictionary * blocks = [SHSegueBlocksManager.sharedManager.mapBlocks objectForKey:self];
-  SHPrepareForSegue block = blocks[theSegue.identifier];
-  if(block) {
-    handlesBlockForSegue = YES;
-    block(theSegue);
-  }
-  return handlesBlockForSegue;
-
-}
-
-
-#pragma mark -
-#pragma mark Don't Use
--(void)SH_performSegueWithIdentifier:(NSString *)theIdentifier
-                         withUserInfo:(NSDictionary *)theUserInfo; {
-  [self SH_performSegueWithIdentifier:theIdentifier andDestionationViewController:^(UIViewController * theDestinationViewController) {
-    theDestinationViewController.SH_userInfo = [theUserInfo mutableCopy];
-  }];
-}
-
-//- (void)SH_performSegueWithIdentifier:(NSString *)identifier
-//      andPrepareUserInfoForSegueBlock:(SHPrepareUserInfoForSegue)theBlock; {
-//  [self SH_performSegueWithIdentifier:identifier andPrepareForSegueBlock:^(UIStoryboardSegue *theSegue) {
-//    UIViewController * destionationViewController = theSegue.destinationViewController;
-//    theBlock(destionationViewController.userInfo);
-//  }];
-//}
+@implementation NSObject (SHKeyValueObserverBlocks)
 
 #pragma mark -
 #pragma mark Privates
@@ -129,20 +77,7 @@
 #pragma mark -
 #pragma mark Getters
 -(NSMapTable *)mapBlocks; {
-  return SHSegueBlocksManager.sharedManager.mapBlocks;
+  return SHKeyValueObserverBlocksManager.sharedManager.mapBlocks;
 }
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wobjc-protocol-method-implementation"
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender; {
-  NSMutableDictionary * blocks = [SHSegueBlocksManager.sharedManager.mapBlocks objectForKey:self];
-  SHPrepareForSegue block = blocks[segue.identifier];
-  if(block) block(segue);
-//Don't need to do this as we have weak2weak references  [blocks removeObjectForKey:segue.identifier];
-  [SHSegueBlocksManager.sharedManager.mapBlocks setObject:blocks forKey:self];
-
-}
-#pragma clang diagnostic pop
-
-
 
 @end
