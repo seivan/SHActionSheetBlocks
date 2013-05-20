@@ -44,7 +44,7 @@
 
 -(void)viewDidAppear:(BOOL)animated; {
   [super viewDidAppear:animated];
-  [self.array]
+  [self addObserver:<#(NSObject *)#> forKeyPath:<#(NSString *)#> options:<#(NSKeyValueObservingOptions)#> context:<#(void *)#>]
   [self SH_performSegueWithIdentifier:@"push" andPrepareForSegueBlock:^(UIStoryboardSegue *theSegue) {
     id<SHExampleProtocol> destionationController =   theSegue.destinationViewController;
     destionationController.name = theSegue.identifier;
