@@ -7,14 +7,15 @@
 //
 
 #import "NSObject+SHKeyValueObserverBlocks.h"
-
+#import <objc/runtime.h>
 
 @interface SHKeyValueObserverBlocksManager : NSObject
 
-@property(nonatomic,strong) NSMapTable * mapBlocks;
+@property(nonatomic,strong) NSMapTable   * mapBlocks;
+@property(nonatomic,strong) NSMutableSet * setOfHijackedClasses;
 
 +(instancetype)sharedManager;
-
+-(void)hijackDeallocForClass:(Class)theClass;
 -(void)SH_memoryDebugger;
 @end
 
@@ -25,9 +26,10 @@
 -(instancetype)init; {
   self = [super init];
   if (self) {
-    self.mapBlocks      = [NSMapTable weakToWeakObjectsMapTable];
+    self.mapBlocks            = [NSMapTable strongToStrongObjectsMapTable];
+    self.setOfHijackedClasses = [NSMutableSet set];
 
-//    [self SH_memoryDebugger];
+    [self SH_memoryDebugger];
   }
   
   return self;
@@ -46,38 +48,134 @@
 }
 
 #pragma mark -
+#pragma mark Swizzling
+-(void)hijackDeallocForClass:(Class)theClass; {
+  if ([self.setOfHijackedClasses containsObject:theClass] == NO) {
+    
+    SEL    deallocSelector               = NSSelectorFromString(@"dealloc");
+    SEL    hijackedDeallocSelector       = NSSelectorFromString(@"hijackedDealloc");
+    Method deallocMethod                 = class_getInstanceMethod(theClass, deallocSelector);
+    Method hijackedDeallocMethod         = class_getInstanceMethod(theClass, hijackedDeallocSelector);
+    
+    IMP    hijackedDeallocImplementation = method_getImplementation(hijackedDeallocMethod);
+    
+    //merge hijackedDeallocImplementation on the deallocSelector
+    class_replaceMethod(theClass,
+                        deallocSelector,
+                        hijackedDeallocImplementation,
+                        method_getTypeEncoding(deallocMethod)
+                        );
+    
+    
+    [self.setOfHijackedClasses addObject:theClass];
+  }
+
+}
+
+#pragma mark -
 #pragma mark Debugger
 -(void)SH_memoryDebugger; {
-  double delayInSeconds = 5.0;
+  double delayInSeconds = 2.0;
   dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
   dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
 
-    NSLog(@"BLOCK %@",self.mapBlocks);
+    NSLog(@"MAP %@",self.mapBlocks);
+    NSLog(@"SET %@",self.setOfHijackedClasses);
     [self SH_memoryDebugger];
   });
 }
 
+
 @end
 
 @interface NSObject ()
-
-@property(nonatomic,readonly) NSMapTable * mapBlocks;
-
+@property(nonatomic,readonly) NSMapTable   * mapObserverBlocks;
+@property(nonatomic,readonly) NSString     * identifier;
 
 @end
+
 
 @implementation NSObject (SHKeyValueObserverBlocks)
 
 #pragma mark -
+#pragma mark Create Observers
+-(NSString *)SH_addObserverForKeyPath:(NSString *)keyPath task:(BKSenderBlock)task; {
+  return [self SH_addObserverForKeyPaths:@[keyPath] task:^(id obj, NSString *keyPath, NSDictionary * change) {
+    task(obj);
+    
+  }];
+}
+-(NSString *)SH_addObserverForKeyPaths:(NSArray *)keyPaths task:(BKMultipleObservationBlock)task; {
+  
+  [self hijackDealloc];
+
+  [keyPaths enumerateObjectsUsingBlock:^(NSString * keyPath, NSUInteger _, BOOL *__) {
+    NSMutableDictionary * blocks = [self.mapObserverBlocks objectForKey:self.identifier];
+    if(blocks == nil) blocks = @{}.mutableCopy;
+    blocks[keyPath] = [task copy];
+    [self.mapObserverBlocks setObject:blocks forKey:self.identifier];
+    [self addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
+
+//    [self addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionPrior context:NULL];
+  }];
+  return  nil;
+}
+
+#pragma mark -
+#pragma mark Remove Observers
+-(void)SH_removeAllBlockObservers; {
+  NSMutableDictionary * blocks = [self.mapObserverBlocks objectForKey:self.identifier];
+  [blocks enumerateKeysAndObjectsUsingBlock:^(NSString * keyPath, id _, BOOL *__) {
+    [self removeObserver:self forKeyPath:keyPath];
+  }];
+  [self.mapObserverBlocks removeObjectForKey:self.identifier];
+}
+
+
+#pragma mark -
 #pragma mark Privates
+
+#pragma mark -
+#pragma mark Swizzling
+-(void)hijackedDealloc; {
+  [self SH_removeAllBlockObservers];
+}
+
+-(void)hijackDealloc; {
+  Class class = [self class];
+  [SHKeyValueObserverBlocksManager.sharedManager hijackDeallocForClass:class];
+}
 
 #pragma mark -
 #pragma mark Properties
 
 #pragma mark -
 #pragma mark Getters
--(NSMapTable *)mapBlocks; {
+
+static char kDisgustingSwizzledVariableKey;
+-(NSString *)identifier; {
+  NSString * _identifier = objc_getAssociatedObject(self, kDisgustingSwizzledVariableKey);
+  if(_identifier == nil) {
+    _identifier = [[NSUUID UUID] UUIDString];
+    objc_setAssociatedObject(self, kDisgustingSwizzledVariableKey, _identifier, OBJC_ASSOCIATION_ASSIGN);
+  }
+  return _identifier;
+}
+
+-(NSMapTable *)mapObserverBlocks; {
   return SHKeyValueObserverBlocksManager.sharedManager.mapBlocks;
 }
+
+
+#pragma mark -
+#pragma mark Standard Observer
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-protocol-method-implementation"
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context; {
+  NSMutableDictionary * blocks = [self.mapObserverBlocks objectForKey:self.identifier];
+  BKMultipleObservationBlock block = blocks[keyPath];
+  if(block) block(self,keyPath,change);
+}
+#pragma clang diagnostic pop
 
 @end
