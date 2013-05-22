@@ -46,13 +46,12 @@
 -(void)viewDidAppear:(BOOL)animated; {
   [super viewDidAppear:animated];
   self.mutableArray       = [@[] mutableCopy];
-//  __weak typeof(self) lol = self;
-  [self SH_addObserverForKeyPaths:@[@"mutableArray"] task:^(id obj, NSString *keyPath, NSDictionary * change) {
-    NSLog(@"KEYPATH: %@", keyPath);
-    NSLog(@"OBJ: %@", obj);
-    NSLog(@"%@", change);
-//    [self.mutableArray addObject:@"zzzzzze"];
+  
+  [self SH_addObserverForKeyPath:@"mutableArray" block:^(id weakSelf) {
+    
   }];
+
+
 
 //  self.mutableString      = [@"LOL" mutableCopy];
 //  self.mutableOrderedSet  = [NSMutableOrderedSet orderedSet];

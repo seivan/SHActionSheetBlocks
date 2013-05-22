@@ -99,20 +99,20 @@
 
 #pragma mark -
 #pragma mark Create Observers
--(NSString *)SH_addObserverForKeyPath:(NSString *)keyPath task:(BKSenderBlock)task; {
-  return [self SH_addObserverForKeyPaths:@[keyPath] task:^(id obj, NSString *keyPath, NSDictionary * change) {
-    task(obj);
-    
+-(NSString *)SH_addObserverForKeyPath:(NSString *)keyPath block:(SHKeyValueObserverWeakSelf)theBlock; {
+  return [self SH_addObserverForKeyPaths:@[keyPath] block:^(id weakSelf, NSString *keyPath, NSDictionary *change) {
+    theBlock(weakSelf);
   }];
 }
--(NSString *)SH_addObserverForKeyPaths:(NSArray *)keyPaths task:(BKMultipleObservationBlock)task; {
+
+-(NSString *)SH_addObserverForKeyPaths:(NSArray *)keyPaths block:(SHKeyValueObserverAll)theBlock; {
   
   [self hijackDealloc];
 
   [keyPaths enumerateObjectsUsingBlock:^(NSString * keyPath, NSUInteger _, BOOL *__) {
     NSMutableDictionary * blocks = [self.mapObserverBlocks objectForKey:self.identifier];
     if(blocks == nil) blocks = @{}.mutableCopy;
-    blocks[keyPath] = [task copy];
+    blocks[keyPath] = [theBlock copy];
     [self.mapObserverBlocks setObject:blocks forKey:self.identifier];
     [self addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
 
@@ -173,7 +173,7 @@ static char kDisgustingSwizzledVariableKey;
 #pragma clang diagnostic ignored "-Wobjc-protocol-method-implementation"
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context; {
   NSMutableDictionary * blocks = [self.mapObserverBlocks objectForKey:self.identifier];
-  BKMultipleObservationBlock block = blocks[keyPath];
+  SHKeyValueObserverAll block = blocks[keyPath];
   if(block) block(self,keyPath,change);
 }
 #pragma clang diagnostic pop
