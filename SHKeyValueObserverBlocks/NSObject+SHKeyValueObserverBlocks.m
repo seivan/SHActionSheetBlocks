@@ -127,6 +127,7 @@
 #pragma mark -
 #pragma mark Remove Observers
 - (void)SH_removeObserverForKeyPath:(NSString *)keyPath; {
+  NSMutableDictionary * blocks = [self.mapObserverBlocks objectForKey:self.identifier];
   [self removeObserver:self forKeyPath:keyPath];
   
 }
