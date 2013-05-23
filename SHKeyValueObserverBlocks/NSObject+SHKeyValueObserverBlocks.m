@@ -99,13 +99,16 @@
 
 #pragma mark -
 #pragma mark Create Observers
--(NSString *)SH_addObserverForKeyPath:(NSString *)keyPath block:(SHKeyValueObserverWeakSelf)theBlock; {
+
+
+
+-(NSString *)SH_addObserverForKeyPath:(NSString *)keyPath block:(SHKeyValueObserverBlock)theBlock; {
   return [self SH_addObserverForKeyPaths:@[keyPath] block:^(id weakSelf, NSString *keyPath, NSDictionary *change) {
-    theBlock(weakSelf);
+    theBlock(weakSelf, keyPath, change);
   }];
 }
 
--(NSString *)SH_addObserverForKeyPaths:(NSArray *)keyPaths block:(SHKeyValueObserverAll)theBlock; {
+-(NSString *)SH_addObserverForKeyPaths:(NSArray *)keyPaths block:(SHKeyValueObserverBlock)theBlock; {
   
   [self hijackDealloc];
 
@@ -123,10 +126,17 @@
 
 #pragma mark -
 #pragma mark Remove Observers
+- (void)SH_removeObserverForKeyPath:(NSString *)keyPath; {
+  [self removeObserver:self forKeyPath:keyPath];
+  
+}
 -(void)SH_removeAllBlockObservers; {
   NSMutableDictionary * blocks = [self.mapObserverBlocks objectForKey:self.identifier];
+  [self.mapObserverBlocks removeObjectForKey:self.identifier];
+
+  NSLog(@"%@", blocks);
   [blocks enumerateKeysAndObjectsUsingBlock:^(NSString * keyPath, id _, BOOL *__) {
-    [self removeObserver:self forKeyPath:keyPath];
+    [self SH_removeObserverForKeyPath:keyPath];
   }];
   [self.mapObserverBlocks removeObjectForKey:self.identifier];
 }
@@ -173,7 +183,7 @@ static char kDisgustingSwizzledVariableKey;
 #pragma clang diagnostic ignored "-Wobjc-protocol-method-implementation"
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context; {
   NSMutableDictionary * blocks = [self.mapObserverBlocks objectForKey:self.identifier];
-  SHKeyValueObserverAll block = blocks[keyPath];
+  SHKeyValueObserverBlock block = blocks[keyPath];
   if(block) block(self,keyPath,change);
 }
 #pragma clang diagnostic pop

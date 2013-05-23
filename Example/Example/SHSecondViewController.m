@@ -47,7 +47,7 @@
   [super viewDidAppear:animated];
   self.mutableArray       = [@[] mutableCopy];
   
-  [self SH_addObserverForKeyPath:@"mutableArray" block:^(id weakSelf) {
+  [self SH_addObserverForKeyPath:@"mutableArray" block:^(id weakSelf, NSString *keyPath, NSDictionary *change) {
     
   }];
 
