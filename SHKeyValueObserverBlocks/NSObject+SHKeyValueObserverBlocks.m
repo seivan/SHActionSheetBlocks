@@ -102,13 +102,13 @@
 
 
 
--(NSString *)SH_addObserverForKeyPath:(NSString *)keyPath block:(SHKeyValueObserverBlock)theBlock; {
-  return [self SH_addObserverForKeyPaths:@[keyPath] block:^(id weakSelf, NSString *keyPath, NSDictionary *change) {
+-(void)SH_addObserverForKeyPath:(NSString *)keyPath block:(SHKeyValueObserverBlock)theBlock; {
+  [self SH_addObserverForKeyPaths:@[keyPath] block:^(id weakSelf, NSString *keyPath, NSDictionary *change) {
     theBlock(weakSelf, keyPath, change);
   }];
 }
 
--(NSString *)SH_addObserverForKeyPaths:(NSArray *)keyPaths block:(SHKeyValueObserverBlock)theBlock; {
+-(void)SH_addObserverForKeyPaths:(NSArray *)keyPaths block:(SHKeyValueObserverBlock)theBlock; {
   
   [self hijackDealloc];
 
@@ -117,11 +117,9 @@
     if(blocks == nil) blocks = @{}.mutableCopy;
     blocks[keyPath] = [theBlock copy];
     [self.mapObserverBlocks setObject:blocks forKey:self.identifier];
-    [self addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
-
-//    [self addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionPrior context:NULL];
+    [self addObserver:self forKeyPath:keyPath options:0 context:NULL];
   }];
-  return  nil;
+
 }
 
 #pragma mark -
@@ -129,15 +127,16 @@
 - (void)SH_removeObserverForKeyPath:(NSString *)keyPath; {
   NSMutableDictionary * blocks = [self.mapObserverBlocks objectForKey:self.identifier];
   [self removeObserver:self forKeyPath:keyPath];
+  [blocks removeObjectForKey:keyPath];
+  [self.mapObserverBlocks setObject:blocks forKey:self.identifier];
   
 }
+
 -(void)SH_removeAllBlockObservers; {
   NSMutableDictionary * blocks = [self.mapObserverBlocks objectForKey:self.identifier];
   [self.mapObserverBlocks removeObjectForKey:self.identifier];
-
-  NSLog(@"%@", blocks);
   [blocks enumerateKeysAndObjectsUsingBlock:^(NSString * keyPath, id _, BOOL *__) {
-    [self SH_removeObserverForKeyPath:keyPath];
+    [self removeObserver:self forKeyPath:keyPath];
   }];
   [self.mapObserverBlocks removeObjectForKey:self.identifier];
 }
