@@ -19,6 +19,14 @@ typedef void (^SHKeyValueObserverBlock)(id weakSelf, NSString *keyPath, NSDictio
 -(void)SH_addObserverForKeyPath:(NSString *)keyPath block:(SHKeyValueObserverBlock)theBlock;
 -(void)SH_addObserverForKeyPaths:(NSArray *)keyPaths block:(SHKeyValueObserverBlock)theBlock;
 
+-(void)SH_addObserverForKeyPath:(NSString *)keyPath
+                    withOptions:NSKeyValueObservingOptions
+                          block:(SHKeyValueObserverBlock)theBlock;
+
+-(void)SH_addObserverForKeyPaths:(NSArray *)keyPaths
+                     withOptions:NSKeyValueObservingOptions
+                           block:(SHKeyValueObserverBlock)theBlock;
+
 #pragma mark -
 #pragma mark Remove Observers
 -(void)SH_removeObserverForKeyPath:(NSString *)keyPath withIdentifier:(NSString *)theIdentifier;
