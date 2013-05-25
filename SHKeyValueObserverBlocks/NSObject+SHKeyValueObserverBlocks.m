@@ -9,6 +9,8 @@
 #import "NSObject+SHKeyValueObserverBlocks.h"
 #import <objc/runtime.h>
 
+static NSUInteger SHKeyValueObserverBlocksContext;
+
 @interface SHKeyValueObserverBlocksManager : NSObject
 
 @property(nonatomic,strong) NSMapTable   * mapBlocks;
@@ -113,26 +115,37 @@
   [self hijackDealloc];
 
   [keyPaths enumerateObjectsUsingBlock:^(NSString * keyPath, NSUInteger _, BOOL *__) {
+    [self SH_removeObserverForKeyPath:keyPath];
     NSMutableDictionary * blocks = [self.mapObserverBlocks objectForKey:self.identifier];
-    if(blocks == nil) blocks = @{}.mutableCopy;
-    blocks[keyPath] = [theBlock copy];
+    if(blocks == nil)          blocks         = @{}.mutableCopy;
+    if(blocks[keyPath] == nil) blocks[keyPath] = @[].mutableCopy;
+    [blocks[keyPath] addObject:[theBlock copy]];
     [self.mapObserverBlocks setObject:blocks forKey:self.identifier];
-    [self addObserver:self forKeyPath:keyPath options:0 context:NULL];
+    [self addObserver:self forKeyPath:keyPath options:0 context:SHKeyValueObserverBlocksContext];
   }];
 
 }
 
 #pragma mark -
 #pragma mark Remove Observers
-- (void)SH_removeObserverForKeyPath:(NSString *)keyPath; {
+-(void)SH_removeObserverForKeyPath:(NSString *)keyPath withIdentifier:(NSString *)theIdentifier; {
   NSMutableDictionary * blocks = [self.mapObserverBlocks objectForKey:self.identifier];
-  [self removeObserver:self forKeyPath:keyPath];
+  [self removeObserver:self forKeyPath:keyPath context:SHKeyValueObserverBlocksContext];
   [blocks removeObjectForKey:keyPath];
   [self.mapObserverBlocks setObject:blocks forKey:self.identifier];
   
 }
 
--(void)SH_removeAllBlockObservers; {
+
+-(void)SH_removeAllObserverForKeyPath:(NSString *)keyPath; {
+  NSMutableDictionary * blocks = [self.mapObserverBlocks objectForKey:self.identifier];
+  [self removeObserver:self forKeyPath:keyPath context:SHKeyValueObserverBlocksContext];
+  [blocks removeObjectForKey:keyPath];
+  [self.mapObserverBlocks setObject:blocks forKey:self.identifier];
+  
+}
+
+-(void)SH_removeAllObservers; {
   NSMutableDictionary * blocks = [self.mapObserverBlocks objectForKey:self.identifier];
   [self.mapObserverBlocks removeObjectForKey:self.identifier];
   [blocks enumerateKeysAndObjectsUsingBlock:^(NSString * keyPath, id _, BOOL *__) {
@@ -148,7 +161,7 @@
 #pragma mark -
 #pragma mark Swizzling
 -(void)hijackedDealloc; {
-  [self SH_removeAllBlockObservers];
+  [self SH_removeAllObservers];
 }
 
 -(void)hijackDealloc; {

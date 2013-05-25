@@ -43,14 +43,23 @@
   
 }
 
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context; {
+  NSLog(@"CALLBACK: %@",change);
+}
 -(void)viewDidAppear:(BOOL)animated; {
   [super viewDidAppear:animated];
   self.mutableArray       = [@[] mutableCopy];
   
-  [self SH_addObserverForKeyPath:@"mutableArray" block:^(id weakSelf, NSString *keyPath, NSDictionary *change) {
-    
-  }];
+  [self addObserver:self forKeyPath:@"mutableArray" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionPrior context:NULL];
 
+  [self.mutableArray insertObject:@"LOl" atIndex:0];
+  
+  NSLog(@"%@",self.mutableArray);
+
+//  [self SH_addObserverForKeyPath:@"mutableArray" block:^(id weakSelf, NSString *keyPath, NSDictionary *change) {
+//    
+//  }];
+//
 
 
 //  self.mutableString      = [@"LOL" mutableCopy];
@@ -64,10 +73,6 @@
 //    NSLog(@"OBJ: %@", obj);
 //  }];
   
-  [self.mutableArray addObject:@"FOCK"];
-//  [self.mutableArray addObject:@"DAMN"];
-//    [self.mutableArray addObject:@"DAMN"];
-//    [self.mutableArray addObject:@"DAMN"];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender; {
