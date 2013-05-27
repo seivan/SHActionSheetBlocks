@@ -65,8 +65,9 @@
   dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
   dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
     [self SH_removeObserversForKeyPaths:@[@"mutableArray", @"mutableSet"] withIdentifiers:@[identifier]];
-    //[self.mutableArray insertObject:@"SAMPLE" atIndex:self.mutableArray.count];
-    self.mutableArray = @[].mutableCopy;
+    [[self mutableArrayValueForKey:@"mutableArray"] addObject:@"DAAAAAAAAMNG"];
+    [self SH_removeObserversWithIdentifiers:@[identifier2]];
+    //self.mutableArray = @[].mutableCopy;
   });
 
 

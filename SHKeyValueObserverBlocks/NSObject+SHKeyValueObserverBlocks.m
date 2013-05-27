@@ -31,7 +31,7 @@
     self.mapBlocks            = [NSMapTable strongToStrongObjectsMapTable];
     self.setOfHijackedClasses = [NSMutableSet set];
     
-//    [self SH_memoryDebugger];
+    [self SH_memoryDebugger];
   }
   
   return self;
@@ -175,9 +175,9 @@ static char SHKeyValueObserverBlocksContext;
       
       for (NSString * identifier in theIdentifiers) {
         NSMutableArray * blocks = identifiers[identifier];
-//        for (SHKeyValueObserverBlock block in blocks) {
+        for (SHKeyValueObserverBlock block in blocks) {
           [self removeObserverForKeyPath:keyPath withContext:identifier];
-  //      }
+        }
         [identifiers removeObjectForKey:identifier];
       }
       if(identifiers.count < 1)
@@ -261,8 +261,8 @@ static char SHKeyValueObserverBlocksContext;
   else if(self.mapObserverKeyPaths.count > 0) {
     [self SH_removeObserversForKeyPaths:self.mapObserverKeyPaths.allKeys];
   }
-  else
-    [self.mapObserverBlocks removeObjectForKey:self.identifier];
+//  else
+//    [self.mapObserverBlocks removeObjectForKey:self.identifier];
   
   
 }
