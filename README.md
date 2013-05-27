@@ -4,21 +4,21 @@ SHKeyValueObserverBlocks
 Overview
 --------
 
-#### Check the configuration section
+#### [Check the creating section](https://github.com/seivan/SHKeyValueObserverBlocks#creating)
 
-Prefixed self cleaning (can be deactivated) block based observers on NSObject. 
+You can setup observers with all options on multiple keypaths
 
-#### Check the creating section
+You can setup observers with specified options on multiple keypaths 
 
-You can have multiple observer of a specific keypath (different identifiers)
-
-You can have multiple observers for different keypaths (same identifiers)
-
-#### Check the removing section
+#### [Check the removing section](https://github.com/seivan/SHKeyValueObserverBlocks#removing)
 
 You can remove based on a list of keypaths or identifiers.
 
 You can remove based on both a list of keypaths and and identifiers
+
+#### [Check the configuration section](https://github.com/seivan/SHKeyValueObserverBlocks#configuration)
+
+Prefixed self cleaning (can be deactivated) block based observers on NSObject. 
 
 
 
@@ -147,7 +147,7 @@ Replacing
 Contact
 -------
 
-If you end up using SHSegueBlocks in a project, I'd love to hear about it.
+If you end up using SHKeyValueObserverBlocks in a project, I'd love to hear about it.
 
 email: [seivan.heidari@icloud.com](mailto:seivan.heidari@icloud.com)  
 twitter: [@seivanheidari](https://twitter.com/seivanheidari)
