@@ -14,7 +14,13 @@
 typedef void (^SHKeyValueObserverBlock)(id weakSelf, NSString *keyPath, NSDictionary *change);
 
 @interface NSObject (SHKeyValueObserverBlocks)
+#pragma mark -
+#pragma mark Configuration
 
+#pragma mark -
+#pragma mark Property
++(BOOL)SH_isAutoRemovingObservers;
++(void)SH_isAutoRemovingObservers:(BOOL)shouldRemoveObservers;
 #pragma mark - 
 #pragma mark Create Observers
 
@@ -24,6 +30,14 @@ typedef void (^SHKeyValueObserverBlock)(id weakSelf, NSString *keyPath, NSDictio
 -(NSString *)SH_addObserverForKeyPaths:(id<NSFastEnumeration>)theKeyPaths
                            withOptions:(NSKeyValueObservingOptions)theOptions
                                  block:(SHKeyValueObserverBlock)theBlock;
+
+
+#pragma mark -
+#pragma mark Helpers
+-(BOOL)SH_handleObserverForKeyPath:(NSString *)theKeyPath
+                        withChange:(NSDictionary *)theChange
+                           context:(void *)context;
+
 
 #pragma mark -
 #pragma mark Remove Observers

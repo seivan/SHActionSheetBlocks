@@ -74,7 +74,13 @@
 
   
 }
-
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;  {
+  if([self SH_handleObserverForKeyPath:keyPath withChange:change context:context])
+    NSLog(@"TAKEN CARE OF BY BLOCK");
+  else
+    NSLog(@"Take care of here!");
+    
+}
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender; {
   UIViewController * destionationVc = segue.destinationViewController;
   destionationVc.SH_userInfo = nil;

@@ -1,26 +1,18 @@
-SHSegueBlocks
+SHKeyValueObserverBlocks
 ==========
 
 Overview
 --------
 
-SHSegueBlocks is a category on top of UIViewController to allow block based segueus without the bullshit of swizzling and other disgusting hacks - also adds the ability to set userInfo on top of a viewController. It's built on top of NSMapTable that works with weakToWeak references between a controller and its blocks and userInfo. 
+Prefixed self cleaning (can be deactivated) block based observers on NSObject. 
 
-
-Swizzle & Junk free 
--------------------
-
-No developer psyches were harmed or killed for this. I've noticed other similar libraries all swizzle like there is no tomorrow. If the API can remains the same without Swizzle, **then don't fucking Swizzle.**
-
-All in all; 100 loc for both userInfo as well as block based segueus.
-The blocks are gone as soon the segue has finished and userInfo content are gone as soon as the controllers are gone or you set it to nil. 
 
 
 Installation
 ------------
 
 ```ruby
-pod 'SHSegueBlocks'
+pod 'SHKeyValueObserverBlocks'
 ```
 
 ***
@@ -31,49 +23,43 @@ Setup
 Put this either in specific controllers or your project prefix file
 
 ```objective-c
-#import 'UIViewController+SHSegueBlocks.h'
+#import 'NSObject+SHKeyValueObserverBlocks.h'
 ```
 or
 ```objective-c
-#import 'UIViewController+SHSegueBlocks.h'
+#import 'SHKeyValueObserverBlocks.h'
 ```
 
 Usage
 -----
 
-With SHSegueBlocks you do it all in one place, like so:
+With SHKeyValueObserverBlocks you can observe with all optins toggled in a single block:
 
 ```objective-c
-  [self SH_performSegueWithIdentifier:@"push" 
-        andDestionationViewController:^(UIViewController * theDestinationViewController) {
-
-    theDestinationViewController.whateverPropety = anotherLocalVariable
-
+  NSString * identifier = [self SH_addObserverForKeyPaths:@[@"mutableArray",@"mutableSet"] block:^(id weakSelf, NSString *keyPath, NSDictionary *change) {
+    NSLog(@"identifier: %@ - %@",change, keyPath);
   }];
+
 
 ``` 
 
-or if you want access to the full segue object
+or if you want setup manual options
 
 ```objective-c
-  [self SH_performSegueWithIdentifier:@"push" 
-              andPrepareForSegueBlock:^(UIStoryboardSegue *theSegue) {
-
-    id<SHExampleProtocol> destionationController =   theSegue.destinationViewController;
-    destionationController.name = theSegue.identifier;
-
-  }];
+-(NSString *)SH_addObserverForKeyPaths:(id<NSFastEnumeration>)theKeyPaths
+                           withOptions:(NSKeyValueObservingOptions)theOptions
+                                 block:(SHKeyValueObserverBlock)theBlock;
 
 ```
 
 
-Bonus - SH_userInfo property from the pod [SHUserInfo](http://www.github.com/seivan/SHUserInfo)
+Configuration
 ------ 
 
-You can directly set a userInfo (mutable) dictionary directly on the segueu selector for the destination controller
+You can turn of the auto removal of observers and blocks by setting
 
 ```objective-c
-[self SH_performSegueWithIdentifier:@"unwinder" withUserInfo:@{@"date" : [NSDate date]}];
++(void)SH_isAutoRemovingObservers:(BOOL)shouldRemoveObservers;
 
 ```
 
