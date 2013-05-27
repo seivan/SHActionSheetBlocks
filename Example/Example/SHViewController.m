@@ -56,7 +56,7 @@
   self.mutableOrderedSet  = [NSMutableSet set];
   self.number             = @(666);
 
-  double delayInSeconds = 3.0;
+  double delayInSeconds = 5.0;
   dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
   dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
     [self SH_performSegueWithIdentifier:@"push" andPrepareForSegueBlock:^(UIStoryboardSegue *theSegue) {

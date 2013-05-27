@@ -43,35 +43,28 @@
   
 }
 
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context; {
-  NSLog(@"CALLBACK: %@",change);
-}
+//-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context; {
+//  NSLog(@"CALLBACK: %@",change);
+//}
 -(void)viewDidAppear:(BOOL)animated; {
   [super viewDidAppear:animated];
-  self.mutableArray       = [@[] mutableCopy];
-  
-  [self addObserver:self forKeyPath:@"mutableArray" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionPrior context:NULL];
+  self.mutableArray     = [@[] mutableCopy];
+  self.mutableSet       = [NSMutableSet set];
 
-  [self.mutableArray insertObject:@"LOl" atIndex:0];
+  //  [self addObserver:self forKeyPath:@"mutableArray" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionPrior context:NULL];
   
-  NSLog(@"%@",self.mutableArray);
-
-//  [self SH_addObserverForKeyPath:@"mutableArray" block:^(id weakSelf, NSString *keyPath, NSDictionary *change) {
-//    
-//  }];
-//
-
-
-//  self.mutableString      = [@"LOL" mutableCopy];
-//  self.mutableOrderedSet  = [NSMutableOrderedSet orderedSet];
-//  self.mutableOrderedSet  = [NSMutableSet set];
-//  self.number             = @(666);
+  NSString * identifier = [self SH_addObserverForKeyPaths:@[@"mutableArray",@"mutableSet"] block:^(id weakSelf, NSString *keyPath, NSDictionary *change) {
+    NSLog(@"%@",weakSelf);
+  }];
   
-  
-//  [self SH_addObserverForKeyPaths:@[@"mutableString", @"number", @"mutableOrderedSet", @"mutableSet", @"mutableDictionary"] task:^(id obj, NSString *keyPath) {
-//    NSLog(@"KEYPATH: %@", keyPath);
-//    NSLog(@"OBJ: %@", obj);
-//  }];
+  double delayInSeconds = 2.0;
+  dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+  dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+      //[self SH_removeObserversWithIdentifiers:@[identifier]];
+  });
+
+
+
   
 }
 
