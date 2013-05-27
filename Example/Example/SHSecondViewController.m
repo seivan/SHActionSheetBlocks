@@ -57,16 +57,14 @@
     NSLog(@"1111111111 %@",change);
   }];
 
-  [self SH_addObserverForKeyPaths:@[@"mutableArray",@"mutableSet"] block:^(id weakSelf, NSString *keyPath, NSDictionary *change) {
+  NSString * identifier2 = [self SH_addObserverForKeyPaths:@[@"mutableArray",@"mutableSet"] block:^(id weakSelf, NSString *keyPath, NSDictionary *change) {
     NSLog(@"2222222222 %@",change);
   }];
 
   double delayInSeconds = 2.0;
   dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
   dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-    [self SH_removeObserversWithIdentifiers:@[identifier]];
-    [self SH_removeObserversForKeyPaths:@[@"mutableSet"]];
-    [self SH_removeObserversForKeyPaths:@[@"mutableArray"]];
+    [self SH_removeObserversForKeyPaths:@[@"mutableArray", @"mutableSet"] withIdentifiers:@[identifier]];
     self.mutableArray  = @[].mutableCopy;
   });
 

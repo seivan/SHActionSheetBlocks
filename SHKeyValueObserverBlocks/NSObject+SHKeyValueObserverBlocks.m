@@ -168,11 +168,26 @@ static char SHKeyValueObserverBlocksContext;
 -(void)SH_removeObserversForKeyPaths:(id<NSFastEnumeration>)theKeyPaths
                      withIdentifiers:(id<NSFastEnumeration>)theIdentifiers;  {
 
-  //  NSMutableDictionary * blocks = [self.mapObserverBlocks objectForKey:self.identifier];
-  //  [self removeObserver:self forKeyPath:keyPath context:&SHKeyValueObserverBlocksContext];
-  //  [blocks removeObjectForKey:keyPath];
-  //  [self.mapObserverBlocks setObject:blocks forKey:self.identifier];
-  
+  [self setupKeyPathMapBlock:^NSMutableDictionary *(NSMutableDictionary *keyPathMap) {
+    NSMutableArray * keyPathsToRemove = @[].mutableCopy;
+    for (NSString * keyPath in theKeyPaths) {
+      NSMutableDictionary * identifiers =  keyPathMap[keyPath];
+      
+      for (NSString * identifier in theIdentifiers) {
+        NSMutableArray * blocks = identifiers[identifier];
+        for (SHKeyValueObserverBlock block in blocks) {
+          [self removeObserverForKeyPath:keyPath withContext:identifier];
+        }
+        [identifiers removeObjectForKey:identifier];
+      }
+      if(identifiers.count < 1)
+        [keyPathsToRemove addObject:keyPath];
+    }
+    [keyPathMap removeObjectsForKeys:keyPathsToRemove];
+
+    return keyPathMap;
+  }];
+
 }
 
 
