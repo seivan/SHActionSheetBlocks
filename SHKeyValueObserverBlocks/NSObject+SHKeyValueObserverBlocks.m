@@ -31,7 +31,7 @@
     self.mapBlocks            = [NSMapTable strongToStrongObjectsMapTable];
     self.setOfHijackedClasses = [NSMutableSet set];
     
-//    [self SH_memoryDebugger];
+    [self SH_memoryDebugger];
   }
   
   return self;
@@ -233,7 +233,6 @@ static char SHKeyValueObserverBlocksContext;
   NSMutableDictionary * mapObserverKeyPaths = [self.mapObserverBlocks objectForKey:self.identifier];
   if(mapObserverKeyPaths == nil) {
     mapObserverKeyPaths = @{}.mutableCopy;
-    self.mapObserverKeyPaths = mapObserverKeyPaths;
   }
   
   return mapObserverKeyPaths;
@@ -242,11 +241,13 @@ static char SHKeyValueObserverBlocksContext;
 #pragma mark -
 #pragma mark Setters
 -(void)setMapObserverKeyPaths:(NSMutableDictionary *)mapObserverKeypaths; {
-  if(mapObserverKeypaths)
+  if(mapObserverKeypaths.count > 0)
     [self.mapObserverBlocks setObject:mapObserverKeypaths forKey:self.identifier];
-  else {
+  else if(self.mapObserverKeyPaths.count > 0) {
     [self SH_removeObserversForKeyPaths:self.mapObserverKeyPaths.allKeys];
   }
+  else
+    [self.mapObserverBlocks removeObjectForKey:self.identifier];
   
   
 }
