@@ -31,7 +31,7 @@
     self.mapBlocks            = [NSMapTable strongToStrongObjectsMapTable];
     self.setOfHijackedClasses = [NSMutableSet set];
     self.isAutoCleaning       = YES;
-    [self SH_memoryDebugger];
+//    [self SH_memoryDebugger];
   }
   
   return self;

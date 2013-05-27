@@ -4,7 +4,21 @@ SHKeyValueObserverBlocks
 Overview
 --------
 
+#### Check the configuration section
+
 Prefixed self cleaning (can be deactivated) block based observers on NSObject. 
+
+#### Check the creating section
+
+You can have multiple observer of a specific keypath (different identifiers)
+
+You can have multiple observers for different keypaths (same identifiers)
+
+#### Check the removing section
+
+You can remove based on a list of keypaths or identifiers.
+
+You can remove based on both a list of keypaths and and identifiers
 
 
 
@@ -33,6 +47,8 @@ or
 Usage
 -----
 
+### Creating
+
 With SHKeyValueObserverBlocks you can observe with all optins toggled in a single block:
 
 ```objective-c
@@ -52,34 +68,43 @@ or if you want setup manual options
 
 ```
 
+### Removing
+
+
+#### If you want to deal with the cleanup manually (I can understand if you want to avoid the Swizzle)
+
+```objective-c
+-(void)SH_removeAllObservers;
+```
+
+#### Get rid of all observers of certain keypaths (regardless of identifier)
+
+```objective-c
+-(void)SH_removeObserversForKeyPaths:(id<NSFastEnumeration>)theKeyPaths;
+```
+
+#### Get rid of all observers of certain identifiers (regardless of keypaths)
+
+```objective-c
+-(void)SH_removeObserversWithIdentifiers:(id<NSFastEnumeration>)theIdentifiers;
+```
+
+#### Get rid of all observers of certain keypaths with certain idenitifers;
+
+```objective-c
+-(void)SH_removeObserversForKeyPaths:(id<NSFastEnumeration>)theKeyPaths
+                         withIdentifiers:(id<NSFastEnumeration>)theIdentifiers;
+```
 
 Configuration
 ------ 
 
-You can turn of the auto removal of observers and blocks by setting
+You can turn off the auto removal of observers and blocks by setting
 
 ```objective-c
 +(void)SH_isAutoRemovingObservers:(BOOL)shouldRemoveObservers;
 
 ```
-
-In the destinationViewController
-
-```objective-c
-self.myDate = self.SH_userInfo[@"date"];
-```
-
-or
-
-```objective-c
-  [self SH_performSegueWithIdentifier:@"push" 
-        andDestionationViewController:^(UIViewController * theDestinationViewController) {
-
-    theDestinationViewController.SH_userInfo = myDictionary
-
-  }];
-
-``` 
 
 Existing Codebase 
 -----------------
@@ -87,27 +112,27 @@ Existing Codebase
 If you already have  
 
 ```objective-c
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;
 ``` 
 
 implemented and used within your code base you can use the block handler
 
 ```objective-c
--(BOOL)SH_handlesBlockForSegue:(UIStoryboardSegue *)theSegue;
+-(BOOL)SH_handleObserverForKeyPath:(NSString *)theKeyPath
+                        withChange:(NSDictionary *)theChange
+                           context:(void *)context;
 ```
 
 Like this 
 
 ```objective-c
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender; {
-  UIViewController * destionationVc = segue.destinationViewController;
-  destionationVc.SH_userInfo = nil;
-  if([self SH_handlesBlockForSegue:segue])
-    NSLog(@"Performed segueue programatically user info: %@", destionationVc.SH_userInfo);
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;  {
+  if([self SH_handleObserverForKeyPath:keyPath withChange:change context:context])
+    NSLog(@"TAKEN CARE OF BY BLOCK");
   else
-    NSLog(@"Performed unwind segueue via IB");
+    NSLog(@"Take care of here!");
+    
 }
-
 ```
 That will check if there is block **and** if there is - execute it. 
 
@@ -115,16 +140,7 @@ Replacing
 ---------
 
 ```objective-c
-[self performSegueWithIdentifier:@"theIdentifier" sender:@"lolz"];
-```
-
-and then implementing the callback
-
-```objective-c
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender; {
-  UIViewController * destinationViewController = segue.destinationViewController;
-  destionationViewController.whateverPropety = sender;
-}
+[self addObserver:self forKeyPath:@"mutableArray" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionPrior context:NULL]
 ```
 
 
@@ -138,6 +154,6 @@ twitter: [@seivanheidari](https://twitter.com/seivanheidari)
 
 ## License
 
-SHSegueBlocks is © 2013 [Seivan](http://www.github.com/seivan) and may be freely
+SHKeyValueObserverBlocks is © 2013 [Seivan](http://www.github.com/seivan) and may be freely
 distributed under the [MIT license](http://opensource.org/licenses/MIT).
-See the [`LICENSE.md`](https://github.com/seivan/SHSegueBlocks/blob/master/LICENSE.md) file.
+See the [`LICENSE.md`](https://github.com/seivan/SHKeyValueObserverBlocks/blob/master/LICENSE.md) file.
