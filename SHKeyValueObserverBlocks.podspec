@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
                     Key Value Observing with blocks on top of NSObject.
                     Blocks are hold with a weak reference so you don't have to cleanup when your object is gone.
   
-                    * No need to clean up after - Blocks are self maintained.
+                    * No need to clean up after - Blocks and observers are self maintained.
                     * Weak referenced blocks.
                     * Prefixed selectors.
                     * Works with existing codebase that uses old fashioned observing delegate calls. 
