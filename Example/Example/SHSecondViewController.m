@@ -54,18 +54,19 @@
   //  [self addObserver:self forKeyPath:@"mutableArray" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionPrior context:NULL];
   
   NSString * identifier = [self SH_addObserverForKeyPaths:@[@"mutableArray",@"mutableSet"] block:^(id weakSelf, NSString *keyPath, NSDictionary *change) {
-    NSLog(@"1111111111 %@",change);
+    NSLog(@"identifier: %@ - %@",change, keyPath);
   }];
 
   NSString * identifier2 = [self SH_addObserverForKeyPaths:@[@"mutableArray",@"mutableSet"] block:^(id weakSelf, NSString *keyPath, NSDictionary *change) {
-    NSLog(@"2222222222 %@",change);
+    NSLog(@"identifier2: %@ - %@",change,keyPath);
   }];
 
   double delayInSeconds = 2.0;
   dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
   dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
     [self SH_removeObserversForKeyPaths:@[@"mutableArray", @"mutableSet"] withIdentifiers:@[identifier]];
-    self.mutableArray  = @[].mutableCopy;
+    //[self.mutableArray insertObject:@"SAMPLE" atIndex:self.mutableArray.count];
+    self.mutableArray = @[].mutableCopy;
   });
 
 
