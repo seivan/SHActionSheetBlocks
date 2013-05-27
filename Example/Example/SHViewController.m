@@ -40,17 +40,47 @@
 -(void)viewDidLoad;{
   [super viewDidLoad];
   
-}
-
--(void)viewDidAppear:(BOOL)animated; {
-  [super viewDidAppear:animated];
-
   [self SH_performSegueWithIdentifier:@"push" andPrepareForSegueBlock:^(UIStoryboardSegue *theSegue) {
     id<SHExampleProtocol> destionationController =   theSegue.destinationViewController;
     destionationController.name = theSegue.identifier;
   }];
 
 }
+
+-(void)viewDidAppear:(BOOL)animated; {
+  [super viewDidAppear:animated];
+
+  self.mutableArray       = [@[] mutableCopy];
+  self.mutableString      = [@"LOL" mutableCopy];
+  self.mutableOrderedSet  = [NSMutableOrderedSet orderedSet];
+  self.mutableOrderedSet  = [NSMutableSet set];
+  self.number             = @(666);
+
+  double delayInSeconds = 5.0;
+  dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+  dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+    [self SH_performSegueWithIdentifier:@"push" andPrepareForSegueBlock:^(UIStoryboardSegue *theSegue) {
+      id<SHExampleProtocol> destionationController =   theSegue.destinationViewController;
+      destionationController.name = theSegue.identifier;
+    }];
+
+  });
+
+//  [self SH_addObserverForKeyPaths:@[@"mutableString", @"number", @"mutableOrderedSet", @"mutableSet", @"mutableDictionary"] task:^(id obj, NSString *keyPath) {
+//    NSLog(@"KEYPATH: %@", keyPath);
+//    NSLog(@"OBJ: %@", obj);
+//  }];
+
+
+}
+
+//-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context; {
+//  NSLog(@"%@", keyPath);
+//  NSLog(@"%@", object);
+//  NSLog(@"%@", change);
+//  
+//}
+
 
 -(IBAction)unwinder:(UIStoryboardSegue *)theSegue;{
 
