@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Seivan Heidari. All rights reserved.
 //
 
-#import "SHExampleProtocol.h"
+
 @interface SHViewController : UIViewController
-<SHExampleProtocol>
+
 @end

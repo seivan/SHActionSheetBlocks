@@ -18,7 +18,6 @@
 		22D3AEC21742D9B8000AB469 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22D3AEC11742D9B8000AB469 /* Default-568h@2x.png */; };
 		22D3AEC51742D9B8000AB469 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22D3AEC31742D9B8000AB469 /* MainStoryboard.storyboard */; };
 		22D3AEC81742D9B8000AB469 /* SHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AEC71742D9B8000AB469 /* SHViewController.m */; };
-		22D3AED31742E928000AB469 /* SHSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AED21742E928000AB469 /* SHSecondViewController.m */; };
 		5B25AED73D9C4A729F20B25A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A3799792E664CC2A299F48B /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -40,9 +39,6 @@
 		22D3AEC41742D9B8000AB469 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		22D3AEC61742D9B8000AB469 /* SHViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHViewController.h; sourceTree = "<group>"; };
 		22D3AEC71742D9B8000AB469 /* SHViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHViewController.m; sourceTree = "<group>"; };
-		22D3AED11742E928000AB469 /* SHSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHSecondViewController.h; sourceTree = "<group>"; };
-		22D3AED21742E928000AB469 /* SHSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHSecondViewController.m; sourceTree = "<group>"; };
-		22D3AED817448D70000AB469 /* SHExampleProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHExampleProtocol.h; sourceTree = "<group>"; };
 		2A3799792E664CC2A299F48B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -96,11 +92,8 @@
 				22D3AEBA1742D9B8000AB469 /* SHAppDelegate.h */,
 				22D3AEBB1742D9B8000AB469 /* SHAppDelegate.m */,
 				22D3AEC31742D9B8000AB469 /* MainStoryboard.storyboard */,
-				22D3AED817448D70000AB469 /* SHExampleProtocol.h */,
 				22D3AEC61742D9B8000AB469 /* SHViewController.h */,
 				22D3AEC71742D9B8000AB469 /* SHViewController.m */,
-				22D3AED11742E928000AB469 /* SHSecondViewController.h */,
-				22D3AED21742E928000AB469 /* SHSecondViewController.m */,
 				22D3AEB21742D9B8000AB469 /* Supporting Files */,
 			);
 			path = Example;
@@ -223,7 +216,6 @@
 				22D3AEB81742D9B8000AB469 /* main.m in Sources */,
 				22D3AEBC1742D9B8000AB469 /* SHAppDelegate.m in Sources */,
 				22D3AEC81742D9B8000AB469 /* SHViewController.m in Sources */,
-				22D3AED31742E928000AB469 /* SHSecondViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
