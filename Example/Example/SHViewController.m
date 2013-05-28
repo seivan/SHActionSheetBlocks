@@ -7,84 +7,35 @@
 //
 
 
-
-
+#import "SHSegueBlocks.h"
 #import "SHViewController.h"
 
 @interface SHViewController ()
--(IBAction)unwinder:(UIStoryboardSegue *)theSegue;
-@property(nonatomic,strong) NSString * string;
-@property(nonatomic,strong) NSMutableString * mutableString;
-
-@property(nonatomic,strong) NSArray * array;
-@property(nonatomic,strong) NSMutableArray * mutableArray;
-
-@property(nonatomic,strong) NSDictionary * dictionary;
-@property(nonatomic,strong) NSMutableDictionary * mutableDictionary;
-
-@property(nonatomic,strong) NSSet * set;
-@property(nonatomic,strong) NSMutableSet * mutableSet;
-
-@property(nonatomic,strong) NSOrderedSet * orderedSet;
-@property(nonatomic,strong) NSMutableOrderedSet * mutableOrderedSet;
-
-@property(nonatomic,strong) NSNumber * number;
-
-
 
 
 @end
 
 @implementation SHViewController
-@synthesize name;
+
 -(void)viewDidLoad;{
   [super viewDidLoad];
-  
-  [self SH_performSegueWithIdentifier:@"push" andPrepareForSegueBlock:^(UIStoryboardSegue *theSegue) {
-    id<SHExampleProtocol> destionationController =   theSegue.destinationViewController;
-    destionationController.name = theSegue.identifier;
-  }];
+
 
 }
 
 -(void)viewDidAppear:(BOOL)animated; {
   [super viewDidAppear:animated];
-
-  self.mutableArray       = [@[] mutableCopy];
-  self.mutableString      = [@"LOL" mutableCopy];
-  self.mutableOrderedSet  = [NSMutableOrderedSet orderedSet];
-  self.mutableOrderedSet  = [NSMutableSet set];
-  self.number             = @(666);
-
-  double delayInSeconds = 5.0;
+  double delayInSeconds = 3.0;
   dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
   dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-    [self SH_performSegueWithIdentifier:@"push" andPrepareForSegueBlock:^(UIStoryboardSegue *theSegue) {
-      id<SHExampleProtocol> destionationController =   theSegue.destinationViewController;
-      destionationController.name = theSegue.identifier;
-    }];
-
+    [self performSegueWithIdentifier:@"second" sender:nil];
   });
-
-//  [self SH_addObserverForKeyPaths:@[@"mutableString", @"number", @"mutableOrderedSet", @"mutableSet", @"mutableDictionary"] task:^(id obj, NSString *keyPath) {
-//    NSLog(@"KEYPATH: %@", keyPath);
-//    NSLog(@"OBJ: %@", obj);
-//  }];
-
-
+  
+  
 }
 
-//-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context; {
-//  NSLog(@"%@", keyPath);
-//  NSLog(@"%@", object);
-//  NSLog(@"%@", change);
-//  
-//}
-
-
--(IBAction)unwinder:(UIStoryboardSegue *)theSegue;{
-
+-(IBAction)unwinder:(UIStoryboardSegue *)theSegue; {
+  
 }
-
 
 @end

@@ -2,93 +2,57 @@
 //  SHSecondViewController.m
 //  Example
 //
-//  Created by Seivan Heidari on 5/14/13.
+//  Created by Seivan Heidari on 5/28/13.
 //  Copyright (c) 2013 Seivan Heidari. All rights reserved.
 //
 
 #import "SHSecondViewController.h"
+#import "SHKeyValueObserverBlocks.h"
+#import "SHGestureRecognizerBlocks.h"
 
 @interface SHSecondViewController ()
--(IBAction)tapProgUnwind:(id)sender;
-@property(nonatomic,strong) NSString * string;
-@property(nonatomic,strong) NSMutableString * mutableString;
-
-@property(nonatomic,strong) NSArray * array;
-@property(nonatomic,strong) NSMutableArray * mutableArray;
-
-@property(nonatomic,strong) NSDictionary * dictionary;
-@property(nonatomic,strong) NSMutableDictionary * mutableDictionary;
-
-@property(nonatomic,strong) NSSet * set;
-@property(nonatomic,strong) NSMutableSet * mutableSet;
-
-@property(nonatomic,strong) NSOrderedSet * orderedSet;
-@property(nonatomic,strong) NSMutableOrderedSet * mutableOrderedSet;
-
-@property(nonatomic,strong) NSNumber * number;
-
 @end
 
 @implementation SHSecondViewController
-@synthesize name;
 
--(IBAction)tapProgUnwind:(id)sender; {
-  //[self performSegueWithIdentifier:@"unwinder" sender:self];
-  [self SH_performSegueWithIdentifier:@"unwinder" withUserInfo:@{@"date" : [NSDate date]}];
-}
-
-
--(void)viewDidLoad;{
-  [super viewDidLoad];
-  
-}
-
-//-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context; {
-//  NSLog(@"CALLBACK: %@",change);
-//}
 -(void)viewDidAppear:(BOOL)animated; {
-  [super viewDidAppear:animated];
-  self.mutableArray     = [@[] mutableCopy];
-  self.mutableSet       = [NSMutableSet set];
+  SHGestureRecognizerBlock block = ^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
+    NSLog(@"CALLBACK block1");
+  };
+  UITapGestureRecognizer * tapRecognizer = [UITapGestureRecognizer SH_gestureRecognizerWithBlock:block];
 
-  //  [self addObserver:self forKeyPath:@"mutableArray" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionPrior context:NULL];
+  SHGestureRecognizerBlock block2 = ^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
+    NSLog(@"CALLBACK block2");
+  };
+
+  [tapRecognizer SH_addBlock:block];
+  [tapRecognizer SH_addBlock:block2];
+
+  [self.view addGestureRecognizer:tapRecognizer];
   
-  NSString * identifier = [self SH_addObserverForKeyPaths:@[@"mutableArray",@"mutableSet"] block:^(id weakSelf, NSString *keyPath, NSDictionary *change) {
-    NSLog(@"identifier: %@ - %@",change, keyPath);
+  UITapGestureRecognizer * tapRecognizer2 = [UITapGestureRecognizer SH_gestureRecognizerWithBlock:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
+    NSLog(@"GESTURE 2 CALLBACK 3");
   }];
-
-  NSString * identifier2 = [self SH_addObserverForKeyPaths:@[@"mutableArray",@"mutableSet"] block:^(id weakSelf, NSString *keyPath, NSDictionary *change) {
-    NSLog(@"identifier2: %@ - %@",change,keyPath);
-  }];
-
-  double delayInSeconds = 2.0;
+  [self.view addGestureRecognizer:tapRecognizer2];
+//
+  NSLog(@"2 gestures, 3 blocks, Gesture 2 block 3 is active");
+  NSLog(@"BLOCK COUNTS on first gesture: %d", tapRecognizer.SH_blocks.count);
+  double delayInSeconds = 5.0;
   dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
   dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-    [self SH_removeObserversForKeyPaths:@[@"mutableArray", @"mutableSet"] withIdentifiers:@[identifier]];
-    [[self mutableArrayValueForKey:@"mutableArray"] addObject:@"DAAAAAAAAMNG"];
-    [self SH_removeObserversWithIdentifiers:@[identifier2]];
-    //self.mutableArray = @[].mutableCopy;
+    NSLog(@"Removing block1 from gesture1");
+    [tapRecognizer SH_removeBlock:block];
+    NSLog(@"BLOCK COUNTS on first gesture: %d", tapRecognizer.SH_blocks.count);
+    NSLog(@"2 gestures, 2 blocks, Gesture 2 block 3 is active");
+    double delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+    NSLog(@"Removing all blocks from gesture 2");
+      [tapRecognizer2 SH_removeAllBlocks];
+    NSLog(@"1 gesture, 1 block, Gesture 1 block 2 is active");
+    });
+
   });
 
-
-
-  
 }
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;  {
-  if([self SH_handleObserverForKeyPath:keyPath withChange:change context:context])
-    NSLog(@"TAKEN CARE OF BY BLOCK");
-  else
-    NSLog(@"Take care of here!");
-    
-}
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender; {
-  UIViewController * destionationVc = segue.destinationViewController;
-  destionationVc.SH_userInfo = nil;
-  [self SH_handlesBlockForSegue:segue];
-  
-  
-}
-
-
-
 @end

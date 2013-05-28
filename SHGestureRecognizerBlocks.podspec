@@ -1,23 +1,21 @@
 Pod::Spec.new do |s|
-  name    = "SHKeyValueObserverBlocks"
+  name    = "SHGestureRecognizerBlocks"
   url     = "https://github.com/seivan/#{name}"
   git_url = "#{url}.git"
   s.name         = name
-  s.version      = "0.1.0"
-  s.summary      = "Prefixed self removing Key Value Observers with Blocks."
+  s.version      = "1.0.0"
+  s.summary      = "Prefixed  UIGestureRecognizer category with blocks, auto-removed. Swizzle free!"
   s.description  = <<-DESC
 
-                    Key Value Observing with blocks on top of NSObject.
+                    Gesture Recognizers with blocks.
                     Blocks are hold with a weak reference so you don't have to cleanup when your object is gone.
   
+                    * Swizzle and junk free
                     * No need to clean up after - Blocks and observers are self maintained.
                     * Weak referenced blocks.
                     * Prefixed selectors.
                     * Works with existing codebase that uses old fashioned observing delegate calls. 
-                    * Configurable to remove the swizzled auto cleanup
-                    * Remove blocks by keypaths or identifiers
-                    * Remove blocks by keypaths and identifiers
-                    * Minimum clutter on top of the public interface. 
+                    * Minimum clutter on top of the public interface.
                     
                     DESC
 
@@ -29,7 +27,6 @@ Pod::Spec.new do |s|
   
 
   s.platform  = :ios, "6.0"
-  s.platform  = :osx, "10.8"
 
   s.source_files = "#{name}/**/*.{h,m}"
   s.requires_arc = true

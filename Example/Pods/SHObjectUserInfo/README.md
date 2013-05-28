@@ -32,15 +32,15 @@ Put this either in specific objects or your project prefix file
 ```objective-c
 #import 'NSObject+SHObjectUserInfo.h'
 ```
-
 or
-
 ```objective-c
 #import 'SHObjectUserInfo.h'
 ```
 
 Usage
 -----
+
+
 
 ```objective-c
 myObjectThatInheritedFromNSObject.sh_userInfo = [@{@"myKey" : mYValue} mutableCopy];
@@ -50,7 +50,7 @@ If you're using [SHSegueBlocks](http://www.github.com/seivan/SHSegueBlocks)
 
 ```objective-c
 [self SH_performSegueWithIdentifier:@"unwinder" withUserInfo:@{@"date" : [NSDate date]}];
-```
+
 
 In the destinationViewController
 
