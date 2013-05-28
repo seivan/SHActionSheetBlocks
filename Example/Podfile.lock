@@ -1,14 +1,26 @@
 PODS:
   - SHGestureRecognizerBlocks (0.1.0)
+  - SHKeyValueObserverBlocks (0.2.0)
+  - SHObjectUserInfo (1.0.0)
+  - SHSegueBlocks (1.1.0):
+    - SHObjectUserInfo (~> 1.0.0)
 
 DEPENDENCIES:
   - SHGestureRecognizerBlocks (from `../`)
+  - SHKeyValueObserverBlocks (from `https://github.com/seivan/SHKeyValueObserverBlocks.git`, branch `release/0.2.0`)
+  - SHSegueBlocks
 
 EXTERNAL SOURCES:
   SHGestureRecognizerBlocks:
     :path: ../
+  SHKeyValueObserverBlocks:
+    :branch: release/0.2.0
+    :git: https://github.com/seivan/SHKeyValueObserverBlocks.git
 
 SPEC CHECKSUMS:
   SHGestureRecognizerBlocks: e608357b05e53a1b87d7a3e475aff3c39196cdca
+  SHKeyValueObserverBlocks: 53e7513cb1d11f5ac70cbd6683127c014a0e222e
+  SHObjectUserInfo: 46ec0f0d5131abff9fabdba55f4a3d012de3c646
+  SHSegueBlocks: 282a804ab0f34e37a4069a096c4cd738f8c790d8
 
 COCOAPODS: 0.20.1

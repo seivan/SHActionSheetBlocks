@@ -3,30 +3,33 @@ Pod::Spec.new do |s|
   url     = "https://github.com/seivan/#{name}"
   git_url = "#{url}.git"
   s.name         = name
-  s.version      = "1.0.0"
-  s.summary      = "KVO Observer Blocks prefixed without swizzling."
+  s.version      = "0.2.0"
+  s.summary      = "Prefixed self removing Key Value Observers with Blocks."
   s.description  = <<-DESC
 
-                    Now you can do Key Value Observing with blocks without any swizzling or leaks.
-                    Cleaner code base than most implementations.
+                    Key Value Observing with blocks on top of NSObject.
                     Blocks are hold with a weak reference so you don't have to cleanup when your object is gone.
   
-                    * No need to clean up after - Blocks are self maintained.
+                    * No need to clean up after - Blocks and observers are self maintained.
                     * Weak referenced blocks.
-                    * No swizzling or hacks. 
-                    * Name-scoped selectors.
+                    * Prefixed selectors.
                     * Works with existing codebase that uses old fashioned observing delegate calls. 
+                    * Configurable to remove the swizzled auto cleanup
+                    * Remove blocks by keypaths or identifiers
+                    * Remove blocks by keypaths and identifiers
+                    * Minimum clutter on top of the public interface. 
                     
                     DESC
 
   s.homepage     = url
-  s.license      = {:type => 'MIT' } 
+  s.license      = 'MIT'
   s.author       = { "Seivan Heidari" => "seivan.heidari@icloud.com" }
   
   s.source       = { :git => git_url, :tag => s.version.to_s }
   
 
-  s.platform  = :ios, "6.0"
+  s.ios.deployment_target = '6.0'
+  s.osx.deployment_target = '10.8'
 
   s.source_files = "#{name}/**/*.{h,m}"
   s.requires_arc = true

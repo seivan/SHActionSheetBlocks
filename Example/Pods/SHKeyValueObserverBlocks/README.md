@@ -1,24 +1,24 @@
-SHGestureRecognizerBlocks
+SHKeyValueObserverBlocks
 ==========
 
 Overview
 --------
 
-#### [Check the creating section](https://github.com/seivan/SHGestureRecognizerBlocks#creating)
+#### [Check the creating section](https://github.com/seivan/SHKeyValueObserverBlocks#creating)
 
-Create blocks directly from convenience class selectors
+You can setup observers with all options on multiple keypaths
 
-Add additional blocks on the gesture recognizer
+You can setup observers with specified options on multiple keypaths 
 
-#### [Check the removing section](https://github.com/seivan/SHGestureRecognizerBlocks#removing)
+#### [Check the removing section](https://github.com/seivan/SHKeyValueObserverBlocks#removing)
 
 You can remove based on a list of keypaths or identifiers.
 
 You can remove based on both a list of keypaths and and identifiers
 
-#### [Check the properties section](https://github.com/seivan/SHGestureRecognizerBlocks#properties)
+#### [Check the configuration section](https://github.com/seivan/SHKeyValueObserverBlocks#configuration)
 
-NSSet with all active unqiue blocks
+Prefixed self cleaning (can be deactivated) block based observers on NSObject. 
 
 
 
@@ -26,7 +26,7 @@ Installation
 ------------
 
 ```ruby
-pod 'SHGestureRecognizerBlocks'
+pod 'SHKeyValueObserverBlocks'
 ```
 
 ***
@@ -34,14 +34,14 @@ pod 'SHGestureRecognizerBlocks'
 Setup
 -----
 
-Put this either in specific files or your project prefix file
+Put this either in specific controllers or your project prefix file
 
 ```objective-c
-#import 'UIGestureRecognizer+SHGestureRecognizerBlocks.h'
+#import 'NSObject+SHKeyValueObserverBlocks.h'
 ```
 or
 ```objective-c
-#import 'SHGestureRecognizerBlocks.h'
+#import 'SHKeyValueObserverBlocks.h'
 ```
 
 Usage
@@ -49,36 +49,22 @@ Usage
 
 ### Creating
 
-With SHGestureRecognizerBlocks you can set auto-removed blocks instead of using selectors
+With SHKeyValueObserverBlocks you can observe with all optins toggled in a single block:
 
 ```objective-c
-  UITapGestureRecognizer * tapRecognizer = [UITapGestureRecognizer SH_gestureRecognizerWithBlock:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
-    NSLog(@"callback");
+  NSString * identifier = [self SH_addObserverForKeyPaths:@[@"mutableArray",@"mutableSet"] block:^(id weakSelf, NSString *keyPath, NSDictionary *change) {
+    NSLog(@"identifier: %@ - %@",change, keyPath);
   }];
 
-  [self.view addGestureRecognizer:tapRecognizer];
 
 ``` 
 
-or if you want add additional blocks
+or if you want setup manual options
 
 ```objective-c
-
-  UITapGestureRecognizer * tapRecognizer = [UITapGestureRecognizer SH_gestureRecognizerWithBlock:block];
-
-  SHGestureRecognizerBlock block = ^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
-    NSLog(@"CALLBACK block1");
-  };
-
-
-  SHGestureRecognizerBlock block2 = ^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
-    NSLog(@"CALLBACK block2");
-  };
-
-  [tapRecognizer SH_addBlock:block];
-  [tapRecognizer SH_addBlock:block2];
-
-  [self.view addGestureRecognizer:tapRecognizer];
+-(NSString *)SH_addObserverForKeyPaths:(id<NSFastEnumeration>)theKeyPaths
+                           withOptions:(NSKeyValueObservingOptions)theOptions
+                                 block:(SHKeyValueObserverBlock)theBlock;
 
 ```
 
