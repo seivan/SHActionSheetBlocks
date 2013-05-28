@@ -1,7 +1,7 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
-## SHGestureRecognizerBlocks
+## SHControlBlocks
 
 Copyright (c) 2012 Seivan Heidari.
 
