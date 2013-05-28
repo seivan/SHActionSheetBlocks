@@ -4,18 +4,18 @@ Pod::Spec.new do |s|
   git_url = "#{url}.git"
   s.name         = name
   s.version      = "1.0.0"
-  s.summary      = "Prefixed self removing gesture recognizers with blocks."
+  s.summary      = "Prefixed  UIGestureRecognizer category with blocks, auto-removed. Swizzle free!"
   s.description  = <<-DESC
 
                     Gesture Recognizers with blocks.
                     Blocks are hold with a weak reference so you don't have to cleanup when your object is gone.
   
+                    * Swizzle and junk free
                     * No need to clean up after - Blocks and observers are self maintained.
                     * Weak referenced blocks.
                     * Prefixed selectors.
                     * Works with existing codebase that uses old fashioned observing delegate calls. 
                     * Minimum clutter on top of the public interface.
-
                     
                     DESC
 
