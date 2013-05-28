@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   url     = "https://github.com/seivan/#{name}"
   git_url = "#{url}.git"
   s.name         = name
-  s.version      = "1.0.0"
+  s.version      = "0.9.0"
   s.summary      = "Prefixed  UIGestureRecognizer category with blocks, auto-removed. Swizzle free!"
   s.description  = <<-DESC
 
