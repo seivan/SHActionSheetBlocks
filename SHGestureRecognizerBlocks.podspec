@@ -12,7 +12,8 @@ Pod::Spec.new do |s|
   
                     * Swizzle and junk free
                     * No need to clean up after - Blocks and observers are self maintained.
-                    * Weak referenced blocks.
+                    * Gestures are referenced in a hash with weak properties
+                    * Auto remove gestures from view and all actions when removing all the blocks
                     * Prefixed selectors.
                     * Works with existing codebase that uses old fashioned observing delegate calls. 
                     * Minimum clutter on top of the public interface.
