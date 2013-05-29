@@ -3,6 +3,7 @@ SHGestureRecognizerBlocks
 
 Overview
 --------
+The gestures are automatically removed once their target is gone, so it isn't necessary to clean up - Swizzle Free(™)
 
 #### [Check the creating section](https://github.com/seivan/SHGestureRecognizerBlocks#creating)
 
