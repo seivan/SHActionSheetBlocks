@@ -1,0 +1,171 @@
+//
+//  UIControl+SHControlEventBlock.h
+//  Example
+//
+//  Created by Seivan Heidari on 5/16/13.
+//  Copyright (c) 2013 Seivan Heidari. All rights reserved.
+//
+
+#import "UIControl+SHControlBlocks.h"
+
+
+
+@interface SHControlBlocksManager : NSObject
+@property(nonatomic,strong) NSHashTable     * mapBlocks;
+
++(instancetype)sharedManager;
+
+-(void)SH_memoryDebugger;
+@end
+
+@implementation SHControlBlocksManager
+#pragma mark -
+#pragma mark Init & Dealloc
+-(instancetype)init; {
+  self = [super init];
+  if (self) {
+    self.mapBlocks            = [NSHashTable weakObjectsHashTable];
+    
+//    [self SH_memoryDebugger];
+  }
+  
+  return self;
+}
+
+
++(instancetype)sharedManager; {
+  static SHControlBlocksManager *_sharedInstance;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    _sharedInstance = [[SHControlBlocksManager alloc] init];
+    
+  });
+  
+  return _sharedInstance;
+  
+}
+
+#pragma mark -
+#pragma mark Debugger
+-(void)SH_memoryDebugger; {
+  double delayInSeconds = 2.0;
+  dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+  dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+    
+    NSLog(@"MAP %@",self.mapBlocks);
+
+    [self SH_memoryDebugger];
+  });
+}
+
+
+@end
+
+@interface SHControl : NSObject
+
+-(id)initWithControlBlockForControlEvents:(UIControlEvents)controlEvents
+                            withEventBlock:(SHControlEventBlock)theBlock;
+
+@property(nonatomic, copy)   SHControlEventBlock block;
+@property(nonatomic, assign) UIControlEvents controlEvents;
+
+@end
+
+@implementation SHControl
+-(id)initWithControlBlockForControlEvents:(UIControlEvents)controlEvents
+                           withEventBlock:(SHControlEventBlock)theBlock; {
+	if ((self = [super init])) {
+		self.block         = theBlock;
+		self.controlEvents = controlEvents;
+	}
+	return self;
+}
+
+
+
+- (void)performAction:(id)sender {
+	self.block(sender);
+}
+
+@end
+
+@interface UIControl ()
+@property(nonatomic,strong) NSMutableSet * mutableBlocks;
+@end
+
+
+
+@implementation UIControl (SHControlBlocks)
+
+#pragma mark -
+#pragma mark Add block
+-(void)SH_addControlBlockForControlEvents:(UIControlEvents)controlEvents
+                           withEventBlock:(SHControlEventBlock)theBlock; {
+  [self.mutableBlocks addObject:[theBlock copy]];
+}
+
+#pragma mark -
+#pragma mark Remove block
+-(void)SH_removeControlBlockForControlEvents:(UIControlEvents)controlEvents; {
+  
+}
+
+
+
+-(void)SH_removeControlBlock:(SHControlEventBlock)theBlock; {
+//  [self.mutableBlocks removeObject:theBlock];
+//  if(self.mutableBlocks.count < 1)
+//    [self SH_removeAllBlocks];
+}
+
+-(void)SH_removeAllControlBlocks; {
+//  [self.view removeGestureRecognizer:self];
+//  [self removeTarget:nil action:nil];
+  self.mutableBlocks = nil;
+}
+
+
+#pragma mark -
+#pragma mark Properties
+
+#pragma mark -
+#pragma mark Getters
+-(NSSet *)SH_controlBlocks; {
+  return self.mutableBlocks.copy;
+}
+
+#pragma mark -
+#pragma mark Privates
+
+
+#pragma mark -
+#pragma mark - Properties
+
+#pragma mark -
+#pragma mark - Getters
+//-(NSMutableSet *)mutableBlocks; {
+//  NSMutableSet * blocks = [[SHControlBlocksManager sharedManager].mapBlocks
+//   objectForKey:self];
+//  if(blocks == nil) {
+//    blocks = [NSMutableSet set];
+//    self.mutableBlocks = blocks;
+//  }
+//  return blocks;
+//}
+//
+//#pragma mark -
+//#pragma mark - Setters
+//-(void)setMutableBlocks:(NSMutableSet *)theSet; {
+//  if(theSet == nil) {
+////    [self removeTarget:nil action:nil];
+//    [SHControlBlocksManager.sharedManager.mapBlocks
+//     removeObjectForKey:self];
+//  }
+//  else
+//    [SHControlBlocksManager.sharedManager.mapBlocks
+//     setObject:theSet forKey:self];
+//    
+//}
+
+@end
+
