@@ -148,14 +148,15 @@
 -(void)SH_removeBlocksForControlEvents:(UIControlEvents)controlEvents; {
   SHControl * control = [self shControlForControlEvents:controlEvents];
   [self removeTarget:control action:NULL forControlEvents:controlEvents];
+  [self.tableControls removeObject:control];
 }
 
 
 
 -(void)SH_removeControlEventsForBlock:(SHControlEventBlock)theBlock; {
   for (SHControl * control in self.tableControls){
-    if([control.tableBlocks containsObject:theBlock])
-      [self removeTarget:control action:NULL forControlEvents:control.controlEvents];
+    if([control.tableBlocks containsObject:theBlock]) [control.tableBlocks removeObject:theBlock];
+    if(control.tableBlocks.count == 0) [self removeTarget:control action:NULL forControlEvents:control.controlEvents];
   }
 //  [self.mutableBlocks removeObject:theBlock];
 //  if(self.mutableBlocks.count < 1)
@@ -190,6 +191,9 @@
   NSHashTable * tableControls =  [[SHControlBlocksManager sharedManager].mapBlocks objectForKey:self];
   if (tableControls == nil)
     self.tableControls = [NSHashTable hashTableWithOptions:NSPointerFunctionsStrongMemory];
+  else if(tableControls.count == 0)
+    [[SHControlBlocksManager sharedManager].mapBlocks removeObjectForKey:self];
+
   return tableControls;
 }
 
