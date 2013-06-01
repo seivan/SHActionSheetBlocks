@@ -66,7 +66,8 @@
 -(id)initWithControlBlockForControlEvents:(UIControlEvents)controlEvents
                             withEventBlock:(SHControlEventBlock)theBlock;
 
-@property(nonatomic, copy)   SHControlEventBlock block;
+@property(nonatomic,strong) NSMapTable * mapBlocks;
+//@property(nonatomic, copy)   SHControlEventBlock block;
 @property(nonatomic, assign) UIControlEvents controlEvents;
 
 @end
