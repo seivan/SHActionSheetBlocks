@@ -8,7 +8,7 @@
 
 #pragma mark -
 #pragma mark Block Defs
-typedef void (^SHControlEventBlock)(id sender);
+typedef void (^SHControlEventBlock)(UIControl * sender);
 
 @interface UIControl (SHControlBlocks)
 

@@ -62,22 +62,20 @@
 @end
 
 @interface SHControl : NSObject
-
 -(id)initWithControlBlockForControlEvents:(UIControlEvents)controlEvents
                             withEventBlock:(SHControlEventBlock)theBlock;
-
-@property(nonatomic,strong) NSMapTable * mapBlocks;
-//@property(nonatomic, copy)   SHControlEventBlock block;
-@property(nonatomic, assign) UIControlEvents controlEvents;
-
+@property(nonatomic,assign) UIControlEvents     controlEvents;
+@property(nonatomic,strong) NSHashTable       * tableBlocks;
 @end
 
 @implementation SHControl
+
 -(id)initWithControlBlockForControlEvents:(UIControlEvents)controlEvents
                            withEventBlock:(SHControlEventBlock)theBlock; {
-	if ((self = [super init])) {
-		self.block         = theBlock;
-		self.controlEvents = controlEvents;
+  self = [super init];
+	if (self) {
+    self.tableBlocks   = [NSHashTable weakObjectsHashTable];
+    self.controlEvents = controlEvents;
 	}
 	return self;
 }
@@ -85,7 +83,9 @@
 
 
 - (void)performAction:(id)sender {
-	self.block(sender);
+	for (SHControlEventBlock block in self.tableBlocks) {
+    block(sender);
+  }
 }
 
 @end
