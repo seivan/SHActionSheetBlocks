@@ -47,8 +47,8 @@
   [button SH_addControlEventTouchUpInsideWithBlock:block];
   [button SH_addControlEventTouchUpInsideWithBlock:block];
   [button SH_addControlEventTouchUpInsideWithBlock:block];
-  //[button SH_removeControlEventsForBlock:block];
-  [button SH_removeBlocksForControlEvents:UIControlEventTouchUpInside];
+  [button SH_removeControlEventsForBlock:block];
+  //[button SH_removeBlocksForControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)viewDidAppear:(BOOL)animated; {

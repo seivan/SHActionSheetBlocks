@@ -177,7 +177,7 @@
 
 #pragma mark -
 #pragma mark Getters
--(NSSet *)SH_controlBlocks; {
+-(NSDictionary *)SH_controlBlocks; {
   return nil; //return self.mutableBlocks.copy;
 }
 
