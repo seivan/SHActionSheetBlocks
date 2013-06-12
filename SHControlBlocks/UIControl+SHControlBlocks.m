@@ -62,6 +62,7 @@
 @end
 
 @interface SHControl : NSObject
+
 -(id)initWithControlBlockForControlEvents:(UIControlEvents)controlEvents
                             withEventBlock:(SHControlEventBlock)theBlock;
 @property(nonatomic,assign) UIControlEvents     controlEvents;
@@ -100,26 +101,28 @@
 
 #pragma mark -
 #pragma mark Add block
--(void)SH_addControlBlockForControlEvents:(UIControlEvents)controlEvents
-                           withEventBlock:(SHControlEventBlock)theBlock; {
+-(void)SH_addControlEvents:(UIControlEvents)controlEvents
+                 withBlock:(SHControlEventBlock)theBlock; {
+  
   [self.mutableBlocks addObject:[theBlock copy]];
 }
 
 #pragma mark -
 #pragma mark Remove block
--(void)SH_removeControlBlockForControlEvents:(UIControlEvents)controlEvents; {
+
+-(void)SH_removeBlocksForControlEvents:(UIControlEvents)controlEvents; {
   
 }
 
 
 
--(void)SH_removeControlBlock:(SHControlEventBlock)theBlock; {
+-(void)SH_removeControlEventsForBlock:(SHControlEventBlock)theBlock; {
 //  [self.mutableBlocks removeObject:theBlock];
 //  if(self.mutableBlocks.count < 1)
 //    [self SH_removeAllBlocks];
 }
 
--(void)SH_removeAllControlBlocks; {
+-(void)SH_removeAllControlEventsBlocks; {
 //  [self.view removeGestureRecognizer:self];
 //  [self removeTarget:nil action:nil];
   self.mutableBlocks = nil;

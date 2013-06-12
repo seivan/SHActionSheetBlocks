@@ -24,7 +24,7 @@
   UIButton * button2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   button.backgroundColor = [UIColor redColor];
   
-  [button SH_addControlBlockForControlEvents:UIControlEventTouchUpInside withEventBlock:^(id sender) {
+  [button SH_addControlBlockForControlEvents:UIControlEventTouchUpInside withBlock:^(id sender) {
     NSLog(@"TAP TAP BUTTON: %@", button);
   }];
   

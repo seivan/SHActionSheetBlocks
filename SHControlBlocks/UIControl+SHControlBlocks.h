@@ -14,16 +14,16 @@ typedef void (^SHControlEventBlock)(UIControl * sender);
 
 #pragma mark -
 #pragma mark Add block
--(void)SH_addControlBlockForControlEvents:(UIControlEvents)controlEvents
-                           withEventBlock:(SHControlEventBlock)theBlock;
+-(void)SH_addControlEvents:(UIControlEvents)controlEvents
+                 withBlock:(SHControlEventBlock)theBlock;
 
 
 
 #pragma mark -
 #pragma mark Remove block
--(void)SH_removeControlBlockForControlEvents:(UIControlEvents)controlEvents;
--(void)SH_removeControlBlock:(SHControlEventBlock)theBlock;
--(void)SH_removeAllControlBlocks;
+-(void)SH_removeBlocksForControlEvents:(UIControlEvents)controlEvents;
+-(void)SH_removeControlEventsForBlock:(SHControlEventBlock)theBlock;
+-(void)SH_removeAllControlEventsBlocks;
 
 #pragma mark -
 #pragma mark Properties
