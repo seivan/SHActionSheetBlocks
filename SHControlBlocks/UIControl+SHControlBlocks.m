@@ -160,16 +160,10 @@
     if(control.tableBlocks.count == 0)
       [self removeTarget:control action:NULL forControlEvents:control.controlEvents];
   }
-//  [self.mutableBlocks removeObject:theBlock];
-//  if(self.mutableBlocks.count < 1)
-//    [self SH_removeAllBlocks];
 }
 
 -(void)SH_removeAllControlEventsBlocks; {
   self.tableControls = nil;
-//  [self.view removeGestureRecognizer:self];
-//  [self removeTarget:nil action:nil];
- // self.mutableBlocks = nil;
 }
 
 
@@ -193,8 +187,6 @@
   NSHashTable * tableControls =  [[SHControlBlocksManager sharedManager].mapBlocks objectForKey:self];
   if (tableControls == nil)
     self.tableControls = [NSHashTable hashTableWithOptions:NSPointerFunctionsStrongMemory];
-  else if(tableControls.count == 0)
-    [[SHControlBlocksManager sharedManager].mapBlocks removeObjectForKey:self];
 
   return tableControls;
 }
