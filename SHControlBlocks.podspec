@@ -1,9 +1,12 @@
 Pod::Spec.new do |s|
-  name    = "SHControlBlocks"
-  url     = "https://github.com/seivan/#{name}"
-  git_url = "#{url}.git"
+  name           = "SHControlBlocks"
+  url            = "https://github.com/seivan/#{name}"
+  git_url        = "#{url}.git"
   s.name         = name
-  s.version      = "0.9.0"
+  version        = "0.1.0"
+  source_files   = "#{name}/**/*.{h,m}"
+
+  s.version      = version
   s.summary      = "Prefixed UIControl category with blocks, auto-removed. Swizzle free!"
   s.description  = <<-DESC
 
@@ -24,11 +27,11 @@ Pod::Spec.new do |s|
   s.license      = 'MIT'
   s.author       = { "Seivan Heidari" => "seivan.heidari@icloud.com" }
   
-  s.source       = { :git => git_url, :tag => s.version.to_s }
+  s.source       = { :git => git_url, :tag => version}
   
 
   s.platform  = :ios, "6.0"
 
-  s.source_files = "#{name}/**/*.{h,m}"
+  s.source_files = source_files
   s.requires_arc = true
 end
