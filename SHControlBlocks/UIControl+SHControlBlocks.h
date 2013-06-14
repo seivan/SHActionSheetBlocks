@@ -17,6 +17,8 @@ typedef void (^SHControlEventBlock)(UIControl * sender);
 -(void)SH_addControlEvents:(UIControlEvents)controlEvents
                  withBlock:(SHControlEventBlock)theBlock;
 
+-(void)SH_addControlEventTouchUpInsideWithBlock:(SHControlEventBlock)theBlock;
+
 
 
 #pragma mark -
