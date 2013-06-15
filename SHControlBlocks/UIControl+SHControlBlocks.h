@@ -33,5 +33,5 @@ typedef void (^SHControlEventBlock)(UIControl * sender);
 #pragma mark -
 #pragma mark Getters
 @property(nonatomic,readonly) NSDictionary * SH_controlBlocks;
-
+@property(nonatomic,readonly) BOOL * SH_isTouchUpInsideEnabled;
 @end
