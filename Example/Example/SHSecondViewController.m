@@ -20,9 +20,6 @@
   
   __weak typeof(self) weakSelf = self;
   [self.btnFirst SH_addControlEventTouchUpInsideWithBlock:^(UIControl *sender) {
-    NSLog(@"controlblocks : %@", weakSelf.btnFirst.SH_controlBlocks);
-    NSLog(@"is enabled %d", weakSelf.btnFirst.SH_isTouchUpInsideEnabled);
-    NSLog(@"blocks %@", [weakSelf.btnFirst SH_blocksForControlEvents:UIControlEventTouchUpInside]);
     [weakSelf.btnFirst removeFromSuperview];
   }];
 }

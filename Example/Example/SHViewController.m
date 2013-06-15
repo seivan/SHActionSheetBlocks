@@ -30,15 +30,21 @@
     NSLog(@"second");
   }];
   
+  __block NSUInteger counter = 0;
   SHControlEventBlock block = ^(UIControl * sender){
     NSLog(@"SENDER : %@", sender);
+    counter += 1;
+    NSAssert(counter == 1, @"Counter should be 1");
   };
   
   [button SH_addControlEventTouchUpInsideWithBlock:block];
   [button SH_addControlEventTouchUpInsideWithBlock:block];
   [button SH_addControlEventTouchUpInsideWithBlock:block];
-  [button SH_removeControlEventsForBlock:block];
-  [button SH_removeBlocksForControlEvents:UIControlEventTouchUpInside];
+  
+  NSLog(@"controlblocks : %@", weakSelf.btnFirst.SH_controlBlocks);
+  NSLog(@"is enabled %d", weakSelf.btnFirst.SH_isTouchUpInsideEnabled);
+  NSLog(@"blocks %@", [weakSelf.btnFirst SH_blocksForControlEvents:UIControlEventTouchUpInside]);
+
 }
 
 -(void)viewDidAppear:(BOOL)animated; {
