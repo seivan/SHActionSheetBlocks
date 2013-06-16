@@ -24,7 +24,14 @@
   UIButton * button2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   button.backgroundColor = [UIColor redColor];
   
-  [button SH_addControlEventTouchUpInsideWithBlock:<#^(UIControl *sender)theBlock#>]
+  __weak typeof(self) weakSelf = self;
+  [button SH_addControlEventTouchUpInsideWithBlock:^(UIControl *sender) {
+    [weakSelf.view addSubview:button2];
+    [button removeFromSuperview];
+    [button2 SH_addControlEvents:UIControlEventTouchUpInside withBlock:^(UIControl *sender) {
+      [button2 removeFromSuperview];
+    }];
+  }];
   
   [self.view addSubview:button];
 }

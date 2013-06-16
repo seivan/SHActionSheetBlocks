@@ -107,6 +107,9 @@
   [self.mutableBlocks addObject:[theBlock copy]];
 }
 
+-(void)SH_addControlEventTouchUpInsideWithBlock:(SHControlEventBlock)theBlock; {
+  
+}
 #pragma mark -
 #pragma mark Remove block
 
@@ -132,9 +135,6 @@
 #pragma mark -
 #pragma mark Properties
 
-#pragma mark -
-#pragma mark Setters
--(BOOL)setSH_isTouchUpInsideEnabled:(BOOL)theTouchUpInside
 
 #pragma mark -
 #pragma mark Getters
