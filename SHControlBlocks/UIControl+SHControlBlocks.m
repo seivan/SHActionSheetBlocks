@@ -133,9 +133,17 @@
 #pragma mark Properties
 
 #pragma mark -
+#pragma mark Setters
+-(BOOL)setSH_isTouchUpInsideEnabled:(BOOL)theTouchUpInside
+
+#pragma mark -
 #pragma mark Getters
 -(NSSet *)SH_controlBlocks; {
   return self.mutableBlocks.copy;
+}
+
+-(BOOL)SH_isTouchUpInsideEnabled; {
+  return NO;
 }
 
 #pragma mark -

@@ -23,15 +23,18 @@ typedef void (^SHControlEventBlock)(UIControl * sender);
 
 #pragma mark -
 #pragma mark Remove block
+-(void)SH_removeControlEventTouchUpInside;
 -(void)SH_removeBlocksForControlEvents:(UIControlEvents)controlEvents;
 -(void)SH_removeControlEventsForBlock:(SHControlEventBlock)theBlock;
 -(void)SH_removeAllControlEventsBlocks;
 
 #pragma mark -
 #pragma mark Properties
+@property(nonatomic,assign) BOOL SH_isTouchUpInsideEnabled;
 
 #pragma mark -
 #pragma mark Getters
 @property(nonatomic,readonly) NSDictionary * SH_controlBlocks;
-@property(nonatomic,readonly) BOOL * SH_isTouchUpInsideEnabled;
+
+
 @end
