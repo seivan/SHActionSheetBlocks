@@ -82,7 +82,7 @@
 }
 
 -(void)SH_performSegueWithIdentifier:(NSString *)theIdentifier
-       andDestionationViewController:(SHPrepareForSegueDestinationViewController)theBlock; {
+       andDestinationViewController:(SHPrepareForSegueDestinationViewController)theBlock; {
   [self SH_performSegueWithIdentifier:theIdentifier andPrepareForSegueBlock:^(UIStoryboardSegue *theSegue) {
     UIViewController * destinationViewController = theSegue.destinationViewController;
     if(theBlock) theBlock(destinationViewController);
@@ -107,7 +107,7 @@
 #pragma mark Don't Use
 -(void)SH_performSegueWithIdentifier:(NSString *)theIdentifier
                          withUserInfo:(NSDictionary *)theUserInfo; {
-  [self SH_performSegueWithIdentifier:theIdentifier andDestionationViewController:^(UIViewController * theDestinationViewController) {
+  [self SH_performSegueWithIdentifier:theIdentifier andDestinationViewController:^(UIViewController * theDestinationViewController) {
     theDestinationViewController.SH_userInfo = [theUserInfo mutableCopy];
   }];
 }

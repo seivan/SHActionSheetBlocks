@@ -35,7 +35,7 @@ Put this either in specific controllers or your project prefix file
 ```
 or
 ```objective-c
-#import 'UIViewController+SHSegueBlocks.h'
+#import 'SHSegueBlocks.h'
 ```
 
 Usage
@@ -67,7 +67,7 @@ or if you want access to the full segue object
 ```
 
 
-Bonus - SH_userInfo property from the pod [SHOBjectUserInfo](http://www.github.com/seivan/SHOBjectUserInfo)
+Bonus - [SH_userInfo from SHObjectUserInfo](http://www.github.com/seivan/SHOBjectUserInfo)
 ------ 
 
 You can directly set a userInfo (mutable) dictionary directly on the segueu selector for the destination controller
