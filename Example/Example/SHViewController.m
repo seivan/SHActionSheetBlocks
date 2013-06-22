@@ -41,9 +41,8 @@
   [button SH_addControlEventTouchUpInsideWithBlock:block];
   [button SH_addControlEventTouchUpInsideWithBlock:block];
   
-  NSLog(@"controlblocks : %@", weakSelf.btnFirst.SH_controlBlocks);
-  NSLog(@"is enabled %d", weakSelf.btnFirst.SH_isTouchUpInsideEnabled);
-  NSLog(@"blocks %@", [weakSelf.btnFirst SH_blocksForControlEvents:UIControlEventTouchUpInside]);
+  NSAssert(button.SH_isTouchUpInsideEnabled, @"Touch up inside should be enabled");
+  NSAssert(button.SH_controlBlocks.count > 0, @"There should be controlblocks");
 
 }
 
