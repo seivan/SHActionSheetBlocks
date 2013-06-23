@@ -157,8 +157,10 @@
   for (SHControl * control in self.tableControls){
     if([control.tableBlocks containsObject:theBlock])
       [control.tableBlocks removeObject:theBlock];
-    if(control.tableBlocks.count == 0)
+    if(control.tableBlocks.count == 0) {
       [self removeTarget:control action:NULL forControlEvents:control.controlEvents];
+      
+    }
   }
 }
 
@@ -174,11 +176,15 @@
 #pragma mark -
 #pragma mark Getters
 -(NSDictionary *)SH_controlBlocks; {
-  return nil; //return self.mutableBlocks.copy;
+  NSMutableDictionary * controlBlocks = @{}.mutableCopy;
+  for (SHControl * control in self.tableControls) {
+    controlBlocks[@(control.controlEvents)] = control.tableBlocks.setRepresentation;
+  }
+  return controlBlocks.copy;
 }
 
 -(BOOL)SH_isTouchUpInsideEnabled; {
-  return NO;
+  return [self shControlForControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark -
@@ -203,10 +209,5 @@
 }
 
 
-#pragma mark -
-#pragma mark - Properties
-
-#pragma mark -
-#pragma mark - Getters
 @end
 

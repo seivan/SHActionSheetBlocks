@@ -17,17 +17,19 @@
 
 @implementation SHViewController
 
--(void)viewDidLoad;{
-  [super viewDidLoad];
+-(void)viewDidAppear:(BOOL)animated; {
+  [super viewDidAppear:animated];
   __block UIButton * button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
   [self.view addSubview:button];
-
+  
   [button SH_addControlEventTouchUpInsideWithBlock:^(UIControl *sender) {
     [self performSegueWithIdentifier:@"second" sender:nil];
     NSLog(@"first");
   }];
   [button SH_addControlEventTouchUpInsideWithBlock:^(UIControl *sender) {
     NSLog(@"second");
+    [button SH_removeAllControlEventsBlocks];
+    NSAssert(button.SH_controlBlocks.count == 0, @"There should be no controlblocks");
   }];
   
   __block NSUInteger counter = 0;
@@ -46,10 +48,6 @@
 
 }
 
--(void)viewDidAppear:(BOOL)animated; {
-  [super viewDidAppear:animated];
-  
-}
 -(IBAction)unwinder:(UIStoryboardSegue *)theSegue; {
   
 }
