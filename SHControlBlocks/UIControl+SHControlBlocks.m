@@ -159,7 +159,7 @@
       [control.tableBlocks removeObject:theBlock];
     if(control.tableBlocks.count == 0) {
       [self removeTarget:control action:NULL forControlEvents:control.controlEvents];
-      
+      [self SH_removeBlocksForControlEvents:control.controlEvents];
     }
   }
 }
