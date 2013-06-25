@@ -135,7 +135,12 @@
 }
 
 -(NSSet *)SH_controlEventsForBlock:(SHControlEventBlock)theBlock; {
-  return nil;
+  NSMutableSet * setOfControlEvents = [NSMutableSet set];
+  for (SHControl * control in self.tableControls) {
+    if([control.tableBlocks containsObject:theBlock])
+      [setOfControlEvents addObject:@(control.controlEvents)];
+  }
+  return setOfControlEvents.copy;
 }
 
 
