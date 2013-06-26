@@ -131,7 +131,9 @@
 #pragma mark -
 #pragma mark Helpers
 -(NSSet *)SH_blocksForControlEvents:(UIControlEvents)theControlEvents; {
-  return nil;
+  SHControl * control = [self shControlForControlEvents:theControlEvents];
+  NSSet * setOfBlocks = control.tableBlocks.setRepresentation;
+  return setOfBlocks;
 }
 
 -(NSSet *)SH_controlEventsForBlock:(SHControlEventBlock)theBlock; {
