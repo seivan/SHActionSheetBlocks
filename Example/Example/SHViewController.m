@@ -28,8 +28,9 @@
   }];
   [button SH_addControlEventTouchUpInsideWithBlock:^(UIControl *sender) {
     NSLog(@"second");
-    [button SH_removeAllControlEventsBlocks];
+    [button SH_removeBlocksForControlEvents:UIControlEventTouchUpInside];
     NSAssert(button.SH_controlBlocks.count == 0, @"There should be no controlblocks");
+    NSAssert(button.SH_isTouchUpInsideEnabled == NO, @"Touch up inside should be enabled");
   }];
   
   __block NSUInteger counter = 0;
@@ -41,7 +42,7 @@
   
   [button SH_addControlEventTouchUpInsideWithBlock:block];
   [button SH_addControlEventTouchUpInsideWithBlock:block];
-  [button SH_addControlEventTouchUpInsideWithBlock:block];
+
   
   NSAssert(button.SH_isTouchUpInsideEnabled, @"Touch up inside should be enabled");
   NSAssert(button.SH_controlBlocks.count > 0, @"There should be controlblocks");
