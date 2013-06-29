@@ -19,7 +19,8 @@
 -(void)viewDidAppear:(BOOL)animated; {
   
   __weak typeof(self) weakSelf = self;
-  [self.btnFirst SH_addControlEventTouchUpInsideWithBlock:^(UIControl *sender) {
+  
+  [self.btnFirst SH_addControlEvents:UIControlEventTouchDown withBlock:^(UIControl *sender) {
     [weakSelf.btnFirst removeFromSuperview];
   }];
 }

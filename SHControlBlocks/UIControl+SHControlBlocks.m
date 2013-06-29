@@ -22,7 +22,7 @@
   self = [super init];
   if (self) {
     self.mapBlocks            = [NSMapTable weakToStrongObjectsMapTable];
-//    [self SH_memoryDebugger];
+    [self SH_memoryDebugger];
   }
   
   return self;
@@ -191,7 +191,8 @@
 }
 
 -(BOOL)SH_isTouchUpInsideEnabled; {
-  return [self shControlForControlEvents:UIControlEventTouchUpInside];
+  SHControl * control = [self shControlForControlEvents:UIControlEventTouchUpInside];
+  return control.tableBlocks.count > 0;
 }
 
 #pragma mark -
