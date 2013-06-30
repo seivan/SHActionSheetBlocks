@@ -10,8 +10,8 @@
 #import "SHControlBlocks.h"
 
 @interface SHSecondViewController ()
-@property(nonatomic,strong) IBOutlet UIButton * btnFirst;
-@property(nonatomic,strong) IBOutlet UIButton * btnSecond;
+@property(nonatomic,weak) IBOutlet UIButton * btnFirst;
+@property(nonatomic,weak) IBOutlet UIButton * btnSecond;
 @end
 
 @implementation SHSecondViewController

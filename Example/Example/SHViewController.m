@@ -11,19 +11,24 @@
 #import "SHViewController.h"
 #import "SHControlBlocks.h"
 @interface SHViewController ()
-
+@property(nonatomic,strong) UIButton * button;
 
 @end
 
 @implementation SHViewController
 
+-(void)viewDidLoad; {
+  [super viewDidLoad];
+  self.button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+  [self.view addSubview:self.button];
+
+}
 -(void)viewDidAppear:(BOOL)animated; {
   [super viewDidAppear:animated];
-  __block UIButton * button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-  [self.view addSubview:button];
-  
+  __block UIButton * button = self.button;
+  __weak typeof(self) weakSelf = self;
   [button SH_addControlEventTouchUpInsideWithBlock:^(UIControl *sender) {
-    [self performSegueWithIdentifier:@"second" sender:nil];
+    [weakSelf performSegueWithIdentifier:@"second" sender:nil];
     NSLog(@"first");
   }];
   [button SH_addControlEventTouchUpInsideWithBlock:^(UIControl *sender) {
