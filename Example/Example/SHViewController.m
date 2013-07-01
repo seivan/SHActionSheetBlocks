@@ -50,8 +50,7 @@
 
   
   NSAssert(button.SH_isTouchUpInsideEnabled, @"Touch up inside should be enabled");
-  NSAssert(button.SH_controlBlocks.count > 0, @"There should be controlblocks");
-
+  NSAssert(button.SH_controlBlocks.count == 3, @"There should be three controlblocks");
 }
 
 -(IBAction)unwinder:(UIStoryboardSegue *)theSegue; {
