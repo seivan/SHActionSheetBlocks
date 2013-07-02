@@ -34,7 +34,7 @@
     double delayInSeconds = 2.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-      self.btnSecond.hidden = NO;
+      weakSelf.btnSecond.hidden = NO;
       NSSet * controlBlocks = weakSelf.btnFirst.SH_controlBlocks[@(UIControlEventTouchDown)];
       NSAssert(weakSelf.btnFirst.SH_isTouchUpInsideEnabled == NO, @"Touch up inside should not be enabled");
       NSAssert(weakSelf.btnFirst.SH_controlBlocks.count == 0, @"There should be no events");
@@ -52,8 +52,8 @@
         [weakSelf.btnSecond SH_removeControlEventsForBlock:counterBlock];
         NSAssert(counter == 1, @"CounterBlock should only be called once, since we're removing it");
         //Ensure second button has the proper controls, two events, one block per event
-        NSSet * controlTouchDownBlocks = self.btnSecond.SH_controlBlocks[@(UIControlEventTouchDown)];
-        NSSet * controlTouchUpInsideBlocks = self.btnSecond.SH_controlBlocks[@(UIControlEventTouchUpInside)];
+        NSSet * controlTouchDownBlocks = weakSelf.btnSecond.SH_controlBlocks[@(UIControlEventTouchDown)];
+        NSSet * controlTouchUpInsideBlocks = weakSelf.btnSecond.SH_controlBlocks[@(UIControlEventTouchUpInside)];
         
         NSAssert(weakSelf.btnSecond.SH_isTouchUpInsideEnabled == NO, @"Touch up inside should not be enabled");
         NSAssert(weakSelf.btnSecond.SH_controlBlocks.count == 1, @"There should be one event");
