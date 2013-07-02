@@ -22,7 +22,7 @@
   self = [super init];
   if (self) {
     self.mapBlocks            = [NSMapTable weakToStrongObjectsMapTable];
-    [self SH_memoryDebugger];
+//    [self SH_memoryDebugger];
   }
   
   return self;
@@ -74,7 +74,7 @@
 
 
 -(void)performAction:(id)sender; {
-  NSSet * immutableTableBlocks = self.tableBlocks;//.setRepresentation;
+  NSSet * immutableTableBlocks = self.tableBlocks.setRepresentation;
 	for (SHControlEventBlock block in immutableTableBlocks) {
     block(sender);
   }
@@ -166,7 +166,7 @@
 
 
 -(void)SH_removeControlEventsForBlock:(SHControlEventBlock)theBlock; {
-  NSSet * immutableTableControls = self.tableControls; //.setRepresentation;
+  NSSet * immutableTableControls = self.tableControls.setRepresentation;
   for (SHControl * control in immutableTableControls){
     if([control.tableBlocks containsObject:theBlock])
       [control.tableBlocks removeObject:theBlock];
@@ -195,8 +195,8 @@
 }
 
 -(BOOL)SH_isTouchUpInsideEnabled; {
-//  SHControl * control = [self shControlForControlEvents:UIControlEventTouchUpInside];
-  return NO;
+  SHControl * control = [self shControlForControlEvents:UIControlEventTouchUpInside];
+  return control.tableBlocks.count > 0;
 }
 
 #pragma mark -

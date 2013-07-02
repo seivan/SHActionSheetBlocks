@@ -6,7 +6,7 @@
 
 #if !defined(NS_BLOCK_ASSERTIONS)
 
-#define BlockAssert(condition, desc, ...) \
+#define SHBlockAssert(condition, desc, ...) \
 do {\
 if (!(condition)) { \
 [[NSAssertionHandler currentHandler] handleFailureInFunction:NSStringFromSelector(_cmd) \
@@ -18,7 +18,7 @@ description:(desc), ##__VA_ARGS__]; \
 
 #else // NS_BLOCK_ASSERTIONS defined
 
-#define BlockAssert(condition, desc, ...)
+#define SHBlockAssert(condition, desc, ...)
 
 #endif
 
