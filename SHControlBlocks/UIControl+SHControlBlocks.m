@@ -22,7 +22,7 @@
   self = [super init];
   if (self) {
     self.mapBlocks            = [NSMapTable weakToStrongObjectsMapTable];
-//    [self SH_memoryDebugger];
+    [self SH_memoryDebugger];
   }
   
   return self;
@@ -109,7 +109,7 @@
                  withBlock:(SHControlEventBlock)theBlock; {
 
 
-  
+  NSAssert(theBlock, @"theBlock is required");
   SHControlEventBlock block = [theBlock copy];
   SHControl * control = [self shControlForControlEvents:controlEvents];
   if(control) {
@@ -126,6 +126,7 @@
 }
 
 -(void)SH_addControlEventTouchUpInsideWithBlock:(SHControlEventBlock)theBlock; {
+  NSAssert(theBlock, @"theBlock is required");
   [self SH_addControlEvents:UIControlEventTouchUpInside withBlock:theBlock];
 }
 
@@ -138,6 +139,7 @@
 }
 
 -(NSSet *)SH_controlEventsForBlock:(SHControlEventBlock)theBlock; {
+  NSAssert(theBlock, @"theBlock is required");
   NSMutableSet * setOfControlEvents = [NSMutableSet set];
   for (SHControl * control in self.tableControls) {
     if([control.tableBlocks containsObject:theBlock])
@@ -155,8 +157,10 @@
 
 -(void)SH_removeBlocksForControlEvents:(UIControlEvents)controlEvents; {
   SHControl * control = [self shControlForControlEvents:controlEvents];
-  [self removeTarget:control action:NULL forControlEvents:controlEvents];
-  [self.tableControls removeObject:control];
+  if(control) {
+    [self removeTarget:control action:NULL forControlEvents:controlEvents];
+    [self.tableControls removeObject:control];
+  }
 }
 
 
