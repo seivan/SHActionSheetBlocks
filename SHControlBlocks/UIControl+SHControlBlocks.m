@@ -195,8 +195,8 @@
 }
 
 -(BOOL)SH_isTouchUpInsideEnabled; {
-  SHControl * control = [self shControlForControlEvents:UIControlEventTouchUpInside];
-  return control.tableBlocks.count > 0;
+//  SHControl * control = [self shControlForControlEvents:UIControlEventTouchUpInside];
+  return NO;
 }
 
 #pragma mark -

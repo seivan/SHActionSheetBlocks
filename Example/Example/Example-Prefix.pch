@@ -4,6 +4,24 @@
 
 #import <Availability.h>
 
+#if !defined(NS_BLOCK_ASSERTIONS)
+
+#define BlockAssert(condition, desc, ...) \
+do {\
+if (!(condition)) { \
+[[NSAssertionHandler currentHandler] handleFailureInFunction:NSStringFromSelector(_cmd) \
+file:[NSString stringWithUTF8String:__FILE__] \
+lineNumber:__LINE__ \
+description:(desc), ##__VA_ARGS__]; \
+}\
+} while(0);
+
+#else // NS_BLOCK_ASSERTIONS defined
+
+#define BlockAssert(condition, desc, ...)
+
+#endif
+
 #ifndef __IPHONE_5_0
 #warning "This project uses features only available in iOS SDK 5.0 and later."
 #endif
