@@ -1,1 +1,1 @@
-../../SHObjectUserInfo/SHObjectUserInfo/SHObjectUserInfo.h
+#import "NSObject+SHObjectUserInfo.h"
