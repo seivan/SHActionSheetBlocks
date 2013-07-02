@@ -23,13 +23,8 @@
   __block NSUInteger counter = 0;
   SHControlEventBlock counterBlock = ^(UIControl * sender){
     counter += 1;
-    //This block should only be called two times, even though it's added three times.
-    if(counter == 0)
+    //This block should only be called once, even though it's added three times.
     NSAssert(counter == 1, @"Counter should be one");
-    if(counter > 1){
-      NSAssert(counter == 2, @"Counter should be two");
-    }
-    NSLog(@"counterblock %d", counter);
   };
 
   [self.btnFirst SH_addControlEvents:UIControlEventTouchDown withBlock:^(UIControl *sender) {
@@ -55,7 +50,16 @@
       //Second block
       [weakSelf.btnSecond SH_addControlEvents:UIControlEventTouchDown withBlock:^(UIControl *sender) {
         [weakSelf.btnSecond SH_removeControlEventsForBlock:counterBlock];
+        NSAssert(counter == 1, @"CounterBlock should only be called once, since we're removing it");
+        //Ensure second button has the proper controls, two events, one block per event
+        NSSet * controlTouchDownBlocks = self.btnSecond.SH_controlBlocks[@(UIControlEventTouchDown)];
+        NSSet * controlTouchUpInsideBlocks = self.btnSecond.SH_controlBlocks[@(UIControlEventTouchUpInside)];
         
+        NSAssert(weakSelf.btnSecond.SH_isTouchUpInsideEnabled == NO, @"Touch up inside should not be enabled");
+        NSAssert(weakSelf.btnSecond.SH_controlBlocks.count == 1, @"There should be one event");
+        NSAssert(controlTouchDownBlocks.count == 1, @"There should be one touchDown block");
+        NSAssert(controlTouchUpInsideBlocks.count == 0, @"There should be no touchUpInside block");
+
       }];
       
       //Ensure second button has the proper controls, two events, one block per event
@@ -64,8 +68,8 @@
       
       NSAssert(weakSelf.btnSecond.SH_isTouchUpInsideEnabled == YES, @"Touch up inside should be enabled");
       NSAssert(weakSelf.btnSecond.SH_controlBlocks.count == 2, @"There should be two events");
-      NSAssert(controlTouchDownBlocks.count == 2, @"There should be one block");
-      NSAssert(controlTouchUpInsideBlocks.count == 1, @"There should be one block");
+      NSAssert(controlTouchDownBlocks.count == 2, @"There should be one touchDown block");
+      NSAssert(controlTouchUpInsideBlocks.count == 1, @"There should be one touchUpInside block");
 
     });
 

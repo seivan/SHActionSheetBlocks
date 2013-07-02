@@ -74,7 +74,8 @@
 
 
 -(void)performAction:(id)sender; {
-	for (SHControlEventBlock block in self.tableBlocks) {
+  NSSet * immutableTableBlocks = self.tableBlocks.setRepresentation;
+	for (SHControlEventBlock block in immutableTableBlocks) {
     block(sender);
   }
 }
@@ -161,17 +162,13 @@
 
 
 -(void)SH_removeControlEventsForBlock:(SHControlEventBlock)theBlock; {
-  NSMutableSet * controlsToRemove = [NSMutableSet set];
-  for (SHControl * control in self.tableControls){
+  NSSet * immutableTableControls = self.tableControls.setRepresentation;
+  for (SHControl * control in immutableTableControls){
     if([control.tableBlocks containsObject:theBlock])
-     [control.tableBlocks removeObject:theBlock];
+      [control.tableBlocks removeObject:theBlock];
     if(control.tableBlocks.count == 0)
-      [controlsToRemove addObject:control];
+      [self SH_removeBlocksForControlEvents:control.controlEvents];
   }
-
-  for (SHControl * control in controlsToRemove)
-    [self SH_removeBlocksForControlEvents:control.controlEvents];
-
 }
 
 -(void)SH_removeAllControlEventsBlocks; {
