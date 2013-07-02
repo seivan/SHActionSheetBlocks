@@ -24,7 +24,8 @@
   SHControlEventBlock counterBlock = ^(UIControl * sender){
     NSLog(@"SENDER : %@", sender);
     counter += 1;
-    //This block should only be called two times, even though it's added three times. 
+    //This block should only be called two times, even though it's added three times.
+    if(counter == 0)
     NSAssert(counter == 1, @"Counter should be one");
     if(counter > 1){
       NSAssert(counter == 2, @"Counter should be two");
