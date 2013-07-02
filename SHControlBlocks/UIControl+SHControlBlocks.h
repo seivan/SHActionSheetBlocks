@@ -19,10 +19,6 @@ typedef void (^SHControlEventBlock)(UIControl * sender);
 
 -(void)SH_addControlEventTouchUpInsideWithBlock:(SHControlEventBlock)theBlock;
 
-#pragma mark -
-#pragma mark Helpers
--(NSSet *)SH_blocksForControlEvents:(UIControlEvents)theControlEvents;
--(NSSet *)SH_controlEventsForBlock:(SHControlEventBlock)theBlock;
 
 #pragma mark -
 #pragma mark Remove block
@@ -30,6 +26,12 @@ typedef void (^SHControlEventBlock)(UIControl * sender);
 -(void)SH_removeBlocksForControlEvents:(UIControlEvents)controlEvents;
 -(void)SH_removeControlEventsForBlock:(SHControlEventBlock)theBlock;
 -(void)SH_removeAllControlEventsBlocks;
+
+#pragma mark -
+#pragma mark Helpers
+-(NSSet *)SH_blocksForControlEvents:(UIControlEvents)theControlEvents;
+-(NSSet *)SH_controlEventsForBlock:(SHControlEventBlock)theBlock;
+
 
 #pragma mark -
 #pragma mark Properties

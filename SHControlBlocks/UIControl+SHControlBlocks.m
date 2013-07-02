@@ -93,16 +93,6 @@
 
 
 @implementation UIControl (SHControlBlocks)
--(SHControl *)shControlForControlEvents:(UIControlEvents)theControlEvents; {
-  SHControl * shControl = nil;
-  for (SHControl * control in self.tableControls)
-    if (control.controlEvents == theControlEvents ) {
-      shControl = control;
-      continue;
-    }
-
-  return shControl;
-}
 #pragma mark -
 #pragma mark Add block
 -(void)SH_addControlEvents:(UIControlEvents)controlEvents
@@ -128,24 +118,6 @@
 -(void)SH_addControlEventTouchUpInsideWithBlock:(SHControlEventBlock)theBlock; {
   NSAssert(theBlock, @"theBlock is required");
   [self SH_addControlEvents:UIControlEventTouchUpInside withBlock:theBlock];
-}
-
-#pragma mark -
-#pragma mark Helpers
--(NSSet *)SH_blocksForControlEvents:(UIControlEvents)theControlEvents; {
-  SHControl * control = [self shControlForControlEvents:theControlEvents];
-  NSSet * setOfBlocks = control.tableBlocks.setRepresentation;
-  return setOfBlocks;
-}
-
--(NSSet *)SH_controlEventsForBlock:(SHControlEventBlock)theBlock; {
-  NSAssert(theBlock, @"theBlock is required");
-  NSMutableSet * setOfControlEvents = [NSMutableSet set];
-  for (SHControl * control in self.tableControls) {
-    if([control.tableBlocks containsObject:theBlock])
-      [setOfControlEvents addObject:@(control.controlEvents)];
-  }
-  return setOfControlEvents.copy;
 }
 
 
@@ -179,6 +151,25 @@
   self.tableControls = nil;
 }
 
+#pragma mark -
+#pragma mark Helpers
+-(NSSet *)SH_blocksForControlEvents:(UIControlEvents)theControlEvents; {
+  SHControl * control = [self shControlForControlEvents:theControlEvents];
+  NSSet * setOfBlocks = control.tableBlocks.setRepresentation;
+  return setOfBlocks;
+}
+
+-(NSSet *)SH_controlEventsForBlock:(SHControlEventBlock)theBlock; {
+  NSAssert(theBlock, @"theBlock is required");
+  NSMutableSet * setOfControlEvents = [NSMutableSet set];
+  for (SHControl * control in self.tableControls) {
+    if([control.tableBlocks containsObject:theBlock])
+      [setOfControlEvents addObject:@(control.controlEvents)];
+  }
+  return setOfControlEvents.copy;
+}
+
+
 
 #pragma mark -
 #pragma mark Properties
@@ -201,6 +192,18 @@
 
 #pragma mark -
 #pragma mark Privates
+
+-(SHControl *)shControlForControlEvents:(UIControlEvents)theControlEvents; {
+  SHControl * shControl = nil;
+  for (SHControl * control in self.tableControls)
+    if (control.controlEvents == theControlEvents ) {
+      shControl = control;
+      continue;
+    }
+  
+  return shControl;
+}
+
 -(NSHashTable *)tableControls; {
   NSHashTable * tableControls =  [[SHControlBlocksManager sharedManager].mapBlocks objectForKey:self];
   if (tableControls == nil)

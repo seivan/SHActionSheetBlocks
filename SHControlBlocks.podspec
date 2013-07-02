@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   url            = "https://github.com/seivan/#{name}"
   git_url        = "#{url}.git"
   s.name         = name
-  version        = "0.1.0"
+  version        = "1.0.0"
   source_files   = "#{name}/**/*.{h,m}"
 
   s.version      = version
@@ -18,7 +18,6 @@ Pod::Spec.new do |s|
                     * Controls are referenced in a map with weak properties
                     * Auto remove control from outlets and all actions when removing all the blocks
                     * Prefixed selectors.
-                    * Works with existing codebase that uses old fashioned observing delegate calls. 
                     * Minimum clutter on top of the public interface.
                     
                     DESC
