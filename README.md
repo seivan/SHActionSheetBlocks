@@ -5,12 +5,21 @@ Overview
 --------
 The gestures are automatically removed once their target is gone, so it isn't necessary to clean up - Swizzle Free(™)
 
-#### [Creating](https://github.com/seivan/SHControlBlocks#creating)
+### API
 
-#### [Removing](https://github.com/seivan/SHControlBlocks#removing)
+#### [Creating](https://github.com/seivan/SHControlBlocks#creating-1)
 
-#### [Properties](https://github.com/seivan/SHControlBlocks#properties)
+#### [Removing](https://github.com/seivan/SHControlBlocks#removing-1)
 
+#### [Properties & Helpers](https://github.com/seivan/SHControlBlocks#helpers-and-properties-1)
+
+### USAGE
+
+#### [Creating](https://github.com/seivan/SHControlBlocks#creating-2)
+
+#### [Removing](https://github.com/seivan/SHControlBlocks#removing-2)
+
+#### [Properties & Helpers](https://github.com/seivan/SHControlBlocks#helpers-and-properties-2)
 
 Installation
 ------------
@@ -134,7 +143,7 @@ Convenience selector for touchUpInside
 ```
 
 
-Properties and Helpers
+### Helpers and Properties
 ------ 
 
 #### NSSet with all active blocks on the gesture
