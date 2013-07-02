@@ -1,1 +1,1 @@
-#import "UIViewController+SHSegueBlocks.h"
+../../SHSegueBlocks/SHSegueBlocks/SHSegueBlocks.h

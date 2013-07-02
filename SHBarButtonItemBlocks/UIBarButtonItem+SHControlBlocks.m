@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Seivan Heidari. All rights reserved.
 //
 
-#import "UIControl+SHControlBlocks.h"
+#import "UIBarButtonItem+SHControlBlocks.h"
 
 
 
