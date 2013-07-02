@@ -17,12 +17,11 @@
 @implementation SHSecondViewController
 
 -(void)viewDidAppear:(BOOL)animated; {
-  
+  self.btnSecond.hidden = YES;
   __weak typeof(self) weakSelf = self;
 
   __block NSUInteger counter = 0;
   SHControlEventBlock counterBlock = ^(UIControl * sender){
-    NSLog(@"SENDER : %@", sender);
     counter += 1;
     //This block should only be called two times, even though it's added three times.
     if(counter == 0)
@@ -30,6 +29,7 @@
     if(counter > 1){
       NSAssert(counter == 2, @"Counter should be two");
     }
+    NSLog(@"counterblock %d", counter);
   };
 
   [self.btnFirst SH_addControlEvents:UIControlEventTouchDown withBlock:^(UIControl *sender) {
@@ -39,6 +39,7 @@
     double delayInSeconds = 2.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+      self.btnSecond.hidden = NO;
       NSSet * controlBlocks = weakSelf.btnFirst.SH_controlBlocks[@(UIControlEventTouchDown)];
       NSAssert(weakSelf.btnFirst.SH_isTouchUpInsideEnabled == NO, @"Touch up inside should not be enabled");
       NSAssert(weakSelf.btnFirst.SH_controlBlocks.count == 0, @"There should be no events");
@@ -53,6 +54,7 @@
       
       //Second block
       [weakSelf.btnSecond SH_addControlEvents:UIControlEventTouchDown withBlock:^(UIControl *sender) {
+        [weakSelf.btnSecond SH_removeControlEventsForBlock:counterBlock];
         
       }];
       

@@ -161,14 +161,17 @@
 
 
 -(void)SH_removeControlEventsForBlock:(SHControlEventBlock)theBlock; {
+  NSMutableSet * controlsToRemove = [NSMutableSet set];
   for (SHControl * control in self.tableControls){
     if([control.tableBlocks containsObject:theBlock])
-      [control.tableBlocks removeObject:theBlock];
-    if(control.tableBlocks.count == 0) {
-      [self removeTarget:control action:NULL forControlEvents:control.controlEvents];
-      [self SH_removeBlocksForControlEvents:control.controlEvents];
-    }
+     [control.tableBlocks removeObject:theBlock];
+    if(control.tableBlocks.count == 0)
+      [controlsToRemove addObject:control];
   }
+
+  for (SHControl * control in controlsToRemove)
+    [self SH_removeBlocksForControlEvents:control.controlEvents];
+
 }
 
 -(void)SH_removeAllControlEventsBlocks; {
