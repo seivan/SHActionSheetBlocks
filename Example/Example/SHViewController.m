@@ -48,9 +48,11 @@
   [button SH_addControlEventTouchUpInsideWithBlock:block];
   [button SH_addControlEventTouchUpInsideWithBlock:block];
 
+  NSSet * controlBlocks = button.SH_controlBlocks[@(UIControlEventTouchUpInside)];
   
   NSAssert(button.SH_isTouchUpInsideEnabled, @"Touch up inside should be enabled");
-  NSAssert(button.SH_controlBlocks.count == 3, @"There should be three controlblocks");
+  NSAssert(button.SH_controlBlocks.count == 1, @"There should be one event");
+  NSAssert(controlBlocks.count == 3, @"There should be three blocks");
 }
 
 -(IBAction)unwinder:(UIStoryboardSegue *)theSegue; {
