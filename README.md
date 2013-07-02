@@ -146,8 +146,6 @@ Convenience selector for touchUpInside
 ### Helpers and Properties
 ------ 
 
-#### NSSet with all active blocks on the gesture
-
 ```objective-c
   [button SH_addControlEventTouchUpInsideWithBlock:blockOne];
   [button SH_addControlEventTouchUpInsideWithBlock:blockTwo];
