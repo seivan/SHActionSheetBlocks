@@ -108,8 +108,8 @@ With SHControlBlocks you can set auto-removed blocks instead of using selectors
 or if you want add additional blocks
 
 ```objective-c
-      [btnSecond SH_addControlEvents:UIControlEventTouchUpInside withBlock:counterBlock];
-      [btnSecond SH_addControlEvents:UIControlEventTouchDown withBlock:counterBlock];
+  [btnSecond SH_addControlEvents:UIControlEventTouchUpInside withBlock:counterBlock];
+  [btnSecond SH_addControlEvents:UIControlEventTouchDown withBlock:counterBlock];
 ```
 
 Convenience selector for touchUpInside
@@ -126,7 +126,7 @@ Convenience selector for touchUpInside
 #### Remove specific blocks - will also remove the Event from the target if it was the last block
 
 ```objective-c
-[btnSecond SH_removeControlEventsForBlock:counterBlock];
+  [btnSecond SH_removeControlEventsForBlock:counterBlock];
 ```
 
 #### Remove specific events
@@ -139,7 +139,7 @@ Convenience selector for touchUpInside
 #### Remove all blocks and events
 
 ```objective-c
-[tapGesture SH_removeAllControlEventsBlocks];
+  [button SH_removeAllControlEventsBlocks];
 ```
 
 
@@ -165,7 +165,7 @@ Convenience selector for touchUpInside
 Contact
 -------
 
-If you end up using SHGestureRecognizerBlocks in a project, I'd love to hear about it.
+If you end up using SHControlBlocks in a project, I'd love to hear about it.
 
 email: [seivan.heidari@icloud.com](mailto:seivan.heidari@icloud.com)  
 twitter: [@seivanheidari](https://twitter.com/seivanheidari)
