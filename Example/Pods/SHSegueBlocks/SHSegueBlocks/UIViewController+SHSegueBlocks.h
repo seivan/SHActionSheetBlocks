@@ -29,7 +29,7 @@ typedef void(^SHPrepareForSegueWithUserInfo)(NSMutableDictionary * theUserInfo);
            andPrepareForSegueBlock:(SHPrepareForSegue)theBlock;
 
 -(void)SH_performSegueWithIdentifier:(NSString *)theIdentifier
-             andDestionationViewController:(SHPrepareForSegueDestinationViewController)theBlock;
+             andDestinationViewController:(SHPrepareForSegueDestinationViewController)theBlock;
 
 
 -(BOOL)SH_handlesBlockForSegue:(UIStoryboardSegue *)theSegue;

@@ -6,17 +6,11 @@
 // project.
 
 
-// SHGestureRecognizerBlocks
-#define COCOAPODS_POD_AVAILABLE_SHGestureRecognizerBlocks
-#define COCOAPODS_VERSION_MAJOR_SHGestureRecognizerBlocks 0
-#define COCOAPODS_VERSION_MINOR_SHGestureRecognizerBlocks 1
-#define COCOAPODS_VERSION_PATCH_SHGestureRecognizerBlocks 0
-
-// SHKeyValueObserverBlocks
-#define COCOAPODS_POD_AVAILABLE_SHKeyValueObserverBlocks
-#define COCOAPODS_VERSION_MAJOR_SHKeyValueObserverBlocks 0
-#define COCOAPODS_VERSION_MINOR_SHKeyValueObserverBlocks 2
-#define COCOAPODS_VERSION_PATCH_SHKeyValueObserverBlocks 0
+// SHControlBlocks
+#define COCOAPODS_POD_AVAILABLE_SHControlBlocks
+#define COCOAPODS_VERSION_MAJOR_SHControlBlocks 0
+#define COCOAPODS_VERSION_MINOR_SHControlBlocks 1
+#define COCOAPODS_VERSION_PATCH_SHControlBlocks 0
 
 // SHObjectUserInfo
 #define COCOAPODS_POD_AVAILABLE_SHObjectUserInfo
@@ -28,5 +22,5 @@
 #define COCOAPODS_POD_AVAILABLE_SHSegueBlocks
 #define COCOAPODS_VERSION_MAJOR_SHSegueBlocks 1
 #define COCOAPODS_VERSION_MINOR_SHSegueBlocks 1
-#define COCOAPODS_VERSION_PATCH_SHSegueBlocks 0
+#define COCOAPODS_VERSION_PATCH_SHSegueBlocks 1
 

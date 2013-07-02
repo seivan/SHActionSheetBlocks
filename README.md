@@ -1,31 +1,31 @@
-SHGestureRecognizerBlocks
+SHControlBlocks
 ==========
 
 Overview
 --------
+The gestures are automatically removed once their target is gone, so it isn't necessary to clean up - Swizzle Free(™)
 
-#### [Check the creating section](https://github.com/seivan/SHGestureRecognizerBlocks#creating)
+### API
 
-Create blocks directly from convenience class selectors
+#### [Creating](https://github.com/seivan/SHControlBlocks#creating-2)
 
-Add additional blocks on the gesture recognizer
+#### [Removing](https://github.com/seivan/SHControlBlocks#removing-2)
 
-#### [Check the removing section](https://github.com/seivan/SHGestureRecognizerBlocks#removing)
+#### [Helpers and Properties](https://github.com/seivan/SHControlBlocks#helpers-and-properties-2)
 
-Remove specific blocks - will also remove the gesture recognizer from the target if it was the last block
-Remove all blocks - will also remove the gesture recognizer from the target
+### USAGE
 
-#### [Check the properties section](https://github.com/seivan/SHGestureRecognizerBlocks#properties)
+#### [Creating](https://github.com/seivan/SHControlBlocks#creating-3)
 
-NSSet with all active blocks on the gesture
+#### [Removing](https://github.com/seivan/SHControlBlocks#removing-3)
 
-
+#### [Helpers and Properties](https://github.com/seivan/SHControlBlocks#helpers-and-properties-3)
 
 Installation
 ------------
 
 ```ruby
-pod 'SHGestureRecognizerBlocks'
+pod 'SHControlBlocks'
 ```
 
 ***
@@ -36,11 +36,59 @@ Setup
 Put this either in specific files or your project prefix file
 
 ```objective-c
-#import 'UIGestureRecognizer+SHGestureRecognizerBlocks.h'
+#import 'UIControl+SHControlBlocks.h'
 ```
 or
 ```objective-c
-#import 'SHGestureRecognizerBlocks.h'
+#import 'SHControlBlocks.h'
+```
+
+API
+-----
+
+### Creating
+
+```objective-c
+#pragma mark -
+#pragma mark Add block
+-(void)SH_addControlEvents:(UIControlEvents)controlEvents
+                 withBlock:(SHControlEventBlock)theBlock;
+
+-(void)SH_addControlEventTouchUpInsideWithBlock:(SHControlEventBlock)theBlock;
+
+```
+
+### Removing
+
+```objective-c
+#pragma mark -
+#pragma mark Remove block
+-(void)SH_removeControlEventTouchUpInside;
+-(void)SH_removeBlocksForControlEvents:(UIControlEvents)controlEvents;
+-(void)SH_removeControlEventsForBlock:(SHControlEventBlock)theBlock;
+-(void)SH_removeAllControlEventsBlocks;
+
+
+```
+
+### Helpers and Properties
+
+```objective-c
+#pragma mark -
+#pragma mark Helpers
+-(NSSet *)SH_blocksForControlEvents:(UIControlEvents)theControlEvents;
+-(NSSet *)SH_controlEventsForBlock:(SHControlEventBlock)theBlock;
+
+
+#pragma mark -
+#pragma mark Properties
+
+#pragma mark -
+#pragma mark Getters
+@property(nonatomic,readonly) BOOL SH_isTouchUpInsideEnabled;
+
+@property(nonatomic,readonly) NSDictionary * SH_controlBlocks;
+
 ```
 
 Usage
@@ -48,95 +96,82 @@ Usage
 
 ### Creating
 
-With SHGestureRecognizerBlocks you can set auto-removed blocks instead of using selectors
+With SHControlBlocks you can set auto-removed blocks instead of using selectors
 
 ```objective-c
-  UITapGestureRecognizer * tapRecognizer = [UITapGestureRecognizer SH_gestureRecognizerWithBlock:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
-    NSLog(@"callback");
+  [self.btnFirst SH_addControlEvents:UIControlEventTouchDown withBlock:^(UIControl *sender) {
+    [weakSelf performSegueWithIdentifier:@"second" sender:nil];
+    NSLog(@"first");
   }];
-
-  [self.view addGestureRecognizer:tapRecognizer];
-
 ``` 
 
 or if you want add additional blocks
 
 ```objective-c
+  [btnSecond SH_addControlEvents:UIControlEventTouchUpInside withBlock:counterBlock];
+  [btnSecond SH_addControlEvents:UIControlEventTouchDown withBlock:counterBlock];
+```
 
-  UITapGestureRecognizer * tapRecognizer = [UITapGestureRecognizer alloc] init];
+Convenience selector for touchUpInside
 
-  SHGestureRecognizerBlock block = ^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
-    NSLog(@"CALLBACK block1");
-  };
-
-
-  SHGestureRecognizerBlock block2 = ^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
-    NSLog(@"CALLBACK block2");
-  };
-
-  [tapRecognizer SH_addBlock:block];
-  [tapRecognizer SH_addBlock:block2];
-
-  [self.view addGestureRecognizer:tapRecognizer];
-
+```objective-c
+  [button SH_addControlEventTouchUpInsideWithBlock:^(UIControl *sender) {
+    [button removeFromSuperview]; //this will also remove the block :)
+  }];
 ```
 
 ### Removing
 
 
-#### Remove specific blocks - will also remove the gesture recognizer from the target if it was the last block
+#### Remove specific blocks - will also remove the Event from the target if it was the last block
 
 ```objective-c
--(void)SH_removeBlock:(SHGestureRecognizerBlock)theBlock;
-
-[tapGesture SH_removeBlock:block];
+  [btnSecond SH_removeControlEventsForBlock:counterBlock];
 ```
 
-#### Remove all blocks - will also remove the gesture recognizer from the target
+#### Remove specific events
 
 ```objective-c
--(void)SH_removeAllBlocks;
+  [btnSecond SH_removeBlocksForControlEvents:UIControlEventTouchUpInside];
+  [btnSecond SH_removeControlEventTouchUpInside];
+```
 
-[tapGesture SH_removeAllBlocks];
+#### Remove all blocks and events
+
+```objective-c
+  [button SH_removeAllControlEventsBlocks];
 ```
 
 
-Properties
+### Helpers and Properties
 ------ 
 
 #### NSSet with all active blocks on the gesture
 
 ```objective-c
-@property(nonatomic,readonly) NSSet * SH_blocks;
+  [button SH_addControlEventTouchUpInsideWithBlock:blockOne];
+  [button SH_addControlEventTouchUpInsideWithBlock:blockTwo];
+  [button SH_addControlEventTouchUpInsideWithBlock:blockThree];
 
-for(SHGestureRecognizerBlock block in tapGesture.SH_blocks) {
-  
-}
+  NSSet * controlBlocks = button.SH_controlBlocks[@(UIControlEventTouchUpInside)];  
+  NSAssert(button.SH_isTouchUpInsideEnabled,    @"Touch up inside should be enabled");
+  NSAssert(button.SH_controlBlocks.count  == 1, @"There should be one event");
+  NSAssert(controlBlocks.count            == 3, @"There should be three blocks");
 
 ```
 
-Existing Codebase 
------------------
-Works fine with other gestures, such as swipe, pan and longpresses. 
-
-Replacing
----------
-
-```objective-c
-[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(performBlockAction:)];
-```
 
 
 Contact
 -------
 
-If you end up using SHGestureRecognizerBlocks in a project, I'd love to hear about it.
+If you end up using SHControlBlocks in a project, I'd love to hear about it.
 
 email: [seivan.heidari@icloud.com](mailto:seivan.heidari@icloud.com)  
 twitter: [@seivanheidari](https://twitter.com/seivanheidari)
 
 ## License
 
-SHGestureRecognizerBlocks is © 2013 [Seivan](http://www.github.com/seivan) and may be freely
+SHControlBlocks is © 2013 [Seivan](http://www.github.com/seivan) and may be freely
 distributed under the [MIT license](http://opensource.org/licenses/MIT).
-See the [`LICENSE.md`](https://github.com/seivan/SHGestureRecognizerBlocks/blob/master/LICENSE.md) file.
+See the [`LICENSE.md`](https://github.com/seivan/SHControlBlocks/blob/master/LICENSE.md) file.
