@@ -3,7 +3,7 @@ SHControlBlocks
 
 Overview
 --------
-The gestures are automatically removed once their target is gone, so it isn't necessary to clean up - Swizzle Free(™)
+The blocks ande vents are automatically removed once their control is gone, so it isn't necessary to clean up - Swizzle Free(™)
 
 ### API
 
