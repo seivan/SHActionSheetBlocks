@@ -63,8 +63,8 @@
       }];
       
       //Ensure second button has the proper controls, two events, one block per event
-      NSSet * controlTouchDownBlocks = self.btnSecond.SH_controlBlocks[@(UIControlEventTouchDown)];
-      NSSet * controlTouchUpInsideBlocks = self.btnSecond.SH_controlBlocks[@(UIControlEventTouchUpInside)];
+      NSSet * controlTouchDownBlocks = weakSelf.btnSecond.SH_controlBlocks[@(UIControlEventTouchDown)];
+      NSSet * controlTouchUpInsideBlocks = weakSelf.btnSecond.SH_controlBlocks[@(UIControlEventTouchUpInside)];
       
       NSAssert(weakSelf.btnSecond.SH_isTouchUpInsideEnabled == YES, @"Touch up inside should be enabled");
       NSAssert(weakSelf.btnSecond.SH_controlBlocks.count == 2, @"There should be two events");
