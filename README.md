@@ -11,7 +11,7 @@ The gestures are automatically removed once their target is gone, so it isn't ne
 
 #### [Removing](https://github.com/seivan/SHControlBlocks#removing-2)
 
-#### [Properties & Helpers](https://github.com/seivan/SHControlBlocks#helpers-and-properties-2)
+#### [Helpers and Properties](https://github.com/seivan/SHControlBlocks#helpers-and-properties-2)
 
 ### USAGE
 
@@ -19,7 +19,7 @@ The gestures are automatically removed once their target is gone, so it isn't ne
 
 #### [Removing](https://github.com/seivan/SHControlBlocks#removing-3)
 
-#### [Properties & Helpers](https://github.com/seivan/SHControlBlocks#helpers-and-properties-3)
+#### [Helpers and Properties](https://github.com/seivan/SHControlBlocks#helpers-and-properties-3)
 
 Installation
 ------------
