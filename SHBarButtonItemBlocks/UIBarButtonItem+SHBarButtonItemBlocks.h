@@ -10,17 +10,17 @@
 #pragma mark Block Defs
 typedef void (^SHBarButtonItemBlock)(UIBarButtonItem * sender);
 
-@interface UIControl (SHBarButtonItemBlocks)
+@interface UIBarButtonItem (SHBarButtonItemBlocks)
 
 #pragma mark -
 #pragma mark Init
--(instancetype)initWithBarButtonSystemItem:(UIBarButtonSystemItem)systemItem
++(instancetype)SH_barButtonItemWithBarButtonSystemItem:(UIBarButtonSystemItem)systemItem
                                  withBlock:(SHBarButtonItemBlock)theBlock;
 
--(instancetype)initWithImage:(UIImage *)image style:(UIBarButtonItemStyle)style
++(instancetype)SH_barButtonItemWithImage:(UIImage *)image style:(UIBarButtonItemStyle)style
                    withBlock:(SHBarButtonItemBlock)theBlock;
 
--(instancetype)initWithTitle:(NSString *)title style:(UIBarButtonItemStyle)style
++(instancetype)SH_barButtonItemWithTitle:(NSString *)title style:(UIBarButtonItemStyle)style
                    withBlock:(SHBarButtonItemBlock)theBlock;
 
 #pragma mark -

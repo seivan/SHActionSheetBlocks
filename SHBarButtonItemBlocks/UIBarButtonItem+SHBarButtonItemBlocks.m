@@ -63,37 +63,6 @@
 }
 @end
 
-//@interface SHControl : NSObject
-//-(instancetype)initWithControlBlockForControlEvents:(UIControlEvents)controlEvents
-//                            withEventBlock:(SHControlEventBlock)theBlock;
-//
-//@property(nonatomic,assign) UIControlEvents     controlEvents;
-//@property(nonatomic,strong) NSHashTable       * tableBlocks;
-//@end
-//
-//@implementation SHControl
-//
-//-(instancetype)initWithControlBlockForControlEvents:(UIControlEvents)controlEvents
-//                           withEventBlock:(SHControlEventBlock)theBlock; {
-//  self = [super init];
-//	if (self) {
-//    self.tableBlocks   = [NSHashTable hashTableWithOptions:NSPointerFunctionsStrongMemory];
-//    [self.tableBlocks addObject:theBlock];
-//    self.controlEvents = controlEvents;
-//	}
-//	return self;
-//}
-//
-//
-//
-//-(void)performAction:(id)sender; {
-//  NSSet * immutableTableBlocks = self.tableBlocks.setRepresentation;
-//	for (SHControlEventBlock block in immutableTableBlocks) {
-//    block(sender);
-//  }
-//}
-//
-//@end
 
 @interface UIBarButtonItem ()
 @property(nonatomic,readonly) NSMutableSet * setOfBlocks;
@@ -106,35 +75,35 @@
 #pragma mark -
 #pragma mark Init
 
--(instancetype)initWithBarButtonSystemItem:(UIBarButtonSystemItem)systemItem
++(instancetype)SH_barButtonItemWithBarButtonSystemItem:(UIBarButtonSystemItem)systemItem
                                  withBlock:(SHBarButtonItemBlock)theBlock; {
   
-  UIBarButtonItem * barButtonItem =  [self initWithBarButtonSystemItem:systemItem
-                                                                target:nil
-                                                                action:nil];
+  UIBarButtonItem * barButtonItem =  [[UIBarButtonItem alloc] initWithBarButtonSystemItem:systemItem
+                                                                                   target:nil
+                                                                                   action:nil];
   [barButtonItem SH_addBlock:theBlock];
   return barButtonItem;
 }
 
--(instancetype)initWithImage:(UIImage *)image style:(UIBarButtonItemStyle)style
++(instancetype)SH_barButtonItemWithImage:(UIImage *)image style:(UIBarButtonItemStyle)style
                    withBlock:(SHBarButtonItemBlock)theBlock; {
   
-  UIBarButtonItem * barButtonItem =  [self initWithImage:image
-                                                   style:style
-                                                  target:nil
-                                                  action:nil];
+  UIBarButtonItem * barButtonItem =  [[UIBarButtonItem alloc] initWithImage:image
+                                                                      style:style
+                                                                     target:nil
+                                                                     action:nil];
   [barButtonItem SH_addBlock:theBlock];
   return barButtonItem;
   
 }
 
--(instancetype)initWithTitle:(NSString *)title style:(UIBarButtonItemStyle)style
++(instancetype)SH_barButtonItemWithTitle:(NSString *)title style:(UIBarButtonItemStyle)style
                    withBlock:(SHBarButtonItemBlock)theBlock; {
   
-  UIBarButtonItem * barButtonItem =  [self initWithTitle:title
-                                                   style:style
-                                                  target:nil
-                                                  action:nil];
+  UIBarButtonItem * barButtonItem =  [[UIBarButtonItem alloc] initWithTitle:title
+                                                                      style:style
+                                                                     target:nil
+                                                                     action:nil];
   [barButtonItem SH_addBlock:theBlock];
   return barButtonItem;
   
@@ -143,55 +112,53 @@
 #pragma mark -
 #pragma mark Add
 -(void)SH_addBlock:(SHBarButtonItemBlock)theBlock; {
+  NSAssert(theBlock, @"theBlock is required");
   SHBarButtonItemBlock block = [theBlock copy];
   self.target = [SHBarButtonItemBlocksManager sharedManager];
   self.action = [SHBarButtonItemBlocksManager selectorAction];
+  [self.setOfBlocks addObject:block];
 }
 
 #pragma mark -
 #pragma mark Remove
 -(void)SH_removeBlock:(SHBarButtonItemBlock)theBlock; {
   [self.setOfBlocks removeObject:theBlock];
-  if(self.setOfBlocks.count == 0){
-    self.target = nil;
-    self.action = nil;
-  }
+  if(self.setOfBlocks.count == 0) [self SH_removeAllBlocks];
+
 }
 
 -(void)SH_removeAllBlocks; {
-  [self.setOfBlocks removeAllObjects];
-  self.target = nil;
-  self.action = nil;
+  self.setOfBlocks = nil;
 }
 
 
 
-#pragma mark -
-#pragma mark Add block
--(void)SH_addControlEvents:(UIControlEvents)controlEvents
-                 withBlock:(SHControlEventBlock)theBlock; {
-
-
-  NSAssert(theBlock, @"theBlock is required");
-  SHControlEventBlock block = [theBlock copy];
-  SHControl * control = [self shControlForControlEvents:controlEvents];
-  if(control) {
-    [control.tableBlocks addObject:block];
-  }
-  else {
-    control = [[SHControl alloc]
-               initWithControlBlockForControlEvents:controlEvents
-               withEventBlock:block];
-  }
-  [self addTarget:control action:@selector(performAction:) forControlEvents:controlEvents];
-  [self.tableControls addObject:control];
-
-}
-
--(void)SH_addControlEventTouchUpInsideWithBlock:(SHControlEventBlock)theBlock; {
-  NSAssert(theBlock, @"theBlock is required");
-  [self SH_addControlEvents:UIControlEventTouchUpInside withBlock:theBlock];
-}
+//#pragma mark -
+//#pragma mark Add block
+//-(void)SH_addControlEvents:(UIControlEvents)controlEvents
+//                 withBlock:(SHControlEventBlock)theBlock; {
+//
+//
+//  NSAssert(theBlock, @"theBlock is required");
+//  SHControlEventBlock block = [theBlock copy];
+//  SHControl * control = [self shControlForControlEvents:controlEvents];
+//  if(control) {
+//    [control.tableBlocks addObject:block];
+//  }
+//  else {
+//    control = [[SHControl alloc]
+//               initWithControlBlockForControlEvents:controlEvents
+//               withEventBlock:block];
+//  }
+//  [self addTarget:control action:@selector(performAction:) forControlEvents:controlEvents];
+//  [self.tableControls addObject:control];
+//
+//}
+//
+//-(void)SH_addControlEventTouchUpInsideWithBlock:(SHControlEventBlock)theBlock; {
+//  NSAssert(theBlock, @"theBlock is required");
+//  [self SH_addControlEvents:UIControlEventTouchUpInside withBlock:theBlock];
+//}
 
 
 #pragma mark -
@@ -209,8 +176,10 @@
 
 -(NSMutableSet *)setOfBlocks; {
   NSMutableSet * setOfBlocks =  [[SHBarButtonItemBlocksManager sharedManager].mapBlocks objectForKey:self];
-  if (setOfBlocks == nil)
-    self.setOfBlocks = [NSMutableSet set];
+  if(setOfBlocks == nil) {
+    setOfBlocks = [NSMutableSet set];
+    self.setOfBlocks = setOfBlocks;
+  }
 
   return setOfBlocks;
 }
