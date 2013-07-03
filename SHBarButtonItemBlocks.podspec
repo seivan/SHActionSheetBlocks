@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  name           = "SHControlBlocks"
+  name           = "SHBarButtonItemBlocks"
   url            = "https://github.com/seivan/#{name}"
   git_url        = "#{url}.git"
   s.name         = name
@@ -7,15 +7,15 @@ Pod::Spec.new do |s|
   source_files   = "#{name}/**/*.{h,m}"
 
   s.version      = version
-  s.summary      = "Prefixed UIControl category with blocks, auto-removed. Swizzle free!"
+  s.summary      = "Prefixed UIBarButtonItem category with blocks, auto-removed. Swizzle free!"
   s.description  = <<-DESC
 
-                    UIControl events with blocks.
+                    UIBarButtonItem events with blocks.
                     Blocks are hold with a weak reference so you don't have to cleanup when your object is gone.
   
                     * Swizzle and junk free
                     * No need to clean up after - The control blocks are self maintained.
-                    * Controls are referenced in a map with weak properties
+                    * UIBarButtonItems are referenced in a map with weak properties
                     * Auto remove control from outlets and all actions when removing all the blocks
                     * Prefixed selectors.
                     * Minimum clutter on top of the public interface.

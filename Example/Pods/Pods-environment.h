@@ -6,11 +6,11 @@
 // project.
 
 
-// SHControlBlocks
-#define COCOAPODS_POD_AVAILABLE_SHControlBlocks
-#define COCOAPODS_VERSION_MAJOR_SHControlBlocks 0
-#define COCOAPODS_VERSION_MINOR_SHControlBlocks 1
-#define COCOAPODS_VERSION_PATCH_SHControlBlocks 0
+// SHBarButtonItemBlocks
+#define COCOAPODS_POD_AVAILABLE_SHBarButtonItemBlocks
+#define COCOAPODS_VERSION_MAJOR_SHBarButtonItemBlocks 1
+#define COCOAPODS_VERSION_MINOR_SHBarButtonItemBlocks 0
+#define COCOAPODS_VERSION_PATCH_SHBarButtonItemBlocks 0
 
 // SHObjectUserInfo
 #define COCOAPODS_POD_AVAILABLE_SHObjectUserInfo

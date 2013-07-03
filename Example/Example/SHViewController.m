@@ -9,9 +9,9 @@
 
 #import "SHSegueBlocks.h"
 #import "SHViewController.h"
-#import "SHControlBlocks.h"
+#import "SHBarButtonItemBlocks.h"
+
 @interface SHViewController ()
-@property(nonatomic,strong) UIButton * button;
 
 @end
 
@@ -19,41 +19,55 @@
 
 -(void)viewDidLoad; {
   [super viewDidLoad];
-  self.button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-  [self.view addSubview:self.button];
 
 }
 
 -(void)viewDidAppear:(BOOL)animated; {
   [super viewDidAppear:animated];
-  __block UIButton * button = self.button;
-  __weak typeof(self) weakSelf = self;
-  [button SH_addControlEventTouchUpInsideWithBlock:^(UIControl *sender) {
-    [weakSelf performSegueWithIdentifier:@"second" sender:nil];
-    NSLog(@"first");
-  }];
-  [button SH_addControlEventTouchUpInsideWithBlock:^(UIControl *sender) {
-    NSLog(@"second");
-    [button SH_removeControlEventTouchUpInside];
-    SHBlockAssert(button.SH_controlBlocks.count == 0, @"There should be no controlblocks");
-    SHBlockAssert(button.SH_isTouchUpInsideEnabled == NO, @"Touch up inside should be enabled");
-  }];
-  
   __block NSUInteger counter = 0;
-  SHControlEventBlock block = ^(UIControl * sender){
-    NSLog(@"SENDER : %@", sender);
+  __block BOOL isFirstCounterCall = YES;
+  __weak typeof(self) weakSelf = self;
+  SHBarButtonItemBlock counterBlock = ^(UIBarButtonItem * sender){
     counter += 1;
-    SHBlockAssert(counter == 1, @"Counter should be 1");
+    if(isFirstCounterCall){ SHBlockAssert(counter == 1, @"Counter should be 1"); }
+    else { SHBlockAssert(counter == 2, @"Counter should be 2");}
+    isFirstCounterCall = NO;
+    SHBlockAssert(counter != 3, @"Counter should not be 3")
   };
-  
-  [button SH_addControlEventTouchUpInsideWithBlock:block];
-  [button SH_addControlEventTouchUpInsideWithBlock:block];
 
-  NSSet * controlBlocks = button.SH_controlBlocks[@(UIControlEventTouchUpInside)];
+  UIBarButtonItem * button = [UIBarButtonItem SH_barButtonItemWithTitle:@"Push" style:UIBarButtonItemStyleBordered withBlock:^(UIBarButtonItem *sender) {
+    counterBlock(sender);
+    
+  }];
   
-  SHBlockAssert(button.SH_isTouchUpInsideEnabled, @"Touch up inside should be enabled");
-  SHBlockAssert(button.SH_controlBlocks.count == 1, @"There should be one event");
-  SHBlockAssert(controlBlocks.count == 3, @"There should be three blocks");
+
+  SHBarButtonItemBlock nextBlock = ^(UIBarButtonItem * sender){
+    double delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+      
+  
+      SHBlockAssert(button.SH_blocks.count == 3, @"Should have three blocks");
+      [button SH_removeBlock:counterBlock];
+      SHBlockAssert(button.SH_blocks.count == 2, @"Should have two blocks");
+      [button SH_removeAllBlocks];;
+      SHBlockAssert(button.SH_blocks.count == 0, @"Should have no blocks");
+      
+      [weakSelf performSegueWithIdentifier:@"second" sender:nil];
+    });
+    
+  };
+
+  // Unique blocks
+  [button SH_addBlock:counterBlock];
+  [button SH_addBlock:counterBlock];
+  //Will push segues
+  [button SH_addBlock:nextBlock];
+  
+  SHBlockAssert(button.SH_blocks.count == 3, @"Should have three blocks");
+  self.navigationItem.rightBarButtonItem = button;
+
+
 }
 
 -(IBAction)unwinder:(UIStoryboardSegue *)theSegue; {

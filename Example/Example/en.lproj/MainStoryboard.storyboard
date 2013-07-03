@@ -34,7 +34,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
-                <exit id="LSn-LX-tbM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="77" y="32"/>
         </scene>
@@ -45,52 +44,11 @@
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="8fg-Uw-jFl">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Zh-jV-HZB">
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="First">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="qL5-4l-czt">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="6vV-If-1YY"/>
-                                    <constraint firstAttribute="height" constant="99" id="KrW-gm-g16"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Second">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="9Zh-jV-HZB" firstAttribute="top" secondItem="8fg-Uw-jFl" secondAttribute="top" constant="94" id="15e-hT-9c3"/>
-                            <constraint firstItem="qL5-4l-czt" firstAttribute="top" secondItem="8fg-Uw-jFl" secondAttribute="top" constant="185" id="A8A-4b-oeK"/>
-                            <constraint firstItem="qL5-4l-czt" firstAttribute="centerX" secondItem="8fg-Uw-jFl" secondAttribute="centerX" type="default" id="lVZ-gs-GWr"/>
-                            <constraint firstItem="9Zh-jV-HZB" firstAttribute="leading" secondItem="8fg-Uw-jFl" secondAttribute="leading" constant="31" id="ztf-2g-iJF"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Csm-Dc-hXv">
                         <nil key="title"/>
-                        <barButtonItem key="rightBarButtonItem" title="UNWIND" id="epy-oL-hWU">
-                            <connections>
-                                <segue destination="LSn-LX-tbM" kind="unwind" unwindAction="unwinder:" id="9gT-OH-mZe"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="btnFirst" destination="9Zh-jV-HZB" id="8Hg-NY-VE4"/>
-                        <outlet property="btnSecond" destination="qL5-4l-czt" id="5i1-UJ-Geb"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9fB-Zm-pi9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -98,9 +56,6 @@
         </scene>
     </scenes>
     <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
         <class className="SHSecondViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SHSecondViewController.h"/>
             <relationships>
