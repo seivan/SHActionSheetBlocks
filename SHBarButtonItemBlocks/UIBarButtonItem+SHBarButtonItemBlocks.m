@@ -133,34 +133,6 @@
 
 
 
-//#pragma mark -
-//#pragma mark Add block
-//-(void)SH_addControlEvents:(UIControlEvents)controlEvents
-//                 withBlock:(SHControlEventBlock)theBlock; {
-//
-//
-//  NSAssert(theBlock, @"theBlock is required");
-//  SHControlEventBlock block = [theBlock copy];
-//  SHControl * control = [self shControlForControlEvents:controlEvents];
-//  if(control) {
-//    [control.tableBlocks addObject:block];
-//  }
-//  else {
-//    control = [[SHControl alloc]
-//               initWithControlBlockForControlEvents:controlEvents
-//               withEventBlock:block];
-//  }
-//  [self addTarget:control action:@selector(performAction:) forControlEvents:controlEvents];
-//  [self.tableControls addObject:control];
-//
-//}
-//
-//-(void)SH_addControlEventTouchUpInsideWithBlock:(SHControlEventBlock)theBlock; {
-//  NSAssert(theBlock, @"theBlock is required");
-//  [self SH_addControlEvents:UIControlEventTouchUpInside withBlock:theBlock];
-//}
-
-
 #pragma mark -
 #pragma mark Properties
 

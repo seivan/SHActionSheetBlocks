@@ -34,6 +34,9 @@ typedef void (^SHBarButtonItemBlock)(UIBarButtonItem * sender);
 
 #pragma mark -
 #pragma mark Properties
+
+#pragma mark -
+#pragma mark Getters
 @property(nonatomic,readonly) NSSet * SH_blocks;
 
 @end
