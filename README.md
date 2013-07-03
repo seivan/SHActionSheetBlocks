@@ -8,7 +8,7 @@ The blocks and events are automatically removed once their control is gone, so i
 
 ### API
 
-#### [Init](https://github.com/seivan/SHBarButtonItemBlocks#Init-2)
+#### [Init](https://github.com/seivan/SHBarButtonItemBlocks#init-2)
 
 #### [Creating](https://github.com/seivan/SHBarButtonItemBlocks#creating-2)
 
@@ -18,7 +18,7 @@ The blocks and events are automatically removed once their control is gone, so i
 
 ### USAGE
 
-#### [Init](https://github.com/seivan/SHBarButtonItemBlocks#Init-3)
+#### [Init](https://github.com/seivan/SHBarButtonItemBlocks#init-3)
 
 #### [Creating](https://github.com/seivan/SHBarButtonItemBlocks#creating-3)
 
