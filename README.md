@@ -166,6 +166,7 @@ Usage
   [button SH_addBlock:blockOne];
   [button SH_addBlock:blockTwo];
   [button SH_addBlock:blockThree];
+  [button SH_addBlock:blockThree];
   SHBlockAssert(button.SH_blocks.count == 3, @"Should have three blocks");
 
 ```
