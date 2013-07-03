@@ -3,8 +3,9 @@ SHBarButtonItemBlocks
 
 Overview
 --------
-Category on top of UIBarButtonItem
-The blocks and events are automatically removed once their control is gone, so it isn't necessary to clean up - Swizzle Free(™)
+Category on top of UIBarButtonItem.
+
+The blocks are automatically removed once the item is gone, so it isn't necessary to clean up - Swizzle Free(™)
 
 ### API
 
@@ -105,7 +106,7 @@ Usage
 
 ### Init
 
-Class convenience selectors for creating directly. 
+### Class convenience selectors for creating directly. 
 
 ```objective-c
   UIBarButtonItem * button = [UIBarButtonItem SH_barButtonItemWithTitle:@"Clear blocks" style:UIBarButtonItemStyleBordered withBlock:^(UIBarButtonItem *sender) {
@@ -118,7 +119,7 @@ Class convenience selectors for creating directly.
 
 ### Creating
 
-With SHBarButtonItemBlocks you can set auto-removed blocks instead of using selectors
+#### With SHBarButtonItemBlocks you can set auto-removed blocks instead of using selectors
 
 ```objective-c
 
@@ -129,7 +130,7 @@ With SHBarButtonItemBlocks you can set auto-removed blocks instead of using sele
 
 ``` 
 
-or if you want add additional blocks
+#### or if you want add additional blocks
 
 ```objective-c
   [button SH_addBlock:counterBlock];
