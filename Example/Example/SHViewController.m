@@ -46,13 +46,14 @@
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
       
-      [weakSelf performSegueWithIdentifier:@"second" sender:nil];
+  
       SHBlockAssert(button.SH_blocks.count == 3, @"Should have three blocks");
       [button SH_removeBlock:counterBlock];
       SHBlockAssert(button.SH_blocks.count == 2, @"Should have two blocks");
       [button SH_removeAllBlocks];;
       SHBlockAssert(button.SH_blocks.count == 0, @"Should have no blocks");
-
+      
+      [weakSelf performSegueWithIdentifier:@"second" sender:nil];
     });
     
   };
