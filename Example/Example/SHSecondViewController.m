@@ -7,7 +7,7 @@
 //
 
 #import "SHSecondViewController.h"
-#import "SHBarButtonItemBlocks.h"
+#import "SHActionSheetBlocks.h"
 
 
 @interface SHSecondViewController ()
@@ -17,16 +17,5 @@
 
 -(void)viewDidAppear:(BOOL)animated; {
   
-  UIBarButtonItem * button = [UIBarButtonItem SH_barButtonItemWithTitle:@"Clear blocks" style:UIBarButtonItemStyleBordered withBlock:^(UIBarButtonItem *sender) {
-    [sender SH_removeAllBlocks];
-    [sender SH_addBlock:^(UIBarButtonItem *sender) {
-      SHBlockAssert(sender.SH_blocks.count == 1, @"Should have one block");
-    }];
-  }];
-  
-
-  SHBlockAssert(button.SH_blocks.count == 1, @"Should have one block");
-  self.navigationItem.rightBarButtonItem = button;
-
 }
 @end

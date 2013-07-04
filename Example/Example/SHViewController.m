@@ -9,69 +9,78 @@
 
 #import "SHSegueBlocks.h"
 #import "SHViewController.h"
+#import "SHActionSheetBlocks.h"
 #import "SHBarButtonItemBlocks.h"
 
 @interface SHViewController ()
+<UIActionSheetDelegate>
 
+-(void)popUpActionSheet;
 @end
 
 @implementation SHViewController
 
 -(void)viewDidLoad; {
   [super viewDidLoad];
+  self.navigationItem.rightBarButtonItem = [UIBarButtonItem SH_barButtonItemWithBarButtonSystemItem:UIBarButtonSystemItemPlay withBlock:^(UIBarButtonItem *sender) {
+    [self performSegueWithIdentifier:@"second" sender:nil];
+  }];
 
 }
 
 -(void)viewDidAppear:(BOOL)animated; {
   [super viewDidAppear:animated];
-  __block NSUInteger counter = 0;
-  __block BOOL isFirstCounterCall = YES;
-  __weak typeof(self) weakSelf = self;
-  SHBarButtonItemBlock counterBlock = ^(UIBarButtonItem * sender){
-    counter += 1;
-    if(isFirstCounterCall){ SHBlockAssert(counter == 1, @"Counter should be 1"); }
-    else { SHBlockAssert(counter == 2, @"Counter should be 2");}
-    isFirstCounterCall = NO;
-    SHBlockAssert(counter != 3, @"Counter should not be 3")
-  };
-
-  UIBarButtonItem * button = [UIBarButtonItem SH_barButtonItemWithTitle:@"Push" style:UIBarButtonItemStyleBordered withBlock:^(UIBarButtonItem *sender) {
-    counterBlock(sender);
-    
-  }];
+  [self popUpActionSheet];
   
 
-  SHBarButtonItemBlock nextBlock = ^(UIBarButtonItem * sender){
-    double delayInSeconds = 2.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-      
-  
-      SHBlockAssert(button.SH_blocks.count == 3, @"Should have three blocks");
-      [button SH_removeBlock:counterBlock];
-      SHBlockAssert(button.SH_blocks.count == 2, @"Should have two blocks");
-      [button SH_removeAllBlocks];;
-      SHBlockAssert(button.SH_blocks.count == 0, @"Should have no blocks");
-      
-      [weakSelf performSegueWithIdentifier:@"second" sender:nil];
-    });
-    
-  };
+}
 
-  // Unique blocks
-  [button SH_addBlock:counterBlock];
-  [button SH_addBlock:counterBlock];
-  //Will push segues
-  [button SH_addBlock:nextBlock];
+-(void)popUpActionSheet; {
+  UIActionSheet * sheet = [[UIActionSheet alloc] initWithTitle:@"title" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
   
-  SHBlockAssert(button.SH_blocks.count == 3, @"Should have three blocks");
-  self.navigationItem.rightBarButtonItem = button;
+  [sheet addButtonWithTitle:@"button1"];
+  [sheet setDestructiveButtonIndex:1];
+  [sheet setCancelButtonIndex:0];
 
+  [sheet addButtonWithTitle:@"button2"];
+  [sheet addButtonWithTitle:@"button3"];
+  [sheet showInView:self.view];
 
 }
 
 -(IBAction)unwinder:(UIStoryboardSegue *)theSegue; {
   
 }
+
+#pragma mark -
+#pragma mark <UIActionSheetDelegate>
+// Called when a button is clicked. The view will be automatically dismissed after this call returns
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;{
+    NSLog(@"clickedButtonAtIndex: %d", buttonIndex);
+}
+
+// Called when we cancel a view (eg. the user clicks the Home button). This is not called when the user clicks the cancel button.
+// If not defined in the delegate, we simulate a click in the cancel button
+- (void)actionSheetCancel:(UIActionSheet *)actionSheet; {
+  
+}
+
+- (void)willPresentActionSheet:(UIActionSheet *)actionSheet;{
+  
+}
+// before animation and showing view
+- (void)didPresentActionSheet:(UIActionSheet *)actionSheet; {
+  
+}
+// after animation
+
+- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex; {
+  NSLog(@"willDismissWithButtonIndex: %d", buttonIndex);
+}
+// before animation and hiding view
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex; {
+  NSLog(@"didDismissWithButtonIndex: %d", buttonIndex);
+}
+// after animation
 
 @end
