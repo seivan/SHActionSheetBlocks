@@ -46,7 +46,6 @@
     NSString * title = [NSString stringWithFormat:@"Button %d", i];
       [sheet SH_addButtonWithTitle:title withBlock:^(NSUInteger theButtonIndex) {
         NSLog(@"%d, %@", theButtonIndex, [sheet buttonTitleAtIndex:theButtonIndex]);
-        sheet = nil;
       }];
     }
   
@@ -58,7 +57,7 @@
   }];
   
   [sheet showInView:self.view];
-  
+  sheet = nil;
 
 }
 
