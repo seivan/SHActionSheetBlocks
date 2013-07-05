@@ -1,6 +1,0 @@
-#include "Pods-SHActionSheetBlocks.xcconfig"
-ALWAYS_SEARCH_USER_PATHS = YES
-GCC_PREPROCESSOR_DEFINITIONS = COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/SHActionSheetBlocks" "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/SHActionSheetBlocks" "${PODS_ROOT}/Headers/SHBarButtonItemBlocks" "${PODS_ROOT}/Headers/SHObjectUserInfo" "${PODS_ROOT}/Headers/SHSegueBlocks"
-OTHER_LDFLAGS = -ObjC
-PODS_ROOT = ${SRCROOT}
