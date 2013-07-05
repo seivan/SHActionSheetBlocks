@@ -28,7 +28,7 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
   self = [super init];
   if (self) {
     self.mapBlocks            = [NSMapTable weakToStrongObjectsMapTable];
-//    [self SH_memoryDebugger];
+    [self SH_memoryDebugger];
   }
   
   return self;
@@ -61,31 +61,33 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 #pragma mark -
 #pragma mark <UIActionSheetDelegate>
 // Called when a button is clicked. The view will be automatically dismissed after this call returns
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;{
-  NSLog(@"clickedButtonAtIndex: %d", buttonIndex);
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;{
+  NSDictionary * mapBlocks = [self.mapBlocks objectForKey:actionSheet];
+  SHActionSheetBlock block = mapBlocks[@(buttonIndex)];
+  block(buttonIndex);
 }
 
 // Called when we cancel a view (eg. the user clicks the Home button). This is not called when the user clicks the cancel button.
 // If not defined in the delegate, we simulate a click in the cancel button
-- (void)actionSheetCancel:(UIActionSheet *)actionSheet; {
+-(void)actionSheetCancel:(UIActionSheet *)actionSheet; {
   
 }
 
-- (void)willPresentActionSheet:(UIActionSheet *)actionSheet;{
+-(void)willPresentActionSheet:(UIActionSheet *)actionSheet;{
   
 }
 // before animation and showing view
-- (void)didPresentActionSheet:(UIActionSheet *)actionSheet; {
+-(void)didPresentActionSheet:(UIActionSheet *)actionSheet; {
   
 }
 // after animation
 
-- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex; {
-  NSLog(@"willDismissWithButtonIndex: %d", buttonIndex);
+-(void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex; {
+
 }
 // before animation and hiding view
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex; {
-  NSLog(@"didDismissWithButtonIndex: %d", buttonIndex);
+-(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex; {
+
 }
 // after animation
 

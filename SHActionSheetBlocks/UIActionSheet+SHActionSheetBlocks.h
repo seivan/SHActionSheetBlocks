@@ -8,13 +8,13 @@
 
 #pragma mark -
 #pragma mark Block Defs
-typedef void (^SHActionSheetBlock)(id sender);
+typedef void (^SHActionSheetBlock)(NSUInteger theButtonIndex);
 
 typedef void (^SHActionSheetWillShowBlock)(UIActionSheet * theActionSheet);
 typedef void (^SHActionSheetDidShowBlock)(UIActionSheet * theActionSheet);
 
-typedef void (^SHActionSheetWillDismissBlock)(UIActionSheet * theActionSheet, NSUInteger theIndex);
-typedef void (^SHActionSheetDidDismissBlock)(UIActionSheet * theActionSheet, NSUInteger theIndex);
+typedef void (^SHActionSheetWillDismissBlock)(UIActionSheet * theActionSheet, NSUInteger theButtonIndex);
+typedef void (^SHActionSheetDidDismissBlock)(UIActionSheet * theActionSheet, NSUInteger theButtonIndex);
 
 @interface UIActionSheet (SHActionSheetBlocks)
 
