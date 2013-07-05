@@ -12,6 +12,7 @@
 #import "SHActionSheetBlocks.h"
 #import "SHBarButtonItemBlocks.h"
 
+
 @interface SHViewController ()
 
 
@@ -37,11 +38,17 @@
 
 -(void)popUpActionSheet; {
   NSString * title = @"Sample";
-  __block UIActionSheet * sheet = [UIActionSheet SH_actionSheetWithTitle:title];
+//  UIActionSheet * sheet = [UIActionSheet actionSheetWithTitle:@"LOl"];
+//  [sheet addButtonWithTitle:@"TITLE" handler:^{
+//    NSLog(@"TITLE");
+//    SHBlockAssert(YES, @"SHOULD BE YES");
+//  }];
+//  [sheet showInView:self.view];
+  UIActionSheet * sheet = [UIActionSheet SH_actionSheetWithTitle:title];
   SHBlockAssert(sheet, @"Instance of a sheet");
   SHBlockAssert([sheet.title isEqualToString:title], @"Title should be set");
   
-  __weak typeof(self) weakSelf = self;
+//  __weak typeof(self) weakSelf = self;
   for (NSUInteger i = 0; i != 3; i++) {
     NSString * title = [NSString stringWithFormat:@"Button %d", i];
       [sheet SH_addButtonWithTitle:title withBlock:^(NSUInteger theButtonIndex) {
@@ -57,7 +64,6 @@
   }];
   
   [sheet showInView:self.view];
-  sheet = nil;
 
 }
 

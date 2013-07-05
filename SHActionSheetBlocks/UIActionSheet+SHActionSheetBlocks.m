@@ -14,10 +14,16 @@ static NSString * const SH_blockDidShow     = @"SH_blockDidShow";
 static NSString * const SH_blockWillDismiss = @"SH_blockWillDismiss";
 static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 
+@interface UIActionSheet ()
+@property(nonatomic,strong) NSMutableDictionary * mapOfBlocks;
+@end
+
+
 @interface SHActionSheetBlocksManager : NSObject
 <UIActionSheetDelegate>
 
-@property(nonatomic,strong) NSMapTable * mapBlocks;
+@property(nonatomic,strong)   NSMapTable   * mapBlocks;
+
 +(instancetype)sharedManager;
 -(void)SH_memoryDebugger;
 @end
@@ -58,44 +64,52 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
   });
 }
 
+#
+
 #pragma mark -
 #pragma mark <UIActionSheetDelegate>
-// Called when a button is clicked. The view will be automatically dismissed after this call returns
+
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;{
   NSDictionary * mapBlocks = [self.mapBlocks objectForKey:actionSheet];
   SHActionSheetBlock block = mapBlocks[@(buttonIndex)];
   block(buttonIndex);
 }
 
-// Called when we cancel a view (eg. the user clicks the Home button). This is not called when the user clicks the cancel button.
-// If not defined in the delegate, we simulate a click in the cancel button
--(void)actionSheetCancel:(UIActionSheet *)actionSheet; {
-  
-}
 
 -(void)willPresentActionSheet:(UIActionSheet *)actionSheet;{
+  NSDictionary * mapBlocks = [self.mapBlocks objectForKey:actionSheet];
+  SHActionSheetWillShowBlock block = mapBlocks[SH_blockWillShow];
+  if(block) block(actionSheet);
   
 }
-// before animation and showing view
+
 -(void)didPresentActionSheet:(UIActionSheet *)actionSheet; {
-  
+  NSDictionary * mapBlocks = [self.mapBlocks objectForKey:actionSheet];
+  SHActionSheetDidShowBlock block = mapBlocks[SH_blockDidShow];
+  if(block) block(actionSheet);
+
 }
-// after animation
+
 
 -(void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex; {
+  NSDictionary * mapBlocks = [self.mapBlocks objectForKey:actionSheet];
+  SHActionSheetWillDismissBlock block = mapBlocks[SH_blockWillDismiss];
+  if(block) block(actionSheet, buttonIndex);
 
 }
-// before animation and hiding view
+
 -(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex; {
-
+  NSDictionary * mapBlocks = [self.mapBlocks objectForKey:actionSheet];
+  SHActionSheetDidDismissBlock block = mapBlocks[SH_blockDidDismiss];
+  if(block) block(actionSheet, buttonIndex);
+//  actionSheet.mapOfBlocks = nil;
 }
-// after animation
+
 
 @end
 
 
 @interface UIActionSheet ()
-@property(nonatomic,readonly) NSMutableDictionary * mapOfBlocks;
 @end
 
 @interface UIActionSheet (Private)
