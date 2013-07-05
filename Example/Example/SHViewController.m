@@ -13,6 +13,8 @@
 #import "SHBarButtonItemBlocks.h"
 
 @interface SHViewController ()
+
+
 -(void)popUpActionSheet;
 @end
 
@@ -35,7 +37,6 @@
 
 -(void)popUpActionSheet; {
 
-  
 }
 
 -(IBAction)unwinder:(UIStoryboardSegue *)theSegue; {
