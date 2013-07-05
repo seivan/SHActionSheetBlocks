@@ -1,4 +1,0 @@
-Documentation set was installed to Xcode!
-
-Path: /Users/seivan/Library/Developer/Shared/Documentation/DocSets/org.cocoapods.shsegueblock.SHSegueBlock-0.1.0.docset
-Time: 2013-05-15 23:41:16 +0000
