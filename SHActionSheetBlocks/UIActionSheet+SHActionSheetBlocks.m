@@ -210,7 +210,8 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 #pragma mark -
 #pragma mark Privates
 -(void)addBlock:(SHActionSheetBlock)theBlock forIndex:(NSUInteger)theIndex; {
-  self.mapOfBlocks[@(theIndex)] = theBlock;
+  if(theBlock) self.mapOfBlocks[@(theIndex)] = theBlock;
+  else [self.mapOfBlocks removeObjectForKey:@(theIndex)];
 }
 
 -(void)addBlock:(id)theBlock forKey:(NSString *)theKey; {
