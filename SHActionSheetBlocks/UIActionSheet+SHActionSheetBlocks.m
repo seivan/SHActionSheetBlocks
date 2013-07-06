@@ -15,7 +15,7 @@ static NSString * const SH_blockWillDismiss = @"SH_blockWillDismiss";
 static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 
 @interface UIActionSheet ()
-@property(nonatomic,strong) NSMapTable * mapOfBlocks;
+@property(nonatomic,strong) NSMutableDictionary * mapOfBlocks;
 @end
 
 
@@ -70,40 +70,40 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 #pragma mark <UIActionSheetDelegate>
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;{
-  NSMapTable * mapBlocks = [self.mapBlocks objectForKey:actionSheet];
-  SHActionSheetBlock block = mapBlocks.dictionaryRepresentation[@(buttonIndex)];
+  NSDictionary * mapBlocks = [self.mapBlocks objectForKey:actionSheet];
+  SHActionSheetBlock block = mapBlocks[@(buttonIndex)];
   block(buttonIndex);
 }
 
 
-//-(void)willPresentActionSheet:(UIActionSheet *)actionSheet;{
-//  NSDictionary * mapBlocks = [self.mapBlocks objectForKey:actionSheet];
-//  SHActionSheetWillShowBlock block = mapBlocks[SH_blockWillShow];
-//  if(block) block(actionSheet);
-//  
-//}
-//
-//-(void)didPresentActionSheet:(UIActionSheet *)actionSheet; {
-//  NSDictionary * mapBlocks = [self.mapBlocks objectForKey:actionSheet];
-//  SHActionSheetDidShowBlock block = mapBlocks[SH_blockDidShow];
-//  if(block) block(actionSheet);
-//
-//}
-//
-//
-//-(void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex; {
-//  NSDictionary * mapBlocks = [self.mapBlocks objectForKey:actionSheet];
-//  SHActionSheetWillDismissBlock block = mapBlocks[SH_blockWillDismiss];
-//  if(block) block(actionSheet, buttonIndex);
-//
-//}
-//
-//-(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex; {
-//  NSDictionary * mapBlocks = [self.mapBlocks objectForKey:actionSheet];
-//  SHActionSheetDidDismissBlock block = mapBlocks[SH_blockDidDismiss];
-//  if(block) block(actionSheet, buttonIndex);
-////  actionSheet.mapOfBlocks = nil;
-//}
+-(void)willPresentActionSheet:(UIActionSheet *)actionSheet;{
+  NSDictionary * mapBlocks = [self.mapBlocks objectForKey:actionSheet];
+  SHActionSheetWillShowBlock block = mapBlocks[SH_blockWillShow];
+  if(block) block(actionSheet);
+  
+}
+
+-(void)didPresentActionSheet:(UIActionSheet *)actionSheet; {
+  NSDictionary * mapBlocks = [self.mapBlocks objectForKey:actionSheet];
+  SHActionSheetDidShowBlock block = mapBlocks[SH_blockDidShow];
+  if(block) block(actionSheet);
+
+}
+
+
+-(void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex; {
+  NSDictionary * mapBlocks = [self.mapBlocks objectForKey:actionSheet];
+  SHActionSheetWillDismissBlock block = mapBlocks[SH_blockWillDismiss];
+  if(block) block(actionSheet, buttonIndex);
+
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex; {
+  NSDictionary * mapBlocks = [self.mapBlocks objectForKey:actionSheet];
+  SHActionSheetDidDismissBlock block = mapBlocks[SH_blockDidDismiss];
+  if(block) block(actionSheet, buttonIndex);
+  actionSheet.mapOfBlocks = nil;
+}
 
 
 @end
@@ -189,51 +189,48 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 
 #pragma mark -
 #pragma mark Getters
-//-(SHActionSheetWillShowBlock)SH_blockWillShow;{
-//  return self.mapOfBlocks[SH_blockWillShow];    
-//}
-//
-//-(SHActionSheetDidShowBlock)SH_blockDidShow;{
-//  return self.mapOfBlocks[SH_blockDidShow];
-//}
-//
-//-(SHActionSheetWillDismissBlock)SH_blockWillDismiss;{
-//  return self.mapOfBlocks[SH_blockWillDismiss];
-//}
-//
-//-(SHActionSheetDidDismissBlock)SH_blockDidDismiss;{
-//  return self.mapOfBlocks[SH_blockDidDismiss];
-//}
-//
+-(SHActionSheetWillShowBlock)SH_blockWillShow;{
+  return self.mapOfBlocks[SH_blockWillShow];    
+}
+
+-(SHActionSheetDidShowBlock)SH_blockDidShow;{
+  return self.mapOfBlocks[SH_blockDidShow];
+}
+
+-(SHActionSheetWillDismissBlock)SH_blockWillDismiss;{
+  return self.mapOfBlocks[SH_blockWillDismiss];
+}
+
+-(SHActionSheetDidDismissBlock)SH_blockDidDismiss;{
+  return self.mapOfBlocks[SH_blockDidDismiss];
+}
+
 #pragma mark -
 #pragma mark Privates
 -(void)addBlock:(SHActionSheetBlock)theBlock forIndex:(NSUInteger)theIndex; {
-//  self.mapOfBlocks[@(theIndex)] = theBlock;
-  [self.mapOfBlocks setObject:theBlock forKey:@(theIndex)];
+  self.mapOfBlocks[@(theIndex)] = theBlock;
 }
 
 -(void)addBlock:(id)theBlock forKey:(NSString *)theKey; {
-//  self.mapOfBlocks[theKey] = [theBlock copy];
-  [self.mapOfBlocks setObject:[theBlock copy] forKey:theKey];
+  self.mapOfBlocks[theKey] = [theBlock copy];
 }
 
 -(id)blockForKey:(NSString *)theKey; {
-//  id block = self.mapOfBlocks[theKey];
-  id block = [self.mapOfBlocks valueForKey:theKey];
+  id block = self.mapOfBlocks[theKey];
   return block;
 }
 
--(NSMapTable *)mapOfBlocks; {
-  NSMapTable * mapOfBlocks =  [[SHActionSheetBlocksManager sharedManager].mapBlocks objectForKey:self];
+-(NSMutableDictionary *)mapOfBlocks; {
+  NSMutableDictionary * mapOfBlocks =  [[SHActionSheetBlocksManager sharedManager].mapBlocks objectForKey:self];
   if(mapOfBlocks == nil) {
-    mapOfBlocks = [NSMapTable weakToWeakObjectsMapTable];
+    mapOfBlocks = @{}.mutableCopy;
     self.mapOfBlocks = mapOfBlocks;
   }
 
   return mapOfBlocks;
 }
 
--(void)setMapOfBlocks:(NSMapTable *)mapOfBlocks; {
+-(void)setMapOfBlocks:(NSMutableDictionary *)mapOfBlocks; {
   if(mapOfBlocks)
     [[SHActionSheetBlocksManager sharedManager].mapBlocks setObject:mapOfBlocks forKey:self];
   else {
