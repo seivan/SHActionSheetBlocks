@@ -127,12 +127,15 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 #pragma mark -
 #pragma mark Init
 +(instancetype)SH_actionSheetWithTitle:(NSString *)theTitle; {
-  UIActionSheet * sheet = [[UIActionSheet alloc] initWithTitle:theTitle
-                                                      delegate:[SHActionSheetBlocksManager sharedManager]
-                                             cancelButtonTitle:nil
-                                        destructiveButtonTitle:nil
-                                             otherButtonTitles:nil, nil];
-  return sheet;
+  return [[self alloc] SH_initWithTitle:theTitle];
+}
+
+-(instancetype)SH_initWithTitle:(NSString *)theTitle; {
+  return [self initWithTitle:theTitle
+                    delegate:[SHActionSheetBlocksManager sharedManager]
+           cancelButtonTitle:nil
+      destructiveButtonTitle:nil
+           otherButtonTitles:nil, nil];
 }
 
 #pragma mark -
@@ -145,8 +148,6 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
   
 }
 
-#pragma mark -
-#pragma mark Remove
 
 #pragma mark -
 #pragma mark Properties
