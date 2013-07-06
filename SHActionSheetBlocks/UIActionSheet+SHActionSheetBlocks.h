@@ -27,12 +27,6 @@ typedef void (^SHActionSheetDidDismissBlock)(UIActionSheet * theActionSheet, NSU
 -(NSUInteger)SH_addButtonWithTitle:(NSString *)theTitle
                       withBlock:(SHActionSheetBlock)theBlock;
 
-#pragma mark -
-#pragma mark Remove
-
-
-#pragma mark -
-#pragma mark Helpers
 
 
 #pragma mark -

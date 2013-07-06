@@ -72,6 +72,7 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;{
   NSDictionary * mapBlocks = [self.mapBlocks objectForKey:actionSheet];
   SHActionSheetBlock block = mapBlocks[@(buttonIndex)];
+  NSAssert(block, @"Please use SH_addButtonWithTitle:withBlock:");
   block(buttonIndex);
 }
 

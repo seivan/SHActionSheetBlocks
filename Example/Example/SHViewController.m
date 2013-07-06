@@ -52,17 +52,28 @@
       }];
     }
   
+  NSUInteger cancelIndex      = 3;
+  NSUInteger destructiveIndex = 4;
   
   [sheet SH_setCancelButtonWithTitle:@"Cancel" withBlock:^(NSUInteger theButtonIndex) {
     NSLog(@"Cancel");
+    SHBlockAssert(theButtonIndex == cancelIndex ,
+                  @"Cancel button index is 3");
   }];
-  SHBlockAssert(sheet.cancelButtonIndex == 3 , @"Cancel button index 4");
   
+  SHBlockAssert(sheet.cancelButtonIndex == cancelIndex ,
+                @"Cancel button index is 3");
+
   [sheet SH_setDestructiveButtonWithTitle:@"Destroy" withBlock:^(NSUInteger theButtonIndex) {
     NSLog(@"Destroy");
+    SHBlockAssert(theButtonIndex == destructiveIndex ,
+                  @"Destructive button index is 4");
   }];
   
-  SHBlockAssert(sheet.destructiveButtonIndex == 4 , @"Destructive button index 4");
+  SHBlockAssert(sheet.destructiveButtonIndex == destructiveIndex ,
+                @"Destructive button index 4");
+  
+  [sheet addButtonWithTitle:@"Weird button"];
   
   [sheet showInView:self.view];
 
