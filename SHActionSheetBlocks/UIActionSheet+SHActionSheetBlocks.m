@@ -28,6 +28,7 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 -(void)SH_memoryDebugger;
 @end
 @implementation SHActionSheetBlocksManager
+
 #pragma mark -
 #pragma mark Init & Dealloc
 -(instancetype)init; {
@@ -72,8 +73,7 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;{
   NSDictionary * mapBlocks = [self.mapBlocks objectForKey:actionSheet];
   SHActionSheetBlock block = mapBlocks[@(buttonIndex)];
-  NSAssert(block, @"Please use SH_addButtonWithTitle:withBlock:");
-  block(buttonIndex);
+  if(block)block(buttonIndex);
 }
 
 

@@ -37,7 +37,7 @@
   }
   
   NSUInteger cancelIndex      = 3;
-  NSUInteger destructiveIndex = 4;
+
   
   [sheet SH_setCancelButtonWithTitle:@"Cancel" withBlock:^(NSUInteger theButtonIndex) {
     NSLog(@"Cancel");
@@ -48,14 +48,6 @@
   SHBlockAssert(sheet.cancelButtonIndex == cancelIndex ,
                 @"Cancel button index is 3");
   
-  [sheet SH_setDestructiveButtonWithTitle:@"Destroy" withBlock:^(NSUInteger theButtonIndex) {
-    NSLog(@"Destroy");
-    SHBlockAssert(theButtonIndex == destructiveIndex ,
-                  @"Destructive button index is 4");
-  }];
-  
-  SHBlockAssert(sheet.destructiveButtonIndex == destructiveIndex ,
-                @"Destructive button index 4");
   
   
 
