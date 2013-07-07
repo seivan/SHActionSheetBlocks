@@ -177,7 +177,7 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 }
 
 -(void)SH_setDidShowBlock:(SHActionSheetDidShowBlock)theBlock; {
-  [self addBlock:theBlock forKey:SH_blockWillShow];
+  [self addBlock:theBlock forKey:SH_blockDidShow];
 }
 
 -(void)SH_setWillDismissBlock:(SHActionSheetWillDismissBlock)theBlock; {

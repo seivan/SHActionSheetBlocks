@@ -1,20 +1,20 @@
-action-sheet  {
+#styled > action-sheet  {
   background-color: linear-gradient(#999, #fff);
   box-shadow : 1px 1px 1px 1px #333;
 }
 
-action-sheet label  {
+#styled > action-sheet label  {
   color : #999;
   font-weight: bold;
 }
 
-action-sheet button  {
+#styled > action-sheet button  {
   color : #999;
   background-color : #333;
   border-radius : 1px;
 }
 
-action-sheet button:highlighted  {
+#styled > action-sheet button:highlighted  {
   color : #333;
   background-color : #999;
   border-radius : 1px;

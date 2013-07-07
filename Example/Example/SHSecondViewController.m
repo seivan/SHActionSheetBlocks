@@ -8,7 +8,7 @@
 
 #import "SHSecondViewController.h"
 #import "SHActionSheetBlocks.h"
-
+#import <PXEngine/PXEngine.h>
 
 @interface SHSecondViewController ()
 -(void)popUpActionSheet;
@@ -17,12 +17,14 @@
 @implementation SHSecondViewController
 
 -(void)viewDidAppear:(BOOL)animated; {
+  self.view.backgroundColor = [UIColor blackColor];
+  self.view.styleId = @"styled";
   [self popUpActionSheet];
 }
 
 -(void)popUpActionSheet; {
   NSString * title = @"Sample";
-  
+  __block NSUInteger selectedIndex = 0;
   UIActionSheet * sheet = [UIActionSheet SH_actionSheetWithTitle:title];
   SHBlockAssert(sheet, @"Instance of a sheet");
   SHBlockAssert([sheet.title isEqualToString:title], @"Title should be set");
@@ -33,8 +35,10 @@
     [sheet SH_addButtonWithTitle:title withBlock:^(NSUInteger theButtonIndex) {
       NSString * buttonTitle = [sheet buttonTitleAtIndex:theButtonIndex];
       SHBlockAssert([title isEqualToString:buttonTitle], @"Button title is set");
+      selectedIndex = theButtonIndex;
     }];
   }
+  
   
   NSUInteger cancelIndex      = 3;
 
@@ -43,13 +47,42 @@
     NSLog(@"Cancel");
     SHBlockAssert(theButtonIndex == cancelIndex ,
                   @"Cancel button index is 3");
+    selectedIndex = theButtonIndex;
   }];
   
   SHBlockAssert(sheet.cancelButtonIndex == cancelIndex ,
                 @"Cancel button index is 3");
   
   
+  SHBlockAssert(sheet.SH_blockWillShow == nil, @"No SH_blockWillShow block");
+  SHBlockAssert(sheet.SH_blockDidShow == nil, @"No SH_blockDidShow block");
+  SHBlockAssert(sheet.SH_blockWillDismiss == nil, @"No SH_blockWillDismiss block");
+  SHBlockAssert(sheet.SH_blockDidDismiss == nil, @"No SH_blockDidDismiss block");
   
+  [sheet SH_setWillShowBlock:^(UIActionSheet *theActionSheet) {
+    SHBlockAssert(theActionSheet, @"Must pass the actionSheet");
+  }];
+
+  [sheet SH_setDidShowBlock:^(UIActionSheet *theActionSheet) {
+    SHBlockAssert(theActionSheet, @"Must pass the actionSheet");
+  }];
+  
+  [sheet SH_setWillDismissBlock:^(UIActionSheet *theActionSheet, NSUInteger theButtonIndex) {
+    SHBlockAssert(theActionSheet, @"Must pass the actionSheet");
+    SHBlockAssert(selectedIndex == theButtonIndex, @"Must pass selected index");
+  }];
+
+  [sheet SH_setDidDismissBlock:^(UIActionSheet *theActionSheet, NSUInteger theButtonIndex) {
+    SHBlockAssert(theActionSheet, @"Must pass the actionSheet");
+    SHBlockAssert(selectedIndex == theButtonIndex, @"Must pass selected index");
+  }];
+
+  
+
+  SHBlockAssert(sheet.SH_blockWillShow, @"Must set SH_blockWillShow block");
+  SHBlockAssert(sheet.SH_blockDidShow, @"Must set SH_blockDidShow block");
+  SHBlockAssert(sheet.SH_blockWillDismiss, @"Must set SH_blockWillDismiss block");
+  SHBlockAssert(sheet.SH_blockDidDismiss, @"Must set SH_blockDidDismiss block");
 
   [sheet showInView:self.view];
   
