@@ -21,19 +21,12 @@ The blocks are automatically removed once the sheet is gone, so it isn't necessa
 
 ### API
 
-#### [Creating](https://github.com/seivan/SHActionSheetBlocks#creating-2)
+#### [Init](https://github.com/seivan/SHActionSheetBlocks#init-2)
 
-#### [Removing](https://github.com/seivan/SHActionSheetBlocks#removing-2)
+#### [Add](https://github.com/seivan/SHActionSheetBlocks#add-2)
 
-#### [Helpers and Properties](https://github.com/seivan/SHActionSheetBlocks#helpers-and-properties-2)
+#### [Properties](https://github.com/seivan/SHActionSheetBlocks#properties-2)
 
-### USAGE
-
-#### [Creating](https://github.com/seivan/SHActionSheetBlocks#creating-3)
-
-#### [Removing](https://github.com/seivan/SHActionSheetBlocks#removing-3)
-
-#### [Helpers and Properties](https://github.com/seivan/SHActionSheetBlocks#helpers-and-properties-3)
 
 Installation
 ------------
@@ -60,118 +53,58 @@ or
 API
 -----
 
-### Creating
+### Init
 
 ```objective-c
 #pragma mark -
-#pragma mark Add block
--(void)SH_addControlEvents:(UIControlEvents)controlEvents
-                 withBlock:(SHControlEventBlock)theBlock;
-
--(void)SH_addControlEventTouchUpInsideWithBlock:(SHControlEventBlock)theBlock;
+#pragma mark Init
++(instancetype)SH_actionSheetWithTitle:(NSString *)theTitle;
 
 ```
 
-### Removing
+### Add
 
 ```objective-c
 #pragma mark -
-#pragma mark Remove block
--(void)SH_removeControlEventTouchUpInside;
--(void)SH_removeBlocksForControlEvents:(UIControlEvents)controlEvents;
--(void)SH_removeControlEventsForBlock:(SHControlEventBlock)theBlock;
--(void)SH_removeAllControlEventsBlocks;
+#pragma mark Add
+-(NSUInteger)SH_addButtonWithTitle:(NSString *)theTitle
+                      withBlock:(SHActionSheetBlock)theBlock;
 
+-(NSUInteger)SH_setDestructiveButtonWithTitle:(NSString *)theTitle
+                                 withBlock:(SHActionSheetBlock)theBlock;
+
+-(NSUInteger)SH_setCancelButtonWithTitle:(NSString *)theTitle
+                            withBlock:(SHActionSheetBlock)theBlock;
 
 ```
 
-### Helpers and Properties
+### Properties
 
 ```objective-c
-#pragma mark -
-#pragma mark Helpers
--(NSSet *)SH_blocksForControlEvents:(UIControlEvents)theControlEvents;
--(NSSet *)SH_controlEventsForBlock:(SHControlEventBlock)theBlock;
-
-
 #pragma mark -
 #pragma mark Properties
 
 #pragma mark -
+#pragma mark Setters
+
+-(void)SH_setWillShowBlock:(SHActionSheetWillShowBlock)theBlock;
+-(void)SH_setDidShowBlock:(SHActionSheetDidShowBlock)theBlock;
+
+-(void)SH_setWillDismissBlock:(SHActionSheetWillDismissBlock)theBlock;
+-(void)SH_setDidDismissBlock:(SHActionSheetDidDismissBlock)theBlock;
+
+#pragma mark -
 #pragma mark Getters
-@property(nonatomic,readonly) BOOL SH_isTouchUpInsideEnabled;
-
-@property(nonatomic,readonly) NSDictionary * SH_controlBlocks;
-
-```
-
-Usage
------
-
-### Creating
-
-With SHControlBlocks you can set auto-removed blocks instead of using selectors
-
-```objective-c
-  [self.btnFirst SH_addControlEvents:UIControlEventTouchDown withBlock:^(UIControl *sender) {
-    [weakSelf performSegueWithIdentifier:@"second" sender:nil];
-    NSLog(@"first");
-  }];
-``` 
-
-or if you want add additional blocks
-
-```objective-c
-  [btnSecond SH_addControlEvents:UIControlEventTouchUpInside withBlock:counterBlock];
-  [btnSecond SH_addControlEvents:UIControlEventTouchDown withBlock:counterBlock];
-```
-
-Convenience selector for touchUpInside
-
-```objective-c
-  [button SH_addControlEventTouchUpInsideWithBlock:^(UIControl *sender) {
-    [button removeFromSuperview]; //this will also remove the block :)
-  }];
-```
-
-### Removing
 
 
-#### Remove specific blocks - will also remove the Event from the target if it was the last block
 
-```objective-c
-  [btnSecond SH_removeControlEventsForBlock:counterBlock];
-```
+@property(nonatomic,readonly) SHActionSheetWillShowBlock    SH_blockWillShow;
+@property(nonatomic,readonly) SHActionSheetDidShowBlock     SH_blockDidShow;
 
-#### Remove specific events
-
-```objective-c
-  [btnSecond SH_removeBlocksForControlEvents:UIControlEventTouchUpInside];
-  [btnSecond SH_removeControlEventTouchUpInside];
-```
-
-#### Remove all blocks and events
-
-```objective-c
-  [button SH_removeAllControlEventsBlocks];
-```
-
-
-### Helpers and Properties
------- 
-
-```objective-c
-  [button SH_addControlEventTouchUpInsideWithBlock:blockOne];
-  [button SH_addControlEventTouchUpInsideWithBlock:blockTwo];
-  [button SH_addControlEventTouchUpInsideWithBlock:blockThree];
-
-  NSSet * controlBlocks = button.SH_controlBlocks[@(UIControlEventTouchUpInside)];  
-  NSAssert(button.SH_isTouchUpInsideEnabled,    @"Touch up inside should be enabled");
-  NSAssert(button.SH_controlBlocks.count  == 1, @"There should be one event");
-  NSAssert(controlBlocks.count            == 3, @"There should be three blocks");
+@property(nonatomic,readonly) SHActionSheetWillDismissBlock SH_blockWillDismiss;
+@property(nonatomic,readonly) SHActionSheetDidDismissBlock  SH_blockDidDismiss;
 
 ```
-
 
 
 Contact

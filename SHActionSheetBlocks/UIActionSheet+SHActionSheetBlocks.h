@@ -49,7 +49,7 @@ typedef void (^SHActionSheetDidDismissBlock)(UIActionSheet * theActionSheet, NSU
 #pragma mark -
 #pragma mark Getters
 
-//@property(nonatomic,readonly) SHActionSheetBlock blockCancel;
+
 
 @property(nonatomic,readonly) SHActionSheetWillShowBlock    SH_blockWillShow;
 @property(nonatomic,readonly) SHActionSheetDidShowBlock     SH_blockDidShow;
