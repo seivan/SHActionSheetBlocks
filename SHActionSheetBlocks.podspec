@@ -16,7 +16,6 @@ Pod::Spec.new do |s|
                     * Swizzle and junk free
                     * No need to clean up after - The control blocks are self maintained.
                     * UIActionSheet are referenced in a map with weak properties
-                    * Auto remove control from outlets and all actions when removing all the blocks
                     * Prefixed selectors.
                     * Minimum clutter on top of the public interface.
                     
