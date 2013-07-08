@@ -21,6 +21,7 @@ typedef void (^SHActionSheetDidDismissBlock)(UIActionSheet * theActionSheet, NSU
 #pragma mark -
 #pragma mark Init
 +(instancetype)SH_actionSheetWithTitle:(NSString *)theTitle;
+-(instancetype)SH_initWithTitle:(NSString *)theTitle;
 
 #pragma mark -
 #pragma mark Add
