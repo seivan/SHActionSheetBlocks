@@ -174,14 +174,14 @@ SHActionSheetBlocks is © 2013 [Seivan](http://www.github.com/seivan) and may be
 distributed under the [MIT license](http://opensource.org/licenses/MIT).
 See the [`LICENSE.md`](https://github.com/seivan/SHActionSheetBlocks/blob/master/LICENSE.md) file.
 
-![Green default](/Screenshots/Green/default.png "Green default")
-![Green selected](/Screenshots/Green/selected.png "Green selected")
-![Green cancel-selected](/Screenshots/Green/cancel-selected.png "Green cancel-selected")
+![Green default](/Screenshots/Green/default_th.png "Green default")
+![Green selected](/Screenshots/Green/selected_th.png "Green selected")
+![Green cancel-selected](/Screenshots/Green/cancel-selected_th.png "Green cancel-selected")
 
-![Blue default](/Screenshots/Blue/default.png "Blue default")
-![Blue selected](/Screenshots/Blue/selected.png "Blue selected")
-![Blue cancel-selected](/Screenshots/Blue/cancel-selected.png "Blue cancel-selected")
+![Blue default](/Screenshots/Blue/default_th.png "Blue default")
+![Blue selected](/Screenshots/Blue/selected_th.png "Blue selected")
+![Blue cancel-selected](/Screenshots/Blue/cancel-selected_th.png "Blue cancel-selected")
 
-![Purple default](/Screenshots/Purple/default.png "Purple default")
-![Purple selected](/Screenshots/Purple/selected.png "Purple selected")
-![Purple cancel-selected](/Screenshots/Purple/cancel-selected.png "Purple cancel-selected")
+![Purple default](/Screenshots/Purple/default_th.png "Purple default")
+![Purple selected](/Screenshots/Purple/selected_th.png "Purple selected")
+![Purple cancel-selected](/Screenshots/Purple/cancel-selected_th.png "Purple cancel-selected")
