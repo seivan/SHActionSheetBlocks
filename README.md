@@ -174,14 +174,20 @@ SHActionSheetBlocks is © 2013 [Seivan](http://www.github.com/seivan) and may be
 distributed under the [MIT license](http://opensource.org/licenses/MIT).
 See the [`LICENSE.md`](https://github.com/seivan/SHActionSheetBlocks/blob/master/LICENSE.md) file.
 
-[![Green default](/Screenshots/Green/default_th.jpg "Green default")](/Screenshots/Green/default_th.jpg)
-![Green selected](/Screenshots/Green/selected_th.jpg "Green selected")
-![Green cancel-selected](/Screenshots/Green/cancel-selected_th.jpg "Green cancel-selected")
+[![Green default](/Screenshots/Green/default_th.jpg "Green default")](https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Green/default.png)
 
-![Blue default](/Screenshots/Blue/default_th.jpg "Blue default")
-![Blue selected](/Screenshots/Blue/selected_th.jpg "Blue selected")
-![Blue cancel-selected](/Screenshots/Blue/cancel-selected_th.jpg "Blue cancel-selected")
+[![Green selected](/Screenshots/Green/selected_th.jpg "Green selected")](https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Green/default.png)
 
-![Purple default](/Screenshots/Purple/default_th.jpg "Purple default")
-![Purple selected](/Screenshots/Purple/selected_th.jpg "Purple selected")
-![Purple cancel-selected](/Screenshots/Purple/cancel-selected_th.jpg "Purple cancel-selected")
+[![Green cancel-selected](/Screenshots/Green/cancel-selected_th.jpg "Green cancel-selected")](https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Green/default.png)
+
+[![Blue default](/Screenshots/Blue/default_th.jpg "Blue default")](https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Green/default.png)
+
+[![Blue selected](/Screenshots/Blue/selected_th.jpg "Blue selected")](https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Green/default.png)
+
+[![Blue cancel-selected](/Screenshots/Blue/cancel-selected_th.jpg "Blue cancel-selected")](https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Green/default.png)
+
+[![Purple default](/Screenshots/Purple/default_th.jpg "Purple default")](https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Green/default.png)
+
+[![Purple selected](/Screenshots/Purple/selected_th.jpg "Purple selected")](https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Green/default.png)
+
+[![Purple cancel-selected](/Screenshots/Purple/cancel-selected_th.jpg "Purple cancel-selected")](https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Green/default.png)
