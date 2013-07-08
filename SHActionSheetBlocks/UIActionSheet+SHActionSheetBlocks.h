@@ -9,12 +9,8 @@
 #pragma mark -
 #pragma mark Block Defs
 typedef void (^SHActionSheetBlock)(NSUInteger theButtonIndex);
-
-typedef void (^SHActionSheetWillShowBlock)(UIActionSheet * theActionSheet);
-typedef void (^SHActionSheetDidShowBlock)(UIActionSheet * theActionSheet);
-
-typedef void (^SHActionSheetWillDismissBlock)(UIActionSheet * theActionSheet, NSUInteger theButtonIndex);
-typedef void (^SHActionSheetDidDismissBlock)(UIActionSheet * theActionSheet, NSUInteger theButtonIndex);
+typedef void (^SHActionSheetShowBlock)(UIActionSheet * theActionSheet);
+typedef void (^SHActionSheetDismissBlock)(UIActionSheet * theActionSheet, NSUInteger theButtonIndex);
 
 @interface UIActionSheet (SHActionSheetBlocks)
 
@@ -40,21 +36,21 @@ typedef void (^SHActionSheetDidDismissBlock)(UIActionSheet * theActionSheet, NSU
 #pragma mark -
 #pragma mark Setters
 
--(void)SH_setWillShowBlock:(SHActionSheetWillShowBlock)theBlock;
--(void)SH_setDidShowBlock:(SHActionSheetDidShowBlock)theBlock;
+-(void)SH_setWillShowBlock:(SHActionSheetShowBlock)theBlock;
+-(void)SH_setDidShowBlock:(SHActionSheetShowBlock)theBlock;
 
--(void)SH_setWillDismissBlock:(SHActionSheetWillDismissBlock)theBlock;
--(void)SH_setDidDismissBlock:(SHActionSheetDidDismissBlock)theBlock;
+-(void)SH_setWillDismissBlock:(SHActionSheetDismissBlock)theBlock;
+-(void)SH_setDidDismissBlock:(SHActionSheetDismissBlock)theBlock;
 
 #pragma mark -
 #pragma mark Getters
 
 
 
-@property(nonatomic,readonly) SHActionSheetWillShowBlock    SH_blockWillShow;
-@property(nonatomic,readonly) SHActionSheetDidShowBlock     SH_blockDidShow;
+@property(nonatomic,readonly) SHActionSheetShowBlock    SH_blockWillShow;
+@property(nonatomic,readonly) SHActionSheetShowBlock    SH_blockDidShow;
 
-@property(nonatomic,readonly) SHActionSheetWillDismissBlock SH_blockWillDismiss;
-@property(nonatomic,readonly) SHActionSheetDidDismissBlock  SH_blockDidDismiss;
+@property(nonatomic,readonly) SHActionSheetDismissBlock SH_blockWillDismiss;
+@property(nonatomic,readonly) SHActionSheetDismissBlock SH_blockDidDismiss;
 
 @end

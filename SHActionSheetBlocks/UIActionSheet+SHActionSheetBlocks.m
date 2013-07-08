@@ -79,14 +79,14 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 
 -(void)willPresentActionSheet:(UIActionSheet *)actionSheet;{
   NSDictionary * mapBlocks = [self.mapBlocks objectForKey:actionSheet];
-  SHActionSheetWillShowBlock block = mapBlocks[SH_blockWillShow];
+  SHActionSheetShowBlock block = mapBlocks[SH_blockWillShow];
   if(block) block(actionSheet);
   
 }
 
 -(void)didPresentActionSheet:(UIActionSheet *)actionSheet; {
   NSDictionary * mapBlocks = [self.mapBlocks objectForKey:actionSheet];
-  SHActionSheetDidShowBlock block = mapBlocks[SH_blockDidShow];
+  SHActionSheetShowBlock block = mapBlocks[SH_blockDidShow];
   if(block) block(actionSheet);
 
 }
@@ -94,14 +94,14 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 
 -(void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex; {
   NSDictionary * mapBlocks = [self.mapBlocks objectForKey:actionSheet];
-  SHActionSheetWillDismissBlock block = mapBlocks[SH_blockWillDismiss];
+  SHActionSheetDismissBlock block = mapBlocks[SH_blockWillDismiss];
   if(block) block(actionSheet, buttonIndex);
 
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex; {
   NSDictionary * mapBlocks = [self.mapBlocks objectForKey:actionSheet];
-  SHActionSheetDidDismissBlock block = mapBlocks[SH_blockDidDismiss];
+  SHActionSheetDismissBlock block = mapBlocks[SH_blockDidDismiss];
   if(block) block(actionSheet, buttonIndex);
   actionSheet.mapOfBlocks = nil;
 }
@@ -171,38 +171,38 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 #pragma mark -
 #pragma mark Setters
 
--(void)SH_setWillShowBlock:(SHActionSheetWillShowBlock)theBlock; {
+-(void)SH_setWillShowBlock:(SHActionSheetShowBlock)theBlock; {
   [self addBlock:theBlock forKey:SH_blockWillShow];
 }
 
--(void)SH_setDidShowBlock:(SHActionSheetDidShowBlock)theBlock; {
+-(void)SH_setDidShowBlock:(SHActionSheetShowBlock)theBlock; {
   [self addBlock:theBlock forKey:SH_blockDidShow];
 }
 
--(void)SH_setWillDismissBlock:(SHActionSheetWillDismissBlock)theBlock; {
+-(void)SH_setWillDismissBlock:(SHActionSheetDismissBlock)theBlock; {
   [self addBlock:theBlock forKey:SH_blockWillDismiss];
 }
 
--(void)SH_setDidDismissBlock:(SHActionSheetDidDismissBlock)theBlock; {
+-(void)SH_setDidDismissBlock:(SHActionSheetDismissBlock)theBlock; {
   [self addBlock:theBlock forKey:SH_blockDidDismiss]; 
 }
 
 
 #pragma mark -
 #pragma mark Getters
--(SHActionSheetWillShowBlock)SH_blockWillShow;{
+-(SHActionSheetShowBlock)SH_blockWillShow;{
   return self.mapOfBlocks[SH_blockWillShow];    
 }
 
--(SHActionSheetDidShowBlock)SH_blockDidShow;{
+-(SHActionSheetShowBlock)SH_blockDidShow;{
   return self.mapOfBlocks[SH_blockDidShow];
 }
 
--(SHActionSheetWillDismissBlock)SH_blockWillDismiss;{
+-(SHActionSheetDismissBlock)SH_blockWillDismiss;{
   return self.mapOfBlocks[SH_blockWillDismiss];
 }
 
--(SHActionSheetDidDismissBlock)SH_blockDidDismiss;{
+-(SHActionSheetDismissBlock)SH_blockDidDismiss;{
   return self.mapOfBlocks[SH_blockDidDismiss];
 }
 
