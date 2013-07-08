@@ -128,8 +128,14 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 #pragma mark -
 #pragma mark Init
 +(instancetype)SH_actionSheetWithTitle:(NSString *)theTitle; {
-  return [[self alloc] SH_initWithTitle:theTitle];
+  return [[self alloc] initWithTitle:theTitle
+                    delegate:[SHActionSheetBlocksManager sharedManager]
+           cancelButtonTitle:nil
+      destructiveButtonTitle:nil
+           otherButtonTitles:nil, nil];
+
 }
+
 
 #pragma mark -
 #pragma mark Add
