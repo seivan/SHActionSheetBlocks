@@ -4,8 +4,7 @@ label {
 
 
 action-sheet  {
-  font-family: "GillSans-Bold";
-  background-color: white;
+  background-color: #313131;
   box-shadow: 0px 0px 3px 1px silver;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -14,34 +13,34 @@ action-sheet  {
 
 
 action-sheet label  {
-  color : #00ff1c;
+  color : white;
   font-size: 20px;
   font-weight: bold;
-  box-shadow: 1px 1px 1px 1px #46ff80;
+  box-shadow: 0px 0px 1px 1px #ececec;
 }
 
 
 action-sheet button {
-  color : #0f3617;
-  background-color : #46ff80;
+  color : #d7d7d7;
+  background-color : #a90079;
   border-radius : 5px;
 
 }
 
 action-sheet button:highlighted  {
-  color : #0f3617;
-  background-color : #00ff1c;
+  color : #ececec;
+  background-color : #fb00ab;
   border-radius : 5px;
 }
 
 action-sheet button:last-of-type {
-  color : #101010;
-  background-color : #7f7f7f;
+  color : #d7d7d7;
+  background-color : #29a017;
   border-radius : 5px;
 }
 
 action-sheet button:highlighted:last-of-type  {
-  color : #cdcdcd;
-  background-color : #101010;
+  color : #ececec;
+  background-color : #00c003;
   border-radius : 5px;
 }
