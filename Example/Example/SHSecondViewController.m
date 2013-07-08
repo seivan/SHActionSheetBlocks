@@ -23,6 +23,7 @@
 }
 
 -(void)popUpActionSheet; {
+  __weak typeof(self) weakSelf = self;
   NSString * title = @"Sample";
   __block NSUInteger selectedIndex = 0;
   UIActionSheet * sheet = [UIActionSheet SH_actionSheetWithTitle:title];
@@ -36,6 +37,12 @@
       NSString * buttonTitle = [sheet buttonTitleAtIndex:theButtonIndex];
       SHBlockAssert([title isEqualToString:buttonTitle], @"Button title is set");
       selectedIndex = theButtonIndex;
+      double delayInSeconds = 0.2;
+      dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+      dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [weakSelf popUpActionSheet];
+      });
+
     }];
   }
   
@@ -48,6 +55,7 @@
     SHBlockAssert(theButtonIndex == cancelIndex ,
                   @"Cancel button index is 3");
     selectedIndex = theButtonIndex;
+    
   }];
   
   SHBlockAssert(sheet.cancelButtonIndex == cancelIndex ,
@@ -60,21 +68,21 @@
   SHBlockAssert(sheet.SH_blockDidDismiss == nil, @"No SH_blockDidDismiss block");
   
   [sheet SH_setWillShowBlock:^(UIActionSheet *theActionSheet) {
-    SHBlockAssert(theActionSheet, @"Must pass the actionSheet");
+    SHBlockAssert(theActionSheet, @"Must pass the actionSheet for willShow");
   }];
 
   [sheet SH_setDidShowBlock:^(UIActionSheet *theActionSheet) {
-    SHBlockAssert(theActionSheet, @"Must pass the actionSheet");
+    SHBlockAssert(theActionSheet, @"Must pass the actionSheet for didShow");
   }];
   
   [sheet SH_setWillDismissBlock:^(UIActionSheet *theActionSheet, NSUInteger theButtonIndex) {
     SHBlockAssert(theActionSheet, @"Must pass the actionSheet");
-    SHBlockAssert(selectedIndex == theButtonIndex, @"Must pass selected index");
+    SHBlockAssert(selectedIndex == theButtonIndex, @"Must pass selected index for willDismiss");
   }];
 
   [sheet SH_setDidDismissBlock:^(UIActionSheet *theActionSheet, NSUInteger theButtonIndex) {
     SHBlockAssert(theActionSheet, @"Must pass the actionSheet");
-    SHBlockAssert(selectedIndex == theButtonIndex, @"Must pass selected index");
+    SHBlockAssert(selectedIndex == theButtonIndex, @"Must pass selected index fordidDismiss");
   }];
 
   
@@ -83,6 +91,7 @@
   SHBlockAssert(sheet.SH_blockDidShow, @"Must set SH_blockDidShow block");
   SHBlockAssert(sheet.SH_blockWillDismiss, @"Must set SH_blockWillDismiss block");
   SHBlockAssert(sheet.SH_blockDidDismiss, @"Must set SH_blockDidDismiss block");
+
 
   [sheet showInView:self.view];
   

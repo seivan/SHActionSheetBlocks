@@ -1,21 +1,47 @@
-#styled > action-sheet  {
-  background-color: linear-gradient(#999, #fff);
-  box-shadow : 1px 1px 1px 1px #333;
+label {
+  font-family: "GillSans-Bold";
 }
 
-#styled > action-sheet label  {
-  color : #999;
+
+action-sheet  {
+  font-family: "GillSans-Bold";
+  background-color: white;
+  box-shadow: 0px 0px 3px 1px silver;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+}
+
+
+action-sheet label  {
+  color : #00ff1c;
+  font-size: 20px;
   font-weight: bold;
+  box-shadow: 1px 1px 1px 1px #46ff80;
 }
 
-#styled > action-sheet button  {
-  color : #999;
-  background-color : #333;
-  border-radius : 1px;
+
+action-sheet button {
+  color : #0f3617;
+  background-color : #46ff80;
+  border-radius : 5px;
+
 }
 
-#styled > action-sheet button:highlighted  {
-  color : #333;
-  background-color : #999;
-  border-radius : 1px;
+action-sheet button:highlighted  {
+  color : #0f3617;
+  background-color : #00ff1c;
+  border-radius : 5px;
+}
+
+action-sheet button:last-of-type {
+  color : #101010;
+  background-color : #7f7f7f;
+  border-radius : 5px;
+}
+
+action-sheet button:highlighted:last-of-type  {
+  color : #cdcdcd;
+  background-color : #101010;
+  border-radius : 5px;
 }

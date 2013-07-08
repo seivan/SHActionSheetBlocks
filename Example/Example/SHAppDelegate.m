@@ -14,6 +14,7 @@
 -(BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions; {
   [PXEngine licenseKey:@"crap@craptastic.com"
                forUser:@"P5S24-CILI6-0FN84-6JKUR-EJ0OC-VCC2U-3P6DM-3JB2O-D6FLM-JAF5L-P1T2U-OCK58-MCEHG-2L9CQ-90J1P-Q2"];
+  [[PXEngine currentApplicationStylesheet] setMonitorChanges:YES];
   return YES;
 }
 							
