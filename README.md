@@ -174,7 +174,7 @@ SHActionSheetBlocks is © 2013 [Seivan](http://www.github.com/seivan) and may be
 distributed under the [MIT license](http://opensource.org/licenses/MIT).
 See the [`LICENSE.md`](https://github.com/seivan/SHActionSheetBlocks/blob/master/LICENSE.md) file.
 
-![Green default](/Screenshots/Green/default_th.jpg "Green default")
+[![Green default](/Screenshots/Green/default_th.jpg "Green default")](http://example.net/)
 ![Green selected](/Screenshots/Green/selected_th.jpg "Green selected")
 ![Green cancel-selected](/Screenshots/Green/cancel-selected_th.jpg "Green cancel-selected")
 
