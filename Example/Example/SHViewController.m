@@ -9,69 +9,103 @@
 
 #import "SHSegueBlocks.h"
 #import "SHViewController.h"
+#import "SHActionSheetBlocks.h"
 #import "SHBarButtonItemBlocks.h"
+
 
 @interface SHViewController ()
 
+
+-(void)popUpActionSheet;
 @end
 
 @implementation SHViewController
 
 -(void)viewDidLoad; {
   [super viewDidLoad];
+  self.navigationItem.rightBarButtonItem = [UIBarButtonItem SH_barButtonItemWithBarButtonSystemItem:UIBarButtonSystemItemPlay withBlock:^(UIBarButtonItem *sender) {
+    [self performSegueWithIdentifier:@"second" sender:nil];
+  }];
 
 }
 
 -(void)viewDidAppear:(BOOL)animated; {
   [super viewDidAppear:animated];
-  __block NSUInteger counter = 0;
-  __block BOOL isFirstCounterCall = YES;
-  __weak typeof(self) weakSelf = self;
-  SHBarButtonItemBlock counterBlock = ^(UIBarButtonItem * sender){
-    counter += 1;
-    if(isFirstCounterCall){ SHBlockAssert(counter == 1, @"Counter should be 1"); }
-    else { SHBlockAssert(counter == 2, @"Counter should be 2");}
-    isFirstCounterCall = NO;
-    SHBlockAssert(counter != 3, @"Counter should not be 3")
-  };
+  [self popUpActionSheet];
 
-  UIBarButtonItem * button = [UIBarButtonItem SH_barButtonItemWithTitle:@"Push" style:UIBarButtonItemStyleBordered withBlock:^(UIBarButtonItem *sender) {
-    counterBlock(sender);
+}
+-(void)popUpActionSheet; {
+  __weak typeof(self) weakSelf = self;
+  NSString * title = @"Sample";
+  __block NSUInteger selectedIndex = 0;
+  UIActionSheet * sheet = [UIActionSheet SH_actionSheetWithTitle:title];
+  SHBlockAssert(sheet, @"Instance of a sheet");
+  SHBlockAssert([sheet.title isEqualToString:title], @"Title should be set");
+  
+  
+  for (NSUInteger i = 0; i != 3; i++) {
+    NSString * title = [NSString stringWithFormat:@"Button %d", i];
+    [sheet SH_addButtonWithTitle:title withBlock:^(NSUInteger theButtonIndex) {
+      NSString * buttonTitle = [sheet buttonTitleAtIndex:theButtonIndex];
+      SHBlockAssert([title isEqualToString:buttonTitle], @"Button title is set");
+      selectedIndex = theButtonIndex;
+      double delayInSeconds = 0.2;
+      dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+      dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [weakSelf popUpActionSheet];
+      });
+      
+    }];
+  }
+  
+  
+  NSUInteger cancelIndex      = 3;
+  
+  
+  [sheet SH_setCancelButtonWithTitle:@"Cancel" withBlock:^(NSUInteger theButtonIndex) {
+    NSLog(@"Cancel");
+    SHBlockAssert(theButtonIndex == cancelIndex ,
+                  @"Cancel button index is 3");
+    selectedIndex = theButtonIndex;
     
   }];
   
-
-  SHBarButtonItemBlock nextBlock = ^(UIBarButtonItem * sender){
-    double delayInSeconds = 2.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-      
+  SHBlockAssert(sheet.cancelButtonIndex == cancelIndex ,
+                @"Cancel button index is 3");
   
-      SHBlockAssert(button.SH_blocks.count == 3, @"Should have three blocks");
-      [button SH_removeBlock:counterBlock];
-      SHBlockAssert(button.SH_blocks.count == 2, @"Should have two blocks");
-      [button SH_removeAllBlocks];;
-      SHBlockAssert(button.SH_blocks.count == 0, @"Should have no blocks");
-      
-      [weakSelf performSegueWithIdentifier:@"second" sender:nil];
-    });
-    
-  };
-
-  // Unique blocks
-  [button SH_addBlock:counterBlock];
-  [button SH_addBlock:counterBlock];
-  //Will push segues
-  [button SH_addBlock:nextBlock];
   
-  SHBlockAssert(button.SH_blocks.count == 3, @"Should have three blocks");
-  self.navigationItem.rightBarButtonItem = button;
-
-
+  SHBlockAssert(sheet.SH_blockWillShow == nil, @"No SH_blockWillShow block");
+  SHBlockAssert(sheet.SH_blockDidShow == nil, @"No SH_blockDidShow block");
+  SHBlockAssert(sheet.SH_blockWillDismiss == nil, @"No SH_blockWillDismiss block");
+  SHBlockAssert(sheet.SH_blockDidDismiss == nil, @"No SH_blockDidDismiss block");
+  
+  [sheet SH_setWillShowBlock:^(UIActionSheet *theActionSheet) {
+    SHBlockAssert(theActionSheet, @"Must pass the actionSheet for willShow");
+  }];
+  
+  [sheet SH_setDidShowBlock:^(UIActionSheet *theActionSheet) {
+    SHBlockAssert(theActionSheet, @"Must pass the actionSheet for didShow");
+  }];
+  
+  [sheet SH_setWillDismissBlock:^(UIActionSheet *theActionSheet, NSUInteger theButtonIndex) {
+    SHBlockAssert(theActionSheet, @"Must pass the actionSheet");
+    SHBlockAssert(selectedIndex == theButtonIndex, @"Must pass selected index for willDismiss");
+  }];
+  
+  [sheet SH_setDidDismissBlock:^(UIActionSheet *theActionSheet, NSUInteger theButtonIndex) {
+    SHBlockAssert(theActionSheet, @"Must pass the actionSheet");
+    SHBlockAssert(selectedIndex == theButtonIndex, @"Must pass selected index fordidDismiss");
+  }];
+  
+  
+  
+  SHBlockAssert(sheet.SH_blockWillShow, @"Must set SH_blockWillShow block");
+  SHBlockAssert(sheet.SH_blockDidShow, @"Must set SH_blockDidShow block");
+  SHBlockAssert(sheet.SH_blockWillDismiss, @"Must set SH_blockWillDismiss block");
+  SHBlockAssert(sheet.SH_blockDidDismiss, @"Must set SH_blockDidDismiss block");
+  
+  
+  [sheet showInView:self.view];
+  
 }
-
--(IBAction)unwinder:(UIStoryboardSegue *)theSegue; {
-  
-}
-
 @end

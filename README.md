@@ -1,37 +1,38 @@
-SHBarButtonItemBlocks
+SHActionSheetBlocks
 ==========
+
+Screenshots
+------------
+[![Green default](/Screenshots/Green/default_th.jpg "Green default")](https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Green/default.png)
+[![Green selected](/Screenshots/Green/selected_th.jpg "Green selected")](https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Green/selected.png)
+[![Green cancel-selected](/Screenshots/Green/cancel-selected_th.jpg "Green cancel-selected")](https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Green/cancel-selected.png)
+
+[![Blue default](/Screenshots/Blue/default_th.jpg "Blue default")](https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Blue/default.png)
+[![Blue selected](/Screenshots/Blue/selected_th.jpg "Blue selected")](https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Blue/selected.png)
+[![Blue cancel-selected](/Screenshots/Blue/cancel-selected_th.jpg "Blue cancel-selected")](https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Blue/cancel-selected.png)
+
+[![Purple default](/Screenshots/Purple/default_th.jpg "Purple default")](https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Purple/default.png)
+[![Purple selected](/Screenshots/Purple/selected_th.jpg "Purple selected")](https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Purple/selected.png)
+[![Purple cancel-selected](/Screenshots/Purple/cancel-selected_th.jpg "Purple cancel-selected")](https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Purple/cancel-selected.png)
 
 Overview
 --------
-Category on top of UIBarButtonItem.
-
-The blocks are automatically removed once the item is gone, so it isn't necessary to clean up - Swizzle Free(™)
+The blocks are automatically removed once the sheet is gone, so it isn't necessary to clean up - Swizzle Free(™)
 
 ### API
 
-#### [Init](https://github.com/seivan/SHBarButtonItemBlocks#init-2)
+#### [Init](https://github.com/seivan/SHActionSheetBlocks#init-1)
 
-#### [Creating](https://github.com/seivan/SHBarButtonItemBlocks#creating-2)
+#### [Add](https://github.com/seivan/SHActionSheetBlocks#add-1)
 
-#### [Removing](https://github.com/seivan/SHBarButtonItemBlocks#removing-2)
+#### [Properties](https://github.com/seivan/SHActionSheetBlocks#properties-1)
 
-#### [Helpers and Properties](https://github.com/seivan/SHBarButtonItemBlocks#helpers-and-properties-2)
-
-### USAGE
-
-#### [Init](https://github.com/seivan/SHBarButtonItemBlocks#init-3)
-
-#### [Creating](https://github.com/seivan/SHBarButtonItemBlocks#creating-3)
-
-#### [Removing](https://github.com/seivan/SHBarButtonItemBlocks#removing-3)
-
-#### [Helpers and Properties](https://github.com/seivan/SHBarButtonItemBlocks#helpers-and-properties-3)
 
 Installation
 ------------
 
 ```ruby
-pod 'SHBarButtonItemBlocks'
+pod 'SHActionSheetBlocks'
 ```
 
 ***
@@ -42,11 +43,11 @@ Setup
 Put this either in specific files or your project prefix file
 
 ```objective-c
-#import 'UIBarButtonItem+SHBarButtonItemBlocks.h'
+#import 'UIActionSheet+SHActionSheetBlocks.h'
 ```
 or
 ```objective-c
-#import 'SHBarButtonItemBlocks.h'
+#import 'SHActionSheetBlocks.h'
 ```
 
 API
@@ -57,132 +58,65 @@ API
 ```objective-c
 #pragma mark -
 #pragma mark Init
-+(instancetype)SH_barButtonItemWithBarButtonSystemItem:(UIBarButtonSystemItem)systemItem
-                                 withBlock:(SHBarButtonItemBlock)theBlock;
-
-+(instancetype)SH_barButtonItemWithImage:(UIImage *)image style:(UIBarButtonItemStyle)style
-                   withBlock:(SHBarButtonItemBlock)theBlock;
-
-+(instancetype)SH_barButtonItemWithTitle:(NSString *)title style:(UIBarButtonItemStyle)style
-                   withBlock:(SHBarButtonItemBlock)theBlock;
++(instancetype)SH_actionSheetWithTitle:(NSString *)theTitle;
 
 ```
 
-### Creating
+### Add
 
 ```objective-c
 #pragma mark -
 #pragma mark Add
--(void)SH_addBlock:(SHBarButtonItemBlock)theBlock;
+-(NSUInteger)SH_addButtonWithTitle:(NSString *)theTitle
+                      withBlock:(SHActionSheetBlock)theBlock;
+
+-(NSUInteger)SH_setDestructiveButtonWithTitle:(NSString *)theTitle
+                                 withBlock:(SHActionSheetBlock)theBlock;
+
+-(NSUInteger)SH_setCancelButtonWithTitle:(NSString *)theTitle
+                            withBlock:(SHActionSheetBlock)theBlock;
 
 ```
 
-### Removing
-
-```objective-c
-#pragma mark -
-#pragma mark Remove
--(void)SH_removeBlock:(SHBarButtonItemBlock)theBlock;
--(void)SH_removeAllBlocks;
-
-
-```
-
-### Helpers and Properties
+### Properties
 
 ```objective-c
 #pragma mark -
 #pragma mark Properties
 
 #pragma mark -
+#pragma mark Setters
+
+-(void)SH_setWillShowBlock:(SHActionSheetWillShowBlock)theBlock;
+-(void)SH_setDidShowBlock:(SHActionSheetDidShowBlock)theBlock;
+
+-(void)SH_setWillDismissBlock:(SHActionSheetWillDismissBlock)theBlock;
+-(void)SH_setDidDismissBlock:(SHActionSheetDidDismissBlock)theBlock;
+
+#pragma mark -
 #pragma mark Getters
-@property(nonatomic,readonly) NSSet * SH_blocks;
 
 
-```
+@property(nonatomic,readonly) SHActionSheetWillShowBlock    SH_blockWillShow;
+@property(nonatomic,readonly) SHActionSheetDidShowBlock     SH_blockDidShow;
 
-Usage
------
-
-### Init
-
-### Class convenience selectors for creating directly. 
-
-```objective-c
-  UIBarButtonItem * button = [UIBarButtonItem SH_barButtonItemWithTitle:@"Clear blocks" style:UIBarButtonItemStyleBordered withBlock:^(UIBarButtonItem *sender) {
-    [sender SH_removeAllBlocks];
-    [sender SH_addBlock:^(UIBarButtonItem *sender) {
-      SHBlockAssert(sender.SH_blocks.count == 1, @"Should have one block");
-    }];
-  }];
-```
-
-### Creating
-
-#### With SHBarButtonItemBlocks you can set auto-removed blocks instead of using selectors
-
-```objective-c
-
-  [button SH_addBlock:^(UIBarButtonItem *sender) {
-    
-  }]
-
-
-``` 
-
-#### or if you want add additional blocks
-
-```objective-c
-  [button SH_addBlock:counterBlock];
-```
-
-### Removing
-
-
-#### Remove specific blocks - will also remove the Event from the target if it was the last block
-
-```objective-c
-  [btnSecond SH_removeControlEventsForBlock:counterBlock];
-```
-
-#### Remove specific blockss
-
-```objective-c
-      [button SH_removeBlock:counterBlock];
-```
-
-#### Remove all blocks
-
-```objective-c
-    [sender SH_removeAllBlocks];
-```
-
-
-### Helpers and Properties
------- 
-
-```objective-c
-    // Unique blocks
-  [button SH_addBlock:blockOne];
-  [button SH_addBlock:blockTwo];
-  [button SH_addBlock:blockThree];
-  [button SH_addBlock:blockThree];
-  SHBlockAssert(button.SH_blocks.count == 3, @"Should have three blocks");
+@property(nonatomic,readonly) SHActionSheetWillDismissBlock SH_blockWillDismiss;
+@property(nonatomic,readonly) SHActionSheetDidDismissBlock  SH_blockDidDismiss;
 
 ```
-
 
 
 Contact
 -------
 
-If you end up using SHBarButtonItemBlocks in a project, I'd love to hear about it.
+If you end up using SHActionSheetBlocks in a project, I'd love to hear about it.
 
 email: [seivan.heidari@icloud.com](mailto:seivan.heidari@icloud.com)  
 twitter: [@seivanheidari](https://twitter.com/seivanheidari)
 
 ## License
 
-SHBarButtonItemBlocks is © 2013 [Seivan](http://www.github.com/seivan) and may be freely
+SHActionSheetBlocks is © 2013 [Seivan](http://www.github.com/seivan) and may be freely
 distributed under the [MIT license](http://opensource.org/licenses/MIT).
-See the [`LICENSE.md`](https://github.com/seivan/SHBarButtonItemBlocks/blob/master/LICENSE.md) file.
+See the [`LICENSE.md`](https://github.com/seivan/SHActionSheetBlocks/blob/master/LICENSE.md) file.
+

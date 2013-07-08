@@ -4,7 +4,7 @@ SHObjectUserInfo
 Overview
 --------
 
-SHObjectUserInfo is a category on top of NSObject to allow userInfo dictionary without the bullshit of swizzling and other disgusting hacks. It's built on top of NSMapTable that works with weakToStrong references between an object and its userInfo. 
+SHObjectUserInfo is a category on top of NSObject to allow userInfo dictionary without swizzling. It's built on top of NSMapTable that works with weakToStrong references between an object and its userInfo. 
 
 
 Swizzle & Junk free 
@@ -27,20 +27,20 @@ pod 'SHObjectUserInfo'
 Setup
 -----
 
-Put this either in specific objects or your project prefix file
+Put this either in specific classes or your project prefix file
 
 ```objective-c
 #import 'NSObject+SHObjectUserInfo.h'
 ```
+
 or
+
 ```objective-c
 #import 'SHObjectUserInfo.h'
 ```
 
 Usage
 -----
-
-
 
 ```objective-c
 myObjectThatInheritedFromNSObject.sh_userInfo = [@{@"myKey" : mYValue} mutableCopy];
@@ -50,7 +50,7 @@ If you're using [SHSegueBlocks](http://www.github.com/seivan/SHSegueBlocks)
 
 ```objective-c
 [self SH_performSegueWithIdentifier:@"unwinder" withUserInfo:@{@"date" : [NSDate date]}];
-
+```
 
 In the destinationViewController
 

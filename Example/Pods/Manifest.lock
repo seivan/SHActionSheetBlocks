@@ -1,20 +1,23 @@
 PODS:
+  - SHActionSheetBlocks (1.0.0)
   - SHBarButtonItemBlocks (1.0.0)
-  - SHObjectUserInfo (1.0.0)
+  - SHObjectUserInfo (1.0.2)
   - SHSegueBlocks (1.1.1):
     - SHObjectUserInfo (~> 1.0.0)
 
 DEPENDENCIES:
-  - SHBarButtonItemBlocks (from `../`)
+  - SHActionSheetBlocks (from `../`)
+  - SHBarButtonItemBlocks
   - SHSegueBlocks
 
 EXTERNAL SOURCES:
-  SHBarButtonItemBlocks:
+  SHActionSheetBlocks:
     :path: ../
 
 SPEC CHECKSUMS:
+  SHActionSheetBlocks: ddb4f3a45dfe9af2f31447845022b6d6b2425fdf
   SHBarButtonItemBlocks: 246b4aa50ceeb7d99a855ede99dd00fd95d85e0d
-  SHObjectUserInfo: 46ec0f0d5131abff9fabdba55f4a3d012de3c646
+  SHObjectUserInfo: ec3758f8c54560b771d86ae173607e84cc5cda11
   SHSegueBlocks: 6bcadca3c10a916a0047b7123fa035e38f40cf34
 
 COCOAPODS: 0.21.0
