@@ -174,14 +174,14 @@ SHActionSheetBlocks is © 2013 [Seivan](http://www.github.com/seivan) and may be
 distributed under the [MIT license](http://opensource.org/licenses/MIT).
 See the [`LICENSE.md`](https://github.com/seivan/SHActionSheetBlocks/blob/master/LICENSE.md) file.
 
-![[Green default](/Screenshots/Green/default_th.jpg "Green default")(http://google.com "Google")]
-![Green selected](/Screenshots/Green/selected_th.jpg "Green selected")(http://google.com "Google")
-![Green cancel-selected](/Screenshots/Green/cancel-selected_th.jpg "Green cancel-selected")(http://google.com "Google")
+![Green default](/Screenshots/Green/default_th.jpg "Green default")
+![Green selected](/Screenshots/Green/selected_th.jpg "Green selected")
+![Green cancel-selected](/Screenshots/Green/cancel-selected_th.jpg "Green cancel-selected")
 
-![Blue default](/Screenshots/Blue/default_th.jpg "Blue default")(http://google.com "Google")
-![Blue selected](/Screenshots/Blue/selected_th.jpg "Blue selected")(http://google.com "Google")
-![Blue cancel-selected](/Screenshots/Blue/cancel-selected_th.jpg "Blue cancel-selected")(http://google.com "Google")
+![Blue default](/Screenshots/Blue/default_th.jpg "Blue default")
+![Blue selected](/Screenshots/Blue/selected_th.jpg "Blue selected")
+![Blue cancel-selected](/Screenshots/Blue/cancel-selected_th.jpg "Blue cancel-selected")
 
-![Purple default](/Screenshots/Purple/default_th.jpg "Purple default")(http://google.com "Google")
-![Purple selected](/Screenshots/Purple/selected_th.jpg "Purple selected")(http://google.com "Google")
-![Purple cancel-selected](/Screenshots/Purple/cancel-selected_th.jpg "Purple cancel-selected")(http://google.com "Google")
+![Purple default](/Screenshots/Purple/default_th.jpg "Purple default")
+![Purple selected](/Screenshots/Purple/selected_th.jpg "Purple selected")
+![Purple cancel-selected](/Screenshots/Purple/cancel-selected_th.jpg "Purple cancel-selected")
