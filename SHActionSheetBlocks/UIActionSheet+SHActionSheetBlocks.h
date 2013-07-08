@@ -27,20 +27,17 @@ typedef void (^SHActionSheetDidDismissBlock)(UIActionSheet * theActionSheet, NSU
 -(NSUInteger)SH_addButtonWithTitle:(NSString *)theTitle
                       withBlock:(SHActionSheetBlock)theBlock;
 
-
-
-#pragma mark -
-#pragma mark Properties
-
-
-#pragma mark -
-#pragma mark Setters
-
 -(NSUInteger)SH_setDestructiveButtonWithTitle:(NSString *)theTitle
                                  withBlock:(SHActionSheetBlock)theBlock;
 
 -(NSUInteger)SH_setCancelButtonWithTitle:(NSString *)theTitle
                             withBlock:(SHActionSheetBlock)theBlock;
+
+#pragma mark -
+#pragma mark Properties
+
+#pragma mark -
+#pragma mark Setters
 
 -(void)SH_setWillShowBlock:(SHActionSheetWillShowBlock)theBlock;
 -(void)SH_setDidShowBlock:(SHActionSheetDidShowBlock)theBlock;

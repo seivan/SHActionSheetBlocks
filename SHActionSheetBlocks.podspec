@@ -32,4 +32,15 @@ Pod::Spec.new do |s|
 
   s.source_files = source_files
   s.requires_arc = true
+
+  s.screenshots = [ "https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Green/default.png",
+                    "https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Green/selected.png",
+                    "https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Green/cancel-selected.png",
+                    "https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Blue/default.png",
+                    "https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Blue/selected.png",
+                    "https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Blue/cancel-selected.png",
+                    "https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Purple/default.png",
+                    "https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Purple/selected.png",
+                    "https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Purple/cancel-selected.png"]
+
 end

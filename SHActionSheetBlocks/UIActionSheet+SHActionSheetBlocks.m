@@ -150,11 +150,6 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 }
 
 
-#pragma mark -
-#pragma mark Properties
-
-#pragma mark -
-#pragma mark Setters
 
 -(NSUInteger)SH_setDestructiveButtonWithTitle:(NSString *)theTitle
                                     withBlock:(SHActionSheetBlock)theBlock; {
@@ -171,6 +166,12 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
   return indexButton;
   
 }
+
+#pragma mark -
+#pragma mark Properties
+
+#pragma mark -
+#pragma mark Setters
 
 -(void)SH_setWillShowBlock:(SHActionSheetWillShowBlock)theBlock; {
   [self addBlock:theBlock forKey:SH_blockWillShow];
