@@ -36,6 +36,7 @@ typedef void (^SHActionSheetDismissBlock)(UIActionSheet * theActionSheet, NSUInt
 #pragma mark -
 #pragma mark Setters
 
+
 -(void)SH_setWillShowBlock:(SHActionSheetShowBlock)theBlock;
 -(void)SH_setDidShowBlock:(SHActionSheetShowBlock)theBlock;
 
@@ -44,7 +45,6 @@ typedef void (^SHActionSheetDismissBlock)(UIActionSheet * theActionSheet, NSUInt
 
 #pragma mark -
 #pragma mark Getters
-
 
 
 @property(nonatomic,readonly) SHActionSheetShowBlock    SH_blockWillShow;

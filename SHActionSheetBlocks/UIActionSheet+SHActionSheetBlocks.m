@@ -65,10 +65,11 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
   });
 }
 
-#
+
 
 #pragma mark -
 #pragma mark <UIActionSheetDelegate>
+
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;{
   NSDictionary * mapBlocks = [self.mapBlocks objectForKey:actionSheet];
@@ -170,7 +171,6 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 
 #pragma mark -
 #pragma mark Setters
-
 -(void)SH_setWillShowBlock:(SHActionSheetShowBlock)theBlock; {
   [self addBlock:theBlock forKey:SH_blockWillShow];
 }
