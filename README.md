@@ -21,11 +21,11 @@ The blocks are automatically removed once the sheet is gone, so it isn't necessa
 
 ### API
 
-#### [Init](https://github.com/seivan/SHActionSheetBlocks#init-2)
+#### [Init](https://github.com/seivan/SHActionSheetBlocks#init-1)
 
-#### [Add](https://github.com/seivan/SHActionSheetBlocks#add-2)
+#### [Add](https://github.com/seivan/SHActionSheetBlocks#add-1)
 
-#### [Properties](https://github.com/seivan/SHActionSheetBlocks#properties-2)
+#### [Properties](https://github.com/seivan/SHActionSheetBlocks#properties-1)
 
 
 Installation
@@ -95,7 +95,6 @@ API
 
 #pragma mark -
 #pragma mark Getters
-
 
 
 @property(nonatomic,readonly) SHActionSheetWillShowBlock    SH_blockWillShow;
