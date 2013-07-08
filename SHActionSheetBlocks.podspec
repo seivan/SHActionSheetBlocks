@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.summary      = "Prefixed UIActionSheet category with blocks, auto-removed. Swizzle free!"
   s.description  = <<-DESC
 
-                    UIActionSheet events with blocks.
+                    UIActionSheet buttons with blocks.
                     Blocks are hold with a weak reference so you don't have to cleanup when your object is gone.
   
                     * Swizzle and junk free
