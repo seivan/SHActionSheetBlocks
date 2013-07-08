@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   url            = "https://github.com/seivan/#{name}"
   git_url        = "#{url}.git"
   s.name         = name
-  version        = "1.0.1"
+  version        = "1.1.0"
   source_files   = "#{name}/**/*.{h,m}"
 
   s.version      = version
@@ -33,14 +33,14 @@ Pod::Spec.new do |s|
   s.source_files = source_files
   s.requires_arc = true
 
-  s.screenshots = [ "https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Green/default.png",
-                    "https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Green/selected.png",
-                    "https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Green/cancel-selected.png",
-                    "https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Blue/default.png",
-                    "https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Blue/selected.png",
-                    "https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Blue/cancel-selected.png",
-                    "https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Purple/default.png",
-                    "https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Purple/selected.png",
-                    "https://raw.github.com/seivan/SHActionSheetBlocks/develop/Screenshots/Purple/cancel-selected.png"]
+  s.screenshots = [ "https://raw.github.com/seivan/SHActionSheetBlocks/master/Screenshots/Green/default.png",
+                    "https://raw.github.com/seivan/SHActionSheetBlocks/master/Screenshots/Green/selected.png",
+                    "https://raw.github.com/seivan/SHActionSheetBlocks/master/Screenshots/Green/cancel-selected.png",
+                    "https://raw.github.com/seivan/SHActionSheetBlocks/master/Screenshots/Blue/default.png",
+                    "https://raw.github.com/seivan/SHActionSheetBlocks/master/Screenshots/Blue/selected.png",
+                    "https://raw.github.com/seivan/SHActionSheetBlocks/master/Screenshots/Blue/cancel-selected.png",
+                    "https://raw.github.com/seivan/SHActionSheetBlocks/master/Screenshots/Purple/default.png",
+                    "https://raw.github.com/seivan/SHActionSheetBlocks/master/Screenshots/Purple/selected.png",
+                    "https://raw.github.com/seivan/SHActionSheetBlocks/master/Screenshots/Purple/cancel-selected.png"]
 
 end
