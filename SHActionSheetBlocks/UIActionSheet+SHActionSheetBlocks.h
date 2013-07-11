@@ -19,7 +19,7 @@ typedef void (^SHActionSheetDismissBlock)(UIActionSheet * theActionSheet, NSUInt
 +(instancetype)SH_actionSheetWithTitle:(NSString *)theTitle;
 
 +(instancetype)SH_actionSheetWithTitle:(NSString *)theTitle
-                          buttonTitles:(id<NSFastEnumeration>)theButtonTitles
+                          buttonTitles:(NSArray *)theButtonTitles
                            cancelTitle:(NSString *)theCancelTitle
                       destructiveTitle:(NSString *)theDestructiveTitle
                              withBlock:(SHActionSheetBlock)theBlock;

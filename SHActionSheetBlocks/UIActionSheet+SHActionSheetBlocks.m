@@ -138,7 +138,7 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 }
 
 +(instancetype)SH_actionSheetWithTitle:(NSString *)theTitle
-                          buttonTitles:(id<NSFastEnumeration>)theButtonTitles
+                          buttonTitles:(NSArray *)theButtonTitles
                           cancelTitle:(NSString *)theCancelTitle
                       destructiveTitle:(NSString *)theDestructiveTitle
                              withBlock:(SHActionSheetBlock)theBlock; {
