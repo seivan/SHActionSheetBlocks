@@ -137,9 +137,29 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 
 }
 
++(instancetype)SH_actionSheetWithTitle:(NSString *)theTitle
+                          buttonTitles:(id<NSFastEnumeration>)theButtonTitles
+                          cancelTitle:(NSString *)theCancelTitle
+                      destructiveTitle:(NSString *)theDestructiveTitle
+                             withBlock:(SHActionSheetBlock)theBlock; {
+
+  UIActionSheet * sheet = [self SH_actionSheetWithTitle:theTitle];
+
+  if(theDestructiveTitle)
+    [sheet SH_addButtonDestructiveWithTitle:theDestructiveTitle withBlock:theBlock];
+  
+  for (NSString * title in theButtonTitles)
+    [sheet SH_addButtonWithTitle:title withBlock:theBlock];
+  
+  
+  if(theCancelTitle)
+    [sheet SH_addButtonCancelWithTitle:theCancelTitle withBlock:theBlock];
+  return sheet;
+}
+
 
 #pragma mark -
-#pragma mark Add
+#pragma mark Adding
 -(NSUInteger)SH_addButtonWithTitle:(NSString *)theTitle
                          withBlock:(SHActionSheetBlock)theBlock; {
   NSUInteger indexButton = [self addButtonWithTitle:theTitle];
@@ -150,7 +170,8 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 
 
 
--(NSUInteger)SH_setDestructiveButtonWithTitle:(NSString *)theTitle
+
+-(NSUInteger)SH_addButtonDestructiveWithTitle:(NSString *)theTitle
                                     withBlock:(SHActionSheetBlock)theBlock; {
   NSUInteger indexButton = [self SH_addButtonWithTitle:theTitle withBlock:theBlock];
   [self setDestructiveButtonIndex:indexButton];
@@ -158,19 +179,39 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
   
 }
 
--(NSUInteger)SH_setCancelButtonWithTitle:(NSString *)theTitle
-                               withBlock:(SHActionSheetBlock)theBlock;{
+-(NSUInteger)SH_addButtonCancelWithTitle:(NSString *)theTitle
+                               withBlock:(SHActionSheetBlock)theBlock; {
   NSUInteger indexButton = [self SH_addButtonWithTitle:theTitle withBlock:theBlock];
   [self setCancelButtonIndex:indexButton];
   return indexButton;
   
 }
 
+
+
+
 #pragma mark -
 #pragma mark Properties
 
 #pragma mark -
 #pragma mark Setters
+-(void)SH_setButtonBlockForIndex:(NSUInteger)theButtonIndex
+                  withBlock:(SHActionSheetBlock)theBlock;{
+  [self addBlock:theBlock forIndex:theButtonIndex];
+}
+
+
+
+-(void)SH_setButtonDestructiveBlock:(SHActionSheetBlock)theBlock;{
+  if(self.destructiveButtonIndex >= 0)
+    [self addBlock:theBlock forIndex:self.destructiveButtonIndex];
+}
+
+-(void)SH_setButtonCancelBlock:(SHActionSheetBlock)theBlock;{
+  if(self.cancelButtonIndex >= 0)
+    [self addBlock:theBlock forIndex:self.cancelButtonIndex];
+}
+
 -(void)SH_setWillShowBlock:(SHActionSheetShowBlock)theBlock; {
   [self addBlock:theBlock forKey:SH_blockWillShow];
 }
@@ -190,6 +231,26 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 
 #pragma mark -
 #pragma mark Getters
+
+-(SHActionSheetBlock)SH_blockForButtonIndex:(NSUInteger)theButtonIndex; {
+  return self.mapOfBlocks[@(theButtonIndex)];
+}
+
+
+-(SHActionSheetBlock)SH_blockForDestructiveButton; {
+  SHActionSheetBlock block = nil;
+  if(self.destructiveButtonIndex >= 0)
+    block = self.mapOfBlocks[@(self.destructiveButtonIndex)];
+  return block;
+}
+
+-(SHActionSheetBlock)SH_blockForCancelButton; {
+  SHActionSheetBlock block = nil;
+  if(self.cancelButtonIndex >= 0)
+    block = self.mapOfBlocks[@(self.cancelButtonIndex)];
+  return block; 
+}
+
 -(SHActionSheetShowBlock)SH_blockWillShow;{
   return self.mapOfBlocks[SH_blockWillShow];    
 }
