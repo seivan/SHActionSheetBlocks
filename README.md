@@ -43,11 +43,11 @@ Setup
 Put this either in specific files or your project prefix file
 
 ```objective-c
-#import 'UIActionSheet+SHActionSheetBlocks.h'
+#import "UIActionSheet+SHActionSheetBlocks.h"
 ```
 or
 ```objective-c
-#import 'SHActionSheetBlocks.h'
+#import "SHActionSheetBlocks.h"
 ```
 
 API
@@ -60,21 +60,29 @@ API
 #pragma mark Init
 +(instancetype)SH_actionSheetWithTitle:(NSString *)theTitle;
 
++(instancetype)SH_actionSheetWithTitle:(NSString *)theTitle
+                          buttonTitles:(id<NSFastEnumeration>)theButtonTitles
+                           cancelTitle:(NSString *)theCancelTitle
+                      destructiveTitle:(NSString *)theDestructiveTitle
+                             withBlock:(SHActionSheetBlock)theBlock;
+
 ```
 
 ### Add
 
 ```objective-c
 #pragma mark -
-#pragma mark Add
+#pragma mark Adding
 -(NSUInteger)SH_addButtonWithTitle:(NSString *)theTitle
                       withBlock:(SHActionSheetBlock)theBlock;
 
--(NSUInteger)SH_setDestructiveButtonWithTitle:(NSString *)theTitle
-                                 withBlock:(SHActionSheetBlock)theBlock;
+///Will add a new destructive button and make previous Destructive buttons to normal
+-(NSUInteger)SH_addButtonDestructiveWithTitle:(NSString *)theTitle
+                                    withBlock:(SHActionSheetBlock)theBlock;
 
--(NSUInteger)SH_setCancelButtonWithTitle:(NSString *)theTitle
-                            withBlock:(SHActionSheetBlock)theBlock;
+///Will add a new destructive button and make previous Destructive buttons to normal
+-(NSUInteger)SH_addButtonCancelWithTitle:(NSString *)theTitle
+                               withBlock:(SHActionSheetBlock)theBlock;
 
 ```
 
@@ -86,22 +94,32 @@ API
 
 #pragma mark -
 #pragma mark Setters
+-(void)SH_setButtonBlockForIndex:(NSUInteger)theButtonIndex
+                       withBlock:(SHActionSheetBlock)theBlock;
 
--(void)SH_setWillShowBlock:(SHActionSheetWillShowBlock)theBlock;
--(void)SH_setDidShowBlock:(SHActionSheetDidShowBlock)theBlock;
 
--(void)SH_setWillDismissBlock:(SHActionSheetWillDismissBlock)theBlock;
--(void)SH_setDidDismissBlock:(SHActionSheetDidDismissBlock)theBlock;
+-(void)SH_setButtonDestructiveBlock:(SHActionSheetBlock)theBlock;
+-(void)SH_setButtonCancelBlock:(SHActionSheetBlock)theBlock;
+
+-(void)SH_setWillShowBlock:(SHActionSheetShowBlock)theBlock;
+-(void)SH_setDidShowBlock:(SHActionSheetShowBlock)theBlock;
+
+-(void)SH_setWillDismissBlock:(SHActionSheetDismissBlock)theBlock;
+-(void)SH_setDidDismissBlock:(SHActionSheetDismissBlock)theBlock;
 
 #pragma mark -
 #pragma mark Getters
+-(SHActionSheetBlock)SH_blockForButtonIndex:(NSUInteger)theButtonIndex;
+
+@property(nonatomic,readonly) SHActionSheetBlock SH_blockForDestructiveButton;
+@property(nonatomic,readonly) SHActionSheetBlock SH_blockForCancelButton;
 
 
-@property(nonatomic,readonly) SHActionSheetWillShowBlock    SH_blockWillShow;
-@property(nonatomic,readonly) SHActionSheetDidShowBlock     SH_blockDidShow;
+@property(nonatomic,readonly) SHActionSheetShowBlock    SH_blockWillShow;
+@property(nonatomic,readonly) SHActionSheetShowBlock    SH_blockDidShow;
 
-@property(nonatomic,readonly) SHActionSheetWillDismissBlock SH_blockWillDismiss;
-@property(nonatomic,readonly) SHActionSheetDidDismissBlock  SH_blockDidDismiss;
+@property(nonatomic,readonly) SHActionSheetDismissBlock SH_blockWillDismiss;
+@property(nonatomic,readonly) SHActionSheetDismissBlock SH_blockDidDismiss;
 
 ```
 

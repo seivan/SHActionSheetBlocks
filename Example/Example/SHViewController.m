@@ -62,7 +62,7 @@
   NSUInteger cancelIndex      = 3;
   
   
-  [sheet SH_setCancelButtonWithTitle:@"Cancel" withBlock:^(NSUInteger theButtonIndex) {
+  [sheet SH_addButtonCancelWithTitle:@"Cancel" withBlock:^(NSUInteger theButtonIndex) {
     NSLog(@"Cancel");
     SHBlockAssert(theButtonIndex == cancelIndex ,
                   @"Cancel button index is 3");
