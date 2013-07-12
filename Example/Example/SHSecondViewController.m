@@ -71,12 +71,12 @@
   [sheet SH_setButtonDestructiveBlock:block];
   SHBlockAssert([sheet SH_blockForButtonIndex:4] == [sheet SH_blockForCancelButton],
                 @"Button Index 5 should be equal to SH_blockForCancel");
-  SHBlockAssert([sheet SH_blockForButtonIndex:5] == [sheet SH_blockForCancelButton],
+  SHBlockAssert([sheet SH_blockForButtonIndex:5] == [sheet SH_blockForDestructiveButton],
                 @"Button Index 6 should be equal to SH_blockForDestructive");
   
   SHBlockAssert(block == [sheet SH_blockForCancelButton],
                 @"Button Index 5 should be equal to SH_blockForCancel");
-  SHBlockAssert(block == [sheet SH_blockForCancelButton],
+  SHBlockAssert(block == [sheet SH_blockForDestructiveButton],
                 @"Button Index 6 should be equal to SH_blockForDestructive");
 
   [sheet addButtonWithTitle:@"Weird button"];
