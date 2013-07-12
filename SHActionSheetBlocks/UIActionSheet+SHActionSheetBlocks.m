@@ -1,5 +1,5 @@
 //
-//  UIControl+SHControlEventBlock.h
+//  UIActionSheet+SHActionSheetBlocks.h
 //  Example
 //
 //  Created by Seivan Heidari on 5/16/13.
