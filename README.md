@@ -21,7 +21,7 @@ The blocks are automatically removed once the sheet is gone, so it isn't necessa
 
 ### API
 
-#### [Init](https://github.com/seivan/SHActionSheetBlocks#init-1)
+#### [Init](#init-1)
 
 #### [Add](https://github.com/seivan/SHActionSheetBlocks#add-1)
 
