@@ -21,11 +21,11 @@ The blocks are automatically removed once the sheet is gone, so it isn't necessa
 
 ### API
 
-#### [Init](https://github.com/seivan/SHActionSheetBlocks#init-1)
+#### [Init](#init-1)
 
-#### [Add](https://github.com/seivan/SHActionSheetBlocks#add-1)
+#### [Add](#add-1)
 
-#### [Properties](https://github.com/seivan/SHActionSheetBlocks#properties-1)
+#### [Properties](#properties-1)
 
 
 Installation
@@ -136,5 +136,5 @@ twitter: [@seivanheidari](https://twitter.com/seivanheidari)
 
 SHActionSheetBlocks is © 2013 [Seivan](http://www.github.com/seivan) and may be freely
 distributed under the [MIT license](http://opensource.org/licenses/MIT).
-See the [`LICENSE.md`](https://github.com/seivan/SHActionSheetBlocks/blob/master/LICENSE.md) file.
+See the [`LICENSE.md`](https://github.com/podfactory/SHActionSheetBlocks/blob/master/LICENSE.md) file.
 
