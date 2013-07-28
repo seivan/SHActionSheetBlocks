@@ -263,8 +263,8 @@
 }
 
 -(void)testAddDestructiveButtonWithTitleAndCustomBlock; {
-  NSString * buttonTitle = @"Cancel";
-  NSInteger buttonIndex = [self.sheet SH_addButtonWithTitle:buttonTitle
+  NSString * buttonTitle = @"Destructive";
+  NSInteger buttonIndex = [self.sheet SH_addButtonDestructiveWithTitle:buttonTitle
                                                   withBlock:^(NSUInteger theButtonIndex) {
                                                     
                                                   }];
@@ -274,6 +274,7 @@
   STAssertEqualObjects(buttonTitle, [self.sheet buttonTitleAtIndex:buttonIndex], nil);
   STAssertTrue(self.block != [self.sheet SH_blockForButtonIndex:buttonIndex], nil);
   STAssertEquals(self.sheet.numberOfButtons, buttonIndex+1, nil);
+  STAssertEquals(self.sheet.destructiveButtonIndex, buttonIndex, nil);
   
   
 }
