@@ -9,9 +9,8 @@
 /* Begin PBXBuildFile section */
 		2263577E17547F7800CBF961 /* SHSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2263577D17547F7800CBF961 /* SHSecondViewController.m */; };
 		22A32ECA178892580006E64E /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 22A32EC9178892580006E64E /* default.css */; };
-		22A32ECC1788929D0006E64E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A32ECB1788929D0006E64E /* QuartzCore.framework */; };
-		22A32ECE178892A10006E64E /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A32ECD178892A10006E64E /* CoreText.framework */; };
-		22A32ED01788954C0006E64E /* PXEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A32ECF1788954C0006E64E /* PXEngine.framework */; };
+		22AA100D17A4D04C00E86DF0 /* SHActionSheetBlocksFullTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 22AA100C17A4D04C00E86DF0 /* SHActionSheetBlocksFullTests.m */; };
+		22AA101017A4D22200E86DF0 /* SHActionSheetBlocksSuper.m in Sources */ = {isa = PBXBuildFile; fileRef = 22AA100F17A4D22200E86DF0 /* SHActionSheetBlocksSuper.m */; };
 		22D3AEAC1742D9B8000AB469 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D3AEAB1742D9B8000AB469 /* UIKit.framework */; };
 		22D3AEAE1742D9B8000AB469 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D3AEAD1742D9B8000AB469 /* Foundation.framework */; };
 		22D3AEB01742D9B8000AB469 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D3AEAF1742D9B8000AB469 /* CoreGraphics.framework */; };
@@ -23,17 +22,33 @@
 		22D3AEC21742D9B8000AB469 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22D3AEC11742D9B8000AB469 /* Default-568h@2x.png */; };
 		22D3AEC51742D9B8000AB469 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22D3AEC31742D9B8000AB469 /* MainStoryboard.storyboard */; };
 		22D3AEC81742D9B8000AB469 /* SHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D3AEC71742D9B8000AB469 /* SHViewController.m */; };
+		22F36B3F17A4450D005F5E8C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F36B3E17A4450D005F5E8C /* SenTestingKit.framework */; };
+		22F36B4017A4450D005F5E8C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D3AEAB1742D9B8000AB469 /* UIKit.framework */; };
+		22F36B4117A4450D005F5E8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D3AEAD1742D9B8000AB469 /* Foundation.framework */; };
+		22F36B4717A4450D005F5E8C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22F36B4517A4450D005F5E8C /* InfoPlist.strings */; };
+		22F36B4A17A4450D005F5E8C /* SHActionSheetBlocksConvenienceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F36B4917A4450D005F5E8C /* SHActionSheetBlocksConvenienceTests.m */; };
 		5B25AED73D9C4A729F20B25A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A3799792E664CC2A299F48B /* libPods.a */; };
+		C8B398DED66C48BDB8A62545 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A3799792E664CC2A299F48B /* libPods.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		22AA100A17A4CE0400E86DF0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22D3AEA01742D9B8000AB469 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 22D3AEA71742D9B8000AB469;
+			remoteInfo = Example;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		007D8B59643445788A77A737 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		2263577C17547F7800CBF961 /* SHSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHSecondViewController.h; sourceTree = "<group>"; };
 		2263577D17547F7800CBF961 /* SHSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHSecondViewController.m; sourceTree = "<group>"; };
 		22A32EC9178892580006E64E /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = default.css; sourceTree = "<group>"; };
-		22A32ECB1788929D0006E64E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		22A32ECD178892A10006E64E /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		22A32ECF1788954C0006E64E /* PXEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PXEngine.framework; sourceTree = "<group>"; };
+		22AA100C17A4D04C00E86DF0 /* SHActionSheetBlocksFullTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHActionSheetBlocksFullTests.m; sourceTree = "<group>"; };
+		22AA100E17A4D06700E86DF0 /* SHActionSheetBlocksSuper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHActionSheetBlocksSuper.h; sourceTree = "<group>"; };
+		22AA100F17A4D22200E86DF0 /* SHActionSheetBlocksSuper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHActionSheetBlocksSuper.m; sourceTree = "<group>"; };
 		22D3AEA81742D9B8000AB469 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22D3AEAB1742D9B8000AB469 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		22D3AEAD1742D9B8000AB469 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -50,6 +65,12 @@
 		22D3AEC41742D9B8000AB469 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		22D3AEC61742D9B8000AB469 /* SHViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHViewController.h; sourceTree = "<group>"; };
 		22D3AEC71742D9B8000AB469 /* SHViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHViewController.m; sourceTree = "<group>"; };
+		22F36B3D17A4450D005F5E8C /* ExampleTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		22F36B3E17A4450D005F5E8C /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		22F36B4417A4450D005F5E8C /* ExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExampleTests-Info.plist"; sourceTree = "<group>"; };
+		22F36B4617A4450D005F5E8C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		22F36B4917A4450D005F5E8C /* SHActionSheetBlocksConvenienceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHActionSheetBlocksConvenienceTests.m; sourceTree = "<group>"; };
+		22F36B4B17A4450D005F5E8C /* ExampleTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ExampleTests-Prefix.pch"; sourceTree = "<group>"; };
 		2A3799792E664CC2A299F48B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -58,13 +79,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22A32ECE178892A10006E64E /* CoreText.framework in Frameworks */,
-				22A32ECC1788929D0006E64E /* QuartzCore.framework in Frameworks */,
 				22D3AEAC1742D9B8000AB469 /* UIKit.framework in Frameworks */,
 				22D3AEAE1742D9B8000AB469 /* Foundation.framework in Frameworks */,
 				22D3AEB01742D9B8000AB469 /* CoreGraphics.framework in Frameworks */,
 				5B25AED73D9C4A729F20B25A /* libPods.a in Frameworks */,
-				22A32ED01788954C0006E64E /* PXEngine.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22F36B3917A4450D005F5E8C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22F36B3F17A4450D005F5E8C /* SenTestingKit.framework in Frameworks */,
+				22F36B4017A4450D005F5E8C /* UIKit.framework in Frameworks */,
+				22F36B4117A4450D005F5E8C /* Foundation.framework in Frameworks */,
+				C8B398DED66C48BDB8A62545 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				22D3AEB11742D9B8000AB469 /* Example */,
+				22F36B4217A4450D005F5E8C /* ExampleTests */,
 				22D3AEAA1742D9B8000AB469 /* Frameworks */,
 				22D3AEA91742D9B8000AB469 /* Products */,
 				007D8B59643445788A77A737 /* Pods.xcconfig */,
@@ -85,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				22D3AEA81742D9B8000AB469 /* Example.app */,
+				22F36B3D17A4450D005F5E8C /* ExampleTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -92,13 +123,11 @@
 		22D3AEAA1742D9B8000AB469 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				22A32ECF1788954C0006E64E /* PXEngine.framework */,
-				22A32ECD178892A10006E64E /* CoreText.framework */,
-				22A32ECB1788929D0006E64E /* QuartzCore.framework */,
 				22D3AEAB1742D9B8000AB469 /* UIKit.framework */,
 				22D3AEAD1742D9B8000AB469 /* Foundation.framework */,
 				22D3AEAF1742D9B8000AB469 /* CoreGraphics.framework */,
 				2A3799792E664CC2A299F48B /* libPods.a */,
+				22F36B3E17A4450D005F5E8C /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -133,6 +162,28 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		22F36B4217A4450D005F5E8C /* ExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				22AA100E17A4D06700E86DF0 /* SHActionSheetBlocksSuper.h */,
+				22AA100F17A4D22200E86DF0 /* SHActionSheetBlocksSuper.m */,
+				22F36B4917A4450D005F5E8C /* SHActionSheetBlocksConvenienceTests.m */,
+				22AA100C17A4D04C00E86DF0 /* SHActionSheetBlocksFullTests.m */,
+				22F36B4317A4450D005F5E8C /* Supporting Files */,
+			);
+			path = ExampleTests;
+			sourceTree = "<group>";
+		};
+		22F36B4317A4450D005F5E8C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				22F36B4417A4450D005F5E8C /* ExampleTests-Info.plist */,
+				22F36B4517A4450D005F5E8C /* InfoPlist.strings */,
+				22F36B4B17A4450D005F5E8C /* ExampleTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -154,6 +205,27 @@
 			productName = Example;
 			productReference = 22D3AEA81742D9B8000AB469 /* Example.app */;
 			productType = "com.apple.product-type.application";
+		};
+		22F36B3C17A4450D005F5E8C /* ExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22F36B4E17A4450D005F5E8C /* Build configuration list for PBXNativeTarget "ExampleTests" */;
+			buildPhases = (
+				36D339FC065D42179BEBA058 /* Check Pods Manifest.lock */,
+				22F36B3817A4450D005F5E8C /* Sources */,
+				22F36B3917A4450D005F5E8C /* Frameworks */,
+				22F36B3A17A4450D005F5E8C /* Resources */,
+				22F36B3B17A4450D005F5E8C /* ShellScript */,
+				E75878932CEF48EDA5658852 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				22AA100B17A4CE0400E86DF0 /* PBXTargetDependency */,
+			);
+			name = ExampleTests;
+			productName = ExampleTests;
+			productReference = 22F36B3D17A4450D005F5E8C /* ExampleTests.octest */;
+			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -178,6 +250,7 @@
 			projectRoot = "";
 			targets = (
 				22D3AEA71742D9B8000AB469 /* Example */,
+				22F36B3C17A4450D005F5E8C /* ExampleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -196,9 +269,45 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		22F36B3A17A4450D005F5E8C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22F36B4717A4450D005F5E8C /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		22F36B3B17A4450D005F5E8C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		36D339FC065D42179BEBA058 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		74B71A67EE75449CA520AC41 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -227,6 +336,21 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 		};
+		E75878932CEF48EDA5658852 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -241,7 +365,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		22F36B3817A4450D005F5E8C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22F36B4A17A4450D005F5E8C /* SHActionSheetBlocksConvenienceTests.m in Sources */,
+				22AA100D17A4D04C00E86DF0 /* SHActionSheetBlocksFullTests.m in Sources */,
+				22AA101017A4D22200E86DF0 /* SHActionSheetBlocksSuper.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		22AA100B17A4CE0400E86DF0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 22D3AEA71742D9B8000AB469 /* Example */;
+			targetProxy = 22AA100A17A4CE0400E86DF0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		22D3AEB41742D9B8000AB469 /* InfoPlist.strings */ = {
@@ -258,6 +400,14 @@
 				22D3AEC41742D9B8000AB469 /* en */,
 			);
 			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		22F36B4517A4450D005F5E8C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				22F36B4617A4450D005F5E8C /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -289,7 +439,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -313,6 +463,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -353,6 +504,46 @@
 			};
 			name = Release;
 		};
+		22F36B4C17A4450D005F5E8C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 007D8B59643445788A77A737 /* Pods.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Example.app/Example";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ExampleTests/ExampleTests-Prefix.pch";
+				INFOPLIST_FILE = "ExampleTests/ExampleTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		22F36B4D17A4450D005F5E8C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 007D8B59643445788A77A737 /* Pods.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Example.app/Example";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ExampleTests/ExampleTests-Prefix.pch";
+				INFOPLIST_FILE = "ExampleTests/ExampleTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -370,6 +561,15 @@
 			buildConfigurations = (
 				22D3AECC1742D9B8000AB469 /* Debug */,
 				22D3AECD1742D9B8000AB469 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		22F36B4E17A4450D005F5E8C /* Build configuration list for PBXNativeTarget "ExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22F36B4C17A4450D005F5E8C /* Debug */,
+				22F36B4D17A4450D005F5E8C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

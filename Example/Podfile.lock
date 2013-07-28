@@ -1,5 +1,5 @@
 PODS:
-  - SHActionSheetBlocks (1.0.1)
+  - SHActionSheetBlocks (2.1.0)
   - SHBarButtonItemBlocks (1.0.0)
   - SHObjectUserInfo (1.0.2)
   - SHSegueBlocks (1.1.1):
@@ -15,9 +15,9 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  SHActionSheetBlocks: 541c1787f14a33592e7eda380b26c2f07691a8e2
-  SHBarButtonItemBlocks: 246b4aa50ceeb7d99a855ede99dd00fd95d85e0d
-  SHObjectUserInfo: ec3758f8c54560b771d86ae173607e84cc5cda11
-  SHSegueBlocks: 6bcadca3c10a916a0047b7123fa035e38f40cf34
+  SHActionSheetBlocks: 926216d7b8f7f3d7210e1a59d89001a979a653a0
+  SHBarButtonItemBlocks: 2d0a2b3bfff3a019a730eb789767daf02c1c753a
+  SHObjectUserInfo: 579a22ce6f2705f8f121a0fa454f9cc115e96463
+  SHSegueBlocks: a4d48e968fab08f3fae8485964b9f40daa42a1b3
 
-COCOAPODS: 0.21.0
+COCOAPODS: 0.22.2

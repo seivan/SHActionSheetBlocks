@@ -1,5 +1,6 @@
 SHActionSheetBlocks
 ==========
+[![Build Status](https://travis-ci.org/PodFactory/SHActionSheetBlocks.png?branch=master)](https://travis-ci.org/PodFactory/SHActionSheetBlocks)
 
 Screenshots
 ------------

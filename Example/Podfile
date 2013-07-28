@@ -1,4 +1,5 @@
 platform :ios, '6.0' 
+link_with ['Example', 'ExampleTests']
 pod 'SHActionSheetBlocks', :path => '../'
 pod 'SHSegueBlocks'
 pod 'SHBarButtonItemBlocks'
