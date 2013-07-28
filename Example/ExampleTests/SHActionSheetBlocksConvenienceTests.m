@@ -147,6 +147,8 @@
 -(void)testAddCancelButton; {
   
   NSInteger buttonIndex = [self.sheet SH_addButtonCancelWithTitle:nil withBlock:nil];
+
+  STAssertNil([self.sheet SH_blockForCancelButton],nil);
   STAssertTrue(buttonIndex > self.sheet.firstOtherButtonIndex, nil);
   STAssertEquals(self.sheet.numberOfButtons-1, buttonIndex, nil);
   STAssertEqualObjects(nil, [self.sheet buttonTitleAtIndex:buttonIndex], nil);
@@ -159,6 +161,8 @@
 -(void)testAddCancelButtonWithTitle; {
   NSString * buttonTitle = @"Button";
   NSInteger buttonIndex = [self.sheet SH_addButtonCancelWithTitle:buttonTitle withBlock:nil];
+  
+  STAssertNil([self.sheet SH_blockForCancelButton],nil);
   STAssertTrue(buttonIndex > self.sheet.firstOtherButtonIndex, nil);
   STAssertEquals(self.sheet.numberOfButtons-1, buttonIndex, nil);
   STAssertEqualObjects(buttonTitle, [self.sheet buttonTitleAtIndex:buttonIndex], nil);
@@ -203,6 +207,7 @@
   NSInteger buttonIndex = 0;
   [self testAddCancelButtonWithTitle];
   STAssertNil([self.sheet SH_blockForButtonIndex:buttonIndex], nil);
+  STAssertNil([self.sheet SH_blockForCancelButton],nil);
   
   [self.sheet SH_setButtonBlockForIndex:buttonIndex withBlock:self.block];
   STAssertEquals(buttonIndex+1, self.sheet.numberOfButtons, nil);
@@ -281,7 +286,7 @@
 
 -(void)testSetDestructiveButtonBlockForFirstIndexWithExistingButtonWithTitle; {
   NSInteger buttonIndex = 0;
-  [self testAddCancelButtonWithTitle];
+  [self testAddDestructiveButtonWithTitle];
   STAssertNil([self.sheet SH_blockForButtonIndex:buttonIndex], nil);
   
   [self.sheet SH_setButtonBlockForIndex:buttonIndex withBlock:self.block];
