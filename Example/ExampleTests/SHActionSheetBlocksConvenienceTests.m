@@ -214,7 +214,7 @@
   STAssertEquals(buttonIndex+1, self.sheet.numberOfButtons, nil);
   STAssertNotNil([self.sheet SH_blockForButtonIndex:buttonIndex], nil);
   STAssertNotNil([self.sheet buttonTitleAtIndex:buttonIndex], nil);
-  STAssertNotNil([self.sheet SH_blockForDestructiveButton],nil);
+  STAssertNotNil([self.sheet SH_blockForCancelButton],nil);
 }
 
 -(void)testSetCancelButtonDifferentBlock; {
