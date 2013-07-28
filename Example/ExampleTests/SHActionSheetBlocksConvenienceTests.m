@@ -123,7 +123,7 @@
   STAssertNil([self.sheet SH_blockForButtonIndex:buttonIndex], nil);
 
   [self.sheet SH_setButtonBlockForIndex:buttonIndex withBlock:self.block];
-  STAssertEquals(1, self.sheet.numberOfButtons, nil);
+  STAssertEquals(buttonIndex+1, self.sheet.numberOfButtons, nil);
   STAssertNotNil([self.sheet SH_blockForButtonIndex:buttonIndex], nil);
   STAssertNotNil([self.sheet buttonTitleAtIndex:buttonIndex], nil);
 }
@@ -203,10 +203,13 @@
   STAssertNil([self.sheet SH_blockForButtonIndex:buttonIndex], nil);
   
   [self.sheet SH_setButtonBlockForIndex:buttonIndex withBlock:self.block];
-  STAssertEquals(1, self.sheet.numberOfButtons, nil);
+  STAssertEquals(buttonIndex+1, self.sheet.numberOfButtons, nil);
   STAssertNotNil([self.sheet SH_blockForButtonIndex:buttonIndex], nil);
   STAssertNotNil([self.sheet buttonTitleAtIndex:buttonIndex], nil);
 }
+
+
+
 
 
 
