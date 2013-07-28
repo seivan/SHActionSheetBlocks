@@ -209,6 +209,10 @@
 }
 
 
+-(void)testAddCancelButtonWithTwoNormalButtons; {
+  [self testAddSecondButtonWithTitleAndBlock];
+  [self testAddCancelButtonWithTitleAndBlock];
+}
 
 
 
