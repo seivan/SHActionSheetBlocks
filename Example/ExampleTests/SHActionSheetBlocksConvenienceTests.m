@@ -183,7 +183,7 @@
 
 -(void)testAddCancelButtonWithTitleAndCustomBlock; {
   NSString * buttonTitle = @"Cancel";
-  NSInteger buttonIndex = [self.sheet SH_addButtonWithTitle:buttonTitle
+  NSInteger buttonIndex = [self.sheet SH_addButtonCancelWithTitle:buttonTitle
                                                   withBlock:^(NSUInteger theButtonIndex) {
                                                     
                                                   }];
@@ -208,6 +208,14 @@
   STAssertEquals(buttonIndex+1, self.sheet.numberOfButtons, nil);
   STAssertNotNil([self.sheet SH_blockForButtonIndex:buttonIndex], nil);
   STAssertNotNil([self.sheet buttonTitleAtIndex:buttonIndex], nil);
+}
+
+-(void)testSetCancelButtonDifferentBlock; {
+ NSUInteger buttonIndex = [self.sheet SH_addButtonCancelWithTitle:@"Cancel" withBlock:^(NSUInteger theButtonIndex) {
+    
+  }];
+  STAssertFalse(self.block == [self.sheet SH_blockForButtonIndex:buttonIndex], nil);
+  STAssertFalse(self.block == [self.sheet SH_blockForButtonIndex:buttonIndex], nil);
 }
 
 
