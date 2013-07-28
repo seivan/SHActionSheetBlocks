@@ -52,20 +52,97 @@
   STAssertEquals(self.sheet.firstOtherButtonIndex, -1, nil);
 }
 
--(void)testAddFirstButtonWithTitleAndBlock; {
+-(void)testAddFirstButton; {
+  NSInteger buttonIndex = [self.sheet SH_addButtonWithTitle:nil
+                                                   withBlock:nil];
+
+  STAssertTrue(buttonIndex > self.sheet.firstOtherButtonIndex, nil);
+  STAssertEquals(self.sheet.numberOfButtons-1, buttonIndex, nil);
+  STAssertEqualObjects(nil, [self.sheet buttonTitleAtIndex:buttonIndex], nil);
+  STAssertEqualObjects(nil, [self.sheet SH_blockForButtonIndex:buttonIndex], nil);
+  STAssertEquals(self.sheet.numberOfButtons, buttonIndex+1, nil);
+
+  
+  
+}
+-(void)testAddFirstButtonWithTitle; {
   NSString * buttonTitle = @"Button";
   NSInteger buttonIndex = [self.sheet SH_addButtonWithTitle:buttonTitle
-                                                   withBlock:self.block];
-  NSLog(@"%d", self.sheet.firstOtherButtonIndex);
+                                                  withBlock:nil];
+  
   STAssertTrue(buttonIndex > self.sheet.firstOtherButtonIndex, nil);
-  STAssertEquals(0, buttonIndex, nil);
+  STAssertEquals(self.sheet.numberOfButtons-1, buttonIndex, nil);
   STAssertEqualObjects(buttonTitle, [self.sheet buttonTitleAtIndex:buttonIndex], nil);
-  STAssertEqualObjects([self.sheet SH_blockForButtonIndex:buttonIndex], self.block, nil);
+  STAssertEqualObjects(nil, [self.sheet SH_blockForButtonIndex:buttonIndex], nil);
+  STAssertEquals(self.sheet.numberOfButtons, buttonIndex+1, nil);
   
   
   
 }
 
+-(void)testAddFirstButtonWithTitleAndBlock; {
+  NSString * buttonTitle = @"Button";
+  NSInteger buttonIndex = [self.sheet SH_addButtonWithTitle:buttonTitle
+                                                  withBlock:self.block];
+  
+  STAssertTrue(buttonIndex > self.sheet.firstOtherButtonIndex, nil);
+  STAssertEquals(self.sheet.numberOfButtons-1, buttonIndex, nil);
+  STAssertEqualObjects(buttonTitle, [self.sheet buttonTitleAtIndex:buttonIndex], nil);
+  STAssertEqualObjects(self.block, [self.sheet SH_blockForButtonIndex:buttonIndex], nil);
+  STAssertEquals(self.sheet.numberOfButtons, buttonIndex+1, nil);
+  
+  
+  
+}
+
+-(void)testAddFirstButtonWithTitleAndCustomBlock; {
+  NSString * buttonTitle = @"Button";
+  NSInteger buttonIndex = [self.sheet SH_addButtonWithTitle:buttonTitle
+                                                  withBlock:^(NSUInteger theButtonIndex) {
+                                                    
+                                                  }];
+  
+  STAssertTrue(buttonIndex > self.sheet.firstOtherButtonIndex, nil);
+  STAssertEquals(self.sheet.numberOfButtons-1, buttonIndex, nil);
+  STAssertEqualObjects(buttonTitle, [self.sheet buttonTitleAtIndex:buttonIndex], nil);
+  STAssertTrue(self.block != [self.sheet SH_blockForButtonIndex:buttonIndex], nil);
+  STAssertEquals(self.sheet.numberOfButtons, buttonIndex+1, nil);
+  
+  
+}
+
+-(void)testSetButtonBlockForFirstIndex; {
+  NSInteger buttonIndex = 0;
+  [self.sheet SH_setButtonBlockForIndex:buttonIndex withBlock:self.block];
+  STAssertEquals(0, self.sheet.numberOfButtons, nil);
+  
+}
+-(void)testSetButtonBlockForFirstIndexWithExistingButtonWithTitle; {
+  NSInteger buttonIndex = 0;
+  [self testAddFirstButtonWithTitle];
+  STAssertNil([self.sheet SH_blockForButtonIndex:buttonIndex], nil);
+
+  [self.sheet SH_setButtonBlockForIndex:buttonIndex withBlock:self.block];
+  STAssertEquals(1, self.sheet.numberOfButtons, nil);
+  STAssertNotNil([self.sheet SH_blockForButtonIndex:buttonIndex], nil);
+  STAssertNotNil([self.sheet buttonTitleAtIndex:buttonIndex], nil);
+}
+
+
+
+-(void)testAddSecondButtonWithTitleAndBlock; {
+  [self testAddFirstButtonWithTitleAndCustomBlock];
+  NSString * buttonTitle = @"Button";
+  NSInteger buttonIndex = [self.sheet SH_addButtonWithTitle:buttonTitle
+                                                  withBlock:self.block];
+  
+  STAssertTrue(buttonIndex > self.sheet.firstOtherButtonIndex, nil);
+  STAssertEquals(self.sheet.numberOfButtons-1, buttonIndex, nil);
+  STAssertEqualObjects(buttonTitle, [self.sheet buttonTitleAtIndex:buttonIndex], nil);
+  STAssertEqualObjects(self.block, [self.sheet SH_blockForButtonIndex:buttonIndex], nil);
+  STAssertEquals(self.sheet.numberOfButtons, buttonIndex+1, nil);
+
+}
 
 
 @end
