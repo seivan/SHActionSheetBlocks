@@ -63,6 +63,16 @@ typedef BOOL (^PXPredicateBlock)();
 
   __block BOOL isFinished = NO;
   __block BOOL isFinished2 = NO;
+  
+  [self SH_runCurrentRunLoopUntilTestPasses:^BOOL{
+    return isFinished;
+  } timeout:5];
+  
+  [self SH_runCurrentRunLoopUntilTestPasses:^BOOL{
+    return isFinished2;
+  } timeout:5];
+
+  
   [self.sheet SH_addButtonCancelWithTitle:@"Cancel" withBlock:^(NSUInteger theButtonIndex) {
     isFinished2 = YES;
   }];
@@ -94,13 +104,6 @@ typedef BOOL (^PXPredicateBlock)();
   });
 
 
-[self SH_runCurrentRunLoopUntilTestPasses:^BOOL{
-  return isFinished;
-} timeout:5];
-  
-  [self SH_runCurrentRunLoopUntilTestPasses:^BOOL{
-    return isFinished2;
-  } timeout:5];
 
 
 }
