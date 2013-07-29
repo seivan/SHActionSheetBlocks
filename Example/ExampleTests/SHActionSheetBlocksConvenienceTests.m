@@ -337,6 +337,11 @@
   [self testAddDestructiveButtonWithTitleAndBlock];
 }
 
+-(void)testAllButtons; {
+  [self testAddCancelButtonWithTwoNormalButtons];
+  [self testAddDestructiveButtonWithTwoNormalButtons];
+}
+
 
 
 
