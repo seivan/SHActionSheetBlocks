@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		2263577E17547F7800CBF961 /* SHSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2263577D17547F7800CBF961 /* SHSecondViewController.m */; };
 		22A32ECA178892580006E64E /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 22A32EC9178892580006E64E /* default.css */; };
-		22AA100D17A4D04C00E86DF0 /* SHActionSheetBlocksFullTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 22AA100C17A4D04C00E86DF0 /* SHActionSheetBlocksFullTests.m */; };
+		22AA100D17A4D04C00E86DF0 /* SHActionSheetBlocksCallbacks.m in Sources */ = {isa = PBXBuildFile; fileRef = 22AA100C17A4D04C00E86DF0 /* SHActionSheetBlocksCallbacks.m */; };
 		22AA101017A4D22200E86DF0 /* SHActionSheetBlocksSuper.m in Sources */ = {isa = PBXBuildFile; fileRef = 22AA100F17A4D22200E86DF0 /* SHActionSheetBlocksSuper.m */; };
+		22AA101217A5E9B500E86DF0 /* SHActionSheetBlocksSelectors.m in Sources */ = {isa = PBXBuildFile; fileRef = 22AA101117A5E9B500E86DF0 /* SHActionSheetBlocksSelectors.m */; };
 		22D3AEAC1742D9B8000AB469 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D3AEAB1742D9B8000AB469 /* UIKit.framework */; };
 		22D3AEAE1742D9B8000AB469 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D3AEAD1742D9B8000AB469 /* Foundation.framework */; };
 		22D3AEB01742D9B8000AB469 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D3AEAF1742D9B8000AB469 /* CoreGraphics.framework */; };
@@ -26,7 +27,7 @@
 		22F36B4017A4450D005F5E8C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D3AEAB1742D9B8000AB469 /* UIKit.framework */; };
 		22F36B4117A4450D005F5E8C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D3AEAD1742D9B8000AB469 /* Foundation.framework */; };
 		22F36B4717A4450D005F5E8C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22F36B4517A4450D005F5E8C /* InfoPlist.strings */; };
-		22F36B4A17A4450D005F5E8C /* SHActionSheetBlocksConvenienceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F36B4917A4450D005F5E8C /* SHActionSheetBlocksConvenienceTests.m */; };
+		22F36B4A17A4450D005F5E8C /* SHActionSheetBlocksOldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 22F36B4917A4450D005F5E8C /* SHActionSheetBlocksOldTests.m */; };
 		5B25AED73D9C4A729F20B25A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A3799792E664CC2A299F48B /* libPods.a */; };
 		C8B398DED66C48BDB8A62545 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A3799792E664CC2A299F48B /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -46,9 +47,10 @@
 		2263577C17547F7800CBF961 /* SHSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHSecondViewController.h; sourceTree = "<group>"; };
 		2263577D17547F7800CBF961 /* SHSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHSecondViewController.m; sourceTree = "<group>"; };
 		22A32EC9178892580006E64E /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = default.css; sourceTree = "<group>"; };
-		22AA100C17A4D04C00E86DF0 /* SHActionSheetBlocksFullTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHActionSheetBlocksFullTests.m; sourceTree = "<group>"; };
+		22AA100C17A4D04C00E86DF0 /* SHActionSheetBlocksCallbacks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHActionSheetBlocksCallbacks.m; sourceTree = "<group>"; };
 		22AA100E17A4D06700E86DF0 /* SHActionSheetBlocksSuper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHActionSheetBlocksSuper.h; sourceTree = "<group>"; };
 		22AA100F17A4D22200E86DF0 /* SHActionSheetBlocksSuper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHActionSheetBlocksSuper.m; sourceTree = "<group>"; };
+		22AA101117A5E9B500E86DF0 /* SHActionSheetBlocksSelectors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHActionSheetBlocksSelectors.m; sourceTree = "<group>"; };
 		22D3AEA81742D9B8000AB469 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22D3AEAB1742D9B8000AB469 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		22D3AEAD1742D9B8000AB469 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -69,7 +71,7 @@
 		22F36B3E17A4450D005F5E8C /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		22F36B4417A4450D005F5E8C /* ExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExampleTests-Info.plist"; sourceTree = "<group>"; };
 		22F36B4617A4450D005F5E8C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		22F36B4917A4450D005F5E8C /* SHActionSheetBlocksConvenienceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHActionSheetBlocksConvenienceTests.m; sourceTree = "<group>"; };
+		22F36B4917A4450D005F5E8C /* SHActionSheetBlocksOldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHActionSheetBlocksOldTests.m; sourceTree = "<group>"; };
 		22F36B4B17A4450D005F5E8C /* ExampleTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ExampleTests-Prefix.pch"; sourceTree = "<group>"; };
 		2A3799792E664CC2A299F48B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -167,8 +169,9 @@
 			children = (
 				22AA100E17A4D06700E86DF0 /* SHActionSheetBlocksSuper.h */,
 				22AA100F17A4D22200E86DF0 /* SHActionSheetBlocksSuper.m */,
-				22F36B4917A4450D005F5E8C /* SHActionSheetBlocksConvenienceTests.m */,
-				22AA100C17A4D04C00E86DF0 /* SHActionSheetBlocksFullTests.m */,
+				22F36B4917A4450D005F5E8C /* SHActionSheetBlocksOldTests.m */,
+				22AA101117A5E9B500E86DF0 /* SHActionSheetBlocksSelectors.m */,
+				22AA100C17A4D04C00E86DF0 /* SHActionSheetBlocksCallbacks.m */,
 				22F36B4317A4450D005F5E8C /* Supporting Files */,
 			);
 			path = ExampleTests;
@@ -369,9 +372,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22F36B4A17A4450D005F5E8C /* SHActionSheetBlocksConvenienceTests.m in Sources */,
-				22AA100D17A4D04C00E86DF0 /* SHActionSheetBlocksFullTests.m in Sources */,
+				22F36B4A17A4450D005F5E8C /* SHActionSheetBlocksOldTests.m in Sources */,
+				22AA100D17A4D04C00E86DF0 /* SHActionSheetBlocksCallbacks.m in Sources */,
 				22AA101017A4D22200E86DF0 /* SHActionSheetBlocksSuper.m in Sources */,
+				22AA101217A5E9B500E86DF0 /* SHActionSheetBlocksSelectors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

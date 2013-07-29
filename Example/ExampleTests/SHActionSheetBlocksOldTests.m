@@ -8,11 +8,11 @@
 
 
 #import "SHActionSheetBlocksSuper.h"
-@interface SHActionSheetBlocksConvenienceTests : SHActionSheetBlocksSuper
+@interface SHActionSheetBlocksOldTests : SHActionSheetBlocksSuper
 @end
 
 
-@implementation SHActionSheetBlocksConvenienceTests
+@implementation SHActionSheetBlocksOldTests
 
 -(void)setUp; {
   [super setUp];
