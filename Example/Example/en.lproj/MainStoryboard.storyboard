@@ -4,27 +4,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="wCS-hM-E2F">
-            <objects>
-                <viewController id="4sG-Pg-SON" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Zf9-BL-Khj">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="j0v-Jb-crY">
-                        <barButtonItem key="rightBarButtonItem" title="Example" id="aBG-5r-rdJ">
-                            <connections>
-                                <segue destination="2" kind="push" id="xco-Uo-7NT"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZWP-Vj-c8g" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-442" y="52"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="jRN-Kr-m0k">
             <objects>
@@ -33,12 +12,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="4sG-Pg-SON" kind="relationship" relationship="rootViewController" id="bQ6-w4-avS"/>
+                        <segue destination="2" kind="relationship" relationship="rootViewController" id="bUg-hJ-o58"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sJd-T7-LMH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1066" y="104"/>
+            <point key="canvasLocation" x="-714" y="12"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="5">
@@ -79,9 +58,15 @@
     <classes>
         <class className="SHSecondViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SHSecondViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="unwinder:" candidateClass="UIStoryboardSegue"/>
+            </relationships>
         </class>
         <class className="SHViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SHViewController.h"/>
+        </class>
+        <class className="UIStoryboardSegue" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
