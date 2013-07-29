@@ -36,7 +36,7 @@
 
 -(void)testSeparateBlocksPerButton; {
   [self.sheet SH_addButtonWithTitle:@"Button1" withBlock:^(NSUInteger theButtonIndex) {
-    
+    STAssertEqualObjects(<#a1#>, <#a2#>, <#description, ...#>)
   }];
 }
 
