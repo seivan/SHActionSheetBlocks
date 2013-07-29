@@ -52,6 +52,7 @@
   STAssertEquals(self.sheet.firstOtherButtonIndex, -1, nil);
 }
 
+#pragma mark - Buttons
 -(void)testAddFirstButton; {
   NSInteger buttonIndex = [self.sheet SH_addButtonWithTitle:nil
                                                    withBlock:nil];
@@ -144,6 +145,7 @@
 
 }
 
+#pragma mark - Buttons Cancel
 -(void)testAddCancelButton; {
   
   NSInteger buttonIndex = [self.sheet SH_addButtonCancelWithTitle:nil withBlock:nil];
@@ -205,6 +207,7 @@
   
 }
 
+
 -(void)testSetCancelButtonBlockForFirstIndexWithExistingButtonWithTitle; {
   NSInteger buttonIndex = 0;
   [self testAddCancelButtonWithTitle];
@@ -223,7 +226,12 @@
     
   }];
   STAssertFalse(self.block == [self.sheet SH_blockForButtonIndex:buttonIndex], nil);
-  STAssertFalse(self.block == [self.sheet SH_blockForButtonIndex:buttonIndex], nil);
+  STAssertFalse(self.block == self.sheet.SH_blockForCancelButton, nil);
+  
+  [self.sheet SH_setButtonCancelBlock:self.block];
+  STAssertEqualObjects(self.block, [self.sheet SH_blockForButtonIndex:buttonIndex], nil);
+  STAssertEqualObjects(self.block, self.sheet.SH_blockForCancelButton, nil);
+
 }
 
 
@@ -232,7 +240,7 @@
   [self testAddCancelButtonWithTitleAndBlock];
 }
 
-
+#pragma mark - Buttons Destructive
 -(void)testAddDestructiveButton; {
   
   NSInteger buttonIndex = [self.sheet SH_addButtonDestructiveWithTitle:nil withBlock:nil];
@@ -310,6 +318,24 @@
 }
 
 
+-(void)testSetDestructiveButtonDifferentBlock; {
+  NSUInteger buttonIndex = [self.sheet SH_addButtonDestructiveWithTitle:@"Destructive" withBlock:^(NSUInteger theButtonIndex) {
+    
+  }];
+  STAssertFalse(self.block == [self.sheet SH_blockForButtonIndex:buttonIndex], nil);
+  STAssertFalse(self.block == self.sheet.SH_blockForDestructiveButton, nil);
+  
+  [self.sheet SH_setButtonDestructiveBlock:self.block];
+  STAssertEqualObjects(self.block, [self.sheet SH_blockForButtonIndex:buttonIndex], nil);
+  STAssertEqualObjects(self.block, self.sheet.SH_blockForDestructiveButton, nil);
+
+}
+
+
+-(void)testAddDestructiveButtonWithTwoNormalButtons; {
+  [self testAddSecondButtonWithTitleAndBlock];
+  [self testAddDestructiveButtonWithTitleAndBlock];
+}
 
 
 
