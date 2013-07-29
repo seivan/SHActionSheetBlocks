@@ -7,8 +7,10 @@
 //
 
 
+#import "SHTestCaseAdditions.h"
+
 #import "SHActionSheetBlocks.h"
-#import <SenTestingKit/SenTestingKit.h>
+
 
 
 
