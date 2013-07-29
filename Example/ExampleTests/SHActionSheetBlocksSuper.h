@@ -14,7 +14,7 @@
 
 @interface SHActionSheetBlocksSuper : SenTestCase
 
-@property(nonatomic,strong) UITabBarController  * tabVC;
+@property(nonatomic,strong) UIViewController    * vc;
 @property(nonatomic,strong) UIActionSheet       * sheet;
 @property(nonatomic,copy)   SHActionSheetBlock  block;
 
