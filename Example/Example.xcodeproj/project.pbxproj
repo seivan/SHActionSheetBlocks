@@ -12,6 +12,9 @@
 		22AA100D17A4D04C00E86DF0 /* SHActionSheetBlocksCallbacks.m in Sources */ = {isa = PBXBuildFile; fileRef = 22AA100C17A4D04C00E86DF0 /* SHActionSheetBlocksCallbacks.m */; };
 		22AA101017A4D22200E86DF0 /* SHActionSheetBlocksSuper.m in Sources */ = {isa = PBXBuildFile; fileRef = 22AA100F17A4D22200E86DF0 /* SHActionSheetBlocksSuper.m */; };
 		22AA101217A5E9B500E86DF0 /* SHActionSheetBlocksSelectors.m in Sources */ = {isa = PBXBuildFile; fileRef = 22AA101117A5E9B500E86DF0 /* SHActionSheetBlocksSelectors.m */; };
+		22AA101717A60FE400E86DF0 /* PXEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22AA101617A60FE400E86DF0 /* PXEngine.framework */; };
+		22AA101917A60FF200E86DF0 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22AA101817A60FF200E86DF0 /* CoreText.framework */; };
+		22AA101B17A60FF700E86DF0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22AA101A17A60FF700E86DF0 /* QuartzCore.framework */; };
 		22D3AEAC1742D9B8000AB469 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D3AEAB1742D9B8000AB469 /* UIKit.framework */; };
 		22D3AEAE1742D9B8000AB469 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D3AEAD1742D9B8000AB469 /* Foundation.framework */; };
 		22D3AEB01742D9B8000AB469 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D3AEAF1742D9B8000AB469 /* CoreGraphics.framework */; };
@@ -51,6 +54,9 @@
 		22AA100E17A4D06700E86DF0 /* SHActionSheetBlocksSuper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHActionSheetBlocksSuper.h; sourceTree = "<group>"; };
 		22AA100F17A4D22200E86DF0 /* SHActionSheetBlocksSuper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHActionSheetBlocksSuper.m; sourceTree = "<group>"; };
 		22AA101117A5E9B500E86DF0 /* SHActionSheetBlocksSelectors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHActionSheetBlocksSelectors.m; sourceTree = "<group>"; };
+		22AA101617A60FE400E86DF0 /* PXEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PXEngine.framework; sourceTree = "<group>"; };
+		22AA101817A60FF200E86DF0 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		22AA101A17A60FF700E86DF0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		22D3AEA81742D9B8000AB469 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22D3AEAB1742D9B8000AB469 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		22D3AEAD1742D9B8000AB469 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -81,10 +87,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22AA101B17A60FF700E86DF0 /* QuartzCore.framework in Frameworks */,
+				22AA101917A60FF200E86DF0 /* CoreText.framework in Frameworks */,
 				22D3AEAC1742D9B8000AB469 /* UIKit.framework in Frameworks */,
 				22D3AEAE1742D9B8000AB469 /* Foundation.framework in Frameworks */,
 				22D3AEB01742D9B8000AB469 /* CoreGraphics.framework in Frameworks */,
 				5B25AED73D9C4A729F20B25A /* libPods.a in Frameworks */,
+				22AA101717A60FE400E86DF0 /* PXEngine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +114,8 @@
 		22D3AE9F1742D9B8000AB469 = {
 			isa = PBXGroup;
 			children = (
+				22AA101A17A60FF700E86DF0 /* QuartzCore.framework */,
+				22AA101817A60FF200E86DF0 /* CoreText.framework */,
 				22D3AEB11742D9B8000AB469 /* Example */,
 				22F36B4217A4450D005F5E8C /* ExampleTests */,
 				22D3AEAA1742D9B8000AB469 /* Frameworks */,
@@ -125,6 +136,7 @@
 		22D3AEAA1742D9B8000AB469 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				22AA101617A60FE400E86DF0 /* PXEngine.framework */,
 				22D3AEAB1742D9B8000AB469 /* UIKit.framework */,
 				22D3AEAD1742D9B8000AB469 /* Foundation.framework */,
 				22D3AEAF1742D9B8000AB469 /* CoreGraphics.framework */,

@@ -24,7 +24,7 @@
     
   };
   
-  self.vc        = UIViewController.new;
+
   self.sheet     = [UIActionSheet SH_actionSheetWithTitle:@"Title"];
     
 }
