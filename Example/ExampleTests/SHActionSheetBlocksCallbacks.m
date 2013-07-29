@@ -64,7 +64,7 @@ typedef BOOL (^PXPredicateBlock)();
   __block BOOL isFinished = NO;
   __block BOOL isFinished2 = NO;
   [self.sheet SH_addButtonCancelWithTitle:@"Cancel" withBlock:^(NSUInteger theButtonIndex) {
-
+    isFinished2 = YES;
   }];
   
   [self.sheet SH_addButtonWithTitle:@"Button1" withBlock:^(NSUInteger theButtonIndex) {
@@ -77,6 +77,7 @@ typedef BOOL (^PXPredicateBlock)();
   
   [self.sheet SH_addButtonDestructiveWithTitle:@"Delete" withBlock:^(NSUInteger theButtonIndex) {
     isFinished = YES;
+    self.sheet.SH_blockForCancelButton(self.sheet.cancelButtonIndex);
 
   }];
   
