@@ -23,7 +23,7 @@
 }
 
 -(void)popUpActionSheetAgain; {
-  UIActionSheet * sheet = [UIActionSheet SH_actionSheetWithTitle:@"New sheet" buttonTitles:@[@"First", @"Second"] cancelTitle:@"Cancel" destructiveTitle:nil withBlock:^(NSUInteger theButtonIndex) {
+  UIActionSheet * sheet = [UIActionSheet SH_actionSheetWithTitle:@"New sheet" buttonTitles:@[@"First", @"Second"] cancelTitle:@"Cancel" destructiveTitle:nil withBlock:^(NSInteger theButtonIndex) {
     SHBlockAssert(theButtonIndex >= 0, @"Button Index is more or equal to 0");
   }];
   
@@ -42,7 +42,7 @@
   SHBlockAssert(sheet, @"Instance of a sheet");
   SHBlockAssert([sheet.title isEqualToString:title], @"Title should be set");
 
-  SHActionSheetBlock block = ^(NSUInteger theButtonIndex) {
+  SHActionSheetBlock block = ^(NSInteger theButtonIndex) {
     SHBlockAssert(theButtonIndex >= 0, @"Must have a buttonIndex");
     [weakSelf popUpActionSheetAgain];
   };

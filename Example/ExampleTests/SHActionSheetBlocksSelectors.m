@@ -20,7 +20,7 @@
   [super setUp];
   
   
-  self.block = ^(NSUInteger theButtonIndex) {
+  self.block = ^(NSInteger theButtonIndex) {
     
   };
   
@@ -124,7 +124,7 @@
   
   [self testSH_addButtonWithTitle_withBlock];
   
-  SHActionSheetBlock block = ^(NSUInteger theButtonIndex) {
+  SHActionSheetBlock block = ^(NSInteger theButtonIndex) {
     
   };
 
@@ -141,7 +141,7 @@
   [self testSH_addButtonDestructiveWithTitle_withBlock];
   STAssertEqualObjects(self.sheet.SH_blockForDestructiveButton, self.block, nil);
 
-  SHActionSheetBlock block = ^(NSUInteger theButtonIndex) {
+  SHActionSheetBlock block = ^(NSInteger theButtonIndex) {
     
   };
 
@@ -160,7 +160,7 @@
   [self testSH_addButtonCancelWithTitle_withBlock];
   STAssertEqualObjects(self.sheet.SH_blockForCancelButton, self.block, nil);
   
-  SHActionSheetBlock block = ^(NSUInteger theButtonIndex) {
+  SHActionSheetBlock block = ^(NSInteger theButtonIndex) {
     
   };
   
@@ -192,7 +192,7 @@
 
 -(void)testSH_setWillDismisBlock; {
   STAssertNil(self.sheet.SH_blockWillDismiss, nil);
-  SHActionSheetDismissBlock block = ^(UIActionSheet *theActionSheet, NSUInteger theButtonIndex) {
+  SHActionSheetDismissBlock block = ^(UIActionSheet *theActionSheet, NSInteger theButtonIndex) {
     
   };
   
@@ -202,7 +202,7 @@
 
 -(void)testSH_setDidDismisBlock; {
   STAssertNil(self.sheet.SH_blockDidDismiss, nil);
-  SHActionSheetDismissBlock block = ^(UIActionSheet *theActionSheet, NSUInteger theButtonIndex) {
+  SHActionSheetDismissBlock block = ^(UIActionSheet *theActionSheet, NSInteger theButtonIndex) {
     
   };
   

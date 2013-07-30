@@ -10,25 +10,43 @@
 
 @interface SenTestCase (SRTAdditions)
 typedef BOOL (^PXPredicateBlock)();
-
+typedef void (^PXExecuteBlock)(BOOL isFinished);
 @end
 
 @implementation SenTestCase (SRTAdditions)
 
-- (void)SH_runCurrentRunLoopUntilTestPasses:(PXPredicateBlock)predicate timeout:(NSTimeInterval)timeout; {
-  NSDate *timeoutDate = [NSDate dateWithTimeIntervalSinceNow:timeout];
+- (void)SH_runTests:(PXExecuteBlock)theExecuteBlock withCurrentRunLoopUntilTestPasses:(PXPredicateBlock)predicate timeout:(NSTimeInterval)timeout; {
+  
+  NSDate * timeoutDate = [NSDate dateWithTimeIntervalSinceNow:timeout];
   
   NSTimeInterval timeoutTime = [timeoutDate timeIntervalSinceReferenceDate];
-  NSTimeInterval currentTime;
+  NSTimeInterval currentTime = 0.0;
   
   for (currentTime = [NSDate timeIntervalSinceReferenceDate];
-       !predicate() && currentTime < timeoutTime;
+       (predicate() == NO && currentTime < timeoutTime);
        currentTime = [NSDate timeIntervalSinceReferenceDate]) {
     [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
   }
   
   STAssertTrue(currentTime <= timeoutTime, @"Timed out");
 }
+
+- (void)SH_xrunTests:(PXExecuteBlock)theExecuteBlock withCurrentRunLoopUntilTestPasses:(PXPredicateBlock)predicate timeout:(NSTimeInterval)timeout; {
+  
+  NSDate * timeoutDate = [NSDate dateWithTimeIntervalSinceNow:timeout];
+  
+  NSTimeInterval timeoutSeconds = [timeoutDate timeIntervalSinceReferenceDate];
+  NSTimeInterval currentTime = 0.0;
+  
+  for (currentTime = [NSDate timeIntervalSinceReferenceDate];
+       (predicate() == NO && currentTime < timeoutSeconds);
+       currentTime = [NSDate timeIntervalSinceReferenceDate]) {
+    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+  }
+  
+  STAssertTrue(currentTime <= timeoutSeconds, @"Timed out");
+}
+
 
 @end
 
@@ -44,7 +62,7 @@ typedef BOOL (^PXPredicateBlock)();
 
 -(void)setUp; {
   [super setUp];
-  self.block = ^(NSUInteger theButtonIndex) {};
+  self.block = ^(NSInteger theButtonIndex) {};
   self.sheet = [UIActionSheet SH_actionSheetWithTitle:@"Title"];
   self.vc = UIViewController.new;
   [UIApplication sharedApplication].keyWindow.rootViewController = self.vc;
@@ -62,30 +80,20 @@ typedef BOOL (^PXPredicateBlock)();
 
 
   __block BOOL isFinished = NO;
-  __block BOOL isFinished2 = NO;
   
-  [self SH_runCurrentRunLoopUntilTestPasses:^BOOL{
-    return isFinished;
-  } timeout:5];
   
-  [self SH_runCurrentRunLoopUntilTestPasses:^BOOL{
-    return isFinished2;
-  } timeout:5];
-
-  
-  [self.sheet SH_addButtonCancelWithTitle:@"Cancel" withBlock:^(NSUInteger theButtonIndex) {
-    isFinished2 = YES;
+  [self.sheet SH_addButtonCancelWithTitle:@"Cancel" withBlock:^(NSInteger theButtonIndex) {
   }];
   
-  [self.sheet SH_addButtonWithTitle:@"Button1" withBlock:^(NSUInteger theButtonIndex) {
+  [self.sheet SH_addButtonWithTitle:@"Button1" withBlock:^(NSInteger theButtonIndex) {
 
   }];
   
-  [self.sheet SH_addButtonWithTitle:@"Button2" withBlock:^(NSUInteger theButtonIndex) {
+  [self.sheet SH_addButtonWithTitle:@"Button2" withBlock:^(NSInteger theButtonIndex) {
 
   }];
   
-  [self.sheet SH_addButtonDestructiveWithTitle:@"Delete" withBlock:^(NSUInteger theButtonIndex) {
+  [self.sheet SH_addButtonDestructiveWithTitle:@"Delete" withBlock:^(NSInteger theButtonIndex) {
     isFinished = YES;
     self.sheet.SH_blockForCancelButton(self.sheet.cancelButtonIndex);
 
@@ -104,7 +112,10 @@ typedef BOOL (^PXPredicateBlock)();
   });
 
 
-
+  [self SH_xrunTests:nil withCurrentRunLoopUntilTestPasses:^BOOL{
+        return isFinished;
+  } timeout:5];
+  
 
 }
 
