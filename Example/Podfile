@@ -6,6 +6,7 @@ pod 'SHBarButtonItemBlocks'
 
 target :ExampleTests do
   pod 'SHTestCaseAdditions', :git => "https://github.com/seivan/SHTestCaseAdditions"
+  pod "KIF-next"
 end
 
 

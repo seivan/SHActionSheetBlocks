@@ -1,4 +1,5 @@
 PODS:
+  - KIF-next (2.0.0pre3)
   - SHActionSheetBlocks (2.1.0)
   - SHBarButtonItemBlocks (1.0.0)
   - SHObjectUserInfo (1.0.2)
@@ -7,6 +8,7 @@ PODS:
   - SHTestCaseAdditions (1.0.0)
 
 DEPENDENCIES:
+  - KIF-next
   - SHActionSheetBlocks (from `../`)
   - SHBarButtonItemBlocks
   - SHSegueBlocks
@@ -19,6 +21,7 @@ EXTERNAL SOURCES:
     :git: https://github.com/seivan/SHTestCaseAdditions
 
 SPEC CHECKSUMS:
+  KIF-next: 9035617946ec98228379f4a8088443dc04c71d62
   SHActionSheetBlocks: 926216d7b8f7f3d7210e1a59d89001a979a653a0
   SHBarButtonItemBlocks: 2d0a2b3bfff3a019a730eb789767daf02c1c753a
   SHObjectUserInfo: 579a22ce6f2705f8f121a0fa454f9cc115e96463
