@@ -6,6 +6,13 @@
 // project.
 
 
+// KIF-next
+#define COCOAPODS_POD_AVAILABLE_KIF_next
+// This library does not follow semantic-versioning,
+// so we were not able to define version macros.
+// Please contact the author.
+// Version: 2.0.0pre3.
+
 // SHActionSheetBlocks
 #define COCOAPODS_POD_AVAILABLE_SHActionSheetBlocks
 #define COCOAPODS_VERSION_MAJOR_SHActionSheetBlocks 2
@@ -17,6 +24,12 @@
 #define COCOAPODS_VERSION_MAJOR_SHBarButtonItemBlocks 1
 #define COCOAPODS_VERSION_MINOR_SHBarButtonItemBlocks 0
 #define COCOAPODS_VERSION_PATCH_SHBarButtonItemBlocks 0
+
+// SHFastEnumerationProtocols
+#define COCOAPODS_POD_AVAILABLE_SHFastEnumerationProtocols
+#define COCOAPODS_VERSION_MAJOR_SHFastEnumerationProtocols 1
+#define COCOAPODS_VERSION_MINOR_SHFastEnumerationProtocols 1
+#define COCOAPODS_VERSION_PATCH_SHFastEnumerationProtocols 0
 
 // SHObjectUserInfo
 #define COCOAPODS_POD_AVAILABLE_SHObjectUserInfo

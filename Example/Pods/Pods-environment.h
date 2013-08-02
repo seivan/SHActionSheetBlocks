@@ -18,6 +18,12 @@
 #define COCOAPODS_VERSION_MINOR_SHBarButtonItemBlocks 0
 #define COCOAPODS_VERSION_PATCH_SHBarButtonItemBlocks 0
 
+// SHFastEnumerationProtocols
+#define COCOAPODS_POD_AVAILABLE_SHFastEnumerationProtocols
+#define COCOAPODS_VERSION_MAJOR_SHFastEnumerationProtocols 1
+#define COCOAPODS_VERSION_MINOR_SHFastEnumerationProtocols 1
+#define COCOAPODS_VERSION_PATCH_SHFastEnumerationProtocols 0
+
 // SHObjectUserInfo
 #define COCOAPODS_POD_AVAILABLE_SHObjectUserInfo
 #define COCOAPODS_VERSION_MAJOR_SHObjectUserInfo 1
