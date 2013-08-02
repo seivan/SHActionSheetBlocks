@@ -12,12 +12,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="2" kind="relationship" relationship="rootViewController" id="UvO-DP-s2w"/>
+                        <segue destination="2" kind="relationship" relationship="rootViewController" id="bUg-hJ-o58"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sJd-T7-LMH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-454" y="44"/>
+            <point key="canvasLocation" x="-714" y="12"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="5">
@@ -59,15 +59,11 @@
         <class className="SHSecondViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SHSecondViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="btnFirst" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="btnSecond" candidateClass="UIButton"/>
+                <relationship kind="action" name="unwinder:" candidateClass="UIStoryboardSegue"/>
             </relationships>
         </class>
         <class className="SHViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SHViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="unwinder:" candidateClass="UIStoryboardSegue"/>
-            </relationships>
         </class>
         <class className="UIStoryboardSegue" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>

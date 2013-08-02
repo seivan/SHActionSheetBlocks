@@ -1,5 +1,13 @@
 platform :ios, '6.0' 
-link_with ['Example', 'ExampleTests']
 pod 'SHActionSheetBlocks', :path => '../'
 pod 'SHSegueBlocks'
 pod 'SHBarButtonItemBlocks'
+pod 'SHFastEnumerationProtocols'
+
+target :ExampleTests do
+  pod 'SHTestCaseAdditions', :git => "https://github.com/seivan/SHTestCaseAdditions"
+  pod "KIF-next"
+end
+
+
+

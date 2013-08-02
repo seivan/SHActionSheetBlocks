@@ -115,7 +115,7 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 @end
 
 @interface UIActionSheet (Private)
--(void)addBlock:(SHActionSheetBlock)theBlock forIndex:(NSUInteger)theIndex;
+-(void)addBlock:(SHActionSheetBlock)theBlock forIndex:(NSInteger)theIndex;
 -(void)addBlock:(id)theBlock forKey:(NSString *)theKey;
 -(id)blockForKey:(NSString *)theKey;
 @end
@@ -160,9 +160,9 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 
 #pragma mark -
 #pragma mark Adding
--(NSUInteger)SH_addButtonWithTitle:(NSString *)theTitle
+-(NSInteger)SH_addButtonWithTitle:(NSString *)theTitle
                          withBlock:(SHActionSheetBlock)theBlock; {
-  NSUInteger indexButton = [self addButtonWithTitle:theTitle];
+  NSInteger indexButton = [self addButtonWithTitle:theTitle];
   [self addBlock:[theBlock copy]  forIndex:indexButton];
   return indexButton;
   
@@ -171,17 +171,17 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 
 
 
--(NSUInteger)SH_addButtonDestructiveWithTitle:(NSString *)theTitle
+-(NSInteger)SH_addButtonDestructiveWithTitle:(NSString *)theTitle
                                     withBlock:(SHActionSheetBlock)theBlock; {
-  NSUInteger indexButton = [self SH_addButtonWithTitle:theTitle withBlock:theBlock];
+  NSInteger indexButton = [self SH_addButtonWithTitle:theTitle withBlock:theBlock];
   [self setDestructiveButtonIndex:indexButton];
   return indexButton;
   
 }
 
--(NSUInteger)SH_addButtonCancelWithTitle:(NSString *)theTitle
+-(NSInteger)SH_addButtonCancelWithTitle:(NSString *)theTitle
                                withBlock:(SHActionSheetBlock)theBlock; {
-  NSUInteger indexButton = [self SH_addButtonWithTitle:theTitle withBlock:theBlock];
+  NSInteger indexButton = [self SH_addButtonWithTitle:theTitle withBlock:theBlock];
   [self setCancelButtonIndex:indexButton];
   return indexButton;
   
@@ -195,7 +195,7 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 
 #pragma mark -
 #pragma mark Setters
--(void)SH_setButtonBlockForIndex:(NSUInteger)theButtonIndex
+-(void)SH_setButtonBlockForIndex:(NSInteger)theButtonIndex
                   withBlock:(SHActionSheetBlock)theBlock;{
   [self addBlock:theBlock forIndex:theButtonIndex];
 }
@@ -232,7 +232,7 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 #pragma mark -
 #pragma mark Getters
 
--(SHActionSheetBlock)SH_blockForButtonIndex:(NSUInteger)theButtonIndex; {
+-(SHActionSheetBlock)SH_blockForButtonIndex:(NSInteger)theButtonIndex; {
   return self.mapOfBlocks[@(theButtonIndex)];
 }
 
@@ -269,7 +269,7 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 
 #pragma mark -
 #pragma mark Privates
--(void)addBlock:(SHActionSheetBlock)theBlock forIndex:(NSUInteger)theIndex; {
+-(void)addBlock:(SHActionSheetBlock)theBlock forIndex:(NSInteger)theIndex; {
   if(theBlock) self.mapOfBlocks[@(theIndex)] = theBlock;
   else [self.mapOfBlocks removeObjectForKey:@(theIndex)];
 }

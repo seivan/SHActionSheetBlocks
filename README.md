@@ -1,6 +1,6 @@
 SHActionSheetBlocks
 ==========
-[![Build Status](https://travis-ci.org/PodFactory/SHActionSheetBlocks.png?branch=master)](https://travis-ci.org/PodFactory/SHActionSheetBlocks)
+[![Build Status](https://travis-ci.org/seivan/SHActionSheetBlocks.png?branch=master)](https://travis-ci.org/seivan/SHActionSheetBlocks)
 
 Screenshots
 ------------
@@ -74,15 +74,15 @@ API
 ```objective-c
 #pragma mark -
 #pragma mark Adding
--(NSUInteger)SH_addButtonWithTitle:(NSString *)theTitle
+-(NSInteger)SH_addButtonWithTitle:(NSString *)theTitle
                       withBlock:(SHActionSheetBlock)theBlock;
 
 ///Will add a new destructive button and make previous Destructive buttons to normal
--(NSUInteger)SH_addButtonDestructiveWithTitle:(NSString *)theTitle
+-(NSInteger)SH_addButtonDestructiveWithTitle:(NSString *)theTitle
                                     withBlock:(SHActionSheetBlock)theBlock;
 
 ///Will add a new destructive button and make previous Destructive buttons to normal
--(NSUInteger)SH_addButtonCancelWithTitle:(NSString *)theTitle
+-(NSInteger)SH_addButtonCancelWithTitle:(NSString *)theTitle
                                withBlock:(SHActionSheetBlock)theBlock;
 
 ```
@@ -95,7 +95,7 @@ API
 
 #pragma mark -
 #pragma mark Setters
--(void)SH_setButtonBlockForIndex:(NSUInteger)theButtonIndex
+-(void)SH_setButtonBlockForIndex:(NSInteger)theButtonIndex
                        withBlock:(SHActionSheetBlock)theBlock;
 
 
@@ -110,7 +110,7 @@ API
 
 #pragma mark -
 #pragma mark Getters
--(SHActionSheetBlock)SH_blockForButtonIndex:(NSUInteger)theButtonIndex;
+-(SHActionSheetBlock)SH_blockForButtonIndex:(NSInteger)theButtonIndex;
 
 @property(nonatomic,readonly) SHActionSheetBlock SH_blockForDestructiveButton;
 @property(nonatomic,readonly) SHActionSheetBlock SH_blockForCancelButton;
@@ -137,5 +137,5 @@ twitter: [@seivanheidari](https://twitter.com/seivanheidari)
 
 SHActionSheetBlocks is © 2013 [Seivan](http://www.github.com/seivan) and may be freely
 distributed under the [MIT license](http://opensource.org/licenses/MIT).
-See the [`LICENSE.md`](https://github.com/podfactory/SHActionSheetBlocks/blob/master/LICENSE.md) file.
+See the [`LICENSE.md`](https://github.com/seivan/SHActionSheetBlocks/blob/master/LICENSE.md) file.
 
