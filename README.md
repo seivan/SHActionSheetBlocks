@@ -1,6 +1,6 @@
 SHActionSheetBlocks
 ==========
-[![Build Status](https://travis-ci.org/PodFactory/SHActionSheetBlocks.png?branch=master)](https://travis-ci.org/PodFactory/SHActionSheetBlocks)
+[![Build Status](https://travis-ci.org/seivan/SHActionSheetBlocks.png?branch=master)](https://travis-ci.org/seivan/SHActionSheetBlocks)
 
 Screenshots
 ------------
@@ -137,5 +137,5 @@ twitter: [@seivanheidari](https://twitter.com/seivanheidari)
 
 SHActionSheetBlocks is © 2013 [Seivan](http://www.github.com/seivan) and may be freely
 distributed under the [MIT license](http://opensource.org/licenses/MIT).
-See the [`LICENSE.md`](https://github.com/podfactory/SHActionSheetBlocks/blob/master/LICENSE.md) file.
+See the [`LICENSE.md`](https://github.com/seivan/SHActionSheetBlocks/blob/master/LICENSE.md) file.
 
