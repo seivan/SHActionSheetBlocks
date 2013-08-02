@@ -113,12 +113,49 @@
   
   self.sheet.SH_blockForCancelButton(self.sheet.cancelButtonIndex);
   STAssertTrue(didCallCancelButton, nil);
+}
 
-
+-(void)testSheetAppearanceLifeCycleBlocks; {
+  
+  __block BOOL willShowBlock    = NO;
+  __block BOOL didShowBlock     = NO;
+  __block BOOL willDismissBlock = NO;
+  __block BOOL didDismissBlock  = NO;
 
   
+  [self.sheet SH_setWillShowBlock:^(UIActionSheet *theActionSheet) {
+    willShowBlock = YES;
+  }];
   
+  [self.sheet SH_setDidShowBlock:^(UIActionSheet *theActionSheet) {
+    didShowBlock = YES;
+  }];
+  
+  [self.sheet SH_setWillDismissBlock:^(UIActionSheet *theActionSheet, NSInteger theButtonIndex) {
+    willDismissBlock = YES;
+    STAssertEqualObjects(self.sheet, theActionSheet, nil);
+    STAssertEquals(66, theButtonIndex, nil);
+  }];
+  
+  [self.sheet SH_setDidDismissBlock:^(UIActionSheet *theActionSheet, NSInteger theButtonIndex) {
+    didDismissBlock = YES;
+    STAssertEqualObjects(self.sheet, theActionSheet, nil);
+    STAssertEquals(66, theButtonIndex, nil);
+  }];
+  
+  self.sheet.SH_blockWillShow(self.sheet);
+  STAssertTrue(willShowBlock, nil);
+  
+  self.sheet.SH_blockDidShow(self.sheet);
+  STAssertTrue(didShowBlock, nil);
 
+  self.sheet.SH_blockWillDismiss(self.sheet, 66);
+  STAssertTrue(willDismissBlock, nil);
+
+  self.sheet.SH_blockDidDismiss(self.sheet, 66);
+  STAssertTrue(didDismissBlock, nil);
+  
+  
 }
 
 @end
