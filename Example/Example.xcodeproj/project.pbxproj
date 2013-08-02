@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		220CF80A17A90A6300CD1960 /* SHActionSheetBlocksCallbacksScenarion.m in Sources */ = {isa = PBXBuildFile; fileRef = 220CF80917A90A6300CD1960 /* SHActionSheetBlocksCallbacksScenarion.m */; };
+		220CF80A17A90A6300CD1960 /* SHActionSheetBlocksCallbacksIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 220CF80917A90A6300CD1960 /* SHActionSheetBlocksCallbacksIntegration.m */; };
 		2263577E17547F7800CBF961 /* SHSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2263577D17547F7800CBF961 /* SHSecondViewController.m */; };
 		22A32ECA178892580006E64E /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 22A32EC9178892580006E64E /* default.css */; };
 		22AA100D17A4D04C00E86DF0 /* SHActionSheetBlocksCallbacks.m in Sources */ = {isa = PBXBuildFile; fileRef = 22AA100C17A4D04C00E86DF0 /* SHActionSheetBlocksCallbacks.m */; };
@@ -48,7 +48,7 @@
 
 /* Begin PBXFileReference section */
 		0A3894A9DADB492290BC8956 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
-		220CF80917A90A6300CD1960 /* SHActionSheetBlocksCallbacksScenarion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHActionSheetBlocksCallbacksScenarion.m; sourceTree = "<group>"; };
+		220CF80917A90A6300CD1960 /* SHActionSheetBlocksCallbacksIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHActionSheetBlocksCallbacksIntegration.m; sourceTree = "<group>"; };
 		2263577C17547F7800CBF961 /* SHSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHSecondViewController.h; sourceTree = "<group>"; };
 		2263577D17547F7800CBF961 /* SHSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHSecondViewController.m; sourceTree = "<group>"; };
 		22A32EC9178892580006E64E /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = default.css; sourceTree = "<group>"; };
@@ -190,7 +190,7 @@
 				22F36B4917A4450D005F5E8C /* SHActionSheetBlocksOldTests.m */,
 				22AA101117A5E9B500E86DF0 /* SHActionSheetBlocksSelectors.m */,
 				22AA100C17A4D04C00E86DF0 /* SHActionSheetBlocksCallbacks.m */,
-				220CF80917A90A6300CD1960 /* SHActionSheetBlocksCallbacksScenarion.m */,
+				220CF80917A90A6300CD1960 /* SHActionSheetBlocksCallbacksIntegration.m */,
 				22F36B4317A4450D005F5E8C /* Supporting Files */,
 			);
 			path = ExampleTests;
@@ -396,7 +396,7 @@
 				22AA100D17A4D04C00E86DF0 /* SHActionSheetBlocksCallbacks.m in Sources */,
 				22AA101017A4D22200E86DF0 /* SHActionSheetBlocksSuper.m in Sources */,
 				22AA101217A5E9B500E86DF0 /* SHActionSheetBlocksSelectors.m in Sources */,
-				220CF80A17A90A6300CD1960 /* SHActionSheetBlocksCallbacksScenarion.m in Sources */,
+				220CF80A17A90A6300CD1960 /* SHActionSheetBlocksCallbacksIntegration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

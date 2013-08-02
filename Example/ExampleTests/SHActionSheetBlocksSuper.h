@@ -7,14 +7,14 @@
 //
 
 
+#import "KIF.h"
 #import "SHTestCaseAdditions.h"
-
 #import "SHActionSheetBlocks.h"
 
 
 
 
-@interface SHActionSheetBlocksSuper : SenTestCase
+@interface SHActionSheetBlocksSuper : KIFTestCase
 
 @property(nonatomic,strong) UIViewController    * vc;
 @property(nonatomic,strong) UIActionSheet       * sheet;
