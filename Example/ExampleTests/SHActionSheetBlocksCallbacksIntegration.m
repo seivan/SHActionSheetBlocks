@@ -102,6 +102,53 @@
 
 }
 
+-(void)testSheetAppearanceLifeCycleBlocks; {
+  
+    NSString * buttonTitle   = @"Delete";
+  
+  __block BOOL willShowBlock    = NO;
+  __block BOOL didShowBlock     = NO;
+  __block BOOL willDismissBlock = NO;
+  __block BOOL didDismissBlock  = NO;
+  
+//  [self SH_performAsyncTestsWithinBlock:^(BOOL *didFinish) {
+    
+    [self.sheet SH_addButtonDestructiveWithTitle:buttonTitle withBlock:^(NSInteger theButtonIndex) {}];
+    
+    [self.sheet SH_setWillShowBlock:^(UIActionSheet *theActionSheet) {
+      willShowBlock = YES;
+    }];
+    
+    [self.sheet SH_setDidShowBlock:^(UIActionSheet *theActionSheet) {
+      didShowBlock = YES;
+    }];
+    
+    [self.sheet SH_setWillDismissBlock:^(UIActionSheet *theActionSheet, NSInteger theButtonIndex) {
+      willDismissBlock = YES;
+      STAssertEqualObjects(self.sheet, theActionSheet, nil);
+      STAssertEquals(theButtonIndex, theActionSheet.destructiveButtonIndex, nil);
+    }];
+    
+    [self.sheet SH_setDidDismissBlock:^(UIActionSheet *theActionSheet, NSInteger theButtonIndex) {
+      didDismissBlock = YES;
+      STAssertEqualObjects(self.sheet, theActionSheet, nil);
+      STAssertEquals(theButtonIndex, theActionSheet.destructiveButtonIndex, nil);
+    }];
+  
+  [self.sheet showInView:self.vc.view];
+  [tester tapViewWithAccessibilityLabel:buttonTitle];
+//  } withTimeout:5];
+  
+  
+  STAssertTrue(willShowBlock, nil);
+  STAssertTrue(didShowBlock, nil);
+  STAssertTrue(willDismissBlock, nil);
+  STAssertTrue(didDismissBlock, nil);
+  
+  
+}
+
+
 
 
 @end
