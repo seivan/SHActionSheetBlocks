@@ -4,7 +4,6 @@ SHActionSheetBlocks
 [![Version](http://cocoapod-badges.herokuapp.com/v/SHActionSheetBlocks/badge.png)](http://cocoadocs.org/docsets/SHActionSheetBlocks)
 [![Platform](http://cocoapod-badges.herokuapp.com/p/SHActionSheetBlocks/badge.png)](http://cocoadocs.org/docsets/SHActionSheetBlocks)
 
-
 Screenshots
 ------------
 [![Green default](/Screenshots/Green/default_th.jpg "Green default")](https://raw.github.com/seivan/SHActionSheetBlocks/master/Screenshots/Green/default.png)
