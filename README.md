@@ -6,19 +6,6 @@ SHActionSheetBlocks
 
 > This pod is used by [`SHUIKitBlocks`](https://github.com/seivan/SHUIKitBlocks) as part of many components covering to plug the holes missing from Foundation, UIKit, CoreLocation, GameKit, MapKit and other aspects of an iOS application's architecture.
 
-Screenshots
-------------
-[![Green default](/Screenshots/Green/default_th.jpg "Green default")](https://raw.github.com/seivan/SHActionSheetBlocks/master/Screenshots/Green/default.png)
-[![Green selected](/Screenshots/Green/selected_th.jpg "Green selected")](https://raw.github.com/seivan/SHActionSheetBlocks/master/Screenshots/Green/selected.png)
-[![Green cancel-selected](/Screenshots/Green/cancel-selected_th.jpg "Green cancel-selected")](https://raw.github.com/seivan/SHActionSheetBlocks/master/Screenshots/Green/cancel-selected.png)
-
-[![Blue default](/Screenshots/Blue/default_th.jpg "Blue default")](https://raw.github.com/seivan/SHActionSheetBlocks/master/Screenshots/Blue/default.png)
-[![Blue selected](/Screenshots/Blue/selected_th.jpg "Blue selected")](https://raw.github.com/seivan/SHActionSheetBlocks/master/Screenshots/Blue/selected.png)
-[![Blue cancel-selected](/Screenshots/Blue/cancel-selected_th.jpg "Blue cancel-selected")](https://raw.github.com/seivan/SHActionSheetBlocks/master/Screenshots/Blue/cancel-selected.png)
-
-[![Purple default](/Screenshots/Purple/default_th.jpg "Purple default")](https://raw.github.com/seivan/SHActionSheetBlocks/master/Screenshots/Purple/default.png)
-[![Purple selected](/Screenshots/Purple/selected_th.jpg "Purple selected")](https://raw.github.com/seivan/SHActionSheetBlocks/master/Screenshots/Purple/selected.png)
-[![Purple cancel-selected](/Screenshots/Purple/cancel-selected_th.jpg "Purple cancel-selected")](https://raw.github.com/seivan/SHActionSheetBlocks/master/Screenshots/Purple/cancel-selected.png)
 
 Overview
 --------
