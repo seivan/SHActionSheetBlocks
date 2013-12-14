@@ -6,7 +6,7 @@ pod 'SHFastEnumerationProtocols'
 
 target :ExampleTests do
   pod 'SHTestCaseAdditions'
-  pod "KIF-next"
+  pod "KIF"
 end
 
 

@@ -1,5 +1,5 @@
 PODS:
-  - KIF-next (2.0.0pre5)
+  - KIF (2.0.0)
   - SHActionSheetBlocks (2.2.0)
   - SHBarButtonItemBlocks (1.1.0)
   - SHFastEnumerationProtocols (1.3.0)
@@ -9,7 +9,7 @@ PODS:
   - SHTestCaseAdditions (1.2.1)
 
 DEPENDENCIES:
-  - KIF-next
+  - KIF
   - SHActionSheetBlocks (from `../`)
   - SHBarButtonItemBlocks
   - SHFastEnumerationProtocols
@@ -21,7 +21,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  KIF-next: 3395dc3df4491f9b7a36d39539ecebefbcc800a8
+  KIF: ff3b46deb62ce3f8e99c6a2c786729e1eea241ba
   SHActionSheetBlocks: d5996e0b8d9ccea156f0fadf752ffd34acd672fe
   SHBarButtonItemBlocks: 9a46094653b708ee34d0667f78e0f3d46a550ab5
   SHFastEnumerationProtocols: b83587ae41c1990851bcd675da01636a1b2addc8

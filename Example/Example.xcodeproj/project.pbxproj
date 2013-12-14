@@ -9,11 +9,9 @@
 /* Begin PBXBuildFile section */
 		220CF80A17A90A6300CD1960 /* SHActionSheetBlocksCallbacksIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 220CF80917A90A6300CD1960 /* SHActionSheetBlocksCallbacksIntegration.m */; };
 		2263577E17547F7800CBF961 /* SHSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2263577D17547F7800CBF961 /* SHSecondViewController.m */; };
-		22A32ECA178892580006E64E /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 22A32EC9178892580006E64E /* default.css */; };
 		22AA100D17A4D04C00E86DF0 /* SHActionSheetBlocksCallbacks.m in Sources */ = {isa = PBXBuildFile; fileRef = 22AA100C17A4D04C00E86DF0 /* SHActionSheetBlocksCallbacks.m */; };
 		22AA101017A4D22200E86DF0 /* SHActionSheetBlocksSuper.m in Sources */ = {isa = PBXBuildFile; fileRef = 22AA100F17A4D22200E86DF0 /* SHActionSheetBlocksSuper.m */; };
 		22AA101217A5E9B500E86DF0 /* SHActionSheetBlocksSelectors.m in Sources */ = {isa = PBXBuildFile; fileRef = 22AA101117A5E9B500E86DF0 /* SHActionSheetBlocksSelectors.m */; };
-		22AA101717A60FE400E86DF0 /* PXEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22AA101617A60FE400E86DF0 /* PXEngine.framework */; };
 		22AA101917A60FF200E86DF0 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22AA101817A60FF200E86DF0 /* CoreText.framework */; };
 		22AA101B17A60FF700E86DF0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22AA101A17A60FF700E86DF0 /* QuartzCore.framework */; };
 		22D3AEAC1742D9B8000AB469 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D3AEAB1742D9B8000AB469 /* UIKit.framework */; };
@@ -51,12 +49,10 @@
 		220CF80917A90A6300CD1960 /* SHActionSheetBlocksCallbacksIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHActionSheetBlocksCallbacksIntegration.m; sourceTree = "<group>"; };
 		2263577C17547F7800CBF961 /* SHSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHSecondViewController.h; sourceTree = "<group>"; };
 		2263577D17547F7800CBF961 /* SHSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHSecondViewController.m; sourceTree = "<group>"; };
-		22A32EC9178892580006E64E /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = default.css; sourceTree = "<group>"; };
 		22AA100C17A4D04C00E86DF0 /* SHActionSheetBlocksCallbacks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHActionSheetBlocksCallbacks.m; sourceTree = "<group>"; };
 		22AA100E17A4D06700E86DF0 /* SHActionSheetBlocksSuper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHActionSheetBlocksSuper.h; sourceTree = "<group>"; };
 		22AA100F17A4D22200E86DF0 /* SHActionSheetBlocksSuper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHActionSheetBlocksSuper.m; sourceTree = "<group>"; };
 		22AA101117A5E9B500E86DF0 /* SHActionSheetBlocksSelectors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHActionSheetBlocksSelectors.m; sourceTree = "<group>"; };
-		22AA101617A60FE400E86DF0 /* PXEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PXEngine.framework; sourceTree = "<group>"; };
 		22AA101817A60FF200E86DF0 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		22AA101A17A60FF700E86DF0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		22D3AEA81742D9B8000AB469 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,7 +92,6 @@
 				22D3AEAC1742D9B8000AB469 /* UIKit.framework in Frameworks */,
 				22D3AEAE1742D9B8000AB469 /* Foundation.framework in Frameworks */,
 				22D3AEB01742D9B8000AB469 /* CoreGraphics.framework in Frameworks */,
-				22AA101717A60FE400E86DF0 /* PXEngine.framework in Frameworks */,
 				31D76AABDB594B749F84C1BD /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,7 +136,6 @@
 			children = (
 				22AA101A17A60FF700E86DF0 /* QuartzCore.framework */,
 				22AA101817A60FF200E86DF0 /* CoreText.framework */,
-				22AA101617A60FE400E86DF0 /* PXEngine.framework */,
 				22D3AEAB1742D9B8000AB469 /* UIKit.framework */,
 				22D3AEAD1742D9B8000AB469 /* Foundation.framework */,
 				22D3AEAF1742D9B8000AB469 /* CoreGraphics.framework */,
@@ -177,7 +171,6 @@
 				22D3AEBD1742D9B8000AB469 /* Default.png */,
 				22D3AEBF1742D9B8000AB469 /* Default@2x.png */,
 				22D3AEC11742D9B8000AB469 /* Default-568h@2x.png */,
-				22A32EC9178892580006E64E /* default.css */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -287,7 +280,6 @@
 				22D3AEC01742D9B8000AB469 /* Default@2x.png in Resources */,
 				22D3AEC21742D9B8000AB469 /* Default-568h@2x.png in Resources */,
 				22D3AEC51742D9B8000AB469 /* MainStoryboard.storyboard in Resources */,
-				22A32ECA178892580006E64E /* default.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
