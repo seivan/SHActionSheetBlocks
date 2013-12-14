@@ -20,8 +20,8 @@
 
 
 @implementation SHSegueBlocksManager
-#pragma mark -
-#pragma mark Init & Dealloc
+
+#pragma mark - Init & Dealloc
 -(instancetype)init; {
   self = [super init];
   if (self) {
@@ -45,8 +45,8 @@
   
 }
 
-#pragma mark -
-#pragma mark Debugger
+
+#pragma mark - Debugger
 -(void)SH_memoryDebugger; {
   double delayInSeconds = 5.0;
   dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
@@ -68,8 +68,8 @@
 
 @implementation UIViewController (SHSegueBlock)
 
-#pragma mark -
-#pragma mark Segue Performers
+
+#pragma mark - Segue Performers
 
 
 -(void)SH_performSegueWithIdentifier:(NSString *)theIdentifier
@@ -89,6 +89,16 @@
   }];
 }
 
+-(void)SH_performSegueWithIdentifier:(NSString *)theIdentifier
+                        withUserInfo:(NSDictionary *)theUserInfo; {
+  [self SH_performSegueWithIdentifier:theIdentifier andDestinationViewController:^(UIViewController * theDestinationViewController) {
+    theDestinationViewController.SH_userInfo = [theUserInfo mutableCopy];
+  }];
+}
+
+
+
+#pragma mark - Helpers
 
 -(BOOL)SH_handlesBlockForSegue:(UIStoryboardSegue *)theSegue; {
   BOOL handlesBlockForSegue = NO;
@@ -103,31 +113,12 @@
 }
 
 
-#pragma mark -
-#pragma mark Don't Use
--(void)SH_performSegueWithIdentifier:(NSString *)theIdentifier
-                         withUserInfo:(NSDictionary *)theUserInfo; {
-  [self SH_performSegueWithIdentifier:theIdentifier andDestinationViewController:^(UIViewController * theDestinationViewController) {
-    theDestinationViewController.SH_userInfo = [theUserInfo mutableCopy];
-  }];
-}
 
-//- (void)SH_performSegueWithIdentifier:(NSString *)identifier
-//      andPrepareUserInfoForSegueBlock:(SHPrepareUserInfoForSegue)theBlock; {
-//  [self SH_performSegueWithIdentifier:identifier andPrepareForSegueBlock:^(UIStoryboardSegue *theSegue) {
-//    UIViewController * destionationViewController = theSegue.destinationViewController;
-//    theBlock(destionationViewController.userInfo);
-//  }];
-//}
+#pragma mark - Privates
 
-#pragma mark -
-#pragma mark Privates
+#pragma mark - Properties
 
-#pragma mark -
-#pragma mark Properties
-
-#pragma mark -
-#pragma mark Getters
+#pragma mark - Getters
 -(NSMapTable *)mapBlocks; {
   return SHSegueBlocksManager.sharedManager.mapBlocks;
 }

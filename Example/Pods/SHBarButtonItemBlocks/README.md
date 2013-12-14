@@ -1,5 +1,8 @@
 SHBarButtonItemBlocks
 ==========
+[![Build Status](https://travis-ci.org/seivan/SHBarButtonItemBlocks.png?branch=master)](https://travis-ci.org/seivan/SHBarButtonItemBlocks)
+[![Version](http://cocoapod-badges.herokuapp.com/v/SHBarButtonItemBlocks/badge.png)](http://cocoadocs.org/docsets/SHBarButtonItemBlocks)
+[![Platform](http://cocoapod-badges.herokuapp.com/p/SHBarButtonItemBlocks/badge.png)](http://cocoadocs.org/docsets/SHBarButtonItemBlocks)
 
 Overview
 --------
@@ -42,11 +45,11 @@ Setup
 Put this either in specific files or your project prefix file
 
 ```objective-c
-#import 'UIBarButtonItem+SHBarButtonItemBlocks.h'
+#import "UIBarButtonItem+SHBarButtonItemBlocks.h"
 ```
 or
 ```objective-c
-#import 'SHBarButtonItemBlocks.h'
+#import "SHBarButtonItemBlocks.h"
 ```
 
 API

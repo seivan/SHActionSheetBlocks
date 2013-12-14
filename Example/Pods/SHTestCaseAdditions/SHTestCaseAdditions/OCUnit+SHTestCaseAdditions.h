@@ -3,6 +3,7 @@
 
 
 #if (__IPHONE_OS_VERSION_MIN_REQUIRED >= 70000 || __MAC_OS_X_VERSION_MIN_REQUIRED >= 1090)
+#import <XCTest/XCTest.h>
 @interface XCTestCase (SHTestCaseAdditions)
 #else
 #import <SenTestingKit/SenTestingKit.h>
@@ -17,6 +18,9 @@ typedef void (^SHTestCaseBlock)(BOOL *didFinish);
 
 #pragma mark -
 #pragma mark Helpers
+-(void)SH_waitForTimeInterval:(NSTimeInterval)theTimeInterval;
+
+
 -(void)SH_runLoopUntilTestPassesWithBlock:(SHTestCaseConditional)theBlock
                               withTimeOut:(NSTimeInterval)theTimeout;
 

@@ -10,7 +10,7 @@
     return [[theEnumeration SH_toArray] valueForKeyPath:@"@avg.self"];
 //  SEL doubleValueSelector = @selector(doubleValue);
 //  __block CGFloat sum = 0;
-//  __block NSUInteger counter = 0;
+//  __block NSInteger counter = 0;
 //  for (id obj in theEnumeration) {
 //    counter += 1;
 //    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:

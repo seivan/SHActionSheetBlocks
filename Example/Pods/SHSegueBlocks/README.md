@@ -1,5 +1,9 @@
 SHSegueBlocks
 ==========
+[![Build Status](https://travis-ci.org/seivan/SHSegueBlocks.png?branch=master)](https://travis-ci.org/seivan/SHSegueBlocks)
+[![Version](http://cocoapod-badges.herokuapp.com/v/SHSegueBlocks/badge.png)](http://cocoadocs.org/docsets/SHSegueBlocks)
+[![Platform](http://cocoapod-badges.herokuapp.com/p/SHSegueBlocks/badge.png)](http://cocoadocs.org/docsets/SHSegueBlocks)
+
 
 Overview
 --------
@@ -31,11 +35,11 @@ Setup
 Put this either in specific controllers or your project prefix file
 
 ```objective-c
-#import 'UIViewController+SHSegueBlocks.h'
+#import "UIViewController+SHSegueBlocks.h"
 ```
 or
 ```objective-c
-#import 'SHSegueBlocks.h'
+#import "SHSegueBlocks.h"
 ```
 
 Usage
@@ -71,6 +75,10 @@ Bonus - [SH_userInfo from SHObjectUserInfo](http://www.github.com/seivan/SHOBjec
 ------ 
 
 You can directly set a userInfo (mutable) dictionary directly on the segueu selector for the destination controller
+
+```objective-c
+  #import "SHObjectUserInfo.h"
+```
 
 ```objective-c
 [self SH_performSegueWithIdentifier:@"unwinder" withUserInfo:@{@"date" : [NSDate date]}];

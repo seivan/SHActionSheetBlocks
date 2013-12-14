@@ -1,5 +1,8 @@
 SHObjectUserInfo
 ==========
+[![Build Status](https://travis-ci.org/seivan/SHObjectUserInfo.png?branch=master)](https://travis-ci.org/seivan/SHObjectUserInfo)
+[![Version](http://cocoapod-badges.herokuapp.com/v/SHObjectUserInfo/badge.png)](http://cocoadocs.org/docsets/SHObjectUserInfo)
+[![Platform](http://cocoapod-badges.herokuapp.com/p/SHObjectUserInfo/badge.png)](http://cocoadocs.org/docsets/SHObjectUserInfo)
 
 Overview
 --------
@@ -10,7 +13,7 @@ SHObjectUserInfo is a category on top of NSObject to allow userInfo dictionary w
 Swizzle & Junk free 
 -------------------
 
-No developer psyches were harmed or killed for this. I've noticed other similar libraries all swizzle like there is no tomorrow. If the API can remains the same without Swizzle, **then don't fucking Swizzle.**
+No developer psyches were harmed or killed for this. I've noticed other similar libraries all swizzle like there is no tomorrow. If the API can remains the same without Swizzle, **then don't Swizzle.**
 
 All in all; 50 loc for userInfo
 
@@ -30,13 +33,13 @@ Setup
 Put this either in specific classes or your project prefix file
 
 ```objective-c
-#import 'NSObject+SHObjectUserInfo.h'
+#import "NSObject+SHObjectUserInfo.h"
 ```
 
 or
 
 ```objective-c
-#import 'SHObjectUserInfo.h'
+#import "SHObjectUserInfo.h"
 ```
 
 Usage
@@ -73,13 +76,13 @@ or
 Contact
 -------
 
-If you end up using SHSegueBlocks in a project, I'd love to hear about it.
+If you end up using SHObjectUserInfo in a project, I'd love to hear about it.
 
 email: [seivan.heidari@icloud.com](mailto:seivan.heidari@icloud.com)  
 twitter: [@seivanheidari](https://twitter.com/seivanheidari)
 
 ## License
 
-SHSegueBlocks is © 2013 [Seivan](http://www.github.com/seivan) and may be freely
+SHObjectUserInfo is © 2013 [Seivan](http://www.github.com/seivan) and may be freely
 distributed under the [MIT license](http://opensource.org/licenses/MIT).
-See the [`LICENSE.md`](https://github.com/seivan/SHSegueBlocks/blob/master/LICENSE.md) file.
+See the [`LICENSE.md`](https://github.com/seivan/SHObjectUserInfo/blob/master/LICENSE.md) file.

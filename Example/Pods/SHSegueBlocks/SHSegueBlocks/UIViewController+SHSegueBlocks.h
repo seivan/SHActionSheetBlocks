@@ -16,13 +16,14 @@ typedef void(^SHPrepareForSegueWithUserInfo)(NSMutableDictionary * theUserInfo);
 
 
 @interface UIViewController (SHSegueBlocks)
-#pragma mark -
-#pragma mark Properties
 
-@property(nonatomic,strong) NSMutableDictionary * SH_userInfo;
 
-#pragma mark -
-#pragma mark Segue Performers
+//#pragma mark - Properties
+//
+//@property(nonatomic,strong) NSMutableDictionary * SH_userInfo;
+
+
+#pragma mark - Segue Performers
 
 
 -(void)SH_performSegueWithIdentifier:(NSString *)theIdentifier
@@ -31,13 +32,13 @@ typedef void(^SHPrepareForSegueWithUserInfo)(NSMutableDictionary * theUserInfo);
 -(void)SH_performSegueWithIdentifier:(NSString *)theIdentifier
              andDestinationViewController:(SHPrepareForSegueDestinationViewController)theBlock;
 
-
--(BOOL)SH_handlesBlockForSegue:(UIStoryboardSegue *)theSegue;
-#pragma mark -
-#pragma mark Don't Use
-//I don't recomend using this - it's stupid. If you need your destination controller to have certain properties, use a fucking protocol.
 -(void)SH_performSegueWithIdentifier:(NSString *)theIdentifier
-              withUserInfo:(NSDictionary *)theUserInfo;
+                        withUserInfo:(NSDictionary *)theUserInfo;
+
+
+#pragma mark - Helpers
+-(BOOL)SH_handlesBlockForSegue:(UIStoryboardSegue *)theSegue;
+
 
 
 @end

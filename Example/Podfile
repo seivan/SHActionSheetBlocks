@@ -5,7 +5,7 @@ pod 'SHBarButtonItemBlocks'
 pod 'SHFastEnumerationProtocols'
 
 target :ExampleTests do
-  pod 'SHTestCaseAdditions', :git => "https://github.com/seivan/SHTestCaseAdditions"
+  pod 'SHTestCaseAdditions'
   pod "KIF-next"
 end
 

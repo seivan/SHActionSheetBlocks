@@ -1,7 +1,10 @@
 SHFastEnumerationProtocols
 ==========
-[![Build Status](https://travis-ci.org/PodFactory/SHFastEnumerationProtocols.png?branch=master)](https://travis-ci.org/PodFactory/SHFastEnumerationProtocols)
+[![Build Status](https://travis-ci.org/seivan/SHFastEnumerationProtocols.png?branch=master)](https://travis-ci.org/seivan/SHFastEnumerationProtocols)
+[![Version](http://cocoapod-badges.herokuapp.com/v/SHFastEnumerationProtocols/badge.png)](http://cocoadocs.org/docsets/SHFastEnumerationProtocols)
+[![Platform](http://cocoapod-badges.herokuapp.com/p/SHFastEnumerationProtocols/badge.png)](http://cocoadocs.org/docsets/SHFastEnumerationProtocols)
 
+> This pod is used by [`SHFoundationAdditions`](https://github.com/seivan/SHFoundationAdditions) as part of many components covering to plug the holes missing from Foundation, UIKit, CoreLocation, GameKit, MapKit and other aspects of an iOS application's architecture.
 
 Overview
 --------
@@ -18,13 +21,15 @@ Tested and ready.
 * NSDictionary and NSMutableDictionary 
 * NSMapTable
 
-TODO: NSIndexSet, NSMutableIndexSet and NSEnumerator. 
+TODO: NSIndexSet, NSMutableIndexSet and NSEnumerator.
+ 
+TODO: Keyed protocols
 
 
 API
 ----------
 
-#### [SHFastEnumerationProtocols](https://github.com/PodFactory/SHFastEnumerationProtocols#api-1)
+#### [SHFastEnumerationProtocols](https://github.com/seivan/SHFastEnumerationProtocols#api-1)
 
 
 
@@ -59,26 +64,46 @@ API
 #pragma mark - Block Definitions
 //obj is the key for keyed indexed classes (NSDictionary, NSMapTable)
 typedef void (^SHIteratorBlock)(id obj);
-typedef void (^SHIteratorWithIndexBlock)(id obj, NSUInteger index) ;
+typedef void (^SHIteratorWithIndexBlock)(id obj, NSInteger index) ;
 
 typedef id (^SHIteratorReturnIdBlock)(id obj);
 typedef id (^SHIteratorReduceBlock)(id memo, id obj);
 
-typedef BOOL (^SHIteratorReturnTruthBlock)(id obj);
+typedef BOOL (^SHIteratorPredicateBlock)(id obj);
 
 #pragma mark - <SHFastEnumerationBlocks>
 @protocol SHFastEnumerationBlocks <NSObject>
 @required
+
+//obj is the key for keyed indexed classes (NSDictionary, NSMapTable)
 -(void)SH_each:(SHIteratorBlock)theBlock;
--(void)SH_concurrentEach:(SHIteratorBlock)theBlock;
--(instancetype)SH_map:(SHIteratorReturnIdBlock)theBlock; //Collect
--(id)SH_reduceValue:(id)theValue withBlock:(SHIteratorReduceBlock)theBlock; //Inject/FoldLeft
--(id)SH_find:(SHIteratorReturnTruthBlock)theBlock; //Match
--(instancetype)SH_findAll:(SHIteratorReturnTruthBlock)theBlock; //Select/Filter
--(instancetype)SH_reject:(SHIteratorReturnTruthBlock)theBlock; //!Select/Filter
--(BOOL)SH_all:(SHIteratorReturnTruthBlock)theBlock; //Every
--(BOOL)SH_any:(SHIteratorReturnTruthBlock)theBlock; //Some
--(BOOL)SH_none:(SHIteratorReturnTruthBlock)theBlock; // !Every
+
+//the loop is on HIGH queue, each iteration on BACKGROUND, completion callback is on main
+-(void)SH_concurrentEach:(SHIteratorBlock)theBlock onComplete:(SHIteratorBlock)theCompleteBlock;
+
+//Collect
+-(instancetype)SH_map:(SHIteratorReturnIdBlock)theBlock;
+
+//Inject/FoldLeft
+-(id)SH_reduceValue:(id)theValue withBlock:(SHIteratorReduceBlock)theBlock;
+
+//Match
+-(id)SH_find:(SHIteratorPredicateBlock)theBlock;
+
+//Select/Filter
+-(instancetype)SH_findAll:(SHIteratorPredicateBlock)theBlock;
+
+//!Select/Filter
+-(instancetype)SH_reject:(SHIteratorPredicateBlock)theBlock;
+
+//Every
+-(BOOL)SH_all:(SHIteratorPredicateBlock)theBlock;
+
+//Some
+-(BOOL)SH_any:(SHIteratorPredicateBlock)theBlock;
+
+// !Every
+-(BOOL)SH_none:(SHIteratorPredicateBlock)theBlock;
 @end
 
 #pragma mark - <SHFastEnumerationProperties>
@@ -134,8 +159,8 @@ typedef BOOL (^SHIteratorReturnTruthBlock)(id obj);
 @protocol SHMutableFastEnumerationBlocks <NSObject>
 @required
 -(void)SH_modifyMap:(SHIteratorReturnIdBlock)theBlock;
--(void)SH_modifyFindAll:(SHIteratorReturnTruthBlock)theBlock;
--(void)SH_modifyReject:(SHIteratorReturnTruthBlock)theBlock;
+-(void)SH_modifyFindAll:(SHIteratorPredicateBlock)theBlock;
+-(void)SH_modifyReject:(SHIteratorPredicateBlock)theBlock;
 @end
 
 
@@ -143,7 +168,7 @@ typedef BOOL (^SHIteratorReturnTruthBlock)(id obj);
 @protocol SHMutableFastEnumerationOrdered <NSObject>
 @required
 -(void)SH_modifyReverse;
--(id)SH_popObjectAtIndex:(NSUInteger)theIndex;
+-(id)SH_popObjectAtIndex:(NSInteger)theIndex;
 -(id)SH_popFirstObject;
 -(id)SH_popLastObject;
 @end
@@ -164,5 +189,5 @@ twitter: [@seivanheidari](https://twitter.com/seivanheidari)
 
 SHFastEnumerationProtocols is © 2013 [Seivan](http://www.github.com/seivan) and may be freely
 distributed under the [MIT license](http://opensource.org/licenses/MIT).
-See the [`LICENSE.md`](https://github.com/PodFactory/SHFastEnumerationProtocols/blob/master/LICENSE.md) file.
+See the [`LICENSE.md`](https://github.com/seivan/SHFastEnumerationProtocols/blob/master/LICENSE.md) file.
 
