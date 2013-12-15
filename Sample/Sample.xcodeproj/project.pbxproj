@@ -56,7 +56,6 @@
 		229FA471185DFD6200483903 /* SHViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHViewController.m; sourceTree = "<group>"; };
 		229FA473185DFD6200483903 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		229FA47A185DFD6200483903 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		229FA4A1185DFD9000483903 /* Sample copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Sample copy-Info.plist"; path = "/Users/seivan/Documents/Projects/BadPandaStudio/Pods/SHActionSheetBlocks/Sample/Sample copy-Info.plist"; sourceTree = "<absolute>"; };
 		229FA4A6185DFEC600483903 /* Library.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Library.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		229FA4AC185DFEC600483903 /* Library-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Library-Info.plist"; sourceTree = "<group>"; };
 		229FA4AE185DFEC600483903 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -113,7 +112,6 @@
 				229FA4C2185DFEC600483903 /* LibraryTests */,
 				229FA45A185DFD6200483903 /* Frameworks */,
 				229FA459185DFD6200483903 /* Products */,
-				229FA4A1185DFD9000483903 /* Sample copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
