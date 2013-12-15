@@ -1,0 +1,19 @@
+platform :ios, '7.0' 
+
+pod 'SHActionSheetBlocks', :path => '../'
+
+target :Sample do
+  link_with 'Sample'
+  pod 'SHSegueBlocks'
+  pod 'SHBarButtonItemBlocks'
+  pod 'SHFastEnumerationProtocols'
+end
+
+target :Library do
+  link_with 'Library'
+  #pod 'SHTestCaseAdditions'
+  pod "KIF/xctest", :git => "https://github.com/tonyd256/KIF", :branch => "xctest"
+end
+
+
+
