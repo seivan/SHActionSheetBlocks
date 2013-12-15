@@ -23,7 +23,7 @@
 }
 
 -(void)testExample; {
-  XCTAssertEqualObjects(UILabel.new, UILabel.new);
+  XCTAssertEqualObjects([UILabel.new class], [UILabel.new class]);
 }
 
 -(void)testExampleTwo; {
