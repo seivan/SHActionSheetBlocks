@@ -56,9 +56,6 @@
 		229FA471185DFD6200483903 /* SHViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHViewController.m; sourceTree = "<group>"; };
 		229FA473185DFD6200483903 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		229FA47A185DFD6200483903 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		229FA482185DFD6200483903 /* SampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SampleTests-Info.plist"; sourceTree = "<group>"; };
-		229FA484185DFD6200483903 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		229FA486185DFD6200483903 /* SampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleTests.m; sourceTree = "<group>"; };
 		229FA4A1185DFD9000483903 /* Sample copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Sample copy-Info.plist"; path = "/Users/seivan/Documents/Projects/BadPandaStudio/Pods/SHActionSheetBlocks/Sample/Sample copy-Info.plist"; sourceTree = "<absolute>"; };
 		229FA4A6185DFEC600483903 /* Library.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Library.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		229FA4AC185DFEC600483903 /* Library-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Library-Info.plist"; sourceTree = "<group>"; };
@@ -112,7 +109,6 @@
 			isa = PBXGroup;
 			children = (
 				229FA461185DFD6200483903 /* Sample */,
-				229FA480185DFD6200483903 /* SampleTests */,
 				229FA4AA185DFEC600483903 /* Library */,
 				229FA4C2185DFEC600483903 /* LibraryTests */,
 				229FA45A185DFD6200483903 /* Frameworks */,
@@ -163,24 +159,6 @@
 				229FA464185DFD6200483903 /* InfoPlist.strings */,
 				229FA467185DFD6200483903 /* main.m */,
 				229FA469185DFD6200483903 /* Sample-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		229FA480185DFD6200483903 /* SampleTests */ = {
-			isa = PBXGroup;
-			children = (
-				229FA486185DFD6200483903 /* SampleTests.m */,
-				229FA481185DFD6200483903 /* Supporting Files */,
-			);
-			path = SampleTests;
-			sourceTree = "<group>";
-		};
-		229FA481185DFD6200483903 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				229FA482185DFD6200483903 /* SampleTests-Info.plist */,
-				229FA483185DFD6200483903 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -398,14 +376,6 @@
 				229FA46E185DFD6200483903 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		229FA483185DFD6200483903 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				229FA484185DFD6200483903 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		229FA4AD185DFEC600483903 /* InfoPlist.strings */ = {
