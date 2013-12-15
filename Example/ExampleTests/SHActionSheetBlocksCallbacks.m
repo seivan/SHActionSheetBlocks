@@ -66,10 +66,10 @@
   
 //    } withTimeout:5];
 
-  STAssertTrue(didCallCancelButton, nil);
-  STAssertTrue(didCallButtonOne, nil);
-  STAssertTrue(didCallButtonTwo, nil);
-  STAssertTrue(didCallDestructiveButton, nil);
+  XCTAssertTrue(didCallCancelButton);
+  XCTAssertTrue(didCallButtonOne);
+  XCTAssertTrue(didCallButtonTwo);
+  XCTAssertTrue(didCallDestructiveButton);
 
 
 
@@ -106,13 +106,13 @@
 //  } withTimeout:5];
 
   self.sheet.SH_blockForDestructiveButton(self.sheet.destructiveButtonIndex);
-  STAssertTrue(didCallDestructiveButton, nil);
+  XCTAssertTrue(didCallDestructiveButton);
   
   [self.sheet SH_blockForButtonIndex:1](1);
-  STAssertTrue(didCallButtonOne, nil);
+  XCTAssertTrue(didCallButtonOne);
   
   self.sheet.SH_blockForCancelButton(self.sheet.cancelButtonIndex);
-  STAssertTrue(didCallCancelButton, nil);
+  XCTAssertTrue(didCallCancelButton);
 }
 
 -(void)testSheetAppearanceLifeCycleBlocks; {
@@ -133,27 +133,27 @@
   
   [self.sheet SH_setWillDismissBlock:^(UIActionSheet *theActionSheet, NSInteger theButtonIndex) {
     willDismissBlock = YES;
-    STAssertEqualObjects(self.sheet, theActionSheet, nil);
-    STAssertEquals(66, theButtonIndex, nil);
+    XCTAssertEqualObjects(self.sheet, theActionSheet);
+    XCTAssertEqual(66, theButtonIndex);
   }];
   
   [self.sheet SH_setDidDismissBlock:^(UIActionSheet *theActionSheet, NSInteger theButtonIndex) {
     didDismissBlock = YES;
-    STAssertEqualObjects(self.sheet, theActionSheet, nil);
-    STAssertEquals(66, theButtonIndex, nil);
+    XCTAssertEqualObjects(self.sheet, theActionSheet);
+    XCTAssertEqual(66, theButtonIndex);
   }];
   
   self.sheet.SH_blockWillShow(self.sheet);
-  STAssertTrue(willShowBlock, nil);
+  XCTAssertTrue(willShowBlock);
   
   self.sheet.SH_blockDidShow(self.sheet);
-  STAssertTrue(didShowBlock, nil);
+  XCTAssertTrue(didShowBlock);
 
   self.sheet.SH_blockWillDismiss(self.sheet, 66);
-  STAssertTrue(willDismissBlock, nil);
+  XCTAssertTrue(willDismissBlock);
 
   self.sheet.SH_blockDidDismiss(self.sheet, 66);
-  STAssertTrue(didDismissBlock, nil);
+  XCTAssertTrue(didDismissBlock);
   
   
 }

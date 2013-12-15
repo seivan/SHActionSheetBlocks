@@ -37,13 +37,13 @@
   NSString * buttonTitle   = @"Button1";
   __block BOOL didPassTest = NO;
   [self.sheet SH_addButtonWithTitle:buttonTitle withBlock:^(NSInteger theButtonIndex) {
-    STAssertEquals(theButtonIndex, 0, nil);
+    XCTAssertEqual(theButtonIndex, 0);
     didPassTest = YES;
   }];
   [self.sheet showInView:self.vc.view];
   [tester tapViewWithAccessibilityLabel:buttonTitle];
   
-  STAssertTrue(didPassTest, nil);
+  XCTAssertTrue(didPassTest);
   
 }
 
@@ -51,14 +51,14 @@
   NSString * buttonTitle   = @"Delete";
   __block BOOL didPassTest = NO;
   [self.sheet SH_addButtonDestructiveWithTitle:buttonTitle withBlock:^(NSInteger theButtonIndex) {
-    STAssertEquals(theButtonIndex, 0, nil);
-    STAssertEquals(theButtonIndex, self.sheet.destructiveButtonIndex, nil);
+    XCTAssertEqual(theButtonIndex, 0);
+    XCTAssertEqual(theButtonIndex, self.sheet.destructiveButtonIndex);
     didPassTest = YES;
   }];
   [self.sheet showInView:self.vc.view];
   [tester tapViewWithAccessibilityLabel:buttonTitle];
   
-  STAssertTrue(didPassTest, nil);
+  XCTAssertTrue(didPassTest);
   
 }
 
@@ -66,14 +66,14 @@
   NSString * buttonTitle   = @"Cancel";
   __block BOOL didPassTest = NO;
   [self.sheet SH_addButtonCancelWithTitle:buttonTitle withBlock:^(NSInteger theButtonIndex) {
-    STAssertEquals(theButtonIndex, 0, nil);
-    STAssertEquals(theButtonIndex, self.sheet.cancelButtonIndex, nil);
+    XCTAssertEqual(theButtonIndex, 0);
+    XCTAssertEqual(theButtonIndex, self.sheet.cancelButtonIndex);
     didPassTest = YES;
   }];
   [self.sheet showInView:self.vc.view];
   [tester tapViewWithAccessibilityLabel:buttonTitle];
   
-  STAssertTrue(didPassTest, nil);
+  XCTAssertTrue(didPassTest);
 }
 
 -(void)testSingleBlock; {
@@ -98,7 +98,7 @@
                                             }];
   [self.sheet showInView:self.vc.view];
   [tester tapViewWithAccessibilityLabel:theButtonTitle];
-  STAssertTrue(didPassTest, nil);
+  XCTAssertTrue(didPassTest);
 
 }
 
@@ -114,7 +114,7 @@
 //  [self SH_performAsyncTestsWithinBlock:^(BOOL *didFinish) {
     
     [self.sheet SH_addButtonDestructiveWithTitle:buttonTitle withBlock:^(NSInteger theButtonIndex) {}];
-    
+  
     [self.sheet SH_setWillShowBlock:^(UIActionSheet *theActionSheet) {
       willShowBlock = YES;
     }];
@@ -125,14 +125,14 @@
     
     [self.sheet SH_setWillDismissBlock:^(UIActionSheet *theActionSheet, NSInteger theButtonIndex) {
       willDismissBlock = YES;
-      STAssertEqualObjects(self.sheet, theActionSheet, nil);
-      STAssertEquals(theButtonIndex, theActionSheet.destructiveButtonIndex, nil);
+      XCTAssertEqualObjects(self.sheet, theActionSheet);
+      XCTAssertEqual(theButtonIndex, theActionSheet.destructiveButtonIndex);
     }];
     
     [self.sheet SH_setDidDismissBlock:^(UIActionSheet *theActionSheet, NSInteger theButtonIndex) {
       didDismissBlock = YES;
-      STAssertEqualObjects(self.sheet, theActionSheet, nil);
-      STAssertEquals(theButtonIndex, theActionSheet.destructiveButtonIndex, nil);
+      XCTAssertEqualObjects(self.sheet, theActionSheet);
+      XCTAssertEqual(theButtonIndex, theActionSheet.destructiveButtonIndex);
     }];
   
   [self.sheet showInView:self.vc.view];
@@ -140,10 +140,10 @@
 //  } withTimeout:5];
   
   
-  STAssertTrue(willShowBlock, nil);
-  STAssertTrue(didShowBlock, nil);
-  STAssertTrue(willDismissBlock, nil);
-  STAssertTrue(didDismissBlock, nil);
+  XCTAssertTrue(willShowBlock);
+  XCTAssertTrue(didShowBlock);
+  XCTAssertTrue(willDismissBlock);
+  XCTAssertTrue(didDismissBlock);
   
   
 }

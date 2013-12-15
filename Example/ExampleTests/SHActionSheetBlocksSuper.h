@@ -10,7 +10,7 @@
 #import "KIF.h"
 #import "SHTestCaseAdditions.h"
 #import "SHActionSheetBlocks.h"
-
+#import <XCTest/XCTest.h>
 
 
 
