@@ -10,7 +10,7 @@ end
 
 target :LibraryTests, :exclusive => true do
   pod 'SHTestCaseAdditions'
-  pod "KIF/xctest", :git => "https://github.com/tonyd256/KIF", :branch => "xctest"
+  pod "KIF/XCTest", :git => "https://github.com/tonyd256/KIF", :branch => "xctest"
 end
 
 
