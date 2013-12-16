@@ -2,13 +2,13 @@ platform :ios, '7.0'
 
 pod 'SHActionSheetBlocks', :path => '../'
 
-target :Sample, :exclusive = true do
+target :Sample, :exclusive => true do
   pod 'SHSegueBlocks'
   pod 'SHBarButtonItemBlocks'
   pod 'SHFastEnumerationProtocols'
 end
 
-target :LibraryTests, :exclusive = true do
+target :LibraryTests, :exclusive => true do
   pod 'SHTestCaseAdditions'
   pod "KIF/xctest", :git => "https://github.com/tonyd256/KIF", :branch => "xctest"
 end
