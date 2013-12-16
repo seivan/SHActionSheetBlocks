@@ -1,6 +1,6 @@
 platform :ios, '7.0' 
 
-link_with [:Sample, :LibraryTests]
+link_with [:Sample, :Tests]
 pod 'SHActionSheetBlocks', :path => '../'
 
 target :Sample, :exclusive => true do
@@ -9,7 +9,7 @@ target :Sample, :exclusive => true do
   pod 'SHFastEnumerationProtocols'
 end
 
-target :LibraryTests, :exclusive => true do
+target :Tests, :exclusive => true do
   pod 'SHTestCaseAdditions'
   pod "KIF/XCTest", :git => "https://github.com/tonyd256/KIF", :branch => "xctest"
 end
