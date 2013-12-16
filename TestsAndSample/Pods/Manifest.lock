@@ -1,0 +1,39 @@
+PODS:
+  - KIF/Core (2.0.0)
+  - KIF/XCTest (2.0.0):
+    - KIF/Core
+  - SHActionSheetBlocks (2.2.0)
+  - SHBarButtonItemBlocks (1.1.0)
+  - SHFastEnumerationProtocols (1.3.0)
+  - SHObjectUserInfo (1.1.0)
+  - SHSegueBlocks (1.2.0):
+    - SHObjectUserInfo (~> 1.1.0)
+  - SHTestCaseAdditions (1.4.0):
+    - SHTestCaseAdditions/XCTest
+  - SHTestCaseAdditions/XCTest (1.4.0)
+
+DEPENDENCIES:
+  - KIF/XCTest (from `https://github.com/tonyd256/KIF`, branch `xctest`)
+  - SHActionSheetBlocks (from `../`)
+  - SHBarButtonItemBlocks
+  - SHFastEnumerationProtocols
+  - SHSegueBlocks
+  - SHTestCaseAdditions
+
+EXTERNAL SOURCES:
+  KIF:
+    :branch: xctest
+    :git: https://github.com/tonyd256/KIF
+  SHActionSheetBlocks:
+    :path: ../
+
+SPEC CHECKSUMS:
+  KIF: 5de8e5eedd49c83778fe326c918f9330123a7412
+  SHActionSheetBlocks: d5996e0b8d9ccea156f0fadf752ffd34acd672fe
+  SHBarButtonItemBlocks: 9a46094653b708ee34d0667f78e0f3d46a550ab5
+  SHFastEnumerationProtocols: b83587ae41c1990851bcd675da01636a1b2addc8
+  SHObjectUserInfo: 3dfe4af11a45c985088f613813705b8ebd3cc718
+  SHSegueBlocks: 9acc4d9d5f588933693b594cb07dfce4e2c42d2a
+  SHTestCaseAdditions: 4448b0c8963ce75f89bf23ccc8a3fb75771b2d43
+
+COCOAPODS: 0.28.0
