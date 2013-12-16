@@ -13,9 +13,7 @@
 }
 
 -(void)SH_performAsyncTestsWithinBlock:(SHTestCaseBlock)theBlock withTimeout:(NSTimeInterval)theTimeout; {
-  XCTAssertTrue([__SHTestCaseInternal performAsyncTestsWithinBlock:theBlock withTimeout:theTimeout], @"%@",[__SHTestCaseInternal timeOutMessage]) ;
-  
-  
+  XCTAssertTrue([__SHTestCaseInternal performAsyncTestsWithinBlock:theBlock withTimeout:theTimeout], @"%@",[__SHTestCaseInternal timeOutMessage]) ;  
 }
 
 

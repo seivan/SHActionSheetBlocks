@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>C3421F37-61B8-43FE-834D-6B573635AD9C</string>
+	<string>DF51311F-B601-4AC4-8589-33822887DE00</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Sample</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -14,7 +14,7 @@
 		<string>ssh://github.com/seivan/SHActionSheetBlocks.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Sample/Sample.xcworkspace</string>
+	<string>TestsAndSample/Sample.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>DB1A22CB-9757-422B-A463-280DA4F46613</key>

@@ -1,9 +1,9 @@
 //
 //  SHAppDelegate.h
-//  Sample
+//  Example
 //
-//  Created by Seivan Heidari on 2013-12-15.
-//  Copyright (c) 2013 Seivan. All rights reserved.
+//  Created by Seivan Heidari on 5/14/13.
+//  Copyright (c) 2013 Seivan Heidari. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

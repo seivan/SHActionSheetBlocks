@@ -2,7 +2,7 @@
 #import <UIKit/UIKit.h>
 #endif
 
-#import "Pods-LibraryTests-environment.h"
+#import "Pods-Tests-environment.h"
 #import <CoreGraphics/CoreGraphics.h>
 
 #import <XCTest/XCTest.h>

@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "229FA4A5185DFEC600483903"
-               BuildableName = "Library.app"
+               BlueprintIdentifier = "22992BC4185F6D9A002E6E76"
+               BuildableName = "TestLoader.app"
                BlueprintName = "TestLoader"
                ReferencedContainer = "container:Sample.xcodeproj">
             </BuildableReference>
@@ -32,8 +32,8 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "229FA4BB185DFEC600483903"
-               BuildableName = "LibraryTests.xctest"
+               BlueprintIdentifier = "22992BF2185F6DBF002E6E76"
+               BuildableName = "Tests.xctest"
                BlueprintName = "Tests"
                ReferencedContainer = "container:Sample.xcodeproj">
             </BuildableReference>
@@ -42,8 +42,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "229FA4A5185DFEC600483903"
-            BuildableName = "Library.app"
+            BlueprintIdentifier = "22992BC4185F6D9A002E6E76"
+            BuildableName = "TestLoader.app"
             BlueprintName = "TestLoader"
             ReferencedContainer = "container:Sample.xcodeproj">
          </BuildableReference>
@@ -61,8 +61,8 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "229FA4A5185DFEC600483903"
-            BuildableName = "Library.app"
+            BlueprintIdentifier = "22992BC4185F6D9A002E6E76"
+            BuildableName = "TestLoader.app"
             BlueprintName = "TestLoader"
             ReferencedContainer = "container:Sample.xcodeproj">
          </BuildableReference>
@@ -79,8 +79,8 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "229FA4A5185DFEC600483903"
-            BuildableName = "Library.app"
+            BlueprintIdentifier = "22992BC4185F6D9A002E6E76"
+            BuildableName = "TestLoader.app"
             BlueprintName = "TestLoader"
             ReferencedContainer = "container:Sample.xcodeproj">
          </BuildableReference>
