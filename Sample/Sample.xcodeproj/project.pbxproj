@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22992B9D185F5AB3002E6E76 /* SHActionSheetBlocksCallbacks.m in Sources */ = {isa = PBXBuildFile; fileRef = 22992B97185F5AB3002E6E76 /* SHActionSheetBlocksCallbacks.m */; };
+		22992B9E185F5AB3002E6E76 /* SHActionSheetBlocksCallbacksIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 22992B98185F5AB3002E6E76 /* SHActionSheetBlocksCallbacksIntegration.m */; };
+		22992B9F185F5AB3002E6E76 /* SHActionSheetBlocksOldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 22992B99185F5AB3002E6E76 /* SHActionSheetBlocksOldTests.m */; };
+		22992BA0185F5AB3002E6E76 /* SHActionSheetBlocksSelectors.m in Sources */ = {isa = PBXBuildFile; fileRef = 22992B9A185F5AB3002E6E76 /* SHActionSheetBlocksSelectors.m */; };
+		22992BA1185F5AB3002E6E76 /* SHActionSheetBlocksSuper.m in Sources */ = {isa = PBXBuildFile; fileRef = 22992B9C185F5AB3002E6E76 /* SHActionSheetBlocksSuper.m */; };
 		229FA45C185DFD6200483903 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 229FA45B185DFD6200483903 /* Foundation.framework */; };
 		229FA45E185DFD6200483903 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 229FA45D185DFD6200483903 /* CoreGraphics.framework */; };
 		229FA460185DFD6200483903 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 229FA45F185DFD6200483903 /* UIKit.framework */; };
@@ -27,11 +32,10 @@
 		229FA4BE185DFEC600483903 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 229FA45B185DFD6200483903 /* Foundation.framework */; };
 		229FA4BF185DFEC600483903 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 229FA45F185DFD6200483903 /* UIKit.framework */; };
 		229FA4C7185DFEC600483903 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 229FA4C5185DFEC600483903 /* InfoPlist.strings */; };
-		229FA4C9185DFEC600483903 /* LibraryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 229FA4C8185DFEC600483903 /* LibraryTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		229FA4C0185DFEC600483903 /* PBXContainerItemProxy */ = {
+		22992B95185F5A83002E6E76 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 229FA450185DFD6200483903 /* Project object */;
 			proxyType = 1;
@@ -41,6 +45,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		22992B97185F5AB3002E6E76 /* SHActionSheetBlocksCallbacks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHActionSheetBlocksCallbacks.m; sourceTree = "<group>"; };
+		22992B98185F5AB3002E6E76 /* SHActionSheetBlocksCallbacksIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHActionSheetBlocksCallbacksIntegration.m; sourceTree = "<group>"; };
+		22992B99185F5AB3002E6E76 /* SHActionSheetBlocksOldTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHActionSheetBlocksOldTests.m; sourceTree = "<group>"; };
+		22992B9A185F5AB3002E6E76 /* SHActionSheetBlocksSelectors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHActionSheetBlocksSelectors.m; sourceTree = "<group>"; };
+		22992B9B185F5AB3002E6E76 /* SHActionSheetBlocksSuper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHActionSheetBlocksSuper.h; sourceTree = "<group>"; };
+		22992B9C185F5AB3002E6E76 /* SHActionSheetBlocksSuper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHActionSheetBlocksSuper.m; sourceTree = "<group>"; };
 		229FA458185DFD6200483903 /* Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		229FA45B185DFD6200483903 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		229FA45D185DFD6200483903 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -67,7 +77,6 @@
 		229FA4BC185DFEC600483903 /* LibraryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LibraryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		229FA4C4185DFEC600483903 /* LibraryTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LibraryTests-Info.plist"; sourceTree = "<group>"; };
 		229FA4C6185DFEC600483903 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		229FA4C8185DFEC600483903 /* LibraryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LibraryTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,7 +195,12 @@
 		229FA4C2185DFEC600483903 /* LibraryTests */ = {
 			isa = PBXGroup;
 			children = (
-				229FA4C8185DFEC600483903 /* LibraryTests.m */,
+				22992B97185F5AB3002E6E76 /* SHActionSheetBlocksCallbacks.m */,
+				22992B98185F5AB3002E6E76 /* SHActionSheetBlocksCallbacksIntegration.m */,
+				22992B99185F5AB3002E6E76 /* SHActionSheetBlocksOldTests.m */,
+				22992B9A185F5AB3002E6E76 /* SHActionSheetBlocksSelectors.m */,
+				22992B9B185F5AB3002E6E76 /* SHActionSheetBlocksSuper.h */,
+				22992B9C185F5AB3002E6E76 /* SHActionSheetBlocksSuper.m */,
 				229FA4C3185DFEC600483903 /* Supporting Files */,
 			);
 			path = LibraryTests;
@@ -249,7 +263,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				229FA4C1185DFEC600483903 /* PBXTargetDependency */,
+				22992B96185F5A83002E6E76 /* PBXTargetDependency */,
 			);
 			name = LibraryTests;
 			productName = LibraryTests;
@@ -345,17 +359,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				229FA4C9185DFEC600483903 /* LibraryTests.m in Sources */,
+				22992B9F185F5AB3002E6E76 /* SHActionSheetBlocksOldTests.m in Sources */,
+				22992BA0185F5AB3002E6E76 /* SHActionSheetBlocksSelectors.m in Sources */,
+				22992BA1185F5AB3002E6E76 /* SHActionSheetBlocksSuper.m in Sources */,
+				22992B9E185F5AB3002E6E76 /* SHActionSheetBlocksCallbacksIntegration.m in Sources */,
+				22992B9D185F5AB3002E6E76 /* SHActionSheetBlocksCallbacks.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		229FA4C1185DFEC600483903 /* PBXTargetDependency */ = {
+		22992B96185F5A83002E6E76 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 229FA4A5185DFEC600483903 /* Library */;
-			targetProxy = 229FA4C0185DFEC600483903 /* PBXContainerItemProxy */;
+			targetProxy = 22992B95185F5A83002E6E76 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -586,6 +604,7 @@
 				229FA48C185DFD6200483903 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		229FA4CA185DFEC700483903 /* Build configuration list for PBXNativeTarget "Library" */ = {
 			isa = XCConfigurationList;
@@ -594,6 +613,7 @@
 				229FA4CC185DFEC700483903 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		229FA4CD185DFEC700483903 /* Build configuration list for PBXNativeTarget "LibraryTests" */ = {
 			isa = XCConfigurationList;
@@ -602,6 +622,7 @@
 				229FA4CF185DFEC700483903 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

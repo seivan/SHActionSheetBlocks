@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "229FA4A5185DFEC600483903"
-               BuildableName = "Library.app"
-               BlueprintName = "Library"
+               BlueprintIdentifier = "229FA457185DFD6200483903"
+               BuildableName = "Sample.app"
+               BlueprintName = "Sample"
                ReferencedContainer = "container:Sample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "229FA4A5185DFEC600483903"
-            BuildableName = "Library.app"
-            BlueprintName = "Library"
+            BlueprintIdentifier = "229FA457185DFD6200483903"
+            BuildableName = "Sample.app"
+            BlueprintName = "Sample"
             ReferencedContainer = "container:Sample.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -61,9 +61,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "229FA4A5185DFEC600483903"
-            BuildableName = "Library.app"
-            BlueprintName = "Library"
+            BlueprintIdentifier = "229FA457185DFD6200483903"
+            BuildableName = "Sample.app"
+            BlueprintName = "Sample"
             ReferencedContainer = "container:Sample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -79,9 +79,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "229FA4A5185DFEC600483903"
-            BuildableName = "Library.app"
-            BlueprintName = "Library"
+            BlueprintIdentifier = "229FA457185DFD6200483903"
+            BuildableName = "Sample.app"
+            BlueprintName = "Sample"
             ReferencedContainer = "container:Sample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
