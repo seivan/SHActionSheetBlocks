@@ -82,6 +82,16 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
   NSDictionary * mapBlocks = [self.mapBlocks objectForKey:actionSheet];
   SHActionSheetShowBlock block = mapBlocks[SH_blockWillShow];
   if(block) block(actionSheet);
+
+    // SET EVERYTHING RED (THIS SUCKS RIGHT NOW) DO IT RIGHT LATER!!!!
+    for (UIView *subview in actionSheet.subviews) {
+        if ([subview isKindOfClass:[UIButton class]]) {
+            UIButton *button = (UIButton *)subview;
+            if (![button.titleLabel.text isEqualToString:@"Cancel"]) {
+                [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+            }
+        }
+    }
   
 }
 
