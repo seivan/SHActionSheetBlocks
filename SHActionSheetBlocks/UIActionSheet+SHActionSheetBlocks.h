@@ -18,11 +18,20 @@ typedef void (^SHActionSheetDismissBlock)(UIActionSheet * theActionSheet, NSInte
 #pragma mark Init
 +(instancetype)SH_actionSheetWithTitle:(NSString *)theTitle;
 
++(instancetype)SH_actionSheetWithTitle:(NSString *)theTitle andRedOn:(BOOL)on;
+
 +(instancetype)SH_actionSheetWithTitle:(NSString *)theTitle
                           buttonTitles:(NSArray *)theButtonTitles
                            cancelTitle:(NSString *)theCancelTitle
                       destructiveTitle:(NSString *)theDestructiveTitle
                              withBlock:(SHActionSheetBlock)theBlock;
+
++(instancetype)SH_actionSheetWithTitle:(NSString *)theTitle
+                          buttonTitles:(NSArray *)theButtonTitles
+                           cancelTitle:(NSString *)theCancelTitle
+                      destructiveTitle:(NSString *)theDestructiveTitle
+                             withBlock:(SHActionSheetBlock)theBlock
+                              andRedOn:(BOOL)on;
 #pragma mark -
 #pragma mark Adding
 -(NSInteger)SH_addButtonWithTitle:(NSString *)theTitle
