@@ -1,8 +1,8 @@
 SHTestCaseAdditions
 ==========
 [![Build Status](https://travis-ci.org/seivan/SHTestCaseAdditions.png?branch=master)](https://travis-ci.org/seivan/SHTestCaseAdditions)
-[![Version](http://cocoapod-badges.herokuapp.com/v/SHTestCaseAdditions/badge.png)](http://cocoadocs.org/docsets/SHTestCaseAdditions)
-[![Platform](http://cocoapod-badges.herokuapp.com/p/SHTestCaseAdditions/badge.png)](http://cocoadocs.org/docsets/SHTestCaseAdditions)
+[![Version](https://cocoapod-badges.herokuapp.com/v/SHTestCaseAdditions/badge.png)](http://cocoadocs.org/docsets/SHTestCaseAdditions)
+[![Platform](https://cocoapod-badges.herokuapp.com/p/SHTestCaseAdditions/badge.png)](http://cocoadocs.org/docsets/SHTestCaseAdditions)
 
 Overview
 --------

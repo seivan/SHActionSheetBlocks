@@ -7,10 +7,8 @@
 //
 
 
-#import "SHSegueBlocks.h"
 #import "SHViewController.h"
 #import "SHActionSheetBlocks.h"
-#import "SHBarButtonItemBlocks.h"
 
 
 @interface SHViewController ()
@@ -23,9 +21,6 @@
 
 -(void)viewDidLoad; {
   [super viewDidLoad];
-  self.navigationItem.rightBarButtonItem = [UIBarButtonItem SH_barButtonItemWithBarButtonSystemItem:UIBarButtonSystemItemPlay withBlock:^(UIBarButtonItem *sender) {
-    [self performSegueWithIdentifier:@"second" sender:nil];
-  }];
 
 }
 
@@ -44,7 +39,7 @@
   
   
   for (NSInteger i = 0; i != 3; i++) {
-    NSString * title = [NSString stringWithFormat:@"Button %d", i];
+    NSString * title = [NSString stringWithFormat:@"Button %ld", (long)i];
     [sheet SH_addButtonWithTitle:title withBlock:^(NSInteger theButtonIndex) {
       NSString * buttonTitle = [sheet buttonTitleAtIndex:theButtonIndex];
       SHBlockAssert([title isEqualToString:buttonTitle], @"Button title is set");
@@ -61,12 +56,13 @@
   
   NSInteger cancelIndex      = 3;
   
-  
+
   [sheet SH_addButtonCancelWithTitle:@"Cancel" withBlock:^(NSInteger theButtonIndex) {
     NSLog(@"Cancel");
     SHBlockAssert(theButtonIndex == cancelIndex ,
                   @"Cancel button index is 3");
     selectedIndex = theButtonIndex;
+    [weakSelf performSegueWithIdentifier:@"second" sender:nil];
     
   }];
   

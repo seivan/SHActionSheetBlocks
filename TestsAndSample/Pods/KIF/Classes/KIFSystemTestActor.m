@@ -12,10 +12,6 @@
 #import "UIApplication-KIFAdditions.h"
 #import "NSError-KIFAdditions.h"
 
-@interface UIApplication (Private)
-- (BOOL)rotateIfNeeded:(UIDeviceOrientation)orientation;
-@end
-
 @implementation KIFSystemTestActor
 
 - (NSNotification *)waitForNotificationName:(NSString*)name object:(id)object
@@ -32,8 +28,7 @@
 {
     __block NSNotification *detectedNotification = nil;
     id observer = [[NSNotificationCenter defaultCenter] addObserverForName:name object:object queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-        [detectedNotification release];
-        detectedNotification = [note retain];
+        detectedNotification = note;
     }];
     
     if (block) {
@@ -51,7 +46,7 @@
         }
     }];
     
-    return [detectedNotification autorelease];
+    return detectedNotification;
 }
 
 - (void)simulateMemoryWarning
@@ -61,24 +56,52 @@
 
 - (void)simulateDeviceRotationToOrientation:(UIDeviceOrientation)orientation
 {
-    [[UIApplication sharedApplication] rotateIfNeeded:orientation];
+    if ([[UIApplication sharedApplication] respondsToSelector:@selector(rotateIfNeeded:completion:)]) {
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+        [[UIApplication sharedApplication] rotateIfNeeded:orientation completion:^{
+            dispatch_semaphore_signal(semaphore);
+        }];
+        while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {
+            CFRunLoopRunInMode([[UIApplication sharedApplication] currentRunLoopMode] ?: kCFRunLoopDefaultMode, 0.1, false);
+        }
+    } else {
+        [[UIApplication sharedApplication] rotateIfNeeded:orientation];
+    }
 }
+
 
 - (void)waitForApplicationToOpenAnyURLWhileExecutingBlock:(void (^)())block returning:(BOOL)returnValue
 {
     [self waitForApplicationToOpenURL:nil whileExecutingBlock:block returning:returnValue];
 }
 
-- (void)waitForApplicationToOpenURL:(NSString *)URLString whileExecutingBlock:(void (^)())block returning:(BOOL)returnValue
+- (void)waitForApplicationToOpenURLWithScheme:(NSString *)URLScheme whileExecutingBlock:(void (^)())block returning:(BOOL)returnValue {
+    [self waitForApplicationToOpenURLMatchingBlock:^(NSURL *actualURL){
+        if (URLScheme && ![URLScheme isEqualToString:actualURL.scheme]) {
+            [self failWithError:[NSError KIFErrorWithFormat:@"Expected %@ to start with %@", actualURL.absoluteString, URLScheme] stopTest:YES];
+        }
+    } whileExecutingBlock:block returning:returnValue];
+}
+
+- (void)waitForApplicationToOpenURL:(NSString *)URLString whileExecutingBlock:(void (^)())block returning:(BOOL)returnValue {
+    [self waitForApplicationToOpenURLMatchingBlock:^(NSURL *actualURL){
+
+        if (URLString && ![[actualURL absoluteString] isEqualToString:URLString]) {
+            [self failWithError:[NSError KIFErrorWithFormat:@"Expected %@, got %@", URLString, actualURL.absoluteString] stopTest:YES];
+        }
+    } whileExecutingBlock:block returning:returnValue];
+}
+
+- (void)waitForApplicationToOpenURLMatchingBlock:(void (^)(NSURL *actualURL))URLMatcherBlock whileExecutingBlock:(void (^)())block returning:(BOOL)returnValue
 {
     [UIApplication startMockingOpenURLWithReturnValue:returnValue];
     NSNotification *notification = [self waitForNotificationName:UIApplicationDidMockOpenURLNotification object:[UIApplication sharedApplication] whileExecutingBlock:block complete:^{
         [UIApplication stopMockingOpenURL];
     }];
-    
-    NSString *actualURLString = [[notification.userInfo objectForKey:UIApplicationOpenedURLKey] absoluteString];
-    if (URLString && ![URLString isEqualToString:actualURLString]) {
-        [self failWithError:[NSError KIFErrorWithFormat:@"Expected %@, got %@", URLString, actualURLString] stopTest:YES];
+
+    if (URLMatcherBlock) {
+        NSURL *actualURL = [notification.userInfo objectForKey:UIApplicationOpenedURLKey];
+        URLMatcherBlock(actualURL);
     }
 }
 

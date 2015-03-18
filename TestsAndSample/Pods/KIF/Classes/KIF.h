@@ -11,5 +11,10 @@
 #import "KIFTestCase.h"
 #import "KIFSystemTestActor.h"
 #import "KIFUITestActor.h"
+#import "KIFUITestActor-ConditionalTests.h"
 
-#import "TestCase-KIFAdditions.h"
+#ifndef KIF_SENTEST
+#import "XCTestCase-KIFAdditions.h"
+#else
+#import "SenTestCase-KIFAdditions.h"
+#endif
