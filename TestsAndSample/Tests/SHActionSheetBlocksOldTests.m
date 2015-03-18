@@ -53,12 +53,13 @@
 
 #pragma mark - Buttons
 -(void)testAddFirstButton; {
-  NSInteger buttonIndex = [self.sheet SH_addButtonWithTitle:nil
+  NSString * title = @"button title";
+  NSInteger buttonIndex = [self.sheet SH_addButtonWithTitle:title
                                                    withBlock:nil];
 
   XCTAssertTrue(buttonIndex > self.sheet.firstOtherButtonIndex);
   XCTAssertEqual(self.sheet.numberOfButtons-1, buttonIndex);
-  XCTAssertEqualObjects(nil, [self.sheet buttonTitleAtIndex:buttonIndex]);
+  XCTAssertEqualObjects(title, [self.sheet buttonTitleAtIndex:buttonIndex]);
   XCTAssertEqualObjects(nil, [self.sheet SH_blockForButtonIndex:buttonIndex]);
   XCTAssertEqual(self.sheet.numberOfButtons, buttonIndex+1);
 
@@ -146,13 +147,13 @@
 
 #pragma mark - Buttons Cancel
 -(void)testAddCancelButton; {
-  
-  NSInteger buttonIndex = [self.sheet SH_addButtonCancelWithTitle:nil withBlock:nil];
+  NSString * title = @"button title";
+  NSInteger buttonIndex = [self.sheet SH_addButtonCancelWithTitle:title withBlock:nil];
 
   XCTAssertNil([self.sheet SH_blockForCancelButton]);
   XCTAssertTrue(buttonIndex > self.sheet.firstOtherButtonIndex);
   XCTAssertEqual(self.sheet.numberOfButtons-1, buttonIndex);
-  XCTAssertEqualObjects(nil, [self.sheet buttonTitleAtIndex:buttonIndex]);
+  XCTAssertEqualObjects(title, [self.sheet buttonTitleAtIndex:buttonIndex]);
   XCTAssertEqualObjects(nil, [self.sheet SH_blockForButtonIndex:buttonIndex]);
   XCTAssertEqual(self.sheet.numberOfButtons, buttonIndex+1);
   XCTAssertEqual(self.sheet.cancelButtonIndex, buttonIndex);
@@ -241,12 +242,12 @@
 
 #pragma mark - Buttons Destructive
 -(void)testAddDestructiveButton; {
-  
-  NSInteger buttonIndex = [self.sheet SH_addButtonDestructiveWithTitle:nil withBlock:nil];
+  NSString * title = @"button title";
+  NSInteger buttonIndex = [self.sheet SH_addButtonDestructiveWithTitle:title withBlock:nil];
   XCTAssertNil([self.sheet SH_blockForDestructiveButton]);
   XCTAssertTrue(buttonIndex > self.sheet.firstOtherButtonIndex);
   XCTAssertEqual(self.sheet.numberOfButtons-1, buttonIndex);
-  XCTAssertEqualObjects(nil, [self.sheet buttonTitleAtIndex:buttonIndex]);
+  XCTAssertEqualObjects(title, [self.sheet buttonTitleAtIndex:buttonIndex]);
   XCTAssertEqualObjects(nil, [self.sheet SH_blockForButtonIndex:buttonIndex]);
   XCTAssertEqual(self.sheet.numberOfButtons, buttonIndex+1);
   XCTAssertEqual(self.sheet.destructiveButtonIndex, buttonIndex);

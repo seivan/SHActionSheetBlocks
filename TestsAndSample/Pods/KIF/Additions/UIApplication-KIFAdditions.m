@@ -74,27 +74,30 @@ static const void *KIFRunLoopModesKey = &KIFRunLoopModesKey;
     return nil;
 }
 
+- (UIWindow *)datePickerWindow;
+{
+    return [self getWindowForSubviewClass:@"UIDatePicker"];
+}
+
 - (UIWindow *)pickerViewWindow;
 {
-    for (UIWindow *window in self.windowsWithKeyWindow) {
-        NSArray *pickerViews = [window subviewsWithClassNameOrSuperClassNamePrefix:@"UIPickerView"];
-        if (pickerViews.count > 0) {
-            return window;
-        }
-    }
-    
-    return nil;
+    return [self getWindowForSubviewClass:@"UIPickerView"];
 }
 
 - (UIWindow *)dimmingViewWindow;
 {
+    return [self getWindowForSubviewClass:@"UIDimmingView"];
+}
+
+- (UIWindow *)getWindowForSubviewClass:(NSString*)className;
+{
     for (UIWindow *window in self.windowsWithKeyWindow) {
-        NSArray *dimmingViews = [window subviewsWithClassNameOrSuperClassNamePrefix:@"UIDimmingView"];
-        if (dimmingViews.count > 0) {
+        NSArray *subViews = [window subviewsWithClassNameOrSuperClassNamePrefix:className];
+        if (subViews.count > 0) {
             return window;
         }
     }
-    
+
     return nil;
 }
 
@@ -105,10 +108,10 @@ static const void *KIFRunLoopModesKey = &KIFRunLoopModesKey;
     if (![windows containsObject:keyWindow]) {
         [windows addObject:keyWindow];
     }
-    return [windows autorelease];
+    return windows;
 }
 
-#pragma mark - Screenshoting
+#pragma mark - Screenshotting
 
 - (BOOL)writeScreenshotForLine:(NSUInteger)lineNumber inFile:(NSString *)filename description:(NSString *)description error:(NSError **)error;
 {
@@ -128,22 +131,33 @@ static const void *KIFRunLoopModesKey = &KIFRunLoopModesKey;
         return NO;
     }
     
-    UIGraphicsBeginImageContext([[windows objectAtIndex:0] bounds].size);
+    UIGraphicsBeginImageContextWithOptions([[windows objectAtIndex:0] bounds].size, YES, 0);
     for (UIWindow *window in windows) {
-        [window.layer renderInContext:UIGraphicsGetCurrentContext()];
+        if ([window respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
+            [window drawViewHierarchyInRect:window.bounds afterScreenUpdates:YES];
+        } else {
+            [window.layer renderInContext:UIGraphicsGetCurrentContext()];
+        }
     }
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
-    
+
+    outputPath = [outputPath stringByExpandingTildeInPath];
+
+    NSError *directoryCreationError = nil;
+    if (![[NSFileManager defaultManager] createDirectoryAtPath:outputPath withIntermediateDirectories:YES attributes:nil error:&directoryCreationError]) {
+        *error = [NSError KIFErrorWithFormat:@"Couldn't create directory at path %@ (details: %@)", outputPath, directoryCreationError];
+        return NO;
+    }
+
     NSString *imageName = [NSString stringWithFormat:@"%@, line %lu", [filename lastPathComponent], (unsigned long)lineNumber];
     if (description) {
         imageName = [imageName stringByAppendingFormat:@", %@", description];
     }
-    
-    outputPath = [outputPath stringByExpandingTildeInPath];
+
     outputPath = [outputPath stringByAppendingPathComponent:imageName];
     outputPath = [outputPath stringByAppendingPathExtension:@"png"];
+
     if (![UIImagePNGRepresentation(image) writeToFile:outputPath atomically:YES]) {
         if (error) {
             *error = [NSError KIFErrorWithFormat:@"Could not write file at path %@", outputPath];
@@ -168,7 +182,7 @@ static const void *KIFRunLoopModesKey = &KIFRunLoopModesKey;
 
 - (CFStringRef)currentRunLoopMode;
 {
-    return (CFStringRef)[self KIF_runLoopModes].lastObject;
+    return (__bridge CFStringRef)[self KIF_runLoopModes].lastObject;
 }
 
 - (void)KIF_pushRunLoopMode:(NSString *)mode;

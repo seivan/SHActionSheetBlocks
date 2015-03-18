@@ -14,7 +14,23 @@
 
 #define SIG(class, selector) [class instanceMethodSignatureForSelector:selector]
 
+
 @implementation KIFTestCase
+{
+    NSException *_stoppingException;
+}
+
+NSComparisonResult selectorSort(NSInvocation *invocOne, NSInvocation *invocTwo, void *reverse);
+
++ (id)defaultTestSuite
+{
+    if (self == [KIFTestCase class]) {
+        // Don't run KIFTestCase "tests"
+        return nil;
+    }
+    
+    return [super defaultTestSuite];
+}
 
 - (id)initWithInvocation:(NSInvocation *)anInvocation;
 {
@@ -23,7 +39,9 @@
         return nil;
     }
 
-#ifndef XCT_EXPORT
+#ifndef KIF_SENTEST
+    self.continueAfterFailure = NO;
+#else
     [self raiseAfterFailure];
 #endif
     return self;
@@ -34,23 +52,48 @@
 - (void)beforeAll  { }
 - (void)afterAll   { }
 
-- (void)setUp;
-{
-    [super setUp];
+#ifndef KIF_SENTEST
+
+NSComparisonResult selectorSort(NSInvocation *invocOne, NSInvocation *invocTwo, void *reverse) {
     
-    if ([self isNotBeforeOrAfter]) {
-        [self beforeEach];
+    NSString *selectorOne =  NSStringFromSelector([invocOne selector]);
+    NSString *selectorTwo =  NSStringFromSelector([invocTwo selector]);
+    return [selectorOne compare:selectorTwo options:NSCaseInsensitiveSearch];
+}
+
++ (NSArray *)testInvocations
+{
+    NSArray *disorderedInvoc = [super testInvocations];
+    NSArray *newArray = [disorderedInvoc sortedArrayUsingFunction:selectorSort context:NULL];
+    return newArray;
+}
+
++ (void)setUp
+{
+    [self performSetupTearDownWithSelector:@selector(beforeAll)];
+}
+
++ (void)tearDown
+{
+    [self performSetupTearDownWithSelector:@selector(afterAll)];
+}
+
++ (void)performSetupTearDownWithSelector:(SEL)selector
+{
+    KIFTestCase *testCase = [self testCaseWithSelector:selector];
+    if ([testCase respondsToSelector:selector]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        [testCase performSelector:selector];
+#pragma clang diagnostic pop
+    }
+
+    if (testCase->_stoppingException) {
+        [testCase->_stoppingException raise];
     }
 }
 
-- (void)tearDown;
-{
-    if ([self isNotBeforeOrAfter]) {
-        [self afterEach];
-    }
-    
-    [super tearDown];
-}
+#else
 
 + (NSArray *)testInvocations;
 {
@@ -75,6 +118,26 @@
     return testInvocations;
 }
 
+#endif
+
+- (void)setUp;
+{
+    [super setUp];
+    
+    if ([self isNotBeforeOrAfter]) {
+        [self beforeEach];
+    }
+}
+
+- (void)tearDown;
+{
+    if ([self isNotBeforeOrAfter]) {
+        [self afterEach];
+    }
+    
+    [super tearDown];
+}
+
 - (BOOL)isNotBeforeOrAfter;
 {
     SEL selector = self.invocation.selector;
@@ -85,13 +148,14 @@
 {
     if (stop) {
         [self writeScreenshotForException:exception];
+        _stoppingException = exception;
     }
     
     if (stop && self.stopTestsOnFirstBigFailure) {
         NSLog(@"Fatal failure encountered: %@", exception.description);
         NSLog(@"Stopping tests since stopTestsOnFirstBigFailure = YES");
         
-        KIFTestActor *waiter = [[[KIFTestActor alloc] init] autorelease];
+        KIFTestActor *waiter = [[KIFTestActor alloc] init];
         [waiter waitForTimeInterval:[[NSDate distantFuture] timeIntervalSinceNow]];
         
         return;
@@ -102,7 +166,7 @@
 
 - (void)writeScreenshotForException:(NSException *)exception;
 {
-#ifdef XCT_EXPORT
+#ifndef KIF_SENTEST
     [[UIApplication sharedApplication] writeScreenshotForLine:[exception.userInfo[@"SenTestLineNumberKey"] unsignedIntegerValue] inFile:exception.userInfo[@"SenTestFilenameKey"] description:nil error:NULL];
 #else
     [[UIApplication sharedApplication] writeScreenshotForLine:exception.lineNumber.unsignedIntegerValue inFile:exception.filename description:nil error:NULL];

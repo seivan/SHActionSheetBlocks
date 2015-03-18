@@ -35,7 +35,7 @@ UIKIT_EXTERN NSString *const UIApplicationOpenedURLKey;
 /*!
  @abstract Finds an accessibility element where @c matchBlock returns @c YES, across all windows in the application starting at the fronmost window.
  @discussion This method should be used if @c accessibilityElementWithLabel:accessibilityValue:traits: does not meet your requirements.  For example, if you are searching for an element that begins with a pattern or if of a certain view type.
- @param matchBlock.  A block to be performed on each element to see if it passes.
+ @param matchBlock  A block to be performed on each element to see if it passes.
  */
 - (UIAccessibilityElement *)accessibilityElementMatchingBlock:(BOOL(^)(UIAccessibilityElement *))matchBlock;
 
@@ -43,6 +43,11 @@ UIKIT_EXTERN NSString *const UIApplicationOpenedURLKey;
  @returns The window containing the keyboard or @c nil if the keyboard is not visible.
  */
 - (UIWindow *)keyboardWindow;
+
+/*!
+ @returns The topmost window containing a @c UIDatePicker.
+ */
+- (UIWindow *)datePickerWindow;
 
 /*!
  @returns The topmost window containing a @c UIPickerView.
@@ -93,3 +98,11 @@ UIKIT_EXTERN NSString *const UIApplicationOpenedURLKey;
 + (void)stopMockingOpenURL;
 
 @end
+
+@interface UIApplication (Private)
+- (BOOL)rotateIfNeeded:(UIDeviceOrientation)orientation;
+- (void)rotateIfNeeded:(UIDeviceOrientation)orientation completion:(void (^)(void))completion;
+- (UIWindow *)statusBarWindow;
+@property(getter=isStatusBarHidden) BOOL statusBarHidden;
+@end
+

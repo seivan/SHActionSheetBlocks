@@ -11,12 +11,7 @@
 
 
 @interface SHActionSheetBlocksCallbacksIntegration : SHActionSheetBlocksSuper
-@property(nonatomic,strong) UIViewController    * vc;
-@property(nonatomic,strong) UIActionSheet       * sheet;
-
-
 @end
-
 @implementation SHActionSheetBlocksCallbacksIntegration
 -(void)beforeEach; {
   [super beforeEach];

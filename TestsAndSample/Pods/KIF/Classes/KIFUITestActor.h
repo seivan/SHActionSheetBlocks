@@ -28,6 +28,17 @@ typedef NS_ENUM(NSUInteger, KIFSwipeDirection) {
     KIFSwipeDirectionDown
 };
 
+/*!
+ @enum KIFPickerType
+ @abstract Picker type to select values from.
+ @constant KIFUIPickerView UIPickerView type
+ @constant KIFUIDatePicker UIDatePicker type
+ */
+typedef NS_ENUM(NSUInteger, KIFPickerType) {
+    KIFUIPickerView,
+    KIFUIDatePicker
+};
+
 #define kKIFMajorSwipeDisplacement 200
 #define kKIFMinorSwipeDisplacement 5
 
@@ -132,9 +143,9 @@ static inline KIFDisplacement KIFDisplacementForSwipingInDirection(KIFSwipeDirec
 - (UIView *)waitForTappableViewWithAccessibilityLabel:(NSString *)label value:(NSString *)value traits:(UIAccessibilityTraits)traits;
 
 
-/*
+/*!
  @abstract Waits for an accessibility element and its containing view based on a variety of criteria.
- @discussion This method provides a more verbose API for achieving what is available in the waitForView/waitForTappableView family of methods, exposing both the found element and its containing view.
+ @discussion This method provides a more verbose API for achieving what is available in the waitForView/waitForTappableView family of methods, exposing both the found element and its containing view.  The results can be used in other methods such as @c tapAccessibilityElement:inView:
  @param element To be populated with the matching accessibility element when found.  Can be NULL.
  @param view To be populated with the matching view when found.  Can be NULL.
  @param label The accessibility label of the element to wait for.
@@ -143,6 +154,39 @@ static inline KIFDisplacement KIFDisplacementForSwipingInDirection(KIFSwipeDirec
  @param mustBeTappable If YES, only an element that can be tapped on will be returned.
  */
 - (void)waitForAccessibilityElement:(UIAccessibilityElement **)element view:(out UIView **)view withLabel:(NSString *)label value:(NSString *)value traits:(UIAccessibilityTraits)traits tappable:(BOOL)mustBeTappable;
+
+/*!
+ @abstract Waits for an accessibility element and its containing view based the accessibility identifier.
+ @discussion This method provides a more verbose API for achieving what is available in the waitForView/waitForTappableView family of methods, exposing both the found element and its containing view.  The results can be used in other methods such as @c tapAccessibilityElement:inView:
+ @param element To be populated with the matching accessibility element when found.  Can be NULL.
+ @param view To be populated with the matching view when found.  Can be NULL.
+ @param identifier The accessibility identifier of the element to wait for.
+ @param mustBeTappable If YES, only an element that can be tapped on will be returned.
+ */
+- (void)waitForAccessibilityElement:(UIAccessibilityElement **)element view:(out UIView **)view withIdentifier:(NSString *)identifier tappable:(BOOL)mustBeTappable;
+
+/*!
+ @abstract Waits for an accessibility element and its containing view based on a predicate.
+ @discussion This method provides a more verbose API for achieving what is available in the waitForView/waitForTappableView family of methods, exposing both the found element and its containing view.  The results can be used in other methods such as @c tapAccessibilityElement:inView:
+ 
+ This method provides more flexability than @c waitForAccessibilityElement:view:withLabel:value:traits:tappable: but less precise error messages.  This message will tell you why the method failed but not whether or not the element met some of the criteria.
+ @param element To be populated with the matching accessibility element when found.  Can be NULL.
+ @param view To be populated with the matching view when found.  Can be NULL.
+ @param predicate The predicate to match.
+ @param mustBeTappable If YES, only an element that can be tapped on will be returned.
+ */
+- (void)waitForAccessibilityElement:(UIAccessibilityElement **)element view:(out UIView **)view withElementMatchingPredicate:(NSPredicate *)predicate tappable:(BOOL)mustBeTappable;
+
+/*!
+ @abstract Tries to guess if there are any unfinished animations and waits for a certain amount of time to let them finish.
+ */
+- (void)waitForAnimationsToFinish;
+
+/*!
+ @abstract Tries to guess if there are any unfinished animations and waits for a certain amount of time to let them finish.
+ @param timeout The maximum duration the method waits to let the animations finish.
+ */
+- (void)waitForAnimationsToFinishWithTimeout:(NSTimeInterval)timeout;
 
 /*!
  @abstract Taps a particular view in the view hierarchy.
@@ -205,6 +249,8 @@ static inline KIFDisplacement KIFDisplacementForSwipingInDirection(KIFSwipeDirec
  */
 - (void)longPressViewWithAccessibilityLabel:(NSString *)label value:(NSString *)value duration:(NSTimeInterval)duration;
 
+- (void)longPressAccessibilityElement:(UIAccessibilityElement *)element inView:(UIView *)view duration:(NSTimeInterval)duration;
+
 /*!
  @abstract Performs a long press on a particular view in the view hierarchy.
  @discussion The view or accessibility element with the given label is searched for in the view hierarchy. If the element isn't found or isn't currently tappable, then the step will attempt to wait until it is. Once the view is present and tappable, touch events are simulated in the center of the view or element.
@@ -217,12 +263,32 @@ static inline KIFDisplacement KIFDisplacementForSwipingInDirection(KIFSwipeDirec
  */
 - (void)longPressViewWithAccessibilityLabel:(NSString *)label value:(NSString *)value traits:(UIAccessibilityTraits)traits duration:(NSTimeInterval)duration;
 
+
+/*!
+ @abstract Waits for the software keyboard to be visible.
+ @discussion If input is also possible from a hardare keyboard @c waitForKeyInputReady may be more appropriate.
+ */
+- (void)waitForSoftwareKeyboard;
+- (void)waitForKeyboard KIF_DEPRECATED("Use waitForSoftwareKeyboard or waitForKeyInputReady.");
+
+/*!
+ @abstract If present, waits for the software keyboard to dismiss.
+ */
+- (void)waitForAbsenceOfSoftwareKeyboard;
+- (void)waitForAbsenceOfKeyboard KIF_DEPRECATED("Use waitForAbscenseOfSoftwareKeyboard.");
+
+/*!
+ @abstract Waits for the keyboard to be ready for input.  This tests whether or not a hardware or software keyboard is available and if the keyboard has a responder to send events to.
+ */
+- (void)waitForKeyInputReady;
+
 /*!
  @abstract Enters text into a the current first responder.
  @discussion Text is entered into the view by simulating taps on the appropriate keyboard keys if the keyboard is already displayed. Useful to enter text in UIWebViews or components with no accessibility labels.
  @param text The text to enter.
  */
 - (void)enterTextIntoCurrentFirstResponder:(NSString *)text;
+- (void)enterTextIntoCurrentFirstResponder:(NSString *)text fallbackView:(UIView *)fallbackView;
 
 /*!
  @abstract Enters text into a particular view in the view hierarchy.
@@ -242,18 +308,38 @@ static inline KIFDisplacement KIFDisplacementForSwipingInDirection(KIFSwipeDirec
  */
 - (void)enterText:(NSString *)text intoViewWithAccessibilityLabel:(NSString *)label traits:(UIAccessibilityTraits)traits expectedResult:(NSString *)expectedResult;
 
+- (void)clearTextFromFirstResponder;
 - (void)clearTextFromViewWithAccessibilityLabel:(NSString *)label;
 - (void)clearTextFromViewWithAccessibilityLabel:(NSString *)label traits:(UIAccessibilityTraits)traits;
+- (void)clearTextFromElement:(UIAccessibilityElement*)element inView:(UIView*)view;
 
+- (void)clearTextFromAndThenEnterTextIntoCurrentFirstResponder:(NSString *)text;
 - (void)clearTextFromAndThenEnterText:(NSString *)text intoViewWithAccessibilityLabel:(NSString *)label;
 - (void)clearTextFromAndThenEnterText:(NSString *)text intoViewWithAccessibilityLabel:(NSString *)label traits:(UIAccessibilityTraits)traits expectedResult:(NSString *)expectedResult;
 
+- (void)expectView:(UIView *)view toContainText:(NSString *)expectedResult;
+
 /*!
- @abstract ASelects an item from a currently visible picker view.
+ @abstract Selects an item from a currently visible picker view.
  @discussion With a picker view already visible, this step will find an item with the given title, select that item, and tap the Done button.
  @param title The title of the row to select.
  */
 - (void)selectPickerViewRowWithTitle:(NSString *)title;
+
+/*!
+ @abstract Selects an item from a currently visible picker view in specified component.
+ @discussion With a picker view already visible, this step will find an item with the given title in given component, select that item, and tap the Done button.
+ @param title The title of the row to select.
+ @param component The component tester inteds to select the title in.
+ */
+- (void)selectPickerViewRowWithTitle:(NSString *)title inComponent:(NSInteger)component;
+
+/*!
+ @abstract Selects a value from a currently visible date picker view.
+ @discussion With a date picker view already visible, this step will select the different rotating weel values in order of how the array parameter is passed in. After it is done it will hide the date picker. It works with all 4 UIDatePickerMode* modes. The input parameter of type NSArray has to match in what order the date picker is displaying the values/columns. So if the locale is changing the input parameter has to be adjusted. Example: Mode: UIDatePickerModeDate, Locale: en_US, Input param: NSArray *date = @[@"June", @"17", @"1965"];. Example: Mode: UIDatePickerModeDate, Locale: de_DE, Input param: NSArray *date = @[@"17.", @"Juni", @"1965".
+ @param datePickerColumnValues Each element in the NSArray represents a rotating wheel in the date picker control. Elements from 0 - n are listed in the order of the rotating wheels, left to right.
+ */
+- (void) selectDatePickerValue:(NSArray*)datePickerColumnValues;
 
 /*!
  @abstract Toggles a UISwitch into a specified position.
@@ -270,6 +356,7 @@ static inline KIFDisplacement KIFDisplacementForSwipingInDirection(KIFSwipeDirec
  @param label The accessibility label of the element to drag.
  */
 - (void)setValue:(float)value forSliderWithAccessibilityLabel:(NSString *)label;
+- (void)setValue:(float)value forSlider:(UISlider *)slider;
 
 /*!
  @abstract Dismisses a popover on screen.
@@ -280,14 +367,14 @@ static inline KIFDisplacement KIFDisplacementForSwipingInDirection(KIFSwipeDirec
 /*!
  @abstract Select a certain photo from the built in photo picker.
  @discussion This set of steps expects that the photo picker has been initiated and that the sheet is up. From there it will tap the "Choose Photo" button and select the desired photo.
- @param albumName The name of the album to select the photo from.
- @param row The row number in the album for the desired photo.
+ @param albumName The name of the album to select the photo from. (1-indexed)
+ @param row The row number in the album for the desired photo. (1-indexed)
  @param column The column number in the album for the desired photo.
  */
 - (void)choosePhotoInAlbum:(NSString *)albumName atRow:(NSInteger)row column:(NSInteger)column;
 
 /*!
- @abstract Taps the row at IndexPath in a view with the given label.
+ @abstract Taps the row at indexPath in a table view with the given label.
  @discussion This step will get the view with the specified accessibility label and tap the row at indexPath.
  
  For cases where you may need to work from the end of a table view rather than the beginning, negative sections count back from the end of the table view (-1 is the last section) and negative rows count back from the end of the section (-1 is the last row for that section).
@@ -298,14 +385,34 @@ static inline KIFDisplacement KIFDisplacementForSwipingInDirection(KIFSwipeDirec
 - (void)tapRowInTableViewWithAccessibilityLabel:(NSString*)tableViewLabel atIndexPath:(NSIndexPath *)indexPath KIF_DEPRECATED("Use tapRowAtIndexPath:inTableViewWithAccessibilityIdentifier:");
 
 /*!
- @abstract Taps the row at IndexPath in a view with the given identifier.
+ @abstract Taps the row at indexPath in a table view with the given identifier.
  @discussion This step will get the view with the specified accessibility identifier and tap the row at indexPath.
  
  For cases where you may need to work from the end of a table view rather than the beginning, negative sections count back from the end of the table view (-1 is the last section) and negative rows count back from the end of the section (-1 is the last row for that section).
+ 
  @param indexPath Index path of the row to tap.
  @param identifier Accessibility identifier of the table view.
  */
 - (void)tapRowAtIndexPath:(NSIndexPath *)indexPath inTableViewWithAccessibilityIdentifier:(NSString *)identifier NS_AVAILABLE_IOS(5_0);
+
+/*!
+ @abstract Taps the item at indexPath in a collection view with the given identifier.
+ @discussion This step will get the view with the specified accessibility identifier and tap the item at indexPath.
+ 
+ For cases where you may need to work from the end of a collection view rather than the beginning, negative sections count back from the end of the collection view (-1 is the last section) and negative items count back from the end of the section (-1 is the last item for that section).
+ 
+ @param indexPath Index path of the item to tap.
+ @param identifier Accessibility identifier of the collection view.
+ */
+- (void)tapItemAtIndexPath:(NSIndexPath *)indexPath inCollectionViewWithAccessibilityIdentifier:(NSString *)identifier;
+
+#if TARGET_IPHONE_SIMULATOR
+/*!
+ @abstract If present, dismisses a system alert with the last button, usually 'Allow'.
+ @discussion Use this to dissmiss a location services authorization dialog or a photos access dialog by tapping the 'Allow' button. No action is taken if no alert is present.
+ */
+- (void)acknowledgeSystemAlert;
+#endif
 
 /*!
  @abstract Swipes a particular view in the view hierarchy in the given direction.
@@ -314,6 +421,25 @@ static inline KIFDisplacement KIFDisplacementForSwipingInDirection(KIFSwipeDirec
  @param direction The direction in which to swipe.
  */
 - (void)swipeViewWithAccessibilityLabel:(NSString *)label inDirection:(KIFSwipeDirection)direction;
+
+/*!
+ @abstract Swipes a particular view in the view hierarchy in the given direction.
+ @discussion The view will get the view with the specified accessibility label and swipe the screen in the given direction from the view's center.
+ @param label The accessibility label of the view to swipe.
+ @param value The accessibility value of the view to swipe.
+ @param direction The direction in which to swipe.
+ */
+- (void)swipeViewWithAccessibilityLabel:(NSString *)label value:(NSString *)value inDirection:(KIFSwipeDirection)direction;
+
+/*!
+ @abstract Swipes a particular view in the view hierarchy in the given direction.
+ @discussion This step will get the view with the specified accessibility label and swipe the screen in the given direction from the view's center.
+ @param label The accessibility label of the view to swipe.
+ @param value The accessibility value of the view to swipe.
+ @param traits The accessibility traits of the view to swipe. Elements that do not include at least these traits are ignored.
+ @param direction The direction in which to swipe.
+ */
+- (void)swipeViewWithAccessibilityLabel:(NSString *)label value:(NSString *)value traits:(UIAccessibilityTraits)traits inDirection:(KIFSwipeDirection)direction;
 
 /*!
  @abstract Scrolls a particular view in the view hierarchy by an amount indicated as a fraction of its size.
@@ -352,4 +478,41 @@ static inline KIFDisplacement KIFDisplacementForSwipingInDirection(KIFSwipeDirec
  */
 - (void)waitForFirstResponderWithAccessibilityLabel:(NSString *)label traits:(UIAccessibilityTraits)traits;
 
+- (void)tapStatusBar;
+
+/*!
+ @abstract Waits for the cell at indexPath in a table view with the given identifier.
+ @discussion This step will get the view with the specified accessibility identifier and then get the cell at the indexPath.
+ 
+ For cases where you may need to work from the end of a table view rather than the beginning, negative sections count back from the end of the table view (-1 is the last section) and negative rows count back from the end of the section (-1 is the last row for that section).
+ 
+ @param indexPath Index path of the cell.
+ @param identifier Accessibility identifier of the table view.
+ @result Table view cell at index path
+ */
+- (UITableViewCell *)waitForCellAtIndexPath:(NSIndexPath *)indexPath inTableViewWithAccessibilityIdentifier:(NSString *)identifier;
+
+/*!
+ @abstract Waits for the cell at indexPath in a collection view with the given identifier.
+ @discussion This step will get the view with the specified accessibility identifier and then get the cell at indexPath.
+ 
+ For cases where you may need to work from the end of a collection view rather than the beginning, negative sections count back from the end of the collection view (-1 is the last section) and negative items count back from the end of the section (-1 is the last item for that section).
+ 
+ @param indexPath Index path of the item to tap.
+ @param identifier Accessibility identifier of the collection view.
+ @result Collection view cell at index path
+ */
+- (UICollectionViewCell *)waitForCellAtIndexPath:(NSIndexPath *)indexPath inCollectionViewWithAccessibilityIdentifier:(NSString *)identifier;
+
+/*!
+ @abstract Moves the row at sourceIndexPath to destinationIndexPath in a table view with the given identifier.
+ @discussion This step will get the view with the specified accessibility identifier and move the row at sourceIndexPath to destinationIndexPath.
+ 
+ For cases where you may need to work from the end of a table view rather than the beginning, negative sections count back from the end of the table view (-1 is the last section) and negative rows count back from the end of the section (-1 is the last row for that section).
+ 
+ @param sourceIndexPath Index path of the row to move.
+ @param destinationIndexPath Desired final index path of the row after moving.
+ @param identifier Accessibility identifier of the table view.
+ */
+- (void)moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath inTableViewWithAccessibilityIdentifier:(NSString *)identifier;
 @end
