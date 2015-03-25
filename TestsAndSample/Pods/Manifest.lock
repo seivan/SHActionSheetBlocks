@@ -2,7 +2,7 @@ PODS:
   - KIF (3.2.0):
     - KIF/XCTest (= 3.2.0)
   - KIF/XCTest (3.2.0)
-  - SHActionSheetBlocks (2.3.1)
+  - SHActionSheetBlocks (2.3.4)
   - SHTestCaseAdditions (1.4.1):
     - SHTestCaseAdditions/XCTest (= 1.4.1)
   - SHTestCaseAdditions/XCTest (1.4.1)
@@ -18,7 +18,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   KIF: 6f94a23566fd05b809f5d3bc5231a965b51121b9
-  SHActionSheetBlocks: 2747531b3438c3382b9df7b6cff5ba11428c6398
+  SHActionSheetBlocks: 884fb3819dbe6760026e2b9976365e72807632a8
   SHTestCaseAdditions: c01c53ebb97807abcfd7a9fcad477fafc50f56c0
 
 COCOAPODS: 0.36.0
