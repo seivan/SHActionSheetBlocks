@@ -15,14 +15,15 @@ static NSString * const SH_blockWillDismiss = @"SH_blockWillDismiss";
 static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 
 @interface UIActionSheet ()
-@property(nonatomic,strong) NSMutableDictionary * mapOfBlocks;
+@property (nonatomic,strong) NSMutableDictionary* mapOfBlocks;
 @end
 
 
-@interface SHActionSheetBlocksManager : NSObject
-<UIActionSheetDelegate>
+@interface SHActionSheetBlocksManager : NSObject <UIActionSheetDelegate>
 
 @property(nonatomic,strong)   NSMapTable   * mapBlocks;
+@property BOOL red;
+
 
 +(instancetype)sharedManager;
 -(void)SH_memoryDebugger;
@@ -82,6 +83,17 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
   NSDictionary * mapBlocks = [self.mapBlocks objectForKey:actionSheet];
   SHActionSheetShowBlock block = mapBlocks[SH_blockWillShow];
   if(block) block(actionSheet);
+
+    if (self.red) {
+        for (UIView *subview in actionSheet.subviews) {
+            if ([subview isKindOfClass:[UIButton class]]) {
+                UIButton *button = (UIButton *)subview;
+                if (![button.titleLabel.text isEqualToString:@"Cancel"]) {
+                    [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+                }
+            }
+        }
+    }
   
 }
 
@@ -137,6 +149,19 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
 
 }
 
+// RED METHOD
++(instancetype)SH_actionSheetWithTitle:(NSString *)theTitle andRedOn:(BOOL)on {
+    
+    SHActionSheetBlocksManager.sharedManager.red = on;
+    
+    return [[self alloc] initWithTitle:theTitle
+                              delegate:[SHActionSheetBlocksManager sharedManager]
+                     cancelButtonTitle:nil
+                destructiveButtonTitle:nil
+                     otherButtonTitles:nil, nil];
+    
+}
+
 +(instancetype)SH_actionSheetWithTitle:(NSString *)theTitle
                           buttonTitles:(NSArray *)theButtonTitles
                           cancelTitle:(NSString *)theCancelTitle
@@ -155,6 +180,30 @@ static NSString * const SH_blockDidDismiss  = @"SH_blockDidDismiss";
   if(theCancelTitle)
     [sheet SH_addButtonCancelWithTitle:theCancelTitle withBlock:theBlock];
   return sheet;
+}
+
+// Red Method
++(instancetype)SH_actionSheetWithTitle:(NSString *)theTitle
+                          buttonTitles:(NSArray *)theButtonTitles
+                           cancelTitle:(NSString *)theCancelTitle
+                      destructiveTitle:(NSString *)theDestructiveTitle
+                             withBlock:(SHActionSheetBlock)theBlock
+                            andRedOn:(BOOL)on{
+    
+    UIActionSheet * sheet = [self SH_actionSheetWithTitle:theTitle];
+    
+    SHActionSheetBlocksManager.sharedManager.red = on;
+    
+    if(theDestructiveTitle)
+        [sheet SH_addButtonDestructiveWithTitle:theDestructiveTitle withBlock:theBlock];
+    
+    for (NSString * title in theButtonTitles)
+        [sheet SH_addButtonWithTitle:title withBlock:theBlock];
+    
+    
+    if(theCancelTitle)
+        [sheet SH_addButtonCancelWithTitle:theCancelTitle withBlock:theBlock];
+    return sheet;
 }
 
 
